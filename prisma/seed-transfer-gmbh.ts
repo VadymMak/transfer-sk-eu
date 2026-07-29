@@ -6,8 +6,10 @@ import { Pool } from 'pg';
 import * as bcrypt from 'bcryptjs';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
+import { AZURE_LIGHT } from '../src/lib/theme';
 
 dotenv.config({ path: path.resolve(__dirname, '../.env.local') });
+dotenv.config({ path: path.resolve(__dirname, '../.env') }); // fallback
 
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 const adapter = new PrismaPg(pool);
@@ -16,48 +18,14 @@ const db = new PrismaClient({ adapter });
 async function main() {
   console.log('Seeding Transfer GmbH...');
 
-  // Navy theme for transport/business verticals
-  const navyTheme = {
-    colors: {
-      bg:           '#060E18',
-      primary:      '#C9A347',
-      primaryDark:  '#A8893E',
-      primaryLight: '#E0B85A',
-      text:         '#FFFFFF',
-      textSecondary:'#B8C4D4',
-      textMuted:    '#506478',
-      border:       'rgba(201, 163, 71, 0.18)',
-      bgSubtle:     '#0A1828',
-      success:      '#4ade80',
-      error:        '#ef4444',
-      contrast:     '#FFFFFF',
-      overlay:      '#000000',
-      overlayAlpha: 'rgba(0,0,0,0.65)',
-      headerBg:     'rgba(6,14,24,0.95)',
-      bgDark:       '#020D14',
-      warning:      '#fbbf24',
-      successLight: 'rgba(74,222,128,0.15)',
-      errorLight:   'rgba(239,68,68,0.15)',
-      infoLight:    'rgba(201,163,71,0.12)',
-      surface:      '#0A1828',
-      bgAlt:        '#0A1828',
-      bgCard:       '#0E2040',
-    },
-    layout: {
-      heroType:     'split',
-      cardStyle:    'border',
-      navPosition:  'top',
-      borderRadius: 'sharp',
-    },
-  };
 
   // 1. Store
   const store = await db.store.upsert({
-    where: { slug: 'transfer-gmbh' },
-    update: { themeConfig: navyTheme, openingHours: null },
+    where: { slug: 'transfer-sk-eu' },
+    update: { themeConfig: AZURE_LIGHT, openingHours: null },
     create: {
-      slug: 'transfer-gmbh',
-      name: 'Transfer GmbH',
+      slug: 'transfer-sk-eu',
+      name: 'Transfer SK-EU',
       description: 'Professionelle Flughafentransfers Wien ⇄ Bratislava. Festpreise, lizenziert, 24/7.',
       vertical: Vertical.SERVICES,
       primaryMode: StoreMode.PHYSICAL,
@@ -73,7 +41,7 @@ async function main() {
       googleRating: 4.9,
       mapLat: 48.2081743,
       mapLng: 16.3738189,
-      themeConfig: navyTheme,
+      themeConfig: AZURE_LIGHT,
     },
   });
 
@@ -371,12 +339,12 @@ async function main() {
   }
 
   // 8. Admin user
-  const passwordHash = await bcrypt.hash('transfer2026', 12);
+  const passwordHash = await bcrypt.hash('Admin123!', 12);
   await db.adminUser.upsert({
-    where: { email: 'admin@transfer-gmbh.at' },
-    update: {},
+    where: { email: 'makevytssvadym@gmail.com' },
+    update: { passwordHash },
     create: {
-      email: 'admin@transfer-gmbh.at',
+      email: 'makevytssvadym@gmail.com',
       passwordHash,
       name: 'Admin',
       storeId: store.id,
@@ -384,8 +352,8 @@ async function main() {
   });
 
   console.log('Transfer GmbH seed complete!');
-  console.log('   Store slug: transfer-gmbh');
-  console.log('   Admin: admin@transfer-gmbh.at / transfer2026');
+  console.log('   Store slug: transfer-sk-eu');
+  console.log('   Admin: makevytssvadym@gmail.com / Admin123!');
 }
 
 main()

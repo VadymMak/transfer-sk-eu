@@ -134,6 +134,40 @@ export const NAVY_THEME: ThemeConfig = {
   },
 };
 
+export const AZURE_LIGHT: ThemeConfig = {
+  colors: {
+    bg:            '#FFFFFF',
+    primary:       '#1E88E5',
+    primaryDark:   '#1667B8',
+    primaryLight:  '#E8F2FD',
+    text:          '#0F2233',
+    textSecondary: '#56677A',
+    textMuted:     '#8A99A8',
+    border:        '#E6EDF5',
+    bgSubtle:      '#F0F5FC',
+    success:       '#16a34a',
+    error:         '#ef4444',
+    contrast:      '#FFFFFF',
+    overlay:       '#0F2233',
+    overlayAlpha:  'rgba(15,34,51,0.55)',
+    headerBg:      'rgba(255,255,255,0.9)',
+    bgDark:        '#0F2233',
+    warning:       '#F5B21E',
+    successLight:  '#dcfce7',
+    errorLight:    '#fef2f2',
+    infoLight:     '#eff6ff',
+    surface:       '#FFFFFF',
+    bgAlt:         '#F0F5FC',
+    bgCard:        '#FFFFFF',
+  },
+  layout: {
+    heroType:     'split',
+    cardStyle:    'shadow',
+    navPosition:  'top',
+    borderRadius: 'rounded',
+  },
+};
+
 /** Merge a partial DB theme over DEFAULT_THEME, deriving surface/bgAlt/bgCard from the preset's bg when not specified. */
 export function mergeTheme(dbTheme: Partial<ThemeConfig> | null): ThemeConfig {
   const mergedColors = { ...DEFAULT_THEME.colors, ...(dbTheme?.colors ?? {}) };
