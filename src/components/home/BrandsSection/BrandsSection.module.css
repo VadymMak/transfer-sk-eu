@@ -1,0 +1,237 @@
+.section {
+  background: var(--color-bg);
+  padding: 48px 24px;
+}
+
+.wrap {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ── Title row with "View all" link ─────────────────────────── */
+.titleRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-align: left;
+}
+
+.viewAll {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.15s ease;
+}
+
+.viewAll:hover {
+  opacity: 0.75;
+}
+
+/* ── Row layout (ecommerce — flex wrap) ─────────────────────── */
+.row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* ── Grid layout (shoe — 4x2) ───────────────────────────────── */
+.shoeGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+/* ── Brand card (shared) ────────────────────────────────────── */
+.card {
+  width: 200px;
+  height: 100px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 24px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    transform 150ms ease;
+}
+
+.card:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 10px 24px rgba(17, 24, 39, 0.1);
+  transform: translateY(-2px);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ── Shoe card overrides ────────────────────────────────────── */
+.cardShoe {
+  width: auto;
+  height: 80px;
+  background: var(--color-card-bg, #fff);
+  border-radius: 12px;
+  padding: 16px 24px;
+}
+
+/* ── Wordmarks (shared) ─────────────────────────────────────── */
+.logo {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* ── Ecommerce brand colors ─────────────────────────────────── */
+.logoMakita {
+  color: #007a3d;
+  font-style: italic;
+  font-weight: 800;
+}
+
+.logoBosch {
+  color: #e2001a;
+  letter-spacing: 0.04em;
+}
+
+.logoMilwaukee {
+  color: #c8102e;
+  font-weight: 800;
+}
+
+.logoMetabo {
+  color: #003087;
+  font-weight: 800;
+}
+
+.cardDewalt {
+  background: #febd17;
+  border-color: #febd17;
+}
+
+.cardDewalt:hover {
+  border-color: var(--color-primary);
+}
+
+.logoDewalt {
+  color: var(--color-text);
+  font-weight: 900;
+}
+
+.logoDewalt b {
+  font-weight: 900;
+}
+
+/* ── Shoe brand wordmark styles ─────────────────────────────── */
+.logoNike {
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: var(--color-text);
+}
+
+.logoAdidas {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+  color: var(--color-text);
+}
+
+.logoNewBalance {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #cf0a2c;
+  font-style: italic;
+}
+
+.logoPuma {
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  color: var(--color-text);
+}
+
+.logoAsics {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: #001e62;
+}
+
+.logoHoka {
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  color: var(--color-primary);
+}
+
+.logoConverse {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: var(--color-text);
+}
+
+.logoVans {
+  font-size: 24px;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: 0.04em;
+  color: var(--color-text);
+}
+
+/* ── Footer note ────────────────────────────────────────────── */
+.foot {
+  text-align: center;
+  font-size: 14px;
+  font-style: italic;
+  color: var(--color-text-muted);
+  margin: 28px 0 0;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .shoeGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .shoeGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .cardShoe {
+    height: 64px;
+    padding: 12px 16px;
+  }
+  .cardShoe .logo {
+    font-size: 16px;
+  }
+  .titleRow {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}

@@ -1,0 +1,143 @@
+/* Subscribe banner — full-width orange gradient band. */
+.sub {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  padding: 48px 24px;
+}
+
+.inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+/* ── Left: heading + subtext ──────────────────────── */
+.left {
+  min-width: 0;
+  flex: 1 1 420px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--color-contrast);
+  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.title svg {
+  flex: 0 0 auto;
+}
+
+.subtitle {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Form ─────────────────────────────────────────── */
+.form {
+  display: flex;
+  align-items: stretch;
+  flex-shrink: 0;
+}
+
+.field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.field svg {
+  position: absolute;
+  left: 15px;
+  color: var(--color-text-secondary);
+  pointer-events: none;
+}
+
+.input {
+  width: 320px;
+  height: 48px;
+  border: 2px solid transparent;
+  border-radius: 8px 0 0 8px;
+  padding: 0 16px 0 42px;
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--color-bg-dark);
+  background: var(--color-contrast);
+  outline: none;
+  transition: box-shadow 150ms ease;
+}
+
+.input::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.input:focus {
+  box-shadow: 0 0 0 3px rgba(30, 41, 59, 0.18);
+}
+
+.btn {
+  height: 48px;
+  padding: 0 26px;
+  background: var(--color-bg-dark);
+  color: var(--color-contrast);
+  border: none;
+  border-radius: 0 8px 8px 0;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background 150ms ease,
+    transform 80ms ease;
+}
+
+.btn:hover {
+  background: color-mix(in srgb, var(--color-bg-dark) 80%, var(--color-bg) 20%);
+}
+
+.btn:active {
+  transform: translateY(0.5px);
+}
+
+.btnDone {
+  background: var(--color-success);
+}
+
+.btnDone:hover {
+  background: var(--color-success);
+}
+
+.note {
+  margin: 10px 0 0;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ── Responsive ───────────────────────────────────── */
+@media (max-width: 560px) {
+  .form {
+    width: 100%;
+  }
+
+  .field {
+    flex: 1;
+  }
+
+  .input {
+    width: 100%;
+  }
+}

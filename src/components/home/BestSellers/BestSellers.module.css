@@ -1,0 +1,74 @@
+/* Left (70%) column of the Best Sellers section. */
+.col {
+  flex: 1 1 70%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Section header ───────────────────────────────── */
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fire {
+  color: var(--color-primary);
+  display: inline-flex;
+}
+
+.viewAll {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  transition:
+    gap 150ms ease,
+    color 150ms ease;
+}
+
+.viewAll:hover {
+  color: var(--color-primary-dark);
+  gap: 9px;
+}
+
+/* ── 4-column card grid ───────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  flex: 1;
+}
+
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

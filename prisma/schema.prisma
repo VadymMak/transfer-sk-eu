@@ -1,0 +1,630 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ============ STORE CONFIG ============
+
+model Store {
+  id           String   @id @default(cuid())
+  name         String
+  slug         String   @unique
+  description  String?
+  vertical     Vertical @default(ECOMMERCE)
+  regionBundle String   @default("UA")
+
+  // ── Store Presence ──
+  primaryMode  StoreMode @default(ONLINE)
+  address      String?
+  postalCode   String?
+  city         String?
+  openingHours String?
+  alwaysOpen   Boolean  @default(false)
+  logoUrl      String?
+  aboutImage   String?
+  ogImageUrl   String?
+  phone        String?
+  whatsappPhone String?
+  email        String?
+  founderName  String?
+  instagramUrl String?
+  facebook     String?
+  googleRating Float?
+  galleryLayout String?
+  mapLat       Float?
+  mapLng       Float?
+
+  themeConfig Json?
+  metadata    Json?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  products         Product[]
+  categories       Category[]
+  orders           Order[]
+  customers        Customer[]
+  promotions       Promotion[]
+  knowledgeBase    KnowledgeEntry[]
+  deliveryZones    DeliveryZone[]
+  reservations     Reservation[]
+  restaurantTables RestaurantTable[]
+  galleryImages    GalleryImage[]
+  testimonials     Testimonial[]
+  serviceMasters   ServiceMaster[]
+  services         Service[]
+  appointments     Appointment[]
+  digitalProducts  DigitalProduct[]
+  heroConfig       HeroConfig?
+  legalConfig      LegalConfig?
+}
+
+enum Vertical {
+  ECOMMERCE
+  FOOD_MARKET
+  RESTAURANT
+  SHOE_MARKET
+  B2B
+  SERVICES
+}
+
+enum StoreMode {
+  PHYSICAL
+  ONLINE
+  HYBRID
+}
+
+// ============ PRODUCTS ============
+
+model Category {
+  id        String    @id @default(cuid())
+  slug      String
+  nameKey   String
+  image     String?
+  sortOrder Int       @default(0)
+  storeId   String
+  store     Store     @relation(fields: [storeId], references: [id])
+  products  Product[]
+
+  @@unique([storeId, slug])
+}
+
+model Product {
+  id          String  @id @default(cuid())
+  slug        String
+  nameKey     String
+  description String?
+  brand       String?
+  image       String?
+  images      String[]
+  price       Float
+  oldPrice    Float?
+  currency    String  @default("UAH")
+  inStock     Boolean @default(true)
+  isHit       Boolean @default(false)
+  isNew       Boolean @default(false)
+  rating      Float   @default(0)
+  reviewCount Int     @default(0)
+
+  // Flexible per-vertical: { sku, stockQty, specs, description (localized), weight, etc. }
+  metadata Json?
+
+  // pgvector column added via custom migration after enabling the extension:
+  // ALTER TABLE "Product" ADD COLUMN embedding vector(1536);
+
+  categoryId String?
+  category   Category?   @relation(fields: [categoryId], references: [id])
+  storeId    String
+  store      Store       @relation(fields: [storeId], references: [id])
+  orderItems OrderItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([storeId, slug])
+  @@index([storeId, inStock])
+  @@index([storeId, categoryId])
+}
+
+// ============ CUSTOMERS ============
+
+model Customer {
+  id           String  @id @default(cuid())
+  email        String
+  name         String?
+  phone        String?
+  passwordHash String?
+  isVerified   Boolean @default(false)
+  companyName  String?
+  taxId        String?
+
+  // pgvector: ALTER TABLE "Customer" ADD COLUMN embedding vector(1536);
+
+  storeId      String
+  store        Store         @relation(fields: [storeId], references: [id])
+  orders       Order[]
+  testimonials Testimonial[]
+  appointments Appointment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([storeId, email])
+  @@index([storeId])
+}
+
+// ============ ORDERS ============
+
+model Order {
+  id          String      @id @default(cuid())
+  orderNumber String
+  status      OrderStatus @default(PENDING)
+
+  customerId String?
+  customer   Customer? @relation(fields: [customerId], references: [id])
+  guestEmail String?
+  guestName  String?
+  guestPhone String?
+
+  deliveryMode    DeliveryMode  @default(SHIPPING)
+  deliveryAddress Json?
+  deliveryZoneId  String?
+  deliveryZone    DeliveryZone? @relation(fields: [deliveryZoneId], references: [id])
+  trackingNumber  String?
+
+  paymentMethod String?
+  paymentStatus PaymentStatus @default(UNPAID)
+  paymentId     String?
+
+  subtotal    Float
+  deliveryFee Float  @default(0)
+  discount    Float  @default(0)
+  total       Float
+  currency    String @default("UAH")
+
+  customerNote String?
+  internalNote String?
+
+  storeId String
+  store   Store       @relation(fields: [storeId], references: [id])
+  items   OrderItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([storeId, status])
+  @@index([storeId, createdAt])
+  @@index([customerId])
+}
+
+model OrderItem {
+  id       String @id @default(cuid())
+  quantity Int
+  price    Float
+
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id])
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+}
+
+enum PaymentStatus {
+  UNPAID
+  DEPOSIT_PAID
+  PAID
+  REFUNDED
+  FAILED
+}
+
+enum DeliveryMode {
+  SHIPPING
+  COURIER
+  PICKUP
+  DINE_IN
+}
+
+// ============ DELIVERY ============
+
+model DeliveryZone {
+  id           String  @id @default(cuid())
+  name         String
+  polygon      Json?
+  fee          Float   @default(0)
+  minOrder     Float   @default(0)
+  estimatedMin Int     @default(30)
+  estimatedMax Int     @default(60)
+  active       Boolean @default(true)
+
+  storeId String
+  store   Store   @relation(fields: [storeId], references: [id])
+  orders  Order[]
+
+  @@index([storeId, active])
+}
+
+// ============ PROMOTIONS ============
+
+model Promotion {
+  id          String    @id @default(cuid())
+  type        PromoType
+  title       String
+  description String?
+
+  discountPercent Float?
+  discountAmount  Float?
+  productIds      String[]
+  categoryIds     String[]
+  bannerImage     String?
+
+  startsAt DateTime
+  endsAt   DateTime?
+  active   Boolean   @default(true)
+
+  storeId String
+  store   Store  @relation(fields: [storeId], references: [id])
+
+  createdAt DateTime @default(now())
+
+  @@index([storeId, active])
+}
+
+enum PromoType {
+  DISCOUNT
+  PRODUCT_OF_DAY
+  BANNER
+  FREE_DELIVERY
+}
+
+// ============ KNOWLEDGE BASE (for RAG / AI assistant) ============
+
+model KnowledgeEntry {
+  id       String  @id @default(cuid())
+  title    String
+  content  String
+  category String?
+
+  // pgvector: ALTER TABLE "KnowledgeEntry" ADD COLUMN embedding vector(1536);
+
+  storeId String
+  store   Store  @relation(fields: [storeId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([storeId, category])
+}
+
+// ============ RESERVATIONS (RESTAURANT only) ============
+
+model Reservation {
+  id      String @id @default(cuid())
+  storeId String
+  store   Store  @relation(fields: [storeId], references: [id])
+
+  date    DateTime
+  time    String
+  guests  Int
+  tableId String?
+  table   RestaurantTable? @relation(fields: [tableId], references: [id])
+
+  name            String
+  phone           String
+  email           String
+  specialRequests String?
+
+  status ReservationStatus @default(PENDING)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([storeId, date])
+  @@index([storeId, status])
+}
+
+enum TestimonialStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum ReservationStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+  NO_SHOW
+}
+
+model RestaurantTable {
+  id      String @id @default(cuid())
+  storeId String
+  store   Store  @relation(fields: [storeId], references: [id])
+
+  number String
+  seats  Int
+  zone   String
+  x      Int
+  y      Int
+  type   String
+  active Boolean @default(true)
+
+  reservations Reservation[]
+
+  @@unique([storeId, number])
+  @@index([storeId, zone])
+}
+
+// ============ HERO CONFIG ============
+
+model HeroConfig {
+  id        String  @id @default(cuid())
+  storeId   String  @unique
+  store     Store   @relation(fields: [storeId], references: [id])
+
+  title     String  @default("Kate Barber Studio")
+  subtitle  String  @default("Prémiový barber studio v Trenčíne")
+  ctaText   String  @default("Rezervovať termín")
+  titleI18n    Json?
+  subtitleI18n Json?
+  ctaTextI18n  Json?
+  imageUrl  String?
+
+  updatedAt DateTime @updatedAt
+}
+
+// ============ GALLERY (RESTAURANT) ============
+
+model GalleryImage {
+  id      String @id @default(cuid())
+  storeId String
+  store   Store  @relation(fields: [storeId], references: [id])
+
+  url       String
+  alt       String  @default("")
+  sortOrder Int     @default(0)
+  active    Boolean @default(true)
+
+  createdAt DateTime @default(now())
+
+  @@index([storeId, sortOrder])
+}
+
+// ============ TESTIMONIALS ============
+
+model Testimonial {
+  id     String @id @default(cuid())
+
+  text       String
+  rating     Int    @default(5)
+  authorName String?
+
+  status        TestimonialStatus @default(PENDING)
+  locale        String?
+  adminReply    String?
+  adminReplyAt  DateTime?
+
+  customerId String?
+  customer   Customer? @relation(fields: [customerId], references: [id])
+
+  storeId String
+  store   Store @relation(fields: [storeId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([storeId, status])
+  @@index([storeId, createdAt])
+  @@index([customerId])
+}
+
+// ============ SERVICE MASTER / TEAM MEMBER ============
+
+model ServiceMaster {
+  id        String  @id @default(cuid())
+  storeId   String
+  store     Store   @relation(fields: [storeId], references: [id])
+  name      String
+  role      String
+  bio       String?
+  photo     String?
+  sortOrder Int     @default(0)
+  active    Boolean @default(true)
+
+  appointments Appointment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([storeId, active])
+}
+
+// ============ SERVICE ============
+
+model Service {
+  id          String  @id @default(cuid())
+  storeId     String
+  store       Store   @relation(fields: [storeId], references: [id])
+  slug        String
+  nameKey     String
+  description String?
+  price       Float
+  duration    Int
+  image       String?
+  category    String?
+  metadata    Json?
+  sortOrder   Int     @default(0)
+  active      Boolean @default(true)
+
+  appointments Appointment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([storeId, slug])
+  @@index([storeId, active])
+}
+
+// ============ APPOINTMENT ============
+
+model Appointment {
+  id      String @id @default(cuid())
+  storeId String
+  store   Store  @relation(fields: [storeId], references: [id])
+
+  customerId String?
+  customer   Customer?      @relation(fields: [customerId], references: [id])
+  guestName  String?
+  guestPhone String?
+  guestEmail String?
+
+  serviceId String?
+  service   Service?       @relation(fields: [serviceId], references: [id])
+  masterId  String?
+  master    ServiceMaster? @relation(fields: [masterId], references: [id])
+
+  date     DateTime
+  timeSlot String
+  duration Int      @default(30)
+
+  status       AppointmentStatus @default(PENDING)
+  note         String?
+  internalNote String?
+
+  smsReminderSent      Boolean @default(false)
+  emailReminderSent    Boolean @default(false)
+  whatsappReminderSent Boolean @default(false)
+
+  priceAtBooking Float?
+
+  paymentStatus PaymentStatus @default(UNPAID)
+  paymentId     String?
+  deposit       Float?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([storeId, status])
+  @@index([storeId, date])
+  @@index([masterId, date])
+  @@index([customerId])
+}
+
+enum AppointmentStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+  NO_SHOW
+}
+
+// ============ DIGITAL PRODUCT ============
+
+model DigitalProduct {
+  id           String   @id @default(cuid())
+  storeId      String
+  store        Store    @relation(fields: [storeId], references: [id])
+  slug         String
+  type         String   @default("COURSE")
+  price        Float
+  currency     String   @default("EUR")
+  fileUrl      String?
+  videoUrl     String?
+  previewUrl   String?
+  active       Boolean  @default(true)
+  sortOrder    Int      @default(0)
+  translations DigitalProductTranslation[]
+  accesses     CourseAccess[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@unique([storeId, slug])
+  @@index([storeId, active])
+  @@index([storeId, type])
+}
+
+model DigitalProductTranslation {
+  id          String         @id @default(cuid())
+  productId   String
+  product     DigitalProduct @relation(fields: [productId], references: [id], onDelete: Cascade)
+  locale      String
+  name        String
+  description String?
+  lessonText  String?
+
+  @@unique([productId, locale])
+}
+
+// ============ COURSE ACCESS ============
+
+model CourseAccess {
+  id               String         @id @default(cuid())
+  storeId          String
+  digitalProductId String
+  product          DigitalProduct @relation(fields: [digitalProductId], references: [id])
+  email            String
+  stripePaymentId  String?
+  stripeSessionId  String?
+  grantedAt        DateTime       @default(now())
+
+  @@unique([digitalProductId, email])
+  @@index([email])
+  @@index([storeId])
+}
+
+// ============ LEGAL CONFIG (DACH) ============
+
+model LegalConfig {
+  id          String   @id @default(cuid())
+  storeId     String   @unique
+  store       Store    @relation(fields: [storeId], references: [id])
+  enabled     Boolean  @default(false)
+  companyName String   @default("")
+  street      String   @default("")
+  zip         String   @default("")
+  city        String   @default("")
+  country     String   @default("Deutschland")
+  email       String   @default("")
+  phone       String   @default("")
+  vatId       String   @default("")
+  updatedAt   DateTime @updatedAt
+}
+
+// ============ ADMIN AUTH ============
+
+model AdminUser {
+  id           String  @id @default(cuid())
+  email        String  @unique
+  passwordHash String
+  name         String?
+  role         String  @default("admin")
+  storeId      String
+
+  createdAt DateTime @default(now())
+}
+
+// ============ RAG KNOWLEDGE BASE ============
+
+model StoreKnowledge {
+  id        String   @id @default(cuid())
+  storeId   String
+  chunkType String   // 'service' | 'master' | 'review' | 'about' | 'faq' | 'hours'
+  content   String
+  embedding Unsupported("vector(1536)")?
+  metadata  Json?
+  createdAt DateTime @default(now())
+
+  @@index([storeId])
+}

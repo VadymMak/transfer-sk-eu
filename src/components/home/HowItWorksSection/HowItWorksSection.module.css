@@ -1,0 +1,195 @@
+.section {
+  background: var(--color-bg);
+  padding: 88px 24px 80px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ── Section header (matches Categories/DailySpecials style) ── */
+.header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 52px;
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 16px;
+  white-space: nowrap;
+}
+
+.label::before,
+.label::after {
+  content: "";
+  width: 26px;
+  height: 1.5px;
+  background: var(--color-primary);
+  opacity: 0.55;
+}
+
+.title {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.subtitle {
+  margin-top: 12px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+/* ── 3-step flow ── */
+.steps {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.step {
+  position: relative;
+  text-align: center;
+  padding: 0 8px;
+}
+
+/* Dashed connector between steps */
+.step:not(:first-child)::before {
+  content: "";
+  position: absolute;
+  top: 28px;
+  right: 50%;
+  left: -50%;
+  border-top: 2px dashed var(--color-border);
+  z-index: 0;
+}
+
+.stepIcon {
+  position: relative;
+  z-index: 1;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: var(--color-primary-light);
+  border: 1.5px solid var(--color-success-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+}
+
+.stepIcon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.stepBadge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--color-contrast);
+  font-size: 12.5px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2.5px solid var(--color-bg);
+}
+
+.stepTitle {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.stepDesc {
+  margin-top: 7px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  max-width: 220px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── Bottom checkmark pills ── */
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 56px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px 9px 14px;
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+.pillCheck {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pillCheck svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 760px) {
+  .section {
+    padding: 64px 24px;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    max-width: 320px;
+  }
+
+  .step:not(:first-child)::before {
+    display: none;
+  }
+}

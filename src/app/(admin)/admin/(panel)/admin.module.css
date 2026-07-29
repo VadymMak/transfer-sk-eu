@@ -1,0 +1,17 @@
+.shell {
+  display: flex;
+  min-height: 100vh;
+  background: #111111;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+  background: #111111;
+}
+
+@media (max-width: 720px) {
+  .shell {
+    flex-direction: column;
+  }
+}

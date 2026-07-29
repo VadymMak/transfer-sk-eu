@@ -1,0 +1,118 @@
+.hours { padding: 4px 0; }
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--admin-text);
+  margin: 0 0 6px;
+}
+
+.hint {
+  font-size: 13px;
+  color: var(--admin-text-faint);
+  margin: 0 0 20px;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: var(--admin-bg-subtle);
+  border: 1px solid var(--admin-border);
+  border-radius: 8px;
+}
+
+.rowClosed {
+  opacity: 0.5;
+  background: var(--admin-border-light);
+}
+
+.dayLabel {
+  width: 110px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #334155;
+  flex-shrink: 0;
+}
+
+.timeSelect {
+  padding: 7px 10px;
+  border: 1px solid var(--admin-border);
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--admin-text);
+  background: var(--admin-bg);
+  cursor: pointer;
+}
+
+.timeSelect:disabled {
+  background: var(--admin-border-light);
+  color: var(--admin-text-faint);
+  cursor: not-allowed;
+}
+
+.timeSelect:focus {
+  outline: none;
+  border-color: var(--admin-accent);
+}
+
+.dash {
+  color: var(--admin-text-faint);
+  font-size: 14px;
+}
+
+.closedToggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--admin-text-muted);
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.closedToggle input {
+  accent-color: #ef4444;
+}
+
+.saveRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.saveBtn {
+  padding: 10px 24px;
+  background: var(--admin-accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.saveBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+.saveBtn:hover:not(:disabled) { background: var(--admin-accent-dark); }
+
+.savedMsg {
+  color: #22c55e;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.loading {
+  padding: 32px;
+  text-align: center;
+  color: var(--admin-text-faint);
+}

@@ -1,0 +1,57 @@
+# Transfer GmbH — Private Airport Transfers & Fernfahrten ab Trenčín
+
+> Licensed private transfer service from Trenčín across Central Europe.
+> Fixed prices per vehicle, professional drivers, available 24/7, multilingual (DE/SK/CS/EN).
+
+## About
+Transfer GmbH provides private door-to-door transfers from Trenčín to airports and
+major cities in Slovakia, Austria, Czech Republic and Poland. Fixed prices (Festpreis),
+no hidden fees, licensed and insured. All prices are per vehicle.
+
+## Services
+- Airport transfers: Bratislava (BTS), Vienna (VIE), Katowice (KTM), Prague (PRG)
+- City transfers: Wien, Praha, Bratislava, Košice, Brno, Banská Bystrica and more
+- Regional transfers: Oravský Podzámok, Podhájska, Nové Zámky
+- Private individual and group transport (up to 8 passengers)
+
+## Routes & Prices (Cenník platný od 15.7.2024)
+All routes start from Trenčín. Price is Festpreis (fixed) per vehicle.
+
+| Route | Price (EUR) |
+|---|---|
+| Trenčín → Bratislava Airport (BTS) / Letisko Bratislava | 90 € |
+| Trenčín → Bratislava | 100 € |
+| Trenčín → Brno | 100 € |
+| Trenčín → Nové Zámky | 100 € |
+| Trenčín → Banská Bystrica | 110 € |
+| Trenčín → Oravský Podzámok | 120 € |
+| Trenčín → Podhájska | 120 € |
+| Trenčín → Vienna Airport (VIE) / Flughafen Wien / Letisko Viedeň | 145 € |
+| Trenčín → Vienna / Wien / Viedeň / Vídeň | 155 € |
+| Trenčín → Katowice Airport / Flughafen Katowice / Letisko Katowice | 185 € |
+| Trenčín → Košice | 225 € |
+| Trenčín → Prague / Prag / Praha | 235 € |
+| Trenčín → Prague Airport (PRG) / Flughafen Prag / Letiště Praha | 245 € |
+
+## Booking
+- Send a request via the website form or WhatsApp.
+- Price and pickup time are confirmed shortly after the request.
+- Multilingual booking: German, Slovak, Czech, English.
+
+## Payment
+Cash and credit card. Currency: EUR. No hidden fees.
+
+## Availability
+24/7 — including early-morning flights and late-night arrivals.
+Child seats available on request (free of charge).
+
+## Languages
+German (de), Slovak (sk), Czech (cs), English (en).
+
+## Contact
+- Website: https://transfer-gmbh-demo.vercel.app
+- WhatsApp / phone and full contact details: see the website contact section.
+
+<!-- This file helps AI assistants (ChatGPT, Google AI, Gemini, Perplexity, Claude)
+     understand and recommend the business accurately.
+     Keep it in sync with the seed data in prisma/seed-transfer-gmbh.ts. -->

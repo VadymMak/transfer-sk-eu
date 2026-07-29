@@ -1,0 +1,305 @@
+.page {
+  padding: 32px;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.h1 {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--admin-text);
+  margin: 0;
+}
+
+.datePicker {
+  padding: 8px 14px;
+  border: 1px solid var(--admin-border);
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #334155;
+  background: var(--admin-bg);
+  cursor: pointer;
+}
+
+.datePicker:focus {
+  outline: none;
+  border-color: var(--admin-accent);
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+}
+
+/* ── Stats ────────────────────────────────── */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.statCard {
+  background: var(--admin-bg);
+  border: 1px solid var(--admin-border);
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.statValue {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--admin-text);
+}
+
+.statLabel {
+  font-size: 13px;
+  color: var(--admin-text-muted);
+}
+
+.statPending .statValue { color: #f59e0b; }
+.statConfirmed .statValue { color: #22c55e; }
+.statCompleted .statValue { color: #3b82f6; }
+
+/* ── Filters ─────────────────────────────── */
+.filters {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.filterBtn {
+  padding: 7px 16px;
+  border: 1px solid var(--admin-border);
+  border-radius: 8px;
+  background: var(--admin-bg);
+  color: var(--admin-text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.filterBtn:hover {
+  border-color: var(--admin-accent);
+  color: var(--admin-accent);
+}
+
+.filterActive {
+  background: var(--admin-accent);
+  border-color: var(--admin-accent);
+  color: #fff;
+}
+
+.filterActive:hover {
+  background: var(--admin-accent-dark);
+  border-color: var(--admin-accent-dark);
+  color: #fff;
+}
+
+/* ── Table ────────────────────────────────── */
+.tableWrap {
+  background: var(--admin-bg);
+  border: 1px solid var(--admin-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.table th {
+  text-align: left;
+  padding: 12px 16px;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--admin-text-muted);
+  background: var(--admin-bg-subtle);
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--admin-border-light);
+  vertical-align: middle;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table tbody tr:hover {
+  background: var(--admin-bg-hover);
+}
+
+.time {
+  font-weight: 700;
+  color: var(--admin-text);
+  font-size: 15px;
+}
+
+.guest {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.guestName {
+  font-weight: 600;
+  color: var(--admin-text);
+}
+
+.guestEmail {
+  font-size: 12px;
+  color: var(--admin-text-faint);
+}
+
+.phone {
+  color: var(--admin-text-muted);
+  white-space: nowrap;
+}
+
+.guestCount {
+  font-weight: 700;
+  text-align: center;
+}
+
+.requests {
+  max-width: 200px;
+  font-size: 13px;
+  color: var(--admin-text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Badges ───────────────────────────────── */
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.badgePENDING {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.badgeCONFIRMED {
+  background: var(--admin-success);
+  color: var(--admin-success-text);
+}
+
+.badgeCANCELLED {
+  background: var(--admin-error);
+  color: var(--admin-error-text);
+}
+
+.badgeCOMPLETED {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.badgeNO_SHOW {
+  background: var(--admin-border-light);
+  color: var(--admin-text-muted);
+}
+
+/* Row tinting */
+.rowCANCELLED td { opacity: 0.5; }
+.rowNO_SHOW td { opacity: 0.5; }
+
+/* ── Action buttons ───────────────────────── */
+.actions {
+  display: flex;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.actionBtn {
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 150ms ease;
+}
+
+.actionBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.confirmBtn {
+  background: var(--admin-success);
+  color: var(--admin-success-text);
+  border-color: #bbf7d0;
+}
+
+.confirmBtn:hover:not(:disabled) {
+  background: #166534;
+  color: #fff;
+}
+
+.cancelBtn {
+  background: var(--admin-error);
+  color: var(--admin-error-text);
+  border-color: #fecaca;
+}
+
+.cancelBtn:hover:not(:disabled) {
+  background: #991b1b;
+  color: #fff;
+}
+
+.completeBtn {
+  background: #dbeafe;
+  color: #1e40af;
+  border-color: #bfdbfe;
+}
+
+.completeBtn:hover:not(:disabled) {
+  background: var(--admin-btn-edit);
+  color: #fff;
+}
+
+.noshowBtn {
+  background: var(--admin-border-light);
+  color: var(--admin-text-muted);
+  border-color: var(--admin-border);
+}
+
+.noshowBtn:hover:not(:disabled) {
+  background: var(--admin-text-muted);
+  color: #fff;
+}
+
+/* ── Empty / Loading ─────────────────────── */
+.loading,
+.empty {
+  padding: 48px;
+  text-align: center;
+  color: var(--admin-text-faint);
+  font-size: 15px;
+}
+
+.empty {
+  font-size: 14px;
+}

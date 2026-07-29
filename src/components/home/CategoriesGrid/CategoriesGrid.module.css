@@ -1,0 +1,458 @@
+.section {
+  background: var(--color-bg-subtle);
+  padding: 24px 0;
+}
+
+.inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Visually-hidden heading — keeps the section labelled for assistive tech. */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── 4×2 grid ─────────────────────────────────────── */
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+/* ── Card ─────────────────────────────────────────── */
+.card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 20px;
+  background: var(--color-bg);
+  border: none;
+  /* Transparent left border reserved so the hover state never shifts layout. */
+  border-left: 3px solid transparent;
+  border-radius: var(--radius-md);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
+  color: inherit;
+  font-family: inherit;
+  transition:
+    box-shadow 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.card:hover {
+  border-left-color: var(--color-primary);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.1);
+  transform: translateY(-1px);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ── Icon ─────────────────────────────────────────── */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  color: var(--color-primary);
+}
+
+.icon svg {
+  width: 48px;
+  height: 48px;
+}
+
+/* ── Name ─────────────────────────────────────────── */
+.name {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-text);
+}
+
+/* ── Responsive ───────────────────────────────────── */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   FOOD MARKET CATEGORIES
+   ══════════════════════════════════════════════════════════════════ */
+
+.foodCatSection {
+  background: var(--color-bg);
+  padding: 5rem 0 4rem;
+}
+
+.foodCatInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.foodCatHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+}
+
+.foodCatLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  margin: 0 0 0.5rem;
+}
+
+.foodCatLabelLine {
+  display: inline-block;
+  width: 30px;
+  height: 2px;
+  background: var(--color-primary);
+}
+
+.foodCatTitle {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0 0 0.35rem;
+  line-height: 1.2;
+}
+
+.foodCatSubtitle {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.foodCatBrowse {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.5rem;
+  border: 1.5px solid var(--color-border);
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: border-color 0.2s, background 0.2s;
+  margin-top: 1rem;
+}
+
+.foodCatBrowse:hover {
+  border-color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 5%, transparent);
+}
+
+.foodCatGrid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.foodCatCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  cursor: pointer;
+  gap: 0.5rem;
+}
+
+.foodCatCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--color-text) 8%, transparent);
+  border-color: var(--color-primary);
+}
+
+.foodCatCard:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.foodCatEmoji {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.foodCatEmojiCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  font-size: 1.75rem;
+}
+
+.foodCatName {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+
+.foodCatCount {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.foodCatPink {
+  background: color-mix(in srgb, var(--color-error-light) 60%, var(--color-bg) 40%);
+}
+.foodCatPink .foodCatEmojiCircle {
+  background: color-mix(in srgb, var(--color-error-light) 80%, var(--color-bg) 20%);
+}
+
+.foodCatGreen {
+  background: color-mix(in srgb, var(--color-success-light) 60%, var(--color-bg) 40%);
+}
+.foodCatGreen .foodCatEmojiCircle {
+  background: color-mix(in srgb, var(--color-success-light) 80%, var(--color-bg) 20%);
+}
+
+.foodCatBlue {
+  background: color-mix(in srgb, var(--color-info-light) 60%, var(--color-bg) 40%);
+}
+.foodCatBlue .foodCatEmojiCircle {
+  background: color-mix(in srgb, var(--color-info-light) 80%, var(--color-bg) 20%);
+}
+
+.foodCatYellow {
+  background: color-mix(in srgb, var(--color-warning) 10%, var(--color-bg) 90%);
+}
+.foodCatYellow .foodCatEmojiCircle {
+  background: color-mix(in srgb, var(--color-warning) 15%, var(--color-bg) 85%);
+}
+
+.foodCatSalmon {
+  background: color-mix(in srgb, var(--color-error-light) 40%, var(--color-bg) 60%);
+}
+.foodCatSalmon .foodCatEmojiCircle {
+  background: color-mix(in srgb, var(--color-error-light) 60%, var(--color-bg) 40%);
+}
+
+.foodCatCyan {
+  background: color-mix(in srgb, var(--color-info-light) 40%, var(--color-success-light) 20%);
+}
+.foodCatCyan .foodCatEmojiCircle {
+  background: color-mix(in srgb, var(--color-info-light) 60%, var(--color-success-light) 30%);
+}
+
+.foodCatLavender {
+  background: color-mix(in srgb, var(--color-error-light) 30%, var(--color-info-light) 30%);
+}
+.foodCatLavender .foodCatEmojiCircle {
+  background: color-mix(in srgb, var(--color-error-light) 40%, var(--color-info-light) 40%);
+}
+
+.foodCatMint {
+  background: color-mix(in srgb, var(--color-success-light) 50%, var(--color-bg) 50%);
+}
+.foodCatMint .foodCatEmojiCircle {
+  background: color-mix(in srgb, var(--color-success-light) 70%, var(--color-bg) 30%);
+}
+
+@media (max-width: 1024px) {
+  .foodCatGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .foodCatSection {
+    padding: 3rem 0;
+  }
+
+  .foodCatHeader {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .foodCatGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .foodCatCard {
+    padding: 1.5rem 1rem;
+  }
+
+  .foodCatEmojiCircle {
+    width: 52px;
+    height: 52px;
+    font-size: 1.5rem;
+  }
+}
+
+/* ─── Shoe Market Categories ─────────────────────────────────── */
+
+.shoeSection {
+  padding: 56px 0;
+  background: var(--color-bg);
+}
+
+.shoeInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.shoeHeader {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.shoeLabel {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+.shoeTitle {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.shoeGrid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.shoeCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+  padding: 28px 16px;
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.shoeCard:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+}
+
+.shoeCardSale {
+  border-color: var(--color-error);
+}
+
+.shoeCardSale:hover {
+  border-color: var(--color-error);
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--color-error) 15%, transparent);
+}
+
+.shoeIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: var(--color-primary);
+}
+
+.shoeIcon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.shoeIconSale {
+  color: var(--color-error);
+}
+
+.shoeName {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.shoeNameSale {
+  color: var(--color-error);
+}
+
+@media (max-width: 767px) {
+  .shoeSection {
+    padding: 40px 0;
+  }
+
+  .shoeGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .shoeCard {
+    padding: 20px 12px;
+  }
+
+  .shoeTitle {
+    font-size: 22px;
+  }
+}

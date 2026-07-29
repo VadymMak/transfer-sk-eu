@@ -1,0 +1,154 @@
+.banner {
+  background: linear-gradient(135deg, var(--color-bg-dark) 0%, var(--color-primary) 100%);
+  color: var(--color-contrast, #fff);
+}
+
+.inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 32px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+/* Left — text */
+.textBlock {
+  flex-shrink: 0;
+}
+
+.label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--color-primary-light, #FAF0E6);
+  margin-bottom: 6px;
+  opacity: 0.85;
+}
+
+.headline {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--color-contrast, #fff);
+  margin: 0 0 6px;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.brands {
+  font-size: 14px;
+  color: var(--color-primary-light, #FAF0E6);
+  margin: 0;
+  opacity: 0.8;
+}
+
+/* Center — trust pills */
+.pills {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-contrast, #fff);
+  white-space: nowrap;
+  backdrop-filter: blur(4px);
+}
+
+/* Right — buttons */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 44px;
+  padding: 0 28px;
+  background: var(--color-contrast, #fff);
+  color: var(--color-bg-dark, #2C1810);
+  border: none;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  white-space: nowrap;
+}
+
+.btnPrimary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.btnSecondary {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 24px;
+  background: transparent;
+  color: var(--color-contrast, #fff);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+  white-space: nowrap;
+}
+
+.btnSecondary:hover {
+  border-color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ── Responsive ──────────────────────────────────── */
+@media (max-width: 1024px) {
+  .pills {
+    display: none;
+  }
+  .inner {
+    padding: 28px 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 24px 20px;
+  }
+  .headline {
+    font-size: 26px;
+  }
+  .actions {
+    width: 100%;
+  }
+  .btnPrimary,
+  .btnSecondary {
+    flex: 1;
+    justify-content: center;
+  }
+}

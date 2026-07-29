@@ -1,0 +1,356 @@
+.page {
+  padding: 28px 32px 48px;
+  max-width: 1400px;
+}
+
+/* ── Top ──────────────────────────────────────────── */
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.h1 {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.exportBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 18px;
+  background: var(--admin-bg);
+  color: #4b5563;
+  border: 1.5px solid var(--admin-border);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 150ms ease, color 150ms ease;
+}
+
+.exportBtn:hover {
+  border-color: var(--admin-accent);
+  color: var(--admin-accent);
+}
+
+/* ── Stat filter badges ───────────────────────────── */
+.stats {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 38px;
+  padding: 0 16px;
+  background: var(--admin-bg);
+  border: 1.5px solid var(--admin-border);
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: #4b5563;
+  cursor: pointer;
+  transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+}
+
+.stat:hover {
+  border-color: var(--admin-accent);
+}
+
+.statActive {
+  background: var(--admin-accent);
+  border-color: var(--admin-accent);
+  color: #fff;
+}
+
+.statCount {
+  opacity: 0.7;
+  font-weight: 700;
+}
+
+/* ── Search ───────────────────────────────────────── */
+.searchWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.searchWrap svg {
+  position: absolute;
+  left: 14px;
+  color: var(--admin-text-faint);
+  pointer-events: none;
+}
+
+.search {
+  width: 100%;
+  height: 46px;
+  border: 1.5px solid var(--admin-border);
+  border-radius: 10px;
+  padding: 0 14px 0 42px;
+  font-family: inherit;
+  font-size: 14px;
+  color: #1a1a1a;
+  background: var(--admin-bg);
+  outline: none;
+  transition: border-color 150ms ease;
+}
+
+.search:focus {
+  border-color: var(--admin-accent);
+}
+
+/* ── Table ────────────────────────────────────────── */
+.tableWrap {
+  background: var(--admin-bg);
+  border: 1px solid var(--admin-border);
+  border-radius: 14px;
+  overflow-x: auto;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.table th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--admin-text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 14px 16px;
+  background: var(--admin-bg-subtle);
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--admin-border-light);
+  vertical-align: middle;
+  color: #1a1a1a;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table tbody tr:hover {
+  background: var(--admin-bg-subtle);
+}
+
+.colActions {
+  width: 90px;
+}
+
+.orderId {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--admin-accent);
+  padding: 0;
+}
+
+.orderId:hover {
+  text-decoration: underline;
+}
+
+.customer {
+  display: block;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.phone {
+  display: block;
+  font-size: 12px;
+  color: var(--admin-text-faint);
+  margin-top: 2px;
+}
+
+.items {
+  color: #4b5563;
+}
+
+.sum {
+  font-weight: 800;
+  color: #1a1a1a;
+}
+
+.payment {
+  color: #4b5563;
+  font-weight: 600;
+}
+
+.date {
+  color: var(--admin-text-faint);
+}
+
+/* ── Status select (colored badge) ────────────────── */
+.statusSelect {
+  border: none;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.new {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.processing {
+  background: var(--admin-accent-light);
+  color: #ea6c00;
+}
+
+.shipped {
+  background: #f5f3ff;
+  color: #7c3aed;
+}
+
+.delivered {
+  background: var(--admin-success);
+  color: #16a34a;
+}
+
+.cancelled {
+  background: var(--admin-error);
+  color: #dc2626;
+}
+
+/* ── Actions ──────────────────────────────────────── */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.iconBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--admin-text-faint);
+  padding: 7px;
+  border-radius: 8px;
+  display: inline-flex;
+  transition: color 150ms ease, background 150ms ease;
+}
+
+.iconBtn:hover {
+  color: var(--admin-accent);
+  background: var(--admin-accent-light);
+}
+
+.emptyRow {
+  text-align: center;
+  color: var(--admin-text-faint);
+  padding: 40px 16px;
+  font-weight: 500;
+}
+
+/* ── Prisma uppercase status classes ─────────────── */
+.PENDING {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.CONFIRMED {
+  background: var(--admin-success);
+  color: #15803d;
+}
+
+.PROCESSING {
+  background: var(--admin-accent-light);
+  color: #ea6c00;
+}
+
+.SHIPPED {
+  background: #f5f3ff;
+  color: #7c3aed;
+}
+
+.DELIVERED {
+  background: var(--admin-success);
+  color: #16a34a;
+}
+
+.CANCELLED {
+  background: var(--admin-error);
+  color: #dc2626;
+}
+
+.REFUNDED {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+/* ── Food Market delivery badges ─────────────────── */
+.badgePickup {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.badgeCourier {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.deliveryTime {
+  font-size: 0.75rem;
+  color: var(--admin-text-muted);
+}
+
+.zoneInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.zoneName {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #1a1a1a;
+}
