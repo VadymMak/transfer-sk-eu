@@ -180,9 +180,7 @@ async function main() {
     });
   }
 
-  // 5. Fleet (category: 'fleet') — Vitaly's 2 vehicles
-  await db.service.deleteMany({ where: { storeId: store.id, category: 'fleet' } });
-
+  // 5. Fleet (category: 'fleet') — Vitaly's 2 vehicles (upsert preserves admin-uploaded photos)
   const fleet = [
     { slug: 'minivan-5', sortOrder: 1, nameKey: 'Peugeot 5008',
       metadata: { capacity: '5',
