@@ -253,7 +253,7 @@ export default function TransferQuoteSection({
             </div>
 
             {submitError && (
-              <p style={{ color: '#f87171', fontSize: '0.875rem', marginBottom: '0.5rem' }}>
+              <p style={{ color: 'var(--color-error)', fontSize: '0.875rem', marginBottom: '0.5rem' }}>
                 ⚠️ {submitError}
               </p>
             )}
