@@ -777,5 +777,13 @@
     "capacityLabel": "Kapacita",
     "luggageLabel": "Zavazadla",
     "modelLabel": "Model"
+  },
+  "chat": {
+    "title": "Asistent",
+    "greeting": "Dobrý deň! Spýtajte sa na trasy, ceny alebo rezerváciu.",
+    "placeholder": "Napíšte správu…",
+    "whatsapp": "Pokračovať na WhatsApp",
+    "send": "Odoslať",
+    "error": "Prepáčte, skúste znova alebo napíšte na WhatsApp."
   }
 }

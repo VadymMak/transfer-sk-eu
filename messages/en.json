@@ -773,5 +773,13 @@
     "capacityLabel": "Capacity",
     "luggageLabel": "Luggage",
     "modelLabel": "Model"
+  },
+  "chat": {
+    "title": "Assistant",
+    "greeting": "Hi! Ask about routes, prices or booking.",
+    "placeholder": "Type a message…",
+    "whatsapp": "Continue on WhatsApp",
+    "send": "Send",
+    "error": "Sorry, please try again or message us on WhatsApp."
   }
 }

@@ -773,5 +773,13 @@
     "capacityLabel": "Kapazität",
     "luggageLabel": "Gepäck",
     "modelLabel": "Modell"
+  },
+  "chat": {
+    "title": "Assistent",
+    "greeting": "Hallo! Fragen Sie nach Strecken, Preisen oder Buchung.",
+    "placeholder": "Nachricht schreiben…",
+    "whatsapp": "Auf WhatsApp fortfahren",
+    "send": "Senden",
+    "error": "Entschuldigung, bitte erneut versuchen oder WhatsApp."
   }
 }
