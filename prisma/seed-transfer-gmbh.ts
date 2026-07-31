@@ -16,13 +16,13 @@ const adapter = new PrismaPg(pool);
 const db = new PrismaClient({ adapter });
 
 async function main() {
-  console.log('Seeding Transfer GmbH...');
+  console.log('Seeding Transfer SK-EU...');
 
 
   // 1. Store
   const store = await db.store.upsert({
     where: { slug: 'transfer-sk-eu' },
-    update: { themeConfig: AZURE_LIGHT, openingHours: null },
+    update: { name: 'Transfer SK-EU', themeConfig: AZURE_LIGHT, openingHours: null },
     create: {
       slug: 'transfer-sk-eu',
       name: 'Transfer SK-EU',
@@ -351,7 +351,7 @@ async function main() {
     },
   });
 
-  console.log('Transfer GmbH seed complete!');
+  console.log('Transfer SK-EU seed complete!');
   console.log('   Store slug: transfer-sk-eu');
   console.log('   Admin: makevytssvadym@gmail.com / Admin123!');
 }

@@ -3,11 +3,14 @@ import OpenAI from 'openai';
 import { revalidatePath } from 'next/cache';
 import { db } from '@/lib/db';
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+let _openai: OpenAI | undefined;
+function openAIClient(): OpenAI {
+  return (_openai ??= new OpenAI({ apiKey: process.env.OPENAI_API_KEY }));
+}
 const STORE_SLUG = process.env.STORE_SLUG ?? '';
 
 async function getEmbedding(text: string): Promise<number[]> {
-  const res = await openai.embeddings.create({ model: 'text-embedding-3-small', input: text });
+  const res = await openAIClient().embeddings.create({ model: 'text-embedding-3-small', input: text });
   return res.data[0].embedding;
 }
 
@@ -237,7 +240,7 @@ async function executeTool(name: string, args: Record<string, unknown>, storeId:
 
     case 'improve_text': {
       const { text, instruction, targetLanguage } = args as { text: string; instruction: string; targetLanguage?: string };
-      const res = await openai.chat.completions.create({
+      const res = await openAIClient().chat.completions.create({
         model: 'gpt-4o-mini',
         messages: [
           {
@@ -418,7 +421,7 @@ BARBERSHOP CONTEXT (from knowledge base):
 ${context}`;
 
   // 3. First completion with tools
-  const firstCompletion = await openai.chat.completions.create({
+  const firstCompletion = await openAIClient().chat.completions.create({
     model: 'gpt-4o-mini',
     messages: [
       { role: 'system', content: systemPrompt },
@@ -442,7 +445,7 @@ ${context}`;
     }
 
     // 5. Second completion with tool results
-    const finalCompletion = await openai.chat.completions.create({
+    const finalCompletion = await openAIClient().chat.completions.create({
       model: 'gpt-4o-mini',
       messages: [
         { role: 'system', content: systemPrompt },

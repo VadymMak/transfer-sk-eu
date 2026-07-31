@@ -5,7 +5,7 @@
   right: 0;
   z-index: 9999;
   background: var(--color-bg);
-  border-top: 2px solid var(--color-gold);
+  border-top: 2px solid var(--color-primary);
   box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.4);
 }
 
@@ -28,14 +28,14 @@
 }
 
 .link {
-  color: var(--color-gold);
+  color: var(--color-primary);
   text-decoration: underline;
   text-underline-offset: 2px;
   white-space: nowrap;
 }
 
 .link:hover {
-  color: var(--color-gold-dark);
+  color: var(--color-primary-dark);
 }
 
 .buttons {
@@ -56,14 +56,14 @@
 }
 
 .acceptBtn {
-  background: var(--color-gold);
-  color: #ffffff;
-  border: 2px solid var(--color-gold);
+  background: var(--color-primary);
+  color: var(--color-contrast);
+  border: 2px solid var(--color-primary);
 }
 
 .acceptBtn:hover {
-  background: var(--color-gold-dark);
-  border-color: var(--color-gold-dark);
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
 }
 
 .rejectBtn {

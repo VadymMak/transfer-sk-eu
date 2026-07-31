@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 import { db } from '@/lib/db';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   const storeSlug = process.env.STORE_SLUG ?? '';
   const store = await db.store.findUnique({ where: { slug: storeSlug } });
@@ -23,10 +25,9 @@ export async function GET() {
   return NextResponse.json({ total, breakdown, lastUpdated: latest[0]?.createdAt ?? null });
 }
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 const STORE_SLUG = process.env.STORE_SLUG ?? '';
 
-async function getEmbedding(text: string): Promise<number[]> {
+async function getEmbedding(openai: OpenAI, text: string): Promise<number[]> {
   const res = await openai.embeddings.create({
     model: 'text-embedding-3-small',
     input: text,
@@ -38,6 +39,7 @@ export async function POST(_req: NextRequest) {
   if (!process.env.OPENAI_API_KEY) {
     return NextResponse.json({ error: 'OPENAI_API_KEY not configured' }, { status: 500 });
   }
+  const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
   const store = await db.store.findUnique({ where: { slug: STORE_SLUG } });
   if (!store) return NextResponse.json({ error: 'Store not found' }, { status: 404 });
@@ -155,7 +157,7 @@ export async function POST(_req: NextRequest) {
 
   let saved = 0;
   for (const chunk of chunks) {
-    const embedding = await getEmbedding(chunk.content);
+    const embedding = await getEmbedding(openai, chunk.content);
     const vectorStr = `[${embedding.join(',')}]`;
     await db.$executeRawUnsafe(
       `INSERT INTO "StoreKnowledge" (id, "storeId", "chunkType", content, embedding, metadata, "createdAt")

@@ -187,7 +187,7 @@ body::after {
 }
 
 .header--scrolled {
-  background: rgba(6, 14, 24, 0.95);
+  background: var(--color-header-bg);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--color-border);
 }
@@ -222,7 +222,7 @@ body::after {
 }
 
 .header__nav-link {
-  color: var(--color-text-secondary);
+  color: var(--color-text);
   text-decoration: none;
   font-size: 0.8rem;
   font-weight: 500;
@@ -284,7 +284,7 @@ body::after {
   top: 100%;
   left: 0;
   right: 0;
-  background: rgba(6, 14, 24, 0.98);
+  background: var(--color-bg);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--color-border);
   padding: 1.5rem 2rem;
@@ -294,7 +294,7 @@ body::after {
 }
 
 .header__mobile-link {
-  color: var(--color-text-secondary);
+  color: var(--color-text);
   text-decoration: none;
   font-size: 1rem;
   font-weight: 500;

@@ -39,11 +39,12 @@ export async function generateMetadata({
   const config = await getStoreConfig();
   const baseUrl = getBaseUrl();
 
+  const brandName = config.name || 'Transfer SK-EU';
   const titles: Record<string, string> = {
-    de: 'Flughafentransfer Wien ⇄ Bratislava | Transfer GmbH',
-    sk: 'Letiskový transfer Viedeň ⇄ Bratislava | Transfer GmbH',
-    cs: 'Letištní transfer Vídeň ⇄ Bratislava | Transfer GmbH',
-    en: 'Airport Transfer Vienna ⇄ Bratislava | Transfer GmbH',
+    de: `Flughafentransfer Wien ⇄ Bratislava | ${brandName}`,
+    sk: `Letiskový transfer Viedeň ⇄ Bratislava | ${brandName}`,
+    cs: `Letištní transfer Vídeň ⇄ Bratislava | ${brandName}`,
+    en: `Airport Transfer Vienna ⇄ Bratislava | ${brandName}`,
   };
   const descriptions: Record<string, string> = {
     de: 'Professionelle Flughafentransfers Wien (VIE) ⇄ Bratislava (BTS). Festpreise, lizenziert, 24/7. Einfach online anfragen.',
@@ -75,7 +76,7 @@ export async function generateMetadata({
       description,
       locale: ogLocale,
       type: 'website',
-      images: [{ url: ogImage, width: 1200, height: 630, alt: 'Transfer GmbH' }],
+      images: [{ url: ogImage, width: 1200, height: 630, alt: brandName }],
     },
     twitter: {
       card: 'summary_large_image',
@@ -217,7 +218,7 @@ export default async function LocaleLayout({
           <CustomerProvider>
             <VerticalProvider config={config.vertical}>
               <PresenceProvider presence={config.presence}>
-                <Header logoUrl={config.logoUrl} whatsappBookingLink={config.whatsappLinks.booking} activeLocales={getActiveLocales()} />
+                <Header logoUrl={config.logoUrl} storeName={config.name} whatsappBookingLink={config.whatsappLinks.booking} activeLocales={getActiveLocales()} />
                 <main>{children}</main>
                 <Footer config={config} locale={locale} />
                 <CookieBanner />

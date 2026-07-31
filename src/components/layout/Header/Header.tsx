@@ -8,10 +8,12 @@ import LanguageSwitcher from '@/components/ui/LanguageSwitcher/LanguageSwitcher'
 
 export default function Header({
   logoUrl,
+  storeName,
   whatsappBookingLink = '#',
   activeLocales,
 }: {
   logoUrl?: string;
+  storeName?: string;
   whatsappBookingLink?: string;
   activeLocales?: string[];
 }) {
@@ -24,6 +26,9 @@ export default function Header({
     { href: `/${locale}/#galerie`,    label: tHeader('transferGalerie') },
     { href: `/${locale}/#kontakt`,    label: tHeader('transferKontakt') },
   ];
+
+  const [wordFirst, ...wordRestArr] = (storeName ?? 'Transfer SK-EU').split(' ');
+  const wordRest = wordRestArr.join(' ');
 
   const [scrolled, setScrolled] = useState(false);
   const [visible, setVisible] = useState(true);
@@ -66,7 +71,7 @@ export default function Header({
             /* eslint-disable-next-line @next/next/no-img-element */
             <img src={logoUrl} alt="Logo" className="header__logo-img" />
           ) : (
-            <>Transfer <span className="header__logo-span">GmbH</span></>
+            <>{wordFirst} <span className="header__logo-span">{wordRest}</span></>
           )}
         </Link>
 
