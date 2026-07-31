@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import { GALLERY_IMAGES } from '@/lib/constants';
 import GoldDivider from '@/components/ui/GoldDivider';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import { BLUR_PLACEHOLDER } from '@/components/ui/BlurImage';
@@ -18,9 +17,8 @@ interface GallerySectionProps {
 
 export default function GallerySection({ images, layout }: GallerySectionProps) {
   const t = useTranslations('gallery');
-  const items = images && images.length > 0
-    ? images
-    : GALLERY_IMAGES.map((g, i) => ({ id: String(i), url: g.src, alt: g.alt }));
+  if (!images || images.length === 0) return null;
+  const items = images;
 
   const gridClass = `gallery-grid gallery-grid--${layout || 'grid-3'}`;
 
