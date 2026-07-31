@@ -33,7 +33,11 @@ export async function PATCH(
   if (body.nameKey !== undefined) data.nameKey = body.nameKey.trim();
   if (body.description !== undefined) data.description = body.description?.trim() || null;
   if (body.image !== undefined) data.image = body.image?.trim() || null;
-  if (body.metadata !== undefined) data.metadata = body.metadata;
+  if (body.metadata !== undefined) {
+    const existing = await db.service.findUnique({ where: { id }, select: { metadata: true } });
+    const current = (existing?.metadata as Record<string, unknown> | null) ?? {};
+    data.metadata = { ...current, ...body.metadata };
+  }
   if (body.active !== undefined) data.active = body.active;
   if (body.sortOrder !== undefined) data.sortOrder = body.sortOrder;
 
