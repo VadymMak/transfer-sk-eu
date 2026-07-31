@@ -102,14 +102,16 @@ export const getStoreConfig = cache(async (): Promise<StoreConfig> => {
       googleRating: true,
       mapLat: true,
       mapLng: true,
+      metadata: true,
     },
   });
 
   const dbTheme = store.themeConfig as Partial<ThemeConfig> | null;
   const theme = mergeTheme(dbTheme);
 
+  const meta = (store.metadata as Record<string, unknown> | null) ?? {};
   const mode = store.primaryMode as StoreMode;
-  const whatsappNumber = store.whatsappPhone ?? store.phone;
+  const whatsappNumber = (meta.whatsapp as string) || store.whatsappPhone || store.phone;
 
   const presence: StorePresence = {
     primaryMode: mode,
@@ -122,11 +124,11 @@ export const getStoreConfig = cache(async (): Promise<StoreConfig> => {
     openingHours: parseOpeningHours(store.openingHours),
     alwaysOpen: store.alwaysOpen ?? false,
     phone: store.phone ?? undefined,
-    whatsapp: store.whatsappPhone ?? undefined,
+    whatsapp: ((meta.whatsapp as string) || store.whatsappPhone) ?? undefined,
     email: store.email ?? undefined,
     founderName: store.founderName ?? undefined,
-    instagram: store.instagramUrl ?? undefined,
-    facebook: store.facebook ?? undefined,
+    instagram: ((meta.instagram as string) || store.instagramUrl) ?? undefined,
+    facebook: (meta.facebook as string) || store.facebook || undefined,
     googleRating: store.googleRating ?? undefined,
     mapCoords:
       store.mapLat && store.mapLng
