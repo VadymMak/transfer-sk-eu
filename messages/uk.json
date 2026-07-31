@@ -718,10 +718,10 @@
     "item6Desc": "Сотні задоволених клієнтів. Читайте відгуки."
   },
   "stats": {
-    "yearsLabel": "Років досвіду",
-    "clientsLabel": "Задоволених клієнтів",
-    "barbersLabel": "Професійні барбери",
-    "googleLabel": "Рейтинг Google"
+    "availLabel": "Доступність",
+    "airportsLabel": "Аеропорти",
+    "seatsLabel": "Місць",
+    "languagesLabel": "Мов"
   },
   "seo": {
     "description": "Професійний барбершоп та перукарня в {city}. Чоловічі стрижки, догляд за бородою та стайлінг.",

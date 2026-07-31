@@ -722,10 +722,10 @@
     "item6Desc": "Udržovaná vozidla, klimatizace, WiFi na palubě a voda pro vás."
   },
   "stats": {
-    "yearsLabel": "Let zkušeností",
-    "clientsLabel": "Spokojených zákazníků",
-    "barbersLabel": "Jízd denně",
-    "googleLabel": "Hodnocení Google"
+    "availLabel": "Dostupnosť",
+    "airportsLabel": "Letiská",
+    "seatsLabel": "Max. miest",
+    "languagesLabel": "Jazykov"
   },
   "seo": {
     "description": "Profesionální barbershop a kadeřnictví v {city}. Pánské střihy, holení a styling.",

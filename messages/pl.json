@@ -718,10 +718,10 @@
     "item6Desc": "Setki zadowolonych klientów. Przeczytaj nasze recenzje."
   },
   "stats": {
-    "yearsLabel": "Lat doświadczenia",
-    "clientsLabel": "Zadowolonych klientów",
-    "barbersLabel": "Profesjonalni barberzy",
-    "googleLabel": "Ocena Google"
+    "availLabel": "Availability",
+    "airportsLabel": "Airports",
+    "seatsLabel": "Max seats",
+    "languagesLabel": "Languages"
   },
   "seo": {
     "description": "Profesjonalny barbershop i salon fryzjerski w {city}. Strzyżenia męskie, pielęgnacja brody i stylizacja.",

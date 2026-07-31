@@ -97,7 +97,7 @@ export default async function HomePage({
         routes={mappedRoutes}
         ariaLabel={TICKER_ARIA_LABEL[locale] ?? TICKER_ARIA_LABEL.de}
       />
-      <StatsBar googleRating={presence.googleRating} />
+      <StatsBar />
       <TransferQuoteSection
         whatsappNumber={presence.whatsapp ?? presence.phone ?? undefined}
       />

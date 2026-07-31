@@ -718,10 +718,10 @@
     "item6Desc": "Сотни довольных клиентов. Читайте отзывы."
   },
   "stats": {
-    "yearsLabel": "Лет опыта",
-    "clientsLabel": "Довольных клиентов",
-    "barbersLabel": "Профессиональные барберы",
-    "googleLabel": "Оценка Google"
+    "availLabel": "Доступность",
+    "airportsLabel": "Аэропорта",
+    "seatsLabel": "Мест",
+    "languagesLabel": "Языков"
   },
   "seo": {
     "description": "Профессиональный барбершоп и парикмахерская в {city}. Мужские стрижки, уход за бородой и стайлинг.",

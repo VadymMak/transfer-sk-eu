@@ -718,10 +718,10 @@
     "item6Desc": "Gepflegte Fahrzeuge, klimatisiert, WLAN an Bord und stilles Wasser für Sie."
   },
   "stats": {
-    "yearsLabel": "Jahre Erfahrung",
-    "clientsLabel": "Zufriedene Kunden",
-    "barbersLabel": "Strecken täglich",
-    "googleLabel": "Google-Bewertung"
+    "availLabel": "Verfügbarkeit",
+    "airportsLabel": "Flughäfen",
+    "seatsLabel": "Max. Plätze",
+    "languagesLabel": "Sprachen"
   },
   "seo": {
     "description": "Professioneller Barbershop und Friseursalon in {city}. Herrenhaarschnitte, Bartpflege und Styling.",

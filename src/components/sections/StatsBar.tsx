@@ -3,18 +3,14 @@ import ScrollReveal from '@/components/ui/ScrollReveal';
 
 interface StatItem { number: string; label: string; }
 
-interface StatsBarProps {
-  googleRating?: number;
-}
-
-export default async function StatsBar({ googleRating }: StatsBarProps) {
+export default async function StatsBar() {
   const t = await getTranslations('stats');
 
   const stats: StatItem[] = [
-    { number: '5+',    label: t('yearsLabel')   },
-    { number: '2K+',   label: t('clientsLabel') },
-    { number: '50+',   label: t('barbersLabel') },
-    { number: googleRating ? String(googleRating) : '4.9', label: t('googleLabel') },
+    { number: '24/7', label: t('availLabel')     },
+    { number: '4',    label: t('airportsLabel')  },
+    { number: '8',    label: t('seatsLabel')     },
+    { number: '5',    label: t('languagesLabel') },
   ];
 
   return (

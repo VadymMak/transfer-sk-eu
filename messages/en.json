@@ -718,10 +718,10 @@
     "item6Desc": "Well-maintained vehicles, air conditioning, WiFi and still water on board."
   },
   "stats": {
-    "yearsLabel": "Years experience",
-    "clientsLabel": "Happy customers",
-    "barbersLabel": "Rides per day",
-    "googleLabel": "Google rating"
+    "availLabel": "Availability",
+    "airportsLabel": "Airports",
+    "seatsLabel": "Max seats",
+    "languagesLabel": "Languages"
   },
   "seo": {
     "description": "Professional barbershop and hair salon in {city}. Men's haircuts, beard grooming and styling.",
