@@ -13,8 +13,13 @@ interface RoutesTickerProps {
 export default function RoutesTicker({ routes, ariaLabel }: RoutesTickerProps) {
   if (!routes.length) return null;
 
-  const items = routes.map((r) => (
-    <span key={r.displayName} className={styles.item}>
+  const MIN_ITEMS = 8;
+  const filled = routes.length >= MIN_ITEMS
+    ? routes
+    : Array.from({ length: Math.ceil(MIN_ITEMS / routes.length) }, () => routes).flat();
+
+  const items = filled.map((r, i) => (
+    <span key={`${r.displayName}-${i}`} className={styles.item}>
       <span className={styles.name}>{r.displayName}</span>
       <span className={styles.sep} aria-hidden="true">✈</span>
       <span className={styles.price}>{r.price} €</span>

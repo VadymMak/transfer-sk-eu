@@ -315,25 +315,8 @@ async function main() {
     });
   }
 
-  // 7. Testimonials (German, approved)
-  const testimonials = [
-    { text: 'Pünktlich, sauber, freundlicher Fahrer. Transfer vom Flughafen Wien nach Bratislava war absolut problemlos. Sehr empfehlenswert!', rating: 5, authorName: 'Markus W.', locale: 'de' },
-    { text: 'Wir haben Transfer GmbH für unsere Messefahrt zur ViennaAutoShow gebucht. Van war perfekt — 6 Personen + Gepäck, kein Problem. Preis-Leistung top.', rating: 5, authorName: 'Johannes K.', locale: 'de' },
-    { text: 'Flug hatte 45 Minuten Verspätung, der Fahrer hat trotzdem gewartet ohne Aufpreis. Das ist Service, den man sich wünscht. Danke!', rating: 5, authorName: 'Felix B.', locale: 'de' },
-  ];
-
-  for (const t of testimonials) {
-    await db.testimonial.create({
-      data: {
-        storeId: store.id,
-        text: t.text,
-        rating: t.rating,
-        authorName: t.authorName,
-        locale: t.locale,
-        status: 'APPROVED',
-      },
-    });
-  }
+  // 7. Testimonials — start empty; real reviews come via submit form + admin approval
+  await db.testimonial.deleteMany({ where: { storeId: store.id } });
 
   // 8. Admin user
   const passwordHash = await bcrypt.hash('Admin123!', 12);
