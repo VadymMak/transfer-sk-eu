@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
+import { getLocale } from 'next-intl/server';
 import GoldDivider from '@/components/ui/GoldDivider';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 
@@ -15,6 +16,8 @@ interface VehicleMeta {
   capacity?: string;
   luggage?: string;
   model?: string;
+  nameI18n?: Record<string, string>;
+  descI18n?: Record<string, string>;
 }
 
 interface FleetSectionProps {
@@ -23,6 +26,7 @@ interface FleetSectionProps {
 
 export default async function FleetSection({ fleet }: FleetSectionProps) {
   const t = await getTranslations('fleet');
+  const locale = await getLocale();
 
   return (
     <section id="fuhrpark" className="team">
@@ -36,6 +40,8 @@ export default async function FleetSection({ fleet }: FleetSectionProps) {
       <div className="team-grid">
         {fleet.map((vehicle, i) => {
           const meta = (vehicle.metadata as VehicleMeta) ?? {};
+          const name = meta.nameI18n?.[locale] ?? vehicle.nameKey;
+          const desc = meta.descI18n?.[locale] ?? vehicle.description;
 
           return (
             <ScrollReveal key={vehicle.id} direction="up" delay={i * 120}>
@@ -44,7 +50,7 @@ export default async function FleetSection({ fleet }: FleetSectionProps) {
                   {vehicle.image ? (
                     <Image
                       src={vehicle.image}
-                      alt={vehicle.nameKey}
+                      alt={name}
                       fill
                       sizes="(max-width: 768px) 100vw, 33vw"
                       className="team-photo"
@@ -70,7 +76,7 @@ export default async function FleetSection({ fleet }: FleetSectionProps) {
                   )}
                 </div>
 
-                <h3 className="team-name">{vehicle.nameKey}</h3>
+                <h3 className="team-name">{name}</h3>
 
                 {meta.capacity && (
                   <p className="team-role">
@@ -78,16 +84,8 @@ export default async function FleetSection({ fleet }: FleetSectionProps) {
                   </p>
                 )}
 
-                {(meta.luggage || meta.model) && (
-                  <p className="team-exp">
-                    {meta.luggage && `${t('luggageLabel')}: ${meta.luggage}`}
-                    {meta.luggage && meta.model && ' · '}
-                    {meta.model && `${t('modelLabel')}: ${meta.model}`}
-                  </p>
-                )}
-
-                {vehicle.description && (
-                  <p className="team-exp">{vehicle.description}</p>
+                {desc && (
+                  <p className="team-exp">{desc}</p>
                 )}
               </div>
             </ScrollReveal>

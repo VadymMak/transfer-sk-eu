@@ -180,39 +180,48 @@ async function main() {
     });
   }
 
-  // 5. Fleet (category: 'fleet')
+  // 5. Fleet (category: 'fleet') — Vitaly's 2 vehicles
+  await db.service.deleteMany({ where: { storeId: store.id, category: 'fleet' } });
+
   const fleet = [
-    {
-      slug: 'limousine',
-      nameKey: 'Limousine Premium',
-      description: 'Mercedes-Benz E-Klasse oder ähnlich. Klimaanlage, WLAN, Wasser.',
-      metadata: { capacity: '1–3 Personen', luggage: '3 Koffer', model: 'Mercedes E-Klasse' },
+    { slug: 'minivan-5', sortOrder: 1, nameKey: 'Minivan',
+      metadata: { capacity: '5',
+        nameI18n: { sk: 'Minivan', en: 'Minivan', de: 'Minivan', ru: 'Минивэн', uk: 'Мінівен' },
+        descI18n: {
+          sk: 'Pohodlný minivan pre max. 5 cestujúcich s batožinou.',
+          en: 'Comfortable minivan for up to 5 passengers with luggage.',
+          de: 'Komfortabler Minivan für bis zu 5 Fahrgäste mit Gepäck.',
+          ru: 'Комфортный минивэн для 5 пассажиров с багажом.',
+          uk: 'Комфортний мінівен для 5 пасажирів із багажем.',
+        },
+      },
     },
-    {
-      slug: 'van',
-      nameKey: 'Van Business',
-      description: 'Mercedes-Benz V-Klasse oder ähnlich. Ideal für Gruppen und viel Gepäck.',
-      metadata: { capacity: '4–8 Personen', luggage: '8 Koffer', model: 'Mercedes V-Klasse' },
-    },
-    {
-      slug: 'minibus',
-      nameKey: 'Minibus',
-      description: 'Sprinter oder ähnlich. Für größere Gruppen und Gruppenausflüge.',
-      metadata: { capacity: '9–16 Personen', luggage: '16 Koffer', model: 'Mercedes Sprinter' },
+    { slug: 'bus-8', sortOrder: 2, nameKey: 'Van (8 seats)',
+      metadata: { capacity: '8',
+        nameI18n: { sk: 'Bus (8 miest)', en: 'Van (8 seats)', de: 'Bus (8 Plätze)', ru: 'Бус (8 мест)', uk: 'Бус (8 місць)' },
+        descI18n: {
+          sk: 'Priestranný bus pre max. 8 cestujúcich — ideálny pre skupiny a veľkú batožinu.',
+          en: 'Spacious van for up to 8 passengers — ideal for groups and lots of luggage.',
+          de: 'Geräumiger Bus für bis zu 8 Fahrgäste — ideal für Gruppen und viel Gepäck.',
+          ru: 'Просторный бус для 8 пассажиров — идеален для групп и большого багажа.',
+          uk: 'Просторий бус для 8 пасажирів — ідеальний для груп і великого багажу.',
+        },
+      },
     },
   ];
 
   for (const f of fleet) {
     await db.service.upsert({
       where: { storeId_slug: { storeId: store.id, slug: f.slug } },
-      update: { description: f.description, metadata: f.metadata },
+      update: { nameKey: f.nameKey, sortOrder: f.sortOrder, description: null, metadata: f.metadata },
       create: {
         storeId: store.id,
         slug: f.slug,
         nameKey: f.nameKey,
         price: 0,
         duration: 0,
-        description: f.description,
+        sortOrder: f.sortOrder,
+        description: null,
         category: 'fleet',
         metadata: f.metadata,
         active: true,
