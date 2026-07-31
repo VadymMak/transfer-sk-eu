@@ -752,7 +752,11 @@
     "successNote": "Požiadavka uložená. Po kliknutí sa otvorí WhatsApp na potvrdenie.",
     "errorRequired": "Vyplňte všetky povinné polia.",
     "errorSave": "Chyba pri ukladaní. Skúste znova.",
-    "errorNetwork": "Sieťová chyba. Skúste znova."
+    "errorNetwork": "Sieťová chyba. Skúste znova.",
+    "waTitle": "Nová objednávka transferu — Transfer SK-EU",
+    "waFrom": "Odkiaľ",
+    "waTo": "Kam",
+    "waFlight": "Let"
   },
   "routes": {
     "label": "Cenník",

@@ -748,7 +748,11 @@
     "successNote": "Anfrage gespeichert. Nach dem Klick öffnet sich WhatsApp zur Bestätigung.",
     "errorRequired": "Bitte alle Pflichtfelder ausfüllen.",
     "errorSave": "Fehler beim Speichern. Bitte erneut versuchen.",
-    "errorNetwork": "Netzwerkfehler. Bitte erneut versuchen."
+    "errorNetwork": "Netzwerkfehler. Bitte erneut versuchen.",
+    "waTitle": "Neue Transferanfrage — Transfer SK-EU",
+    "waFrom": "Von",
+    "waTo": "Nach",
+    "waFlight": "Flug"
   },
   "routes": {
     "label": "Preisliste",

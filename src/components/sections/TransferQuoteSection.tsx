@@ -11,7 +11,7 @@ interface TransferQuoteSectionProps {
 }
 
 export default function TransferQuoteSection({
-  whatsappNumber = '436640000000',
+  whatsappNumber = '',
 }: TransferQuoteSectionProps) {
   const t = useTranslations('transferQuote');
 
@@ -79,24 +79,26 @@ export default function TransferQuoteSection({
       }
 
       const lines = [
-        `🚗 *Transferanfrage — Transfer GmbH*`,
+        `🚗 *${t('waTitle')}*`,
         `━━━━━━━━━━━━━━━━━━`,
         `👤 ${name}  📞 ${phone}`,
-        `📍 Von: ${pickupVal}`,
-        `🏁 Nach: ${dropoffVal}`,
+        `📍 ${t('waFrom')}: ${pickupVal}`,
+        `🏁 ${t('waTo')}: ${dropoffVal}`,
         `📆 ${date}  🕐 ${time}`,
-        `👥 ${passengers} Person(en)  🧳 ${luggage} Koffer`,
-        flightNumber ? `✈️ Flugnummer: ${flightNumber}` : '',
+        `👥 ${passengers}  🧳 ${luggage}`,
+        flightNumber ? `✈️ ${t('waFlight')}: ${flightNumber}` : '',
         noteVal ? `💬 ${noteVal}` : '',
         `━━━━━━━━━━━━━━━━━━`,
       ].filter(Boolean).join('\n');
 
-      const waPhone = whatsappNumber ?? '436640000000';
-      window.open(
-        `https://wa.me/${waPhone}?text=${encodeURIComponent(lines)}`,
-        '_blank',
-        'noopener,noreferrer',
-      );
+      const waPhone = (whatsappNumber || '').replace(/\D/g, '');
+      if (waPhone) {
+        window.open(
+          `https://wa.me/${waPhone}?text=${encodeURIComponent(lines)}`,
+          '_blank',
+          'noopener,noreferrer',
+        );
+      }
 
       form.reset();
       setPickup('');

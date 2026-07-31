@@ -748,7 +748,11 @@
     "successNote": "Wniosek zapisany. Po kliknięciu WhatsApp otworzy się do potwierdzenia.",
     "errorRequired": "Proszę wypełnić wszystkie wymagane pola.",
     "errorSave": "Błąd podczas zapisu. Spróbuj ponownie.",
-    "errorNetwork": "Błąd sieci. Spróbuj ponownie."
+    "errorNetwork": "Błąd sieci. Spróbuj ponownie.",
+    "waTitle": "New transfer request — Transfer SK-EU",
+    "waFrom": "From",
+    "waTo": "To",
+    "waFlight": "Flight"
   },
   "routes": {
     "label": "Cennik",
