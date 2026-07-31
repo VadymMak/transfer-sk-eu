@@ -751,11 +751,11 @@
     "title": "Routes & Prices",
     "subtitle": "Transparent fixed prices for your journey",
     "priceLabel": "Fixed Price",
-    "vehicleCaption": "per vehicle",
+    "vehicleCaption": "minivan (5 seats)",
     "featuredLabel": "popular",
     "routeLabel": "Route",
     "durationLabel": "Duration",
-    "note": "All prices are fixed including VAT. No hidden costs.",
+    "note": "Fixed prices per vehicle. Minivan up to 5, bus up to 8 passengers. No hidden costs.",
     "ctaHint": "Request quote"
   },
   "fleet": {

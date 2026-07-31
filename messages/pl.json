@@ -752,7 +752,8 @@
     "priceLabel": "Cena stała",
     "routeLabel": "Trasa",
     "durationLabel": "Czas przejazdu",
-    "note": "Wszystkie ceny są stałe z VAT. Brak ukrytych kosztów."
+    "note": "Fixed prices per vehicle. Minivan up to 5, bus up to 8 passengers. No hidden costs.",
+    "vehicleCaption": "minivan (5 seats)"
   },
   "fleet": {
     "label": "Pojazdy",

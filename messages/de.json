@@ -751,11 +751,11 @@
     "title": "Strecken & Preise",
     "subtitle": "Transparente Festpreise für Ihre Reise",
     "priceLabel": "Festpreis",
-    "vehicleCaption": "pro Fahrzeug",
+    "vehicleCaption": "Minivan (5 Plätze)",
     "featuredLabel": "beliebt",
     "routeLabel": "Strecke",
     "durationLabel": "Dauer",
-    "note": "Alle Preise sind Festpreise inkl. MwSt. Keine versteckten Kosten.",
+    "note": "Festpreise pro Fahrzeug. Minivan bis 5, Bus bis 8 Personen. Keine versteckten Kosten.",
     "ctaHint": "Angebot anfragen"
   },
   "fleet": {

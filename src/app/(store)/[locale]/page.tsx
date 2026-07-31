@@ -66,12 +66,13 @@ export default async function HomePage({
 
   // Resolve locale-aware names once — used by both RoutesTicker and RoutesSection
   const mappedRoutes = dbServices.map((r) => {
-    const meta = r.metadata as { nameI18n?: Record<string, string>; featured?: boolean } | null;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const meta = r.metadata as { nameI18n?: Record<string, string>; descI18n?: Record<string, string>; featured?: boolean } | null;
     return {
       id: r.id,
       displayName: meta?.nameI18n?.[locale] ?? meta?.nameI18n?.['de'] ?? r.nameKey,
       price: r.price,
-      description: r.description,
+      description: meta?.descI18n?.[locale] ?? meta?.descI18n?.['en'] ?? r.description,
       featured: meta?.featured ?? false,
     };
   });

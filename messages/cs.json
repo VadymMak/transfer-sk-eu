@@ -755,11 +755,11 @@
     "title": "Trasy a ceny",
     "subtitle": "Transparentní fixní ceny pro vaše cestování",
     "priceLabel": "Pevná cena",
-    "vehicleCaption": "za vozidlo",
+    "vehicleCaption": "minivan (5 miest)",
     "featuredLabel": "oblíbené",
     "routeLabel": "Trasa",
     "durationLabel": "Doba jízdy",
-    "note": "Všechny ceny jsou pevné včetně DPH. Žádné skryté poplatky.",
+    "note": "Pevné ceny za vozidlo. Minivan do 5, bus do 8 osôb. Bez skrytých poplatkov.",
     "ctaHint": "Vyžádat nabídku"
   },
   "fleet": {
