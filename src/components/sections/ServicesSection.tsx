@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import GoldDivider from '@/components/ui/GoldDivider';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 
@@ -12,10 +12,13 @@ interface Service {
   price: number;
   duration?: number | null;
   category?: string | null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  metadata?: any | null;
 }
 
 export default function ServicesSection() {
   const t = useTranslations('services');
+  const locale = useLocale();
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -51,15 +54,21 @@ export default function ServicesSection() {
               <ScrollReveal key={s.id} direction="scale" delay={i * 100}>
                 <div className="service-card">
                   <div>
-                    <h3 className="service-card__name">{s.nameKey}</h3>
-                    {s.description && (
-                      <p className="service-card__desc">{s.description}</p>
+                    <h3 className="service-card__name">
+                      {s.metadata?.nameI18n?.[locale] ?? s.nameKey}
+                    </h3>
+                    {(s.metadata?.descI18n?.[locale] ?? s.description) && (
+                      <p className="service-card__desc">
+                        {s.metadata?.descI18n?.[locale] ?? s.description}
+                      </p>
                     )}
-                    {s.duration && (
+                    {s.duration && !s.metadata?.priceLabelI18n && (
                       <p className="service-card__duration">⏱ {s.duration} {t('minutes')}</p>
                     )}
                   </div>
-                  <div className="service-card__price">€{s.price}</div>
+                  <div className="service-card__price">
+                    {s.metadata?.priceLabelI18n?.[locale] ?? `€${s.price}`}
+                  </div>
                 </div>
               </ScrollReveal>
             ))}

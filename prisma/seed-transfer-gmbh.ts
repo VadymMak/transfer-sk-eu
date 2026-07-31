@@ -323,7 +323,69 @@ async function main() {
     });
   }
 
-  // 6. Leistungen (service types, no special category)
+  // 6. Services (category: 'service') — Vitaly's 3 offerings
+  const services = [
+    {
+      slug: 'airport-transfers',
+      sortOrder: 1,
+      price: 90,
+      nameKey: 'Airport Transfers',
+      metadata: {
+        nameI18n: { sk: 'Letiskové transfery', en: 'Airport Transfers', de: 'Flughafentransfers', ru: 'Трансферы в аэропорт', uk: 'Трансфери в аеропорт' },
+        descI18n: {
+          sk: 'Individuálne a skupinové transfery na letiská Bratislava, Viedeň, Budapešť a Praha. Minivan (5) alebo bus (8), pevné ceny.',
+          en: 'Private and group transfers to Bratislava, Vienna, Budapest and Prague airports. Minivan (5) or bus (8), fixed prices.',
+          de: 'Private und Gruppentransfers zu den Flughäfen Bratislava, Wien, Budapest und Prag. Minivan (5) oder Bus (8), Festpreise.',
+          ru: 'Индивидуальные и групповые трансферы в аэропорты Братислава, Вена, Будапешт и Прага. Минивэн (5) или бус (8), фиксированные цены.',
+          uk: 'Індивідуальні та групові трансфери в аеропорти Братислава, Відень, Будапешт і Прага. Мінівен (5) або бус (8), фіксовані ціни.',
+        },
+        priceLabelI18n: { sk: 'od 90 €', en: 'from 90 €', de: 'ab 90 €', ru: 'от 90 €', uk: 'від 90 €' },
+      },
+    },
+    {
+      slug: 'tourist-trips',
+      sortOrder: 2,
+      price: 85,
+      nameKey: 'Tourist Trips',
+      metadata: {
+        nameI18n: { sk: 'Turistické cesty', en: 'Tourist Trips', de: 'Touristische Fahrten', ru: 'Туристические поездки', uk: 'Туристичні поїздки' },
+        descI18n: {
+          sk: 'Cesty po Európe so sprievodom — Chorvátsko, Taliansko, Slovinsko. Individuálne alebo skupiny od 4 osôb, aj zájazdy.',
+          en: 'Guided trips across Europe — Croatia, Italy, Slovenia. Private or groups from 4 people, tours available.',
+          de: 'Begleitete Reisen durch Europa — Kroatien, Italien, Slowenien. Privat oder Gruppen ab 4 Personen, auch Touren.',
+          ru: 'Поездки по Европе с сопровождением — Хорватия, Италия, Словения. Индивидуально или группы от 4 человек, есть туры.',
+          uk: 'Поїздки Європою із супроводом — Хорватія, Італія, Словенія. Індивідуально або групи від 4 осіб, є тури.',
+        },
+        priceLabelI18n: { sk: 'Chorvátsko od 85 €', en: 'Croatia from 85 €', de: 'Kroatien ab 85 €', ru: 'Хорватия от 85 €', uk: 'Хорватія від 85 €' },
+      },
+    },
+    {
+      slug: 'deliveries',
+      sortOrder: 3,
+      price: 1,
+      nameKey: 'Deliveries',
+      metadata: {
+        nameI18n: { sk: 'Dovoz vecí', en: 'Deliveries', de: 'Lieferungen', ru: 'Довоз вещей', uk: 'Довіз речей' },
+        descI18n: {
+          sk: 'Doručenie osobných vecí a zásielok po Slovensku aj do zahraničia. Rýchlo a spoľahlivo.',
+          en: 'Delivery of personal belongings and parcels within Slovakia and abroad. Fast and reliable.',
+          de: 'Lieferung persönlicher Gegenstände und Pakete in der Slowakei und ins Ausland. Schnell und zuverlässig.',
+          ru: 'Доставка личных вещей и посылок по Словакии и за рубеж. Быстро и надёжно.',
+          uk: 'Доставка особистих речей і посилок Словаччиною та за кордон. Швидко й надійно.',
+        },
+        priceLabelI18n: { sk: '0,9 €/km', en: '0.9 €/km', de: '0,9 €/km', ru: '0,9 €/км', uk: '0,9 €/км' },
+      },
+    },
+  ];
+  for (const s of services) {
+    await db.service.upsert({
+      where: { storeId_slug: { storeId: store.id, slug: s.slug } },
+      update: { nameKey: s.nameKey, price: s.price, duration: 0, sortOrder: s.sortOrder, category: 'service', metadata: s.metadata, active: true },
+      create: { storeId: store.id, slug: s.slug, nameKey: s.nameKey, price: s.price, duration: 0, sortOrder: s.sortOrder, category: 'service', metadata: s.metadata, active: true },
+    });
+  }
+
+  // 7. Leistungen (legacy — deactivated, replaced by services above)
   const leistungen = [
     { slug: 'flughafentransfer', nameKey: 'Flughafentransfer', price: 45, duration: 90, description: 'Zuverlässige Transfers zu allen Flughäfen in der Region Wien–Bratislava.' },
     { slug: 'businessfahrten', nameKey: 'Businessfahrten', price: 60, duration: 60, description: 'Diskrete und pünktliche Fahrten für Geschäftsreisende. Stille garantiert.' },
@@ -334,7 +396,7 @@ async function main() {
   for (const l of leistungen) {
     await db.service.upsert({
       where: { storeId_slug: { storeId: store.id, slug: l.slug } },
-      update: { price: l.price, description: l.description },
+      update: { price: l.price, description: l.description, active: false },
       create: {
         storeId: store.id,
         slug: l.slug,

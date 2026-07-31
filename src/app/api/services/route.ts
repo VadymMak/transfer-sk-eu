@@ -20,6 +20,7 @@ export async function GET() {
         duration: true,
         image: true,
         category: true,
+        metadata: true,
       },
     });
 
