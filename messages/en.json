@@ -383,11 +383,12 @@
     "todaysSpecial": "FIXED PRICE",
     "orderNow": "Book Now",
     "trustLine": "licensed · fixed price · 24/7",
-    "chip1": "Airport Transfer",
-    "chip2": "Business Rides",
-    "chip3": "Events",
-    "chip4": "Long Distance",
-    "priceAnchor": "from {price} € per transfer"
+    "chip1": "Airport Transfers",
+    "chip2": "Tourist Trips",
+    "chip3": "Deliveries",
+    "chip4": "Up to 8 seats",
+    "priceAnchor": "from {price} € per transfer",
+    "eyebrow": "TRANSFERS · TOURS · DELIVERIES"
   },
   "menuCategories": {
     "tagline": "— OUR MENU —",

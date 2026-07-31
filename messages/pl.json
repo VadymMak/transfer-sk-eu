@@ -384,7 +384,12 @@
     "priceBeardFrom": "Broda od",
     "defaultTitle": "Sztuka klasycznego barberstwa",
     "defaultSubtitle": "Premium barbershop dla mężczyzn.",
-    "defaultCta": "Umów wizytę"
+    "defaultCta": "Umów wizytę",
+    "eyebrow": "TRANSFERS · TOURS · DELIVERIES",
+    "chip1": "Airport Transfers",
+    "chip2": "Tourist Trips",
+    "chip3": "Deliveries",
+    "chip4": "Up to 8 seats"
   },
   "menuCategories": {
     "tagline": "— NASZE MENU —",

@@ -54,7 +54,7 @@ export default async function HeroSection({
         <div className="hero__content">
           <p className="hero__tagline">
             <span className="hero__tagline-line" />
-            {city ? `Est. 2018 — ${city}` : 'Est. 2018'}
+            {tHero('eyebrow')}
           </p>
 
           <h1 className="hero__title">{title}</h1>

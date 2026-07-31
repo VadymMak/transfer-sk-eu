@@ -383,11 +383,12 @@
     "todaysSpecial": "FESTPREIS",
     "orderNow": "Jetzt anfragen",
     "trustLine": "lizenziert · Festpreis · 24/7",
-    "chip1": "Flughafentransfer",
-    "chip2": "Businessfahrt",
-    "chip3": "Events",
-    "chip4": "Langstrecke",
-    "priceAnchor": "ab {price} € pro Transfer"
+    "chip1": "Flughafentransfers",
+    "chip2": "Touristische Fahrten",
+    "chip3": "Lieferungen",
+    "chip4": "Bis 8 Plätze",
+    "priceAnchor": "ab {price} € pro Transfer",
+    "eyebrow": "TRANSFERS · REISEN · LIEFERUNGEN"
   },
   "menuCategories": {
     "tagline": "— UNSERE SPEISEKARTE —",

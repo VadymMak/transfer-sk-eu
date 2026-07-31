@@ -383,11 +383,12 @@
     "todaysSpecial": "PEVNÁ CENA",
     "orderNow": "Objednat",
     "trustLine": "licencováni · pevné ceny · 24/7",
-    "chip1": "Letištní transfer",
-    "chip2": "Firemní jízdy",
-    "chip3": "Události",
-    "chip4": "Dálkové trasy",
-    "priceAnchor": "od {price} € za transfer"
+    "chip1": "Letištní transfery",
+    "chip2": "Turistické cesty",
+    "chip3": "Dovoz věcí",
+    "chip4": "Až 8 míst",
+    "priceAnchor": "od {price} € za transfer",
+    "eyebrow": "TRANSFERY · CESTY · DOVOZ"
   },
   "menuCategories": {
     "tagline": "— NAŠE MENU —",
