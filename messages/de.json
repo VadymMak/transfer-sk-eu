@@ -388,7 +388,11 @@
     "chip3": "Lieferungen",
     "chip4": "Bis 8 Plätze",
     "priceAnchor": "ab {price} € pro Transfer",
-    "eyebrow": "TRANSFERS · REISEN · LIEFERUNGEN"
+    "eyebrow": "TRANSFERS · REISEN · LIEFERUNGEN",
+    "chip1Tip": "Bratislava, Wien, Budapest, Prag — Festpreise",
+    "chip2Tip": "Kroatien, Italien, Slowenien — mit Begleitung",
+    "chip3Tip": "Möbel, Gegenstände, Umzugshilfe",
+    "chip4Tip": "Minivan (5) oder Bus (8 Plätze)"
   },
   "menuCategories": {
     "tagline": "— UNSERE SPEISEKARTE —",

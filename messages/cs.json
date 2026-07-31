@@ -388,7 +388,11 @@
     "chip3": "Dovoz věcí",
     "chip4": "Až 8 míst",
     "priceAnchor": "od {price} € za transfer",
-    "eyebrow": "TRANSFERY · CESTY · DOVOZ"
+    "eyebrow": "TRANSFERY · CESTY · DOVOZ",
+    "chip1Tip": "Bratislava, Viedeň, Budapešť, Praha — pevné ceny",
+    "chip2Tip": "Chorvátsko, Taliansko, Slovinsko — so sprievodom",
+    "chip3Tip": "Nábytok, veci, pomoc so sťahovaním",
+    "chip4Tip": "Minivan (5) alebo bus (8 miest)"
   },
   "menuCategories": {
     "tagline": "— NAŠE MENU —",

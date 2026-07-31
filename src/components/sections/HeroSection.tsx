@@ -62,10 +62,10 @@ export default async function HeroSection({
           <p className="hero__subtitle">{subtitle}</p>
 
           <div className="hero__chips">
-            <span className="hero__chip">{tHero('chip1')}</span>
-            <span className="hero__chip">{tHero('chip2')}</span>
-            <span className="hero__chip">{tHero('chip3')}</span>
-            <span className="hero__chip">{tHero('chip4')}</span>
+            <a className="hero__chip" href="#leistungen" data-tip={tHero('chip1Tip')}>{tHero('chip1')}</a>
+            <a className="hero__chip" href="#leistungen" data-tip={tHero('chip2Tip')}>{tHero('chip2')}</a>
+            <a className="hero__chip" href="#leistungen" data-tip={tHero('chip3Tip')}>{tHero('chip3')}</a>
+            <a className="hero__chip" href="#fuhrpark"   data-tip={tHero('chip4Tip')}>{tHero('chip4')}</a>
           </div>
 
           {minRoutePrice != null && (

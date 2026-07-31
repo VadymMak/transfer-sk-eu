@@ -61,6 +61,7 @@ html, body {
 /* ===== RESET ===== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+section[id] { scroll-margin-top: 96px; }
 body {
   font-family: var(--font-body);
   background: var(--color-bg);
@@ -2074,6 +2075,18 @@ body::after {
 
 /* ── Hero chips & price anchor ── */
 .hero__chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
-.hero__chip { background: rgba(var(--color-primary-rgb, 201,163,71), 0.12); border: 1px solid rgba(var(--color-primary-rgb, 201,163,71), 0.3); color: var(--color-text); border-radius: 2rem; padding: 0.3rem 0.75rem; font-size: 0.8rem; font-weight: 500; }
+.hero__chip { position: relative; background: rgba(var(--color-primary-rgb, 201,163,71), 0.12); border: 1px solid rgba(var(--color-primary-rgb, 201,163,71), 0.3); color: var(--color-text); border-radius: 2rem; padding: 0.3rem 0.75rem; font-size: 0.8rem; font-weight: 500; text-decoration: none; cursor: pointer; transition: background .2s ease, color .2s ease, border-color .2s ease; }
+.hero__chip:hover { border-color: var(--color-primary); color: var(--color-primary); }
+@media (hover: hover) and (pointer: fine) {
+  .hero__chip[data-tip]::after {
+    content: attr(data-tip);
+    position: absolute; left: 50%; bottom: calc(100% + 8px); transform: translateX(-50%);
+    white-space: nowrap; padding: .4rem .6rem; border-radius: var(--radius-sm);
+    background: var(--color-text); color: var(--color-bg); font-size: .72rem; font-weight: 500;
+    letter-spacing: .3px; text-transform: none; box-shadow: var(--card-shadow);
+    opacity: 0; pointer-events: none; transition: opacity .18s ease; z-index: 20;
+  }
+  .hero__chip[data-tip]:hover::after { opacity: 1; }
+}
 .hero__price-anchor { font-size: 0.875rem; color: var(--color-text-muted); margin-bottom: 1.25rem; }
 .hero__price-anchor strong { color: var(--color-primary); font-size: 1rem; }

@@ -389,7 +389,11 @@
     "chip1": "Airport Transfers",
     "chip2": "Tourist Trips",
     "chip3": "Deliveries",
-    "chip4": "Up to 8 seats"
+    "chip4": "Up to 8 seats",
+    "chip1Tip": "Bratislava, Vienna, Budapest, Prague — fixed prices",
+    "chip2Tip": "Croatia, Italy, Slovenia — with a guide",
+    "chip3Tip": "Furniture, belongings, moving help",
+    "chip4Tip": "Minivan (5) or bus (8 seats)"
   },
   "menuCategories": {
     "tagline": "— NASZE MENU —",
