@@ -7,13 +7,17 @@ interface AboutSectionProps {
   aboutImage?: string | null;
 }
 
-export default async function AboutSection(_: AboutSectionProps) {
+export default async function AboutSection({ aboutImage }: AboutSectionProps) {
   const t = await getTranslations('about');
 
   return (
     <section id="ueber-uns" className="about">
       <div className="about__inner">
-        <AboutVideo />
+        {aboutImage ? (
+          <img className="about__video" src={aboutImage} alt="" aria-hidden="true" />
+        ) : (
+          <AboutVideo />
+        )}
         <div className="about__overlay" />
         <div className="about__grid">
           <div className="about__spacer" aria-hidden="true" />

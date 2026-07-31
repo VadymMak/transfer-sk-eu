@@ -111,19 +111,15 @@ export default async function HeroSection({
         </div>
 
         <div className="hero__image-wrap">
-          <video
-            className="hero__video"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster="/media/hero-poster.jpg"
-            aria-hidden="true"
-          >
-            <source src="/media/hero.webm" type="video/webm" />
-            <source src="/media/hero.mp4"  type="video/mp4" />
-          </video>
+          {config?.imageUrl ? (
+            <img className="hero__video" src={config.imageUrl} alt="" aria-hidden="true" />
+          ) : (
+            <video className="hero__video" autoPlay muted loop playsInline preload="metadata"
+                   poster="/media/hero-poster.jpg" aria-hidden="true">
+              <source src="/media/hero.webm" type="video/webm" />
+              <source src="/media/hero.mp4"  type="video/mp4" />
+            </video>
+          )}
           <div className="hero__overlay" />
         </div>
       </div>

@@ -688,8 +688,8 @@
   "about": {
     "label": "O nás",
     "title": "Váš spolehlivý partner pro transfery",
-    "text1": "Transfer SK-EU už od roku 2018 znamená spolehlivé a pohodlné letištní transfery mezi Vídní a Bratislavou. Jako licencovaná přepravní společnost se zkušenými, profesionálními řidiči vás dopravíme do cíle bezpečně, včas a bez stresu.",
-    "text2": "Každá jízda je pro nás víc než jen trasa — postaráme se o každý detail, abyste se mohli pohodlně opřít a odpočinout si. Pevné ceny, sledování letu a osobní meet-and-greet servis jsou u nás samozřejmostí.",
+    "text1": "Transfer SK-EU je váš spoľahlivý partner pre letiskové transfery, turistické cesty a prepravu vecí — v regióne Trenčín aj po celej Európe.",
+    "text2": "Cesty na letiská Bratislava, Viedeň, Budapešť a Praha, sprevádzané zájazdy do zahraničia či pomoc so sťahovaním — s licencovanými vodičmi, pevnými cenami a pohodlnými vozidlami až pre 8 osôb sa postaráme o každý detail.",
     "stat1Value": "5+",
     "stat1Label": "Let v provozu",
     "stat2Value": "2 000+",
@@ -697,7 +697,7 @@
     "stat3Value": "4.9",
     "stat3Label": "Ø hodnocení Google",
     "imageAlt": "Transfer SK-EU",
-    "text3": "Vítejte na palubě."
+    "text3": "K dispozícii 24/7. Vitajte na palube."
   },
   "whyUs": {
     "sectionLabel": "Prečo Transfer SK-EU",

@@ -687,14 +687,15 @@
   "about": {
     "label": "O nas",
     "title": "Tradycja spotyka nowoczesny styl",
-    "text1": "{name} powstało w 2018 roku z miłości do tradycyjnego barberstwa.",
+    "text1": "Transfer SK-EU is your reliable partner for airport transfers, tourist trips and deliveries — in the Trenčín region and across Europe.",
     "text1Founder": "Nasza założycielka {founderName} przywiozła do {city} to, co najlepsze w tradycji klasycznego barberstwa.",
     "text1NoFounder": "Przynieśliśmy do {city} to, co najlepsze w tradycji klasycznego barberstwa.",
     "text2Pre": "Każde cięcie to dla nas sztuka. Nie robimy szybkich strzyżeń — poświęcamy indywidualną uwagę każdemu klientowi, bo wierzymy, że",
     "text2Em": "każdy mężczyzna zasługuje na wyjątkowe uczucie",
-    "text3": "Nasz salon to miejsce, gdzie się zatrzymasz, odpoczniez i wyjdziesz jako nowy człowiek. Espresso na nasz koszt.",
+    "text3": "Available 24/7. Welcome aboard.",
     "imageAlt": "Transfer SK-EU",
-    "cityFallback": "naszego miasta"
+    "cityFallback": "naszego miasta",
+    "text2": "Rides to Bratislava, Vienna, Budapest and Prague airports, guided trips abroad, or help moving your belongings — with licensed drivers, fixed prices and comfortable vehicles for up to 8 passengers, we take care of every detail."
   },
   "whyUs": {
     "sectionLabel": "Why Transfer SK-EU",
