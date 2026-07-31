@@ -251,7 +251,7 @@ const NAV_SERVICES_ALL: (NavItem & { show: boolean })[] = [
   {
     href: '/admin/courses',
     labelKey: 'courses',
-    show: true,
+    show: FLAGS.courses,
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" {...ico}>
         <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
