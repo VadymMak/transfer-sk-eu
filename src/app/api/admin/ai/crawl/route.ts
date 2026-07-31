@@ -51,49 +51,67 @@ export async function POST(_req: NextRequest) {
 
   const chunks: { type: string; content: string; metadata: object }[] = [];
 
-  // ── Layer 1: DB data ──────────────────────────────────────────────────────
+  // ── Layer 1: Static business knowledge ───────────────────────────────────
 
-  // About / Store info
-  chunks.push({
-    type: 'about',
-    content: `Barbershop: ${store.name}. ${store.description ?? ''}. Adresa: ${store.address ?? ''}, ${store.city ?? ''}. Telefón: ${store.phone ?? ''}. Email: ${store.email ?? ''}.`,
-    metadata: { name: store.name, city: store.city },
-  });
+  const storePhone = (store as Record<string, unknown>).phone as string | null;
+  const storeMeta  = (store.metadata as Record<string, unknown> | null) ?? {};
+  const waNumber   = (storeMeta.whatsapp as string | null) ?? storePhone ?? '+421 951 287 892';
 
-  // Working hours
-  if (store.openingHours) {
-    chunks.push({
-      type: 'hours',
-      content: `Otváracie hodiny ${store.name}: ${store.openingHours}`,
-      metadata: {},
-    });
-  }
-
-  // Services
-  const services = await db.service.findMany({
-    where: { storeId: store.id, active: true },
-  });
-  for (const s of services) {
-    chunks.push({
+  chunks.push(
+    {
+      type: 'about',
+      content: `Transfer SK-EU — passenger transport & delivery company based in Trenčín, Slovakia. Serves Trenčín and the surrounding region, and rides across Central Europe. Available 24/7. Languages: Slovak, English, German, Russian, Ukrainian. Contact via WhatsApp ${waNumber}. Website: ${process.env.NEXT_PUBLIC_BASE_URL ?? ''}.`,
+      metadata: { name: store.name, city: store.city },
+    },
+    {
+      type: 'fleet',
+      content: `Fleet: Peugeot 5008 minivan for up to 5 passengers; Renault Trafic van for up to 8 passengers. All prices are fixed per vehicle (not per person), include VAT, no hidden costs.`,
+      metadata: { vehicles: ['Peugeot 5008', 'Renault Trafic'] },
+    },
+    {
+      type: 'route',
+      content: `Airport transfer Trenčín → Bratislava: minivan (up to 5) 90 €, van (up to 8) 120 €.`,
+      metadata: { from: 'Trenčín', to: 'Bratislava', minivan: 90, bus: 120 },
+    },
+    {
+      type: 'route',
+      content: `Airport transfer Trenčín → Vienna Airport (Schwechat): minivan 140 €, van 190 €.`,
+      metadata: { from: 'Trenčín', to: 'Vienna Airport', minivan: 140, bus: 190 },
+    },
+    {
+      type: 'route',
+      content: `Airport transfer Trenčín → Budapest Airport: minivan 250 €, van 290 €.`,
+      metadata: { from: 'Trenčín', to: 'Budapest Airport', minivan: 250, bus: 290 },
+    },
+    {
+      type: 'route',
+      content: `Airport transfer Trenčín → Prague Airport: minivan 270 €, van 330 €.`,
+      metadata: { from: 'Trenčín', to: 'Prague Airport', minivan: 270, bus: 330 },
+    },
+    {
+      type: 'airports',
+      content: `Airports served: Bratislava, Vienna, Budapest, Prague. Available 24/7 including night and early-morning transfers.`,
+      metadata: { airports: ['Bratislava', 'Vienna', 'Budapest', 'Prague'] },
+    },
+    {
       type: 'service',
-      content: `Služba: ${s.nameKey}. Cena: €${s.price}${s.duration ? `, trvanie: ${s.duration} min` : ''}${s.description ? `. Popis: ${s.description}` : ''}.`,
-      metadata: { price: s.price, duration: s.duration },
-    });
-  }
+      content: `Tourist trips: guided private trips across Europe — Croatia, Italy, Slovenia. Private or groups from 4 people. Croatia (Adriatic coast) from 85 €. Seasonal organized package tours run regularly — dates, destination and price change each time. For the CURRENT tour offer, contact via WhatsApp ${waNumber}.`,
+      metadata: { category: 'tourist-trips', priceFrom: 85 },
+    },
+    {
+      type: 'service',
+      content: `Deliveries & moving: furniture, personal belongings, help with relocation — within Slovakia and abroad; also small parcels. Price: within Trenčín 45 €; outside the city 0.9 € per km.`,
+      metadata: { category: 'deliveries', cityPrice: 45, kmRate: 0.9 },
+    },
+    {
+      type: 'booking',
+      content: `How to book: WhatsApp ${waNumber}, the website request form, or phone. Provide: pickup, destination, date, time, passengers, luggage. Every booking is confirmed via WhatsApp.`,
+      metadata: { whatsapp: waNumber },
+    },
+  );
 
-  // Masters
-  const masters = await db.serviceMaster.findMany({
-    where: { storeId: store.id, active: true },
-  });
-  for (const m of masters) {
-    chunks.push({
-      type: 'master',
-      content: `Majster: ${m.name}, rola: ${m.role}${m.bio ? `. ${m.bio}` : ''}.`,
-      metadata: { name: m.name, role: m.role },
-    });
-  }
+  // ── Layer 2: Approved reviews (dynamic) ──────────────────────────────────
 
-  // Reviews summary
   const reviews = await db.testimonial.findMany({
     where: { storeId: store.id, status: 'APPROVED' },
     include: { customer: { select: { name: true } } },
@@ -104,7 +122,7 @@ export async function POST(_req: NextRequest) {
     const avgRating = (reviews.reduce((s, r) => s + r.rating, 0) / reviews.length).toFixed(1);
     chunks.push({
       type: 'review',
-      content: `Hodnotenie ${store.name}: ${avgRating}/5 na základe ${reviews.length} recenzií. Posledné recenzie: ${reviews.slice(0, 5).map((r) => `"${r.text}" — ${r.customer?.name ?? 'Zákazník'} (${r.rating}⭐)`).join('; ')}.`,
+      content: `${store.name} reviews: ${avgRating}/5 based on ${reviews.length} approved reviews. Latest: ${reviews.slice(0, 5).map((r) => `"${r.text}" — ${r.customer?.name ?? r.authorName ?? 'Customer'} (${r.rating}⭐)`).join('; ')}.`,
       metadata: { avgRating, totalReviews: reviews.length },
     });
   }
