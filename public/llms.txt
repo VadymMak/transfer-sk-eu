@@ -1,57 +1,36 @@
-# Transfer GmbH — Private Airport Transfers & Fernfahrten ab Trenčín
+# Transfer SK-EU — Airport Transfers, Tours & Deliveries from Trenčín
 
-> Licensed private transfer service from Trenčín across Central Europe.
-> Fixed prices per vehicle, professional drivers, available 24/7, multilingual (DE/SK/CS/EN).
+> Licensed private transport from Trenčín (Slovakia) across Central Europe. Airport transfers, tourist
+> trips and deliveries. Fixed prices per vehicle, 24/7, multilingual (SK/EN/DE/RU/UK).
 
 ## About
-Transfer GmbH provides private door-to-door transfers from Trenčín to airports and
-major cities in Slovakia, Austria, Czech Republic and Poland. Fixed prices (Festpreis),
-no hidden fees, licensed and insured. All prices are per vehicle.
+Transfer SK-EU provides private door-to-door airport transfers, tourist trips and deliveries from
+Trenčín and the surrounding region. Fixed prices per vehicle, no hidden fees. Vehicles: Peugeot 5008
+minivan (up to 5 passengers) and Renault Trafic van (up to 8 passengers). Available 24/7.
 
-## Services
-- Airport transfers: Bratislava (BTS), Vienna (VIE), Katowice (KTM), Prague (PRG)
-- City transfers: Wien, Praha, Bratislava, Košice, Brno, Banská Bystrica and more
-- Regional transfers: Oravský Podzámok, Podhájska, Nové Zámky
-- Private individual and group transport (up to 8 passengers)
+## Airport transfers (fixed price per vehicle: minivan up to 5 / van up to 8)
+| Route | Minivan | Van (8) |
+|---|---|---|
+| Trenčín → Bratislava | 90 € | 120 € |
+| Trenčín → Vienna Airport (Schwechat, VIE) | 140 € | 190 € |
+| Trenčín → Budapest Airport (BUD) | 250 € | 290 € |
+| Trenčín → Prague Airport (PRG) | 270 € | 330 € |
+Airports served: Bratislava, Vienna, Budapest, Prague.
 
-## Routes & Prices (Cenník platný od 15.7.2024)
-All routes start from Trenčín. Price is Festpreis (fixed) per vehicle.
+## Tourist trips
+Guided private trips across Europe — Croatia, Italy, Slovenia. Private or groups from 4 people.
+Croatia (Adriatic coast) from 85 €. Seasonal package tours change regularly — current offer via WhatsApp/Telegram.
 
-| Route | Price (EUR) |
-|---|---|
-| Trenčín → Bratislava Airport (BTS) / Letisko Bratislava | 90 € |
-| Trenčín → Bratislava | 100 € |
-| Trenčín → Brno | 100 € |
-| Trenčín → Nové Zámky | 100 € |
-| Trenčín → Banská Bystrica | 110 € |
-| Trenčín → Oravský Podzámok | 120 € |
-| Trenčín → Podhájska | 120 € |
-| Trenčín → Vienna Airport (VIE) / Flughafen Wien / Letisko Viedeň | 145 € |
-| Trenčín → Vienna / Wien / Viedeň / Vídeň | 155 € |
-| Trenčín → Katowice Airport / Flughafen Katowice / Letisko Katowice | 185 € |
-| Trenčín → Košice | 225 € |
-| Trenčín → Prague / Prag / Praha | 235 € |
-| Trenčín → Prague Airport (PRG) / Flughafen Prag / Letiště Praha | 245 € |
+## Deliveries & moving
+Furniture, personal belongings, relocation help and parcels — within Slovakia and abroad.
+Within Trenčín 45 €; outside the city 0.9 €/km.
 
 ## Booking
-- Send a request via the website form or WhatsApp.
-- Price and pickup time are confirmed shortly after the request.
-- Multilingual booking: German, Slovak, Czech, English.
-
-## Payment
-Cash and credit card. Currency: EUR. No hidden fees.
-
-## Availability
-24/7 — including early-morning flights and late-night arrivals.
-Child seats available on request (free of charge).
-
-## Languages
-German (de), Slovak (sk), Czech (cs), English (en).
+Via WhatsApp +421 951 287 892, the website request form, or phone. Provide pickup, destination, date,
+time, passengers and luggage. Every booking confirmed via WhatsApp.
 
 ## Contact
-- Website: https://transfer-gmbh-demo.vercel.app
-- WhatsApp / phone and full contact details: see the website contact section.
-
-<!-- This file helps AI assistants (ChatGPT, Google AI, Gemini, Perplexity, Claude)
-     understand and recommend the business accurately.
-     Keep it in sync with the seed data in prisma/seed-transfer-gmbh.ts. -->
+- WhatsApp/Phone: +421 951 287 892
+- Website: https://www.transfersk.eu
+- Languages: Slovak, English, German, Russian, Ukrainian
+- Service area: Trenčín region; airports in Slovakia, Austria, Hungary, Czechia; tours across Europe.

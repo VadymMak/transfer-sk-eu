@@ -42,10 +42,13 @@ export async function generateMetadata({
 
   const brandName = config.name || 'Transfer SK-EU';
   const titles: Record<string, string> = {
-    de: `Flughafentransfer Wien ⇄ Bratislava | ${brandName}`,
-    sk: `Letiskový transfer Viedeň ⇄ Bratislava | ${brandName}`,
-    cs: `Letištní transfer Vídeň ⇄ Bratislava | ${brandName}`,
-    en: `Airport Transfer Vienna ⇄ Bratislava | ${brandName}`,
+    de: `Flughafentransfer & Reisen ab Trenčín | ${brandName}`,
+    sk: `Letiskové transfery a cesty z Trenčína | ${brandName}`,
+    cs: `Letiskové transfery a cesty z Trenčína | ${brandName}`,
+    en: `Airport Transfers & Trips from Trenčín | ${brandName}`,
+    ru: `Трансферы и поездки из Тренчина | ${brandName}`,
+    uk: `Трансфери та поїздки з Тренчина | ${brandName}`,
+    pl: `Airport Transfers & Trips from Trenčín | ${brandName}`,
   };
   const descriptions: Record<string, string> = {
     de: 'Professionelle Flughafentransfers Wien (VIE) ⇄ Bratislava (BTS). Festpreise, lizenziert, 24/7. Einfach online anfragen.',
@@ -154,12 +157,15 @@ export default async function LocaleLayout({
     currenciesAccepted: 'EUR',
     paymentAccepted: 'Cash, Credit Card',
     areaServed: [
-      { '@type': 'City', name: 'Wien' },
-      { '@type': 'City', name: 'Bratislava' },
-      { '@type': 'Airport', name: 'Vienna International Airport', iataCode: 'VIE' },
+      { '@type': 'City', name: 'Trenčín' },
       { '@type': 'Airport', name: 'Bratislava Airport', iataCode: 'BTS' },
-      { '@type': 'Country', name: 'Austria' },
+      { '@type': 'Airport', name: 'Vienna International Airport', iataCode: 'VIE' },
+      { '@type': 'Airport', name: 'Budapest Ferenc Liszt Airport', iataCode: 'BUD' },
+      { '@type': 'Airport', name: 'Václav Havel Airport Prague', iataCode: 'PRG' },
       { '@type': 'Country', name: 'Slovakia' },
+      { '@type': 'Country', name: 'Austria' },
+      { '@type': 'Country', name: 'Hungary' },
+      { '@type': 'Country', name: 'Czechia' },
     ],
     ...(config.presence.address
       ? {
