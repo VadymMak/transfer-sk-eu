@@ -62,7 +62,7 @@ export default function ServicesSection() {
                         {s.metadata?.descI18n?.[locale] ?? s.description}
                       </p>
                     )}
-                    {s.duration && !s.metadata?.priceLabelI18n && (
+                    {!!s.duration && !s.metadata?.priceLabelI18n && (
                       <p className="service-card__duration">⏱ {s.duration} {t('minutes')}</p>
                     )}
                   </div>

@@ -264,13 +264,13 @@ async function main() {
       metadata: {
         nameI18n: { sk: 'Preprava vecí a sťahovanie', en: 'Deliveries & Moving', de: 'Transport & Umzüge', ru: 'Перевозка вещей и переезды', uk: 'Перевезення речей і переїзди' },
         descI18n: {
-          sk: 'Preprava nábytku, osobných vecí a pomoc so sťahovaním — po Slovensku aj do zahraničia. Aj menšie zásielky.',
-          en: 'Furniture, personal belongings and moving help — within Slovakia and abroad. Parcels too.',
-          de: 'Möbel, persönliche Gegenstände und Umzugshilfe — in der Slowakei und ins Ausland. Auch Pakete.',
-          ru: 'Мебель, личные вещи и помощь с переездом — по Словакии и за рубеж. Также посылки.',
-          uk: 'Меблі, особисті речі та допомога з переїздом — Словаччиною та за кордон. Також посилки.',
+          sk: 'Preprava nábytku, osobných vecí a pomoc so sťahovaním — po Slovensku aj do zahraničia. Aj menšie zásielky. V Trenčíne 45 €, mimo mesta 0,9 €/km.',
+          en: 'Furniture, personal belongings and moving help — within Slovakia and abroad. Parcels too. In Trenčín 45 €, outside 0.9 €/km.',
+          de: 'Möbel, persönliche Gegenstände und Umzugshilfe — in der Slowakei und ins Ausland. Auch Pakete. In Trenčín 45 €, außerhalb 0,9 €/km.',
+          ru: 'Мебель, личные вещи и помощь с переездом — по Словакии и за рубеж. Также посылки. В Тренчине 45 €, за городом 0,9 €/км.',
+          uk: 'Меблі, особисті речі та допомога з переїздом — Словаччиною та за кордон. Також посилки. У Тренчині 45 €, за містом 0,9 €/км.',
         },
-        priceLabelI18n: { sk: '0,9 €/km', en: '0.9 €/km', de: '0,9 €/km', ru: '0,9 €/км', uk: '0,9 €/км' },
+        priceLabelI18n: { sk: 'od 45 €', en: 'from 45 €', de: 'ab 45 €', ru: 'от 45 €', uk: 'від 45 €' },
       },
     },
   ];

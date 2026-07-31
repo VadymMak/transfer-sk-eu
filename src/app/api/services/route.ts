@@ -10,7 +10,7 @@ export async function GET() {
 
     const services = await db.service.findMany({
       where: { storeId: store.id, active: true, category: { notIn: ['route', 'fleet'] } },
-      orderBy: [{ category: 'asc' }, { price: 'asc' }],
+      orderBy: [{ category: 'asc' }, { sortOrder: 'asc' }],
       select: {
         id: true,
         slug: true,

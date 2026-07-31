@@ -205,6 +205,7 @@ body::after {
   letter-spacing: 2px;
   text-transform: uppercase;
   white-space: nowrap;
+  margin-right: 2rem;
 }
 
 .header__logo-span {
@@ -363,6 +364,7 @@ body::after {
     position: static;
     transform: none;
     font-size: 1rem;
+    margin-right: 0;
   }
   .header__logo-img { height: 60px; } /* tune here; keep in sync with min-height above */
 
