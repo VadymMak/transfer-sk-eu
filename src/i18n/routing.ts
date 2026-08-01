@@ -5,7 +5,7 @@ import { defineRouting } from 'next-intl/routing';
  * Only de/sk/cs/en are served — requests for other locales are redirected to /de by middleware.
  */
 export const routing = defineRouting({
-  locales: ['de', 'sk', 'cs', 'en'],
+  locales: ['de', 'sk', 'cs', 'en', 'ru', 'uk'],
   defaultLocale: 'de',
   localePrefix: 'always',
 });

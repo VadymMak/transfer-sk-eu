@@ -2,7 +2,7 @@ import { type Locale } from './i18n/routing';
 
 /** Locales exposed to users (EU bundle: DE default, + SK/CS/EN). */
 export function getActiveLocales(): Locale[] {
-  return ['de', 'sk', 'cs', 'en'];
+  return ['de', 'sk', 'cs', 'en', 'ru', 'uk'];
 }
 
 /** Default locale for this deployment. */
