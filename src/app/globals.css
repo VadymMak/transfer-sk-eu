@@ -592,6 +592,7 @@ body::after {
   }
   .hero__subtitle {
     max-width: 100%;
+    color: var(--color-text);
   }
   .hero__buttons {
     flex-direction: column;
@@ -605,6 +606,7 @@ body::after {
   }
   .hero__trust {
     text-align: center;
+    color: var(--color-text-secondary);
   }
   .hero__image-wrap {
     position: absolute;
@@ -614,10 +616,19 @@ body::after {
   .hero__overlay {
     background: linear-gradient(
       to bottom,
-      color-mix(in srgb, var(--color-bg) 75%, transparent) 0%,
-      color-mix(in srgb, var(--color-bg) 50%, transparent) 50%,
-      color-mix(in srgb, var(--color-bg) 80%, transparent) 100%
+      color-mix(in srgb, var(--color-bg) 92%, transparent) 0%,
+      color-mix(in srgb, var(--color-bg) 84%, transparent) 45%,
+      color-mix(in srgb, var(--color-bg) 92%, transparent) 100%
     );
+  }
+  .hero__tagline {
+    color: var(--color-primary-dark);
+  }
+  .hero__price-anchor {
+    color: var(--color-text-secondary);
+  }
+  .hero__price-anchor strong {
+    color: var(--color-primary-dark);
   }
 }
 
