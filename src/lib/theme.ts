@@ -142,7 +142,7 @@ export const AZURE_LIGHT: ThemeConfig = {
     primaryLight:  '#E8F2FD',
     text:          '#0F2233',
     textSecondary: '#56677A',
-    textMuted:     '#8A99A8',
+    textMuted:     '#5C6B7A',
     border:        '#E6EDF5',
     bgSubtle:      '#F0F5FC',
     success:       '#16a34a',

@@ -23,6 +23,7 @@ html, body {
   /* Static store values */
   --color-whatsapp:       #25D366;
   --color-whatsapp-dark:  #20BD5A;
+  --color-whatsapp-text:  #0F7A3D;
   --transition:           0.3s ease;
   /* Admin panel tokens — dark panel */
   --admin-bg:             #0A1828;
@@ -139,7 +140,7 @@ body::after {
   font-weight: 600;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--color-primary);
+  color: var(--color-primary-dark);
   margin-bottom: 1rem;
 }
 
@@ -263,14 +264,14 @@ body::after {
   letter-spacing: 1px;
   text-transform: uppercase;
   text-decoration: none;
-  border: 1px solid var(--color-whatsapp);
-  color: var(--color-whatsapp);
+  border: 1px solid var(--color-whatsapp-text);
+  color: var(--color-whatsapp-text);
   background: transparent;
   transition: background 0.3s ease, color 0.3s ease;
   font-family: var(--font-body);
   cursor: pointer;
 }
-.header__btn-whatsapp:hover { background: var(--color-whatsapp); color: var(--color-contrast); }
+.header__btn-whatsapp:hover { background: var(--color-whatsapp-text); color: var(--color-contrast); }
 
 .header__mobile-btn {
   display: none;
@@ -326,8 +327,8 @@ body::after {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  border: 1px solid var(--color-whatsapp);
-  color: var(--color-whatsapp);
+  border: 1px solid var(--color-whatsapp-text);
+  color: var(--color-whatsapp-text);
   padding: 0.8rem 1.5rem;
   font-size: 0.85rem;
   font-weight: 700;
@@ -336,7 +337,7 @@ body::after {
   text-decoration: none;
   transition: background 0.3s ease, color 0.3s ease;
 }
-.header__mobile-btn-wa:hover { background: var(--color-whatsapp); color: var(--color-contrast); }
+.header__mobile-btn-wa:hover { background: var(--color-whatsapp-text); color: var(--color-contrast); }
 
 .header__mobile-lang {
   border-top: 1px solid var(--color-border);
@@ -418,7 +419,7 @@ body::after {
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 4px;
-  color: var(--color-primary);
+  color: var(--color-primary-dark);
   text-transform: uppercase;
 }
 
@@ -487,7 +488,7 @@ body::after {
   display: inline-flex;
   align-items: center;
   padding: 0.9rem 2.5rem;
-  background: var(--color-primary);
+  background: var(--color-primary-dark);
   color: var(--color-bg);
   font-size: 0.8rem;
   font-weight: 700;
@@ -525,9 +526,9 @@ body::after {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--color-whatsapp);
+  background: var(--color-whatsapp-text);
   color: var(--color-contrast);
-  border: 1px solid var(--color-whatsapp);
+  border: 1px solid var(--color-whatsapp-text);
   padding: 0.9rem 2rem;
   font-size: 0.8rem;
   font-weight: 700;
@@ -1602,7 +1603,7 @@ body::after {
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--color-primary);
+  color: var(--color-primary-dark);
   margin-bottom: 1.25rem;
 }
 .footer__links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
