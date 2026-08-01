@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
-import { Playfair_Display, DM_Sans } from 'next/font/google';
+import { Montserrat } from 'next/font/google';
 import { routing, type Locale } from '@/i18n/routing';
 import Header from '@/components/layout/Header/Header';
 import Footer from '@/components/layout/Footer/Footer';
@@ -18,18 +18,10 @@ import { CustomerProvider } from '@/lib/useCustomer';
 import { getBaseUrl } from '@/lib/url';
 import '../../globals.css';
 
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  style: ['normal', 'italic'],
-  variable: '--font-playfair',
-  display: 'swap',
-});
-
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '700'],
-  variable: '--font-dm-sans',
+const montserrat = Montserrat({
+  subsets: ['latin', 'latin-ext', 'cyrillic'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-montserrat',
   display: 'swap',
 });
 
@@ -213,7 +205,7 @@ export default async function LocaleLayout({
   };
 
   return (
-    <html lang={locale} data-vertical={config.vertical.vertical} className={`${playfair.variable} ${dmSans.variable}`}>
+    <html lang={locale} data-vertical={config.vertical.vertical} className={`${montserrat.variable}`}>
       <head>
         <link rel="preconnect" href="https://gmllabrdvmlhu6z3.public.blob.vercel-storage.com" />
         <link rel="dns-prefetch" href="https://gmllabrdvmlhu6z3.public.blob.vercel-storage.com" />

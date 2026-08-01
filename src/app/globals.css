@@ -7,8 +7,8 @@ html, body {
 
 :root {
   /* Font aliases */
-  --font-body:            var(--font-dm-sans);
-  --font-display:         var(--font-playfair);
+  --font-body:            var(--font-montserrat);
+  --font-display:         var(--font-montserrat);
   /* Theme colors — navy */
   --color-bg:             #060E18;
   --color-bg-alt:         #0A1828;
