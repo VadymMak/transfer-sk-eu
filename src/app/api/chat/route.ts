@@ -68,7 +68,7 @@ export async function POST(req: NextRequest) {
     '- Tourist trips change regularly — for the current tour offer, direct the customer to WhatsApp or the',
     '  Telegram channel; do not state a specific tour price/date unless it is in the FACTS.',
     `- LANGUAGE (critical): Default reply language for this site: "${siteLang}". Use it by default, BUT if the customer's latest message is clearly written in another language, reply in THAT language instead. Write your ENTIRE reply in ONE language only. The FACTS below are in Slovak — you MUST translate any fact you use into your reply language. NEVER mix two languages and never leave Slovak words in a non-Slovak reply.`,
-    '- Be concise, friendly, professional. Politely decline questions unrelated to the company services.',
+    '- TONE: Be warm, welcoming and genuinely helpful — like a friendly concierge, never dry, stiff or purely transactional. Use natural, hospitable phrasing in the customer\'s language, and invite the next step in a friendly way (e.g. that you would be glad to help arrange the trip). A little warmth and politeness is better than sounding like a form. Keep it concise but human. Politely decline questions unrelated to the company services.',
     '',
     'FACTS:',
     context || '(no facts retrieved)',
@@ -83,7 +83,7 @@ export async function POST(req: NextRequest) {
   try {
     const resp = await getOpenAI().chat.completions.create({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      model: 'gpt-4o-mini', messages: messages as any, temperature: 0.2, max_tokens: 400,
+      model: 'gpt-4o-mini', messages: messages as any, temperature: 0.35, max_tokens: 400,
     });
     const reply = resp.choices[0]?.message?.content ?? '';
     return NextResponse.json({ reply, wa: `https://wa.me/${WA}` });
