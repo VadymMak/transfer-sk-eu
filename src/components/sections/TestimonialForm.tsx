@@ -55,17 +55,16 @@ export default function TestimonialForm() {
 
       <fieldset className="testimonials__stars">
         <legend className="testimonials__stars-legend">{t('reviewRating')}</legend>
-        {[5, 4, 3, 2, 1].map((n) => (
-          <label key={n} className={`testimonials__star${rating === n ? ' testimonials__star--active' : ''}`}>
-            <input
-              type="radio"
-              name="rating"
-              value={n}
-              checked={rating === n}
-              onChange={() => setRating(n)}
-            />
+        {[1, 2, 3, 4, 5].map((n) => (
+          <button
+            key={n}
+            type="button"
+            aria-label={`${n}`}
+            onClick={() => setRating(n)}
+            className={`testimonials__star${n <= rating ? ' testimonials__star--active' : ''}`}
+          >
             ★
-          </label>
+          </button>
         ))}
       </fieldset>
 
