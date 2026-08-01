@@ -582,7 +582,14 @@
     "errorSubmit": "Ошибка при отправке. Попробуйте ещё раз.",
     "backLabel": "← Назад к отзывам",
     "sectionLabel": "Отзывы",
-    "reviewsEmpty": "Отзывов пока нет — оставьте первый!"
+    "reviewsEmpty": "Отзывов пока нет — оставьте первый!",
+    "addReview": "Оставить отзыв",
+    "reviewName": "Имя",
+    "reviewCity": "Город (необязательно)",
+    "reviewRating": "Оценка",
+    "reviewText": "Ваш отзыв",
+    "reviewSubmit": "Отправить",
+    "reviewThanks": "Спасибо! Ваш отзыв появится после проверки."
   },
   "auth": {
     "login": "Войти",

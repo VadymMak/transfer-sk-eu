@@ -50,50 +50,47 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const auth = await getCurrentCustomer(request);
-  if (!auth) {
-    return NextResponse.json({ error: 'Authentication required' }, { status: 401 });
-  }
-
   try {
-    const body = await request.json();
-    const text = (typeof body?.text === 'string' ? body.text : '').trim();
-    const rating = typeof body?.rating === 'number' ? body.rating : 5;
-    const locale = typeof body?.locale === 'string' ? body.locale : 'en';
+    const body = await request.json() as {
+      name?: string;
+      city?: string;
+      rating?: number | string;
+      text?: string;
+      locale?: string;
+      website?: string;
+    };
 
-    if (!text || text.length < 20) {
-      return NextResponse.json({ error: 'Review must be at least 20 characters' }, { status: 400 });
-    }
-    if (text.length > 2000) {
-      return NextResponse.json({ error: 'Review must be under 2000 characters' }, { status: 400 });
-    }
-    if (rating < 1 || rating > 5 || !Number.isInteger(rating)) {
-      return NextResponse.json({ error: 'Rating must be 1-5' }, { status: 400 });
-    }
+    // Honeypot — silent drop
+    if (body.website) return NextResponse.json({ ok: true });
 
-    const existingPending = await db.testimonial.findFirst({
-      where: {
-        customerId: auth.customerId,
-        storeId: auth.storeId,
-        status: 'PENDING',
-      },
+    const name = (typeof body.name === 'string' ? body.name : '').trim();
+    const city = (typeof body.city === 'string' ? body.city : '').trim();
+    const text = (typeof body.text === 'string' ? body.text : '').trim();
+    const rating = Math.min(5, Math.max(1, Number(body.rating) || 5));
+    const locale = typeof body.locale === 'string' ? body.locale : 'de';
+
+    if (!text) return NextResponse.json({ ok: true });
+
+    const authorName = name ? (city ? `${name}, ${city}` : name) : null;
+
+    const store = await db.store.findUnique({
+      where: { slug: process.env.STORE_SLUG ?? '' },
+      select: { id: true },
     });
-    if (existingPending) {
-      return NextResponse.json({ error: 'You already have a review pending moderation' }, { status: 409 });
-    }
+    if (!store) return NextResponse.json({ error: 'Store not found' }, { status: 404 });
 
-    const testimonial = await db.testimonial.create({
+    await db.testimonial.create({
       data: {
         text,
         rating,
         locale,
+        authorName,
         status: 'PENDING',
-        customerId: auth.customerId,
-        storeId: auth.storeId,
+        storeId: store.id,
       },
     });
 
-    return NextResponse.json({ ok: true, id: testimonial.id }, { status: 201 });
+    return NextResponse.json({ ok: true });
   } catch (err) {
     console.error('[testimonials POST]', err);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });

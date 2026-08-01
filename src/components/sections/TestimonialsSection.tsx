@@ -1,8 +1,8 @@
-import Link from 'next/link';
-import { getTranslations, getLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 import TestimonialCard from '@/components/ui/TestimonialCard';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import GoldDivider from '@/components/ui/GoldDivider';
+import TestimonialForm from './TestimonialForm';
 
 export interface TestimonialItem {
   id: string;
@@ -19,10 +19,7 @@ interface TestimonialsSectionProps {
 }
 
 export default async function TestimonialsSection({ testimonials }: TestimonialsSectionProps) {
-  const [t, locale] = await Promise.all([
-    getTranslations('testimonials'),
-    getLocale(),
-  ]);
+  const t = await getTranslations('testimonials');
 
   return (
     <section id="bewertungen" className="testimonials">
@@ -51,13 +48,9 @@ export default async function TestimonialsSection({ testimonials }: Testimonials
         </div>
       )}
 
-      <div className="testimonials__footer">
-        <Link href={`/${locale}/testimonials`} className="btn-outline">
-          {t('viewAll')} →
-        </Link>
-        <Link href={`/${locale}/testimonials/submit`} className="btn-primary">
-          {t('writeReview')}
-        </Link>
+      <div className="testimonials__add">
+        <h3 className="testimonials__add-title">{t('addReview')}</h3>
+        <TestimonialForm />
       </div>
     </section>
   );

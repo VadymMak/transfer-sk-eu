@@ -571,7 +571,14 @@
     "pendingApproval": "Ihre Bewertung wird nach Genehmigung des Administrators veröffentlicht.",
     "errorSubmit": "Fehler beim Senden. Bitte versuchen Sie es erneut.",
     "backLabel": "← Zurück zu Bewertungen",
-    "reviewsEmpty": "Noch keine Bewertungen. Seien Sie der Erste!"
+    "reviewsEmpty": "Noch keine Bewertungen — seien Sie der Erste!",
+    "addReview": "Bewertung schreiben",
+    "reviewName": "Name",
+    "reviewCity": "Stadt (optional)",
+    "reviewRating": "Bewertung",
+    "reviewText": "Ihre Bewertung",
+    "reviewSubmit": "Absenden",
+    "reviewThanks": "Danke! Ihre Bewertung wird nach Prüfung veröffentlicht."
   },
   "auth": {
     "login": "Anmelden",

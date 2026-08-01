@@ -571,7 +571,14 @@
     "pendingApproval": "Your review will be published after admin approval.",
     "errorSubmit": "Error submitting. Please try again.",
     "backLabel": "← Back to Reviews",
-    "reviewsEmpty": "No reviews yet — be the first to leave one!"
+    "reviewsEmpty": "No reviews yet — be the first to leave one!",
+    "addReview": "Write a review",
+    "reviewName": "Name",
+    "reviewCity": "City (optional)",
+    "reviewRating": "Rating",
+    "reviewText": "Your review",
+    "reviewSubmit": "Submit",
+    "reviewThanks": "Thank you! Your review will appear after approval."
   },
   "auth": {
     "login": "Sign In",

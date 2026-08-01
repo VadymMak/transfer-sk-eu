@@ -571,7 +571,14 @@
     "pendingApproval": "Vaše recenze bude zveřejněna po schválení administrátorem.",
     "errorSubmit": "Chyba při odesílání. Zkuste to znovu.",
     "backLabel": "← Zpět na recenze",
-    "reviewsEmpty": "Zatím žádné recenze. Buďte první, kdo nám napíše!"
+    "reviewsEmpty": "Zatím žádné recenze — buďte první, kdo nám napíše!",
+    "addReview": "Napsat recenzi",
+    "reviewName": "Jméno",
+    "reviewCity": "Město (nepovinné)",
+    "reviewRating": "Hodnocení",
+    "reviewText": "Vaše recenze",
+    "reviewSubmit": "Odeslat",
+    "reviewThanks": "Děkujeme! Vaše recenze se zobrazí po schválení."
   },
   "auth": {
     "login": "Přihlásit se",
