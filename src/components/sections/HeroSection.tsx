@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import { formatHoursDisplay } from '@/lib/formatHours';
 import type { WorkingHours } from '@/lib/store-config';
@@ -112,7 +113,17 @@ export default async function HeroSection({
 
         <div className="hero__image-wrap">
           {config?.imageUrl ? (
-            <img className="hero__video" src={config.imageUrl} alt="" aria-hidden="true" />
+            <Image
+              className="hero__video"
+              src={config.imageUrl}
+              alt=""
+              aria-hidden="true"
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 60vw"
+              quality={70}
+              style={{ objectFit: 'cover' }}
+            />
           ) : (
             <video className="hero__video" autoPlay muted loop playsInline preload="metadata"
                    poster="/media/hero-poster.jpg" aria-hidden="true">
