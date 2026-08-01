@@ -32,7 +32,7 @@ export default function ChatWidget() {
   return (<>
     <button className="chat-launcher" onClick={() => setOpen((o) => !o)} aria-label={t('title')}>💬</button>
     {open && (
-      <div className="chat-panel" role="dialog" aria-label={t('title')}>
+      <div className="chat-panel notranslate" translate="no" role="dialog" aria-label={t('title')}>
         <div className="chat-head"><span>{t('title')}</span><button onClick={() => setOpen(false)} aria-label="close">×</button></div>
         <div className="chat-body">
           {msgs.length === 0 && <div className="chat-msg chat-msg--bot">{t('greeting')}</div>}
