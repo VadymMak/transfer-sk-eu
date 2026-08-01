@@ -570,7 +570,8 @@
     "thankYou": "Danke, {name}!",
     "pendingApproval": "Ihre Bewertung wird nach Genehmigung des Administrators veröffentlicht.",
     "errorSubmit": "Fehler beim Senden. Bitte versuchen Sie es erneut.",
-    "backLabel": "← Zurück zu Bewertungen"
+    "backLabel": "← Zurück zu Bewertungen",
+    "reviewsEmpty": "Noch keine Bewertungen. Seien Sie der Erste!"
   },
   "auth": {
     "login": "Anmelden",

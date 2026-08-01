@@ -570,7 +570,8 @@
     "thankYou": "Thank you, {name}!",
     "pendingApproval": "Your review will be published after admin approval.",
     "errorSubmit": "Error submitting. Please try again.",
-    "backLabel": "← Back to Reviews"
+    "backLabel": "← Back to Reviews",
+    "reviewsEmpty": "No reviews yet — be the first to leave one!"
   },
   "auth": {
     "login": "Sign In",

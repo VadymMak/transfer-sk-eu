@@ -19,8 +19,6 @@ interface TestimonialsSectionProps {
 }
 
 export default async function TestimonialsSection({ testimonials }: TestimonialsSectionProps) {
-  if (testimonials.length === 0) return null;
-
   const [t, locale] = await Promise.all([
     getTranslations('testimonials'),
     getLocale(),
@@ -34,20 +32,24 @@ export default async function TestimonialsSection({ testimonials }: Testimonials
         <GoldDivider />
       </ScrollReveal>
 
-      <div className="testimonials__grid">
-        {testimonials.map((item, i) => (
-          <ScrollReveal key={item.id} direction="up" delay={i * 120}>
-            <TestimonialCard
-              name={item.name}
-              content={item.content}
-              rating={item.rating}
-              createdAt={item.createdAt}
-              adminReply={item.adminReply}
-              adminReplyAt={item.adminReplyAt}
-            />
-          </ScrollReveal>
-        ))}
-      </div>
+      {testimonials.length === 0 ? (
+        <p className="testimonials__empty">{t('reviewsEmpty')}</p>
+      ) : (
+        <div className="testimonials__grid">
+          {testimonials.map((item, i) => (
+            <ScrollReveal key={item.id} direction="up" delay={i * 120}>
+              <TestimonialCard
+                name={item.name}
+                content={item.content}
+                rating={item.rating}
+                createdAt={item.createdAt}
+                adminReply={item.adminReply}
+                adminReplyAt={item.adminReplyAt}
+              />
+            </ScrollReveal>
+          ))}
+        </div>
+      )}
 
       <div className="testimonials__footer">
         <Link href={`/${locale}/testimonials`} className="btn-outline">

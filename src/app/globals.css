@@ -1752,6 +1752,13 @@ body::after {
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
+.testimonials__empty {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-lg);
+  padding: 2rem 0;
+}
+
 .testimonials__footer {
   text-align: center;
   margin-top: 3rem;

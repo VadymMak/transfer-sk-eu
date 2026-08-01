@@ -570,7 +570,8 @@
     "thankYou": "Ďakujeme, {name}!",
     "pendingApproval": "Vaša recenzia bude zverejnená po schválení administrátorom.",
     "errorSubmit": "Chyba pri odosielaní. Skúste znova.",
-    "backLabel": "← Späť na recenzie"
+    "backLabel": "← Späť na recenzie",
+    "reviewsEmpty": "Zatiaľ žiadne recenzie. Buďte prvý, kto nám napíše!"
   },
   "auth": {
     "login": "Prihlásiť sa",
