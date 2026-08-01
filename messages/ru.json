@@ -589,7 +589,9 @@
     "reviewRating": "Оценка",
     "reviewText": "Ваш отзыв",
     "reviewSubmit": "Отправить",
-    "reviewThanks": "Спасибо! Ваш отзыв появится после проверки."
+    "reviewThanks": "Спасибо! Ваш отзыв появится после проверки.",
+    "viewAllReviews": "Все отзывы",
+    "back": "Назад"
   },
   "auth": {
     "login": "Войти",

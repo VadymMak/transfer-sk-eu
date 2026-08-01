@@ -578,7 +578,9 @@
     "reviewRating": "Hodnocení",
     "reviewText": "Vaše recenze",
     "reviewSubmit": "Odeslat",
-    "reviewThanks": "Děkujeme! Vaše recenze se zobrazí po schválení."
+    "reviewThanks": "Děkujeme! Vaše recenze se zobrazí po schválení.",
+    "viewAllReviews": "Zobrazit všechny recenze",
+    "back": "Zpět"
   },
   "auth": {
     "login": "Přihlásit se",

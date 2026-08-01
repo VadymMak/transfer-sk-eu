@@ -108,7 +108,7 @@ export default async function HomePage({
       <WhyUsSection city={presence.city} googleRating={presence.googleRating} address={presence.address} />
       <AboutSection aboutImage={config.aboutImage} />
       <GallerySection images={galleryImages} layout={config.galleryLayout ?? undefined} />
-      <TestimonialsSection testimonials={dbTestimonials.map((t) => ({
+      <TestimonialsSection locale={locale} testimonials={dbTestimonials.map((t) => ({
         id: t.id,
         name: t.authorName ?? t.customer?.name ?? 'Anonym',
         content: t.text,

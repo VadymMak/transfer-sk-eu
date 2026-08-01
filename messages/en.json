@@ -578,7 +578,9 @@
     "reviewRating": "Rating",
     "reviewText": "Your review",
     "reviewSubmit": "Submit",
-    "reviewThanks": "Thank you! Your review will appear after approval."
+    "reviewThanks": "Thank you! Your review will appear after approval.",
+    "viewAllReviews": "View all reviews",
+    "back": "Back"
   },
   "auth": {
     "login": "Sign In",

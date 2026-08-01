@@ -578,7 +578,9 @@
     "reviewRating": "Bewertung",
     "reviewText": "Ihre Bewertung",
     "reviewSubmit": "Absenden",
-    "reviewThanks": "Danke! Ihre Bewertung wird nach Prüfung veröffentlicht."
+    "reviewThanks": "Danke! Ihre Bewertung wird nach Prüfung veröffentlicht.",
+    "viewAllReviews": "Alle Bewertungen ansehen",
+    "back": "Zurück"
   },
   "auth": {
     "login": "Anmelden",

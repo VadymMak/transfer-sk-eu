@@ -1759,9 +1759,42 @@ body::after {
   padding: 2rem 0;
 }
 
+.testimonials__viewall {
+  text-align: center;
+  margin-top: 2rem;
+}
+
 .testimonials__add {
   max-width: 640px;
   margin: 3rem auto 0;
+}
+
+/* ── Reviews full-page ── */
+.reviews-page {
+  padding: 8rem 2rem 6rem;
+  min-height: 100vh;
+}
+.reviews-page__inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+.reviews-page__back {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 2.5rem;
+  transition: opacity var(--transition);
+}
+.reviews-page__back:hover { opacity: 0.75; }
+.reviews-page__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
 }
 .testimonials__add-title {
   font-size: var(--font-size-lg);
