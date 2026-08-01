@@ -19,16 +19,18 @@ import { getBaseUrl } from '@/lib/url';
 import '../../globals.css';
 
 const playfair = Playfair_Display({
-  subsets: ['latin', 'cyrillic'],
+  subsets: ['latin'],
   weight: ['400', '700'],
   style: ['normal', 'italic'],
   variable: '--font-playfair',
+  display: 'swap',
 });
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
   weight: ['300', '400', '500', '700'],
   variable: '--font-dm-sans',
+  display: 'swap',
 });
 
 export async function generateMetadata({
