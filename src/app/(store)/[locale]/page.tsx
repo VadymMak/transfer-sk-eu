@@ -117,7 +117,7 @@ export default async function HomePage({
         adminReply: t.adminReply,
         adminReplyAt: t.adminReplyAt?.toISOString() ?? null,
       }))} />
-      <FaqSection locale={locale} />
+      <FaqSection locale={locale} whatsappHref={whatsappLinks.general} />
       <ContactSection
         address={presence.address}
         city={presence.city}

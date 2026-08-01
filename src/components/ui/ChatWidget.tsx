@@ -11,6 +11,11 @@ export default function ChatWidget() {
   const [wa, setWa] = useState<string | undefined>();
   const endRef = useRef<HTMLDivElement>(null);
   useEffect(() => { endRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [msgs, open, loading]);
+  useEffect(() => {
+    const open = () => setOpen(true);
+    window.addEventListener('open-chat', open);
+    return () => window.removeEventListener('open-chat', open);
+  }, []);
   async function send() {
     const text = input.trim(); if (!text || loading) return;
     setMsgs((m) => [...m, { role: 'user', content: text }]); setInput(''); setLoading(true);

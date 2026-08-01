@@ -2,6 +2,7 @@
 // Серверный компонент: видимый FAQ (native <details> accordion) + FAQPage JSON-LD.
 // Контент захардкожен по локалям, чтобы файл был самодостаточным. При желании
 // позже вынести в i18n messages. Стили — нейтральные inline, подстраиваются под тему.
+import FaqCta from './FaqCta';
 
 type QA = { q: string; a: string };
 
@@ -65,7 +66,7 @@ const FAQ: Record<string, QA[]> = {
   ],
 };
 
-export default function FaqSection({ locale }: { locale: string }) {
+export default function FaqSection({ locale, whatsappHref }: { locale: string; whatsappHref?: string }) {
   const items = FAQ[locale] ?? FAQ.en;
   const title = TITLES[locale] ?? TITLES.en;
 
@@ -98,6 +99,7 @@ export default function FaqSection({ locale }: { locale: string }) {
             </details>
           ))}
         </div>
+        <FaqCta locale={locale} whatsappHref={whatsappHref} />
       </div>
       <script
         type="application/ld+json"
