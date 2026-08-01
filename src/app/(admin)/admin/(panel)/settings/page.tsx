@@ -110,6 +110,10 @@ export default function AdminSettingsPage() {
             city: (s.city as string) ?? '',
             mapLat: s.mapLat != null ? String(s.mapLat) : '',
             mapLng: s.mapLng != null ? String(s.mapLng) : '',
+            facebook:  (s.facebook  as string) ?? '',
+            instagram: (s.instagram as string) ?? '',
+            whatsapp:  (s.whatsapp  as string) ?? '',
+            telegram:  (s.telegram  as string) ?? '',
           }));
           setHours(parseHours(s.openingHours));
           setAlwaysOpen((s.alwaysOpen as boolean) ?? false);

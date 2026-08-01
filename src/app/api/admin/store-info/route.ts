@@ -26,6 +26,7 @@ export async function GET() {
       logoUrl: true,
       aboutImage: true,
       phone: true,
+      whatsappPhone: true,
       email: true,
       mapLat: true,
       mapLng: true,
@@ -39,8 +40,8 @@ export async function GET() {
       ...store,
       instagram: (meta.instagram as string) ?? '',
       facebook:  (meta.facebook  as string) ?? '',
-      whatsapp:  (meta.whatsapp  as string) ?? '',
       telegram:  (meta.telegram  as string) ?? '',
+      whatsapp:  store?.whatsappPhone ?? '',
     },
   });
 }
@@ -74,7 +75,9 @@ export async function PUT(request: Request) {
     data[key] = body[key] ?? null;
   }
 
-  const socialKeys = ['instagram', 'facebook', 'whatsapp', 'telegram'] as const;
+  if ('whatsapp' in body) data.whatsappPhone = (body.whatsapp as string) || null;
+
+  const socialKeys = ['instagram', 'facebook', 'telegram'] as const;
   const socialUpdate: Record<string, unknown> = {};
   for (const key of socialKeys) {
     if (key in body) socialUpdate[key] = body[key] ?? '';
