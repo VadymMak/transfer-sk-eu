@@ -113,6 +113,7 @@ export const getStoreConfig = cache(async (): Promise<StoreConfig> => {
   const mode = store.primaryMode as StoreMode;
   const whatsappNumber = store.whatsappPhone ?? store.phone;
 
+  const meta = (store.metadata ?? {}) as Record<string, string>;
   const presence: StorePresence = {
     primaryMode: mode,
     hasPhysicalLocation: !!store.address,
@@ -127,9 +128,9 @@ export const getStoreConfig = cache(async (): Promise<StoreConfig> => {
     whatsapp: store.whatsappPhone ?? undefined,
     email: store.email ?? undefined,
     founderName: store.founderName ?? undefined,
-    instagram: store.instagramUrl ?? undefined,
-    facebook: store.facebook ?? undefined,
-    telegram: ((store.metadata as Record<string, unknown> | null)?.telegram as string) || undefined,
+    instagram: meta.instagram || store.instagramUrl || undefined,
+    facebook:  meta.facebook  || store.facebook    || undefined,
+    telegram:  meta.telegram  || undefined,
     googleRating: store.googleRating ?? undefined,
     mapCoords:
       store.mapLat && store.mapLng
