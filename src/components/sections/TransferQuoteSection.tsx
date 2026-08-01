@@ -127,10 +127,11 @@ export default function TransferQuoteSection({
             {/* Row 1: Von | Nach */}
             <div className="booking__form-row">
               <div>
-                <label className="booking__label">{t('fieldPickup')}</label>
+                <label className="booking__label" htmlFor="q-pickup">{t('fieldPickup')}</label>
                 <input
                   type="text"
                   name="pickup"
+                  id="q-pickup"
                   required
                   className="booking__input"
                   placeholder="Wien Flughafen"
@@ -139,10 +140,11 @@ export default function TransferQuoteSection({
                 />
               </div>
               <div>
-                <label className="booking__label">{t('fieldDropoff')}</label>
+                <label className="booking__label" htmlFor="q-dropoff">{t('fieldDropoff')}</label>
                 <input
                   type="text"
                   name="dropoff"
+                  id="q-dropoff"
                   required
                   className="booking__input"
                   placeholder="Bratislava Zentrum"
@@ -155,20 +157,22 @@ export default function TransferQuoteSection({
             {/* Row 2: Datum | Uhrzeit */}
             <div className="booking__form-row">
               <div>
-                <label className="booking__label">{t('fieldDate')}</label>
+                <label className="booking__label" htmlFor="q-date">{t('fieldDate')}</label>
                 <input
                   ref={dateInputRef}
                   type="date"
                   name="date"
+                  id="q-date"
                   required
                   className="booking__input"
                 />
               </div>
               <div>
-                <label className="booking__label">{t('fieldTime')}</label>
+                <label className="booking__label" htmlFor="q-time">{t('fieldTime')}</label>
                 <input
                   type="time"
                   name="time"
+                  id="q-time"
                   required
                   className="booking__input"
                 />
@@ -178,10 +182,11 @@ export default function TransferQuoteSection({
             {/* Row 3: Passagiere | Gepäck */}
             <div className="booking__form-row">
               <div>
-                <label className="booking__label">{t('fieldPassengers')}</label>
+                <label className="booking__label" htmlFor="q-passengers">{t('fieldPassengers')}</label>
                 <input
                   type="number"
                   name="passengers"
+                  id="q-passengers"
                   min={1}
                   max={16}
                   defaultValue={1}
@@ -190,10 +195,11 @@ export default function TransferQuoteSection({
                 />
               </div>
               <div>
-                <label className="booking__label">{t('fieldLuggage')}</label>
+                <label className="booking__label" htmlFor="q-luggage">{t('fieldLuggage')}</label>
                 <input
                   type="number"
                   name="luggage"
+                  id="q-luggage"
                   min={0}
                   max={20}
                   defaultValue={1}
@@ -205,13 +211,14 @@ export default function TransferQuoteSection({
 
             {/* Full-width: Flugnummer */}
             <div>
-              <label className="booking__label">
+              <label className="booking__label" htmlFor="q-flightNumber">
                 {t('fieldFlight')}{' '}
                 <span style={{ fontWeight: 400, opacity: 0.65 }}>{t('flightOptional')}</span>
               </label>
               <input
                 type="text"
                 name="flightNumber"
+                id="q-flightNumber"
                 className="booking__input"
                 placeholder="z.B. OS 123"
               />
@@ -220,19 +227,21 @@ export default function TransferQuoteSection({
             {/* Row: Name | Telefon */}
             <div className="booking__form-row">
               <div>
-                <label className="booking__label">{t('fieldName')}</label>
+                <label className="booking__label" htmlFor="q-name">{t('fieldName')}</label>
                 <input
                   type="text"
                   name="name"
+                  id="q-name"
                   required
                   className="booking__input"
                 />
               </div>
               <div>
-                <label className="booking__label">{t('fieldPhone')}</label>
+                <label className="booking__label" htmlFor="q-phone">{t('fieldPhone')}</label>
                 <input
                   type="tel"
                   name="phone"
+                  id="q-phone"
                   required
                   className="booking__input"
                   placeholder="+43 XXX XXX XXXX"
@@ -242,12 +251,13 @@ export default function TransferQuoteSection({
 
             {/* Full-width: Nachricht */}
             <div>
-              <label className="booking__label">
+              <label className="booking__label" htmlFor="q-note">
                 {t('fieldNote')}{' '}
                 <span style={{ fontWeight: 400, opacity: 0.65 }}>{t('noteOptional')}</span>
               </label>
               <textarea
                 name="note"
+                id="q-note"
                 className="booking__textarea"
                 value={note}
                 onChange={(e) => setNote(e.target.value)}

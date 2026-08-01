@@ -96,7 +96,7 @@ export default async function Footer({ config, locale }: FooterProps) {
 
         {/* Col 2 — Navigation */}
         <div className="footer__col">
-          <h4 className="footer__heading">{tFooter('servicesNavTitle')}</h4>
+          <h3 className="footer__heading">{tFooter('servicesNavTitle')}</h3>
           <ul className="footer__links">
             <li><a href="#angebot">{tFooter('navBooking')}</a></li>
             <li><a href="#strecken">{tFooter('navServices')}</a></li>
@@ -109,7 +109,7 @@ export default async function Footer({ config, locale }: FooterProps) {
 
         {/* Col 3 — Hours */}
         <div className="footer__col">
-          <h4 className="footer__heading">{tFooter('servicesHoursTitle')}</h4>
+          <h3 className="footer__heading">{tFooter('servicesHoursTitle')}</h3>
           {alwaysOpen ? (
             <p className="footer__available247">{tFooter('hours24_7')}</p>
           ) : hoursRows.length > 0 ? (
@@ -130,7 +130,7 @@ export default async function Footer({ config, locale }: FooterProps) {
 
         {/* Col 4 — Contact */}
         <div className="footer__col">
-          <h4 className="footer__heading">{tFooter('contactTitle')}</h4>
+          <h3 className="footer__heading">{tFooter('contactTitle')}</h3>
           <ul className="footer__contact">
             {fullAddress && (
               <li>
