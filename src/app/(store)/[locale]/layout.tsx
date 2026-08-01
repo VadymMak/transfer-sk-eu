@@ -67,7 +67,7 @@ export async function generateMetadata({
   const languages: Record<string, string> = Object.fromEntries(
     routing.locales.map((l) => [l, `${baseUrl}/${l}`])
   );
-  languages['x-default'] = `${baseUrl}/de`;
+  languages['x-default'] = `${baseUrl}/sk`;
 
   return {
     title,

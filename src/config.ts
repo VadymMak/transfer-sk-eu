@@ -7,7 +7,7 @@ export function getActiveLocales(): Locale[] {
 
 /** Default locale for this deployment. */
 export function getDefaultLocale(): Locale {
-  return 'de';
+  return 'sk';
 }
 
 /** Whether a locale is active for this deployment. */
