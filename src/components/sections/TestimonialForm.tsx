@@ -34,7 +34,7 @@ export default function TestimonialForm() {
   }
 
   return (
-    <form className="testimonials__form" onSubmit={handleSubmit}>
+    <form className="testimonials__form review-form" onSubmit={handleSubmit}>
       <div className="testimonials__form-row">
         <input
           className="testimonials__input"
