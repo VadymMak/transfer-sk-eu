@@ -1,9 +1,10 @@
 'use client';
 import { useState, useRef, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 type Msg = { role: 'user' | 'assistant'; content: string };
 export default function ChatWidget() {
   const t = useTranslations('chat');
+  const locale = useLocale();
   const [open, setOpen] = useState(false);
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const [input, setInput] = useState('');
@@ -21,7 +22,7 @@ export default function ChatWidget() {
     setMsgs((m) => [...m, { role: 'user', content: text }]); setInput(''); setLoading(true);
     try {
       const r = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text, history: msgs.slice(-6) }) });
+        body: JSON.stringify({ message: text, history: msgs.slice(-6), locale }) });
       const j = await r.json();
       setMsgs((m) => [...m, { role: 'assistant', content: j.reply || t('error') }]);
       if (j.wa) setWa(j.wa);

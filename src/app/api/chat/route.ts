@@ -26,7 +26,17 @@ export async function POST(req: NextRequest) {
   const ip = (req.headers.get('x-forwarded-for') ?? 'anon').split(',')[0].trim();
   if (limited(ip)) return NextResponse.json({ error: 'rate_limited' }, { status: 429 });
 
-  const { message, history } = (await req.json()) as { message?: string; history?: { role: 'user' | 'assistant'; content: string }[] };
+  const { message, history, locale } = (await req.json()) as { message?: string; history?: { role: 'user' | 'assistant'; content: string }[]; locale?: string };
+
+  const LANG: Record<string, string> = {
+    sk: 'Odpovedaj po slovensky.',
+    cs: 'Odpovídej česky.',
+    en: 'Reply in English.',
+    de: 'Antworte auf Deutsch.',
+    ru: 'Отвечай по-русски.',
+    uk: 'Відповідай українською.',
+  };
+  const siteLang = LANG[locale ?? 'de'] ?? LANG.de;
   if (!message || message.length > 500) return NextResponse.json({ error: 'bad_input' }, { status: 400 });
 
   const store = await db.store.findUnique({ where: { slug: STORE_SLUG }, select: { id: true } });
@@ -57,7 +67,7 @@ export async function POST(req: NextRequest) {
     `  and invite the customer to confirm on WhatsApp: https://wa.me/${WA}`,
     '- Tourist trips change regularly — for the current tour offer, direct the customer to WhatsApp or the',
     '  Telegram channel; do not state a specific tour price/date unless it is in the FACTS.',
-    '- Reply in the SAME language as the customer (Slovak, English, German, Russian or Ukrainian).',
+    `- LANGUAGE (critical): Default reply language for this site: "${siteLang}". Use it by default, BUT if the customer's latest message is clearly written in another language, reply in THAT language instead. Write your ENTIRE reply in ONE language only. The FACTS below are in Slovak — you MUST translate any fact you use into your reply language. NEVER mix two languages and never leave Slovak words in a non-Slovak reply.`,
     '- Be concise, friendly, professional. Politely decline questions unrelated to the company services.',
     '',
     'FACTS:',
@@ -73,7 +83,7 @@ export async function POST(req: NextRequest) {
   try {
     const resp = await getOpenAI().chat.completions.create({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      model: 'gpt-4o-mini', messages: messages as any, temperature: 0.3, max_tokens: 400,
+      model: 'gpt-4o-mini', messages: messages as any, temperature: 0.2, max_tokens: 400,
     });
     const reply = resp.choices[0]?.message?.content ?? '';
     return NextResponse.json({ reply, wa: `https://wa.me/${WA}` });
