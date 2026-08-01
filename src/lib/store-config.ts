@@ -33,6 +33,7 @@ export interface StorePresence {
   founderName?: string;
   instagram?: string;
   facebook?: string;
+  telegram?: string;
   googleRating?: number;
   mapCoords?: { lat: number; lng: number };
 }
@@ -109,9 +110,8 @@ export const getStoreConfig = cache(async (): Promise<StoreConfig> => {
   const dbTheme = store.themeConfig as Partial<ThemeConfig> | null;
   const theme = mergeTheme(dbTheme);
 
-  const meta = (store.metadata as Record<string, unknown> | null) ?? {};
   const mode = store.primaryMode as StoreMode;
-  const whatsappNumber = (meta.whatsapp as string) || store.whatsappPhone || store.phone;
+  const whatsappNumber = store.whatsappPhone ?? store.phone;
 
   const presence: StorePresence = {
     primaryMode: mode,
@@ -124,11 +124,12 @@ export const getStoreConfig = cache(async (): Promise<StoreConfig> => {
     openingHours: parseOpeningHours(store.openingHours),
     alwaysOpen: store.alwaysOpen ?? false,
     phone: store.phone ?? undefined,
-    whatsapp: ((meta.whatsapp as string) || store.whatsappPhone) ?? undefined,
+    whatsapp: store.whatsappPhone ?? undefined,
     email: store.email ?? undefined,
     founderName: store.founderName ?? undefined,
-    instagram: ((meta.instagram as string) || store.instagramUrl) ?? undefined,
-    facebook: (meta.facebook as string) || store.facebook || undefined,
+    instagram: store.instagramUrl ?? undefined,
+    facebook: store.facebook ?? undefined,
+    telegram: ((store.metadata as Record<string, unknown> | null)?.telegram as string) || undefined,
     googleRating: store.googleRating ?? undefined,
     mapCoords:
       store.mapLat && store.mapLng

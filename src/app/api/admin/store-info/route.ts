@@ -40,6 +40,7 @@ export async function GET() {
       instagram: (meta.instagram as string) ?? '',
       facebook:  (meta.facebook  as string) ?? '',
       whatsapp:  (meta.whatsapp  as string) ?? '',
+      telegram:  (meta.telegram  as string) ?? '',
     },
   });
 }
@@ -73,7 +74,7 @@ export async function PUT(request: Request) {
     data[key] = body[key] ?? null;
   }
 
-  const socialKeys = ['instagram', 'facebook', 'whatsapp'] as const;
+  const socialKeys = ['instagram', 'facebook', 'whatsapp', 'telegram'] as const;
   const socialUpdate: Record<string, unknown> = {};
   for (const key of socialKeys) {
     if (key in body) socialUpdate[key] = body[key] ?? '';
