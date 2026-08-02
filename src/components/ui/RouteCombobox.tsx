@@ -24,6 +24,10 @@ function normalize(s: string) {
   return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 }
 
+function getDest(label: string) {
+  return (label.includes('→') ? label.split('→').pop()! : label).trim();
+}
+
 export default function RouteCombobox({
   routes,
   value,
@@ -49,13 +53,13 @@ export default function RouteCombobox({
   const getLabel = (r: ComboRoute) => r.nameI18n?.[locale] ?? r.nameKey;
 
   const filtered = value.trim()
-    ? routes.filter(r => normalize(getLabel(r)).includes(normalize(value)))
+    ? routes.filter(r => normalize(getDest(getLabel(r))).includes(normalize(value)))
     : routes;
 
   // Sync selectedRoute when value is set externally (prefill or reset)
   useEffect(() => {
     if (!value) { setSelectedRoute(null); return; }
-    const found = routes.find(r => (r.nameI18n?.[locale] ?? r.nameKey) === value) ?? null;
+    const found = routes.find(r => getDest(r.nameI18n?.[locale] ?? r.nameKey) === value) ?? null;
     setSelectedRoute(found);
   }, [value, routes, locale]);
 
@@ -78,11 +82,11 @@ export default function RouteCombobox({
   }, []);
 
   function handleSelect(route: ComboRoute) {
-    const label = getLabel(route);
+    const dest = getDest(getLabel(route));
     setSelectedRoute(route);
     setOpen(false);
     setHighlighted(-1);
-    onChange(label, route);
+    onChange(dest, route);
   }
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -169,7 +173,7 @@ export default function RouteCombobox({
               onMouseDown={(e) => { e.preventDefault(); handleSelect(route); }}
               onMouseEnter={() => setHighlighted(i)}
             >
-              <span className="combobox__option-label">{getLabel(route)}</span>
+              <span className="combobox__option-label">{getDest(getLabel(route))}</span>
               <span className="combobox__option-price">{route.price} €</span>
             </li>
           ))}

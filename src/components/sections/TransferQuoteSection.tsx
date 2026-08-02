@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import GoldDivider from '@/components/ui/GoldDivider';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import { useQuotePrefill } from '@/stores/useQuotePrefill';
@@ -17,6 +17,7 @@ export default function TransferQuoteSection({
   routes = [],
 }: TransferQuoteSectionProps) {
   const t = useTranslations('transferQuote');
+  const locale = useLocale();
 
   const [pickup, setPickup] = useState('');
   const [dropoff, setDropoff] = useState('');
@@ -71,12 +72,16 @@ export default function TransferQuoteSection({
     setSubmitting(true);
     setSubmitError('');
 
+    const fullDropoff = dropoffRoute
+      ? (dropoffRoute.nameI18n?.[locale] ?? dropoffRoute.nameKey)
+      : dropoffVal;
+
     try {
       const res = await fetch('/api/transfer-quotes', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          pickup: pickupVal, dropoff: dropoffVal, date, time,
+          pickup: pickupVal, dropoff: fullDropoff, date, time,
           passengers, luggage, flightNumber, name, phone, note: noteVal,
           routeKey: dropoffRoute?.nameKey ?? '',
         }),
@@ -93,7 +98,7 @@ export default function TransferQuoteSection({
         `━━━━━━━━━━━━━━━━━━`,
         `👤 ${name}  📞 ${phone}`,
         `📍 ${t('waFrom')}: ${pickupVal}`,
-        `🏁 ${t('waTo')}: ${dropoffVal}${dropoffRoute ? ` · ${dropoffRoute.price} €` : ''}`,
+        `🏁 ${t('waTo')}: ${fullDropoff}${dropoffRoute ? ` · ${dropoffRoute.price} €` : ''}`,
         `📆 ${date}  🕐 ${time}`,
         `👥 ${passengers}  🧳 ${luggage}`,
         flightNumber ? `✈️ ${t('waFlight')}: ${flightNumber}` : '',
