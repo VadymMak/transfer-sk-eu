@@ -752,7 +752,8 @@
     "waTitle": "New transfer request — Transfer SK-EU",
     "waFrom": "From",
     "waTo": "To",
-    "waFlight": "Flight"
+    "waFlight": "Flight",
+    "priceHint": "Szacunkowa cena: {price} €"
   },
   "routes": {
     "label": "Cennik",

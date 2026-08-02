@@ -8,10 +8,12 @@ import { useQuotePrefill } from '@/stores/useQuotePrefill';
 
 interface TransferQuoteSectionProps {
   whatsappNumber?: string;
+  routes?: { nameKey: string; price: number }[];
 }
 
 export default function TransferQuoteSection({
   whatsappNumber = '',
+  routes = [],
 }: TransferQuoteSectionProps) {
   const t = useTranslations('transferQuote');
 
@@ -20,6 +22,12 @@ export default function TransferQuoteSection({
   const [note, setNote] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  const [matchedPrice, setMatchedPrice] = useState<number | null>(null);
+
+  const findPrice = (p: string, d: string): number | null => {
+    const check = (v: string) => routes.find(r => r.nameKey === v.trim())?.price ?? null;
+    return check(p) ?? check(d);
+  };
 
   const sectionRef = useRef<HTMLElement>(null);
   const dateInputRef = useRef<HTMLInputElement>(null);
@@ -32,6 +40,7 @@ export default function TransferQuoteSection({
     setPickup(prefillPickup);
     setDropoff(prefillDropoff);
     setNote(prefillNote);
+    setMatchedPrice(findPrice(prefillPickup, prefillDropoff));
     clearPrefill();
     sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     const timer = setTimeout(() => dateInputRef.current?.focus(), 650);
@@ -104,6 +113,7 @@ export default function TransferQuoteSection({
       setPickup('');
       setDropoff('');
       setNote('');
+      setMatchedPrice(null);
     } catch {
       setSubmitError(t('errorNetwork'));
     } finally {
@@ -135,8 +145,9 @@ export default function TransferQuoteSection({
                   required
                   className="booking__input"
                   placeholder="Wien Flughafen"
+                  list="directions"
                   value={pickup}
-                  onChange={(e) => setPickup(e.target.value)}
+                  onChange={(e) => { setPickup(e.target.value); setMatchedPrice(findPrice(e.target.value, dropoff)); }}
                 />
               </div>
               <div>
@@ -148,11 +159,22 @@ export default function TransferQuoteSection({
                   required
                   className="booking__input"
                   placeholder="Bratislava Zentrum"
+                  list="directions"
                   value={dropoff}
-                  onChange={(e) => setDropoff(e.target.value)}
+                  onChange={(e) => { setDropoff(e.target.value); setMatchedPrice(findPrice(pickup, e.target.value)); }}
                 />
               </div>
             </div>
+            {routes.length > 0 && (
+              <datalist id="directions">
+                {routes.map(r => <option key={r.nameKey} value={r.nameKey} />)}
+              </datalist>
+            )}
+            {matchedPrice !== null && (
+              <p className="booking__price-hint">
+                {t('priceHint', { price: matchedPrice })}
+              </p>
+            )}
 
             {/* Row 2: Datum | Uhrzeit */}
             <div className="booking__form-row">

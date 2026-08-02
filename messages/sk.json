@@ -766,7 +766,8 @@
     "waTitle": "Nová objednávka transferu — Transfer SK-EU",
     "waFrom": "Odkiaľ",
     "waTo": "Kam",
-    "waFlight": "Let"
+    "waFlight": "Let",
+    "priceHint": "Orientačná cena: {price} €"
   },
   "routes": {
     "label": "Cenník",

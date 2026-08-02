@@ -1170,6 +1170,13 @@ body::after {
 .booking__select option { background: var(--color-bg-card); color: var(--color-text); }
 .booking__textarea { resize: vertical; min-height: 72px; }
 
+.booking__price-hint {
+  margin-top: -0.5rem;
+  font-size: var(--font-size-sm);
+  color: var(--color-gold);
+  font-weight: 500;
+}
+
 .booking__picker-wrap {
   background: var(--color-bg-card);
   border: 1px solid var(--color-border);

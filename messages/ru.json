@@ -786,7 +786,8 @@
     "waTitle": "Новая заявка на трансфер — Transfer SK-EU",
     "waFrom": "Откуда",
     "waTo": "Куда",
-    "waFlight": "Рейс"
+    "waFlight": "Рейс",
+    "priceHint": "Ориентировочная стоимость: {price} €"
   },
   "routes": {
     "label": "Прайс-лист",
