@@ -18,6 +18,7 @@ interface Props {
   required?: boolean;
   placeholder?: string;
   className?: string;
+  showPrice?: boolean;
 }
 
 function normalize(s: string) {
@@ -37,6 +38,7 @@ export default function RouteCombobox({
   required,
   placeholder,
   className,
+  showPrice = true,
 }: Props) {
   const locale = useLocale();
   const t = useTranslations('transferQuote');
@@ -174,12 +176,12 @@ export default function RouteCombobox({
               onMouseEnter={() => setHighlighted(i)}
             >
               <span className="combobox__option-label">{getDest(getLabel(route))}</span>
-              <span className="combobox__option-price">{route.price} €</span>
+              {showPrice && <span className="combobox__option-price">{route.price} €</span>}
             </li>
           ))}
         </ul>
       )}
-      {selectedRoute && (
+      {showPrice && selectedRoute && (
         <p className="booking__price-hint">
           {t('priceHint', { price: selectedRoute.price })}
         </p>
