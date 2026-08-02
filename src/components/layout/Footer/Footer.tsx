@@ -172,7 +172,7 @@ export default async function Footer({ config, locale }: FooterProps) {
         </p>
         <p className="footer__bottom-links footer__credit">
           Design:{' '}
-          <a href="https://formaink.com" target="_blank" rel="noopener noreferrer">FormaInk</a>
+          <a href="https://formaink.com" target="_blank" rel="noopener noreferrer">Anastasiya Kolisnyk — FormaInk</a>
           <span>·</span>
           Powered by{' '}
           <a href="https://smartctx.dev" target="_blank" rel="noopener noreferrer">SmartContext.dev</a>
