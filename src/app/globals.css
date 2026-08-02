@@ -2288,3 +2288,16 @@ body::after {
 .chat-input{display:flex;gap:.5rem;padding:.75rem;border-top:1px solid var(--color-border);}
 .chat-input input{flex:1;border:1px solid var(--color-border);border-radius:var(--radius-md);padding:.55rem .75rem;background:var(--color-bg);color:var(--color-text);}
 .chat-input button{background:var(--color-primary);color:#fff;border:none;border-radius:var(--radius-md);padding:0 .9rem;cursor:pointer;}
+
+/* Fix browser autofill background on themed inputs (was white on dark theme) */
+.booking__input:-webkit-autofill,
+.booking__input:-webkit-autofill:hover,
+.booking__input:-webkit-autofill:focus,
+.booking__input:-webkit-autofill:active,
+.booking__textarea:-webkit-autofill {
+  -webkit-text-fill-color: var(--color-text);
+  -webkit-box-shadow: 0 0 0 1000px var(--color-bg-subtle) inset;
+  box-shadow: 0 0 0 1000px var(--color-bg-subtle) inset;
+  caret-color: var(--color-text);
+  transition: background-color 9999s ease-in-out 0s;
+}
