@@ -7,6 +7,14 @@ import ScrollReveal from '@/components/ui/ScrollReveal';
 import { useQuotePrefill } from '@/stores/useQuotePrefill';
 import RouteCombobox, { type ComboRoute } from '@/components/ui/RouteCombobox';
 
+// FROM is always Trenčín for now — all prices are "from Trenčín to ...".
+// (Bidirectional/cross pricing to be added once the client confirms.)
+const TRENCIN_OPTION: ComboRoute = {
+  nameKey: 'Trenčín',
+  price: 0,
+  nameI18n: { sk: 'Trenčín', cs: 'Trenčín', de: 'Trenčín', en: 'Trenčín', ru: 'Тренчин', uk: 'Тренчин' },
+};
+
 interface TransferQuoteSectionProps {
   whatsappNumber?: string;
   routes?: ComboRoute[];
@@ -42,6 +50,13 @@ export default function TransferQuoteSection({
     const timer = setTimeout(() => dateInputRef.current?.focus(), 650);
     return () => clearTimeout(timer);
   }, [active]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Keep the "from" field fixed to Trenčín (localized), since all prices are from Trenčín.
+  useEffect(() => {
+    const trencin = TRENCIN_OPTION.nameI18n?.[locale] ?? 'Trenčín';
+    const variants = Object.values(TRENCIN_OPTION.nameI18n ?? {});
+    setPickup((prev) => (!prev || variants.includes(prev) ? trencin : prev));
+  }, [locale]);
 
   function handleDropoffChange(label: string, route: ComboRoute | null) {
     setDropoff(label);
@@ -145,14 +160,14 @@ export default function TransferQuoteSection({
               <div>
                 <label className="booking__label" htmlFor="q-pickup">{t('fieldPickup')}</label>
                 <RouteCombobox
-                  routes={routes}
+                  routes={[TRENCIN_OPTION]}
                   value={pickup}
                   onChange={(label) => setPickup(label)}
                   id="q-pickup"
                   name="pickup"
                   required
                   showPrice={false}
-                  placeholder="Wien Flughafen"
+                  placeholder="Trenčín"
                 />
               </div>
               <div>
