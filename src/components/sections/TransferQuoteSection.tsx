@@ -5,10 +5,11 @@ import { useTranslations } from 'next-intl';
 import GoldDivider from '@/components/ui/GoldDivider';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import { useQuotePrefill } from '@/stores/useQuotePrefill';
+import RouteCombobox, { type ComboRoute } from '@/components/ui/RouteCombobox';
 
 interface TransferQuoteSectionProps {
   whatsappNumber?: string;
-  routes?: { nameKey: string; price: number }[];
+  routes?: ComboRoute[];
 }
 
 export default function TransferQuoteSection({
@@ -19,15 +20,10 @@ export default function TransferQuoteSection({
 
   const [pickup, setPickup] = useState('');
   const [dropoff, setDropoff] = useState('');
+  const [dropoffRoute, setDropoffRoute] = useState<ComboRoute | null>(null);
   const [note, setNote] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
-  const [matchedPrice, setMatchedPrice] = useState<number | null>(null);
-
-  const findPrice = (p: string, d: string): number | null => {
-    const check = (v: string) => routes.find(r => r.nameKey === v.trim())?.price ?? null;
-    return check(p) ?? check(d);
-  };
 
   const sectionRef = useRef<HTMLElement>(null);
   const dateInputRef = useRef<HTMLInputElement>(null);
@@ -40,12 +36,16 @@ export default function TransferQuoteSection({
     setPickup(prefillPickup);
     setDropoff(prefillDropoff);
     setNote(prefillNote);
-    setMatchedPrice(findPrice(prefillPickup, prefillDropoff));
     clearPrefill();
     sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     const timer = setTimeout(() => dateInputRef.current?.focus(), 650);
     return () => clearTimeout(timer);
   }, [active]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  function handleDropoffChange(label: string, route: ComboRoute | null) {
+    setDropoff(label);
+    setDropoffRoute(route);
+  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -78,6 +78,7 @@ export default function TransferQuoteSection({
         body: JSON.stringify({
           pickup: pickupVal, dropoff: dropoffVal, date, time,
           passengers, luggage, flightNumber, name, phone, note: noteVal,
+          routeKey: dropoffRoute?.nameKey ?? '',
         }),
       });
 
@@ -92,7 +93,7 @@ export default function TransferQuoteSection({
         `━━━━━━━━━━━━━━━━━━`,
         `👤 ${name}  📞 ${phone}`,
         `📍 ${t('waFrom')}: ${pickupVal}`,
-        `🏁 ${t('waTo')}: ${dropoffVal}`,
+        `🏁 ${t('waTo')}: ${dropoffVal}${dropoffRoute ? ` · ${dropoffRoute.price} €` : ''}`,
         `📆 ${date}  🕐 ${time}`,
         `👥 ${passengers}  🧳 ${luggage}`,
         flightNumber ? `✈️ ${t('waFlight')}: ${flightNumber}` : '',
@@ -112,8 +113,8 @@ export default function TransferQuoteSection({
       form.reset();
       setPickup('');
       setDropoff('');
+      setDropoffRoute(null);
       setNote('');
-      setMatchedPrice(null);
     } catch {
       setSubmitError(t('errorNetwork'));
     } finally {
@@ -145,36 +146,23 @@ export default function TransferQuoteSection({
                   required
                   className="booking__input"
                   placeholder="Wien Flughafen"
-                  list="directions"
                   value={pickup}
-                  onChange={(e) => { setPickup(e.target.value); setMatchedPrice(findPrice(e.target.value, dropoff)); }}
+                  onChange={(e) => setPickup(e.target.value)}
                 />
               </div>
               <div>
                 <label className="booking__label" htmlFor="q-dropoff">{t('fieldDropoff')}</label>
-                <input
-                  type="text"
-                  name="dropoff"
-                  id="q-dropoff"
-                  required
-                  className="booking__input"
-                  placeholder="Bratislava Zentrum"
-                  list="directions"
+                <RouteCombobox
+                  routes={routes}
                   value={dropoff}
-                  onChange={(e) => { setDropoff(e.target.value); setMatchedPrice(findPrice(pickup, e.target.value)); }}
+                  onChange={handleDropoffChange}
+                  id="q-dropoff"
+                  name="dropoff"
+                  required
+                  placeholder="Bratislava Zentrum"
                 />
               </div>
             </div>
-            {routes.length > 0 && (
-              <datalist id="directions">
-                {routes.map(r => <option key={r.nameKey} value={r.nameKey} />)}
-              </datalist>
-            )}
-            {matchedPrice !== null && (
-              <p className="booking__price-hint">
-                {t('priceHint', { price: matchedPrice })}
-              </p>
-            )}
 
             {/* Row 2: Datum | Uhrzeit */}
             <div className="booking__form-row">

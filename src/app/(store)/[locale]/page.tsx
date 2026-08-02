@@ -100,7 +100,7 @@ export default async function HomePage({
       <StatsBar />
       <TransferQuoteSection
         whatsappNumber={presence.whatsapp ?? presence.phone ?? undefined}
-        routes={mappedRoutes.map(r => ({ nameKey: r.displayName, price: r.price }))}
+        routes={dbServices.map(r => ({ nameKey: r.nameKey, price: r.price, nameI18n: (r.metadata as { nameI18n?: Record<string, string> } | null)?.nameI18n }))}
       />
       <DecorativeDivider />
       <RoutesSection routes={mappedRoutes} />
