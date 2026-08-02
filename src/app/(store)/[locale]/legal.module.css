@@ -88,3 +88,16 @@
   color: var(--color-text);
   margin: 0 0 var(--spacing-xs);
 }
+
+.legal__back {
+  display: inline-block;
+  margin-bottom: var(--spacing-md);
+  color: var(--color-primary);
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+.legal__back:hover {
+  color: var(--color-primary-dark);
+}

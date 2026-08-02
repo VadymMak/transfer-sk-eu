@@ -1,8 +1,18 @@
+import Link from 'next/link';
 import { setRequestLocale } from 'next-intl/server';
 import styles from '../legal.module.css';
 
+const BACK: Record<string, string> = {
+  sk: '← Späť na hlavnú stránku',
+  cs: '← Zpět na hlavní stránku',
+  de: '← Zurück zur Startseite',
+  en: '← Back to homepage',
+  ru: '← На главную',
+  uk: '← На головну',
+};
+
 export async function generateMetadata() {
-  return { title: 'Datenschutzerklärung | Transfer GmbH', robots: { index: false } };
+  return { title: 'Ochrana osobných údajov | Transfer SK-EU', robots: { index: false } };
 }
 
 export default async function DatenschutzPage({
@@ -16,47 +26,45 @@ export default async function DatenschutzPage({
   return (
     <main className={styles.legal}>
       <div className={styles.legal__inner}>
-        <h1 className={styles.legal__title}>Datenschutzerklärung</h1>
-        <p className={styles.legal__subtitle}>Gemäß DSGVO (EU) 2016/679</p>
+        <Link href={`/${locale}`} className={styles.legal__back}>{BACK[locale] ?? BACK.sk}</Link>
+        <h1 className={styles.legal__title}>Ochrana osobných údajov</h1>
+        <p className={styles.legal__subtitle}>Podľa GDPR (EU) 2016/679</p>
 
         <section className={styles.legal__section}>
-          <h2>1. Verantwortlicher</h2>
-          <p>Transfer GmbH<br />
-          Wiedner Hauptstraße 120, 1050 Wien<br />
-          E-Mail: info@transfer-gmbh.at</p>
+          <h2>1. Prevádzkovateľ</h2>
+          <p>Vitalii Khilko<br />
+          K. Šmidkeho 2938/8, 911 08 Trenčín<br />
+          E-mail: info@transfersk.eu</p>
         </section>
 
         <section className={styles.legal__section}>
-          <h2>2. Erhobene Daten</h2>
-          <p>Bei der Nutzung des Anfrageformulars erheben wir folgende personenbezogene Daten: Name, Telefonnummer, Abfahrts- und Ankunftsort, Reisedatum und -uhrzeit, Flugnummer (optional) sowie optionale Nachrichten.</p>
+          <h2>2. Aké údaje spracúvame</h2>
+          <p>Pri použití dopytového formulára spracúvame tieto osobné údaje: meno, telefónne číslo, miesto odchodu a príchodu, dátum a čas cesty, číslo letu (voliteľné) a voliteľné správy.</p>
         </section>
 
         <section className={styles.legal__section}>
-          <h2>3. Zweck der Verarbeitung</h2>
-          <p>Die erhobenen Daten werden ausschließlich zur Bearbeitung Ihrer Transferanfrage und zur Kommunikation über WhatsApp verwendet.</p>
+          <h2>3. Účel spracúvania</h2>
+          <p>Získané údaje spracúvame výlučne na vybavenie Vašej žiadosti o transfer a na komunikáciu s Vami (napríklad cez WhatsApp).</p>
         </section>
 
         <section className={styles.legal__section}>
-          <h2>4. Rechtsgrundlage</h2>
-          <p>Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung bzw. vorvertragliche Maßnahmen).</p>
+          <h2>4. Právny základ</h2>
+          <p>Čl. 6 ods. 1 písm. b GDPR (plnenie zmluvy, resp. predzmluvné opatrenia).</p>
         </section>
 
         <section className={styles.legal__section}>
-          <h2>5. Speicherdauer</h2>
-          <p>Ihre Daten werden nur so lange gespeichert, wie es für die Durchführung des Transfers erforderlich ist, längstens jedoch 7 Jahre (gesetzliche Aufbewahrungspflicht).</p>
+          <h2>5. Doba uchovávania</h2>
+          <p>Vaše údaje uchovávame len po dobu nevyhnutnú na realizáciu transferu, najdlhšie však 7 rokov (zákonná archivačná povinnosť).</p>
         </section>
 
         <section className={styles.legal__section}>
-          <h2>6. Ihre Rechte</h2>
-          <p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung sowie Datenübertragbarkeit. Wenden Sie sich hierzu an: info@transfer-gmbh.at</p>
+          <h2>6. Vaše práva</h2>
+          <p>Máte právo na prístup k údajom, ich opravu, vymazanie, obmedzenie spracúvania a na prenosnosť údajov. V týchto veciach nás kontaktujte na: info@transfersk.eu</p>
         </section>
 
         <section className={styles.legal__section}>
-          <h2>7. Beschwerderecht</h2>
-          <p>Sie haben das Recht, bei einer Aufsichtsbehörde Beschwerde einzureichen. In Österreich: Datenschutzbehörde (dsb.gv.at).</p>
-          <p style={{ marginTop: '0.5rem', fontSize: '0.85rem', color: '#5A7290' }}>
-            {/* TODO: vollständige Datenschutzerklärung per Mandant via eRecht24.de ergänzen */}
-          </p>
+          <h2>7. Právo podať sťažnosť</h2>
+          <p>Máte právo podať sťažnosť dozornému orgánu — Úrad na ochranu osobných údajov Slovenskej republiky (dataprotection.gov.sk).</p>
         </section>
       </div>
     </main>
