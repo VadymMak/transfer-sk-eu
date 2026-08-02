@@ -15,7 +15,6 @@ import GallerySection from '@/components/sections/GallerySection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import FaqSection from '@/components/sections/FaqSection';
 import ContactSection from '@/components/sections/ContactSection';
-import WhatsAppButton from '@/components/ui/WhatsAppButton';
 
 export const revalidate = 60;
 
@@ -132,7 +131,6 @@ export default async function HomePage({
         alwaysOpen={presence.alwaysOpen}
         whatsappLocationLink={whatsappLinks.location}
       />
-      <WhatsAppButton href={whatsappLinks.general} />
     </>
   );
 }

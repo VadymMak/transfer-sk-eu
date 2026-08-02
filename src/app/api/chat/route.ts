@@ -42,6 +42,14 @@ export async function POST(req: NextRequest) {
   const store = await db.store.findUnique({ where: { slug: STORE_SLUG }, select: { id: true } });
   if (!store) return NextResponse.json({ error: 'no_store' }, { status: 500 });
 
+  const LEGAL_SK = [
+    'FIRMA A PRÁVNE ÚDAJE:',
+    '- Prevádzkovateľ: Vitalii Khilko, K. Šmidkeho 2938/8, 911 08 Trenčín, Slovensko. IČO 57093865, DIČ 3120653360, neplatca DPH.',
+    '- Licencovaná taxislužba — preukaz vodiča vozidla taxislužby č. T45487 (vydaný 11. 07. 2025, Okresný úrad Trenčín).',
+    '- Kontakt: +421 951 287 892, info@transfersk.eu.',
+    '- Ochrana údajov (GDPR): údaje z formulára (meno, telefón, trasa, dátum a čas, číslo letu) používame len na vybavenie transferu a komunikáciu; uchovávame najviac 7 rokov; zákazník má právo na prístup, opravu, vymazanie, obmedzenie a prenosnosť údajov; sťažnosť možno podať na Úrad na ochranu osobných údajov SR (dataprotection.gov.sk). Podrobnosti na stránkach Impressum a Ochrana osobných údajov.',
+  ].join('\n');
+
   // RAG retrieval from StoreKnowledge
   let context = '';
   try {
@@ -71,7 +79,7 @@ export async function POST(req: NextRequest) {
     '- TONE: Be warm, welcoming and genuinely helpful — like a friendly concierge, never dry, stiff or purely transactional. Use natural, hospitable phrasing in the customer\'s language, and invite the next step in a friendly way (e.g. that you would be glad to help arrange the trip). A little warmth and politeness is better than sounding like a form. Keep it concise but human. Politely decline questions unrelated to the company services.',
     '',
     'FACTS:',
-    context || '(no facts retrieved)',
+    LEGAL_SK + '\n' + (context || ''),
   ].join('\n');
 
   const messages = [
