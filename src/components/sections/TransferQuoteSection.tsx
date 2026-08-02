@@ -147,6 +147,7 @@ export default function TransferQuoteSection({
                 <input
                   type="text"
                   name="pickup"
+                  autoComplete="off"
                   id="q-pickup"
                   required
                   className="booking__input"
