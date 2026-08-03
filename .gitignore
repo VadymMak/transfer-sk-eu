@@ -34,3 +34,4 @@ PROJECT_REPORT.md
 .env*
 !.env.example
 node_modules/
+.devlog.txt
