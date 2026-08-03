@@ -54,7 +54,11 @@ export default function RouteCombobox({
 
   const getLabel = (r: ComboRoute) => r.nameI18n?.[locale] ?? r.nameKey;
 
-  const filtered = value.trim()
+  // If the field holds an exact city name (pre-filled Trenčín or an already
+  // picked city), show the FULL list so the user can switch to another city
+  // without deleting the text. Only filter once the user actually types.
+  const isExactMatch = routes.some(r => getDest(getLabel(r)) === value.trim());
+  const filtered = value.trim() && !isExactMatch
     ? routes.filter(r => normalize(getDest(getLabel(r))).includes(normalize(value)))
     : routes;
 
@@ -101,6 +105,14 @@ export default function RouteCombobox({
   function handleFocus() {
     setOpen(true);
     if (highlighted < 0 && filtered.length > 0) setHighlighted(0);
+  }
+
+  function toggleOpen() {
+    setOpen((o) => {
+      const next = !o;
+      if (next && highlighted < 0 && filtered.length > 0) setHighlighted(0);
+      return next;
+    });
   }
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
@@ -158,6 +170,18 @@ export default function RouteCombobox({
         onFocus={handleFocus}
         onKeyDown={handleKeyDown}
       />
+      <button
+        type="button"
+        tabIndex={-1}
+        aria-hidden="true"
+        className={`combobox__caret${open ? ' combobox__caret--open' : ''}`}
+        onMouseDown={(e) => { e.preventDefault(); toggleOpen(); }}
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
+      </button>
       {open && filtered.length > 0 && (
         <ul
           ref={listRef}

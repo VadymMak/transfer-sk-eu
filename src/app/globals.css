@@ -1180,6 +1180,29 @@ body::after {
 /* ── RouteCombobox ── */
 .combobox { position: relative; }
 
+/* leave room for the caret so the text never runs under it */
+.combobox .booking__input { padding-right: 2.4rem; }
+
+.combobox__caret {
+  position: absolute;
+  top: 50%;
+  right: 0.85rem;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-text);
+  opacity: 0.45;
+  cursor: pointer;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+.combobox__caret:hover { opacity: 0.85; }
+.combobox__caret--open { transform: translateY(-50%) rotate(180deg); }
+
 .combobox__dropdown {
   position: absolute;
   top: calc(100% + 1px);
