@@ -7,6 +7,8 @@ export interface ComboRoute {
   nameKey: string;
   price: number;
   nameI18n?: Record<string, string>;
+  /** Localized secondary line, e.g. the bus price text "Bus (8): 120 €". */
+  desc?: string;
 }
 
 interface Props {

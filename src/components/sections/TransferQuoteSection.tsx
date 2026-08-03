@@ -18,11 +18,14 @@ const TRENCIN_OPTION: ComboRoute = {
 interface TransferQuoteSectionProps {
   whatsappNumber?: string;
   routes?: ComboRoute[];
+  /** Localized minivan label, e.g. "minivan (5 seats)". */
+  minivanCaption?: string;
 }
 
 export default function TransferQuoteSection({
   whatsappNumber = '',
   routes = [],
+  minivanCaption,
 }: TransferQuoteSectionProps) {
   const t = useTranslations('transferQuote');
   const locale = useLocale();
@@ -84,6 +87,12 @@ export default function TransferQuoteSection({
   // Price = the non-Trenčín endpoint's route price (same both directions).
   const pairRoute = isTrencin(pickupRoute) ? dropoffRoute : (isTrencin(dropoffRoute) ? pickupRoute : null);
   const pairPrice = pairRoute && !isTrencin(pairRoute) ? pairRoute.price : null;
+  // Secondary line (bus price text) stored in the route description.
+  const pairDesc = pairRoute && !isTrencin(pairRoute) ? (pairRoute.desc ?? null) : null;
+  // "minivan (5 seats): 90 €"  (falls back to the generic estimate label)
+  const vanLine = pairPrice == null
+    ? null
+    : minivanCaption ? `${minivanCaption}: ${pairPrice} €` : t('priceHint', { price: pairPrice });
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -135,7 +144,8 @@ export default function TransferQuoteSection({
         `━━━━━━━━━━━━━━━━━━`,
         `👤 ${name}  📞 ${phone}`,
         `📍 ${t('waFrom')}: ${pickupVal}`,
-        `🏁 ${t('waTo')}: ${fullDropoff}${pairPrice != null ? ` · ${pairPrice} €` : ''}`,
+        `🏁 ${t('waTo')}: ${fullDropoff}`,
+        vanLine ? `💶 ${vanLine}${pairDesc ? ` · ${pairDesc}` : ''}` : '',
         `📆 ${date}  🕐 ${time}`,
         `👥 ${passengers}  🧳 ${luggage}`,
         flightNumber ? `✈️ ${t('waFlight')}: ${flightNumber}` : '',
@@ -207,8 +217,10 @@ export default function TransferQuoteSection({
               </div>
             </div>
 
-            {pairPrice != null && (
-              <p className="booking__price-hint">{t('priceHint', { price: pairPrice })}</p>
+            {vanLine && (
+              <p className="booking__price-hint">
+                {vanLine}{pairDesc ? ` · ${pairDesc}` : ''}
+              </p>
             )}
 
             {/* Row 2: Datum | Uhrzeit */}

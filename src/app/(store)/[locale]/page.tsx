@@ -1,4 +1,4 @@
-import { setRequestLocale } from 'next-intl/server';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { db } from '@/lib/db';
 import { getStoreConfig } from '@/lib/store-config';
 import HeroSection from '@/components/sections/HeroSection';
@@ -33,6 +33,7 @@ export default async function HomePage({
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const tRoutes = await getTranslations('routes');
   const config = await getStoreConfig();
   const { presence, whatsappLinks } = config;
 
@@ -102,7 +103,16 @@ export default async function HomePage({
       <StatsBar />
       <TransferQuoteSection
         whatsappNumber={presence.whatsapp ?? presence.phone ?? undefined}
-        routes={dbServices.map(r => ({ nameKey: r.nameKey, price: r.price, nameI18n: (r.metadata as { nameI18n?: Record<string, string> } | null)?.nameI18n }))}
+        minivanCaption={tRoutes('vehicleCaption')}
+        routes={dbServices.map(r => {
+          const meta = r.metadata as { nameI18n?: Record<string, string>; descI18n?: Record<string, string> } | null;
+          return {
+            nameKey: r.nameKey,
+            price: r.price,
+            nameI18n: meta?.nameI18n,
+            desc: meta?.descI18n?.[locale] ?? meta?.descI18n?.['en'] ?? r.description ?? undefined,
+          };
+        })}
       />
       <DecorativeDivider />
       <RoutesSection routes={mappedRoutes} />
