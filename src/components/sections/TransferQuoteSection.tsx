@@ -28,6 +28,7 @@ export default function TransferQuoteSection({
   const locale = useLocale();
 
   const [pickup, setPickup] = useState('');
+  const [pickupRoute, setPickupRoute] = useState<ComboRoute | null>(null);
   const [dropoff, setDropoff] = useState('');
   const [dropoffRoute, setDropoffRoute] = useState<ComboRoute | null>(null);
   const [note, setNote] = useState('');
@@ -51,17 +52,38 @@ export default function TransferQuoteSection({
     return () => clearTimeout(timer);
   }, [active]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Keep the "from" field fixed to Trenčín (localized), since all prices are from Trenčín.
-  useEffect(() => {
-    const trencin = TRENCIN_OPTION.nameI18n?.[locale] ?? 'Trenčín';
-    const variants = Object.values(TRENCIN_OPTION.nameI18n ?? {});
-    setPickup((prev) => (!prev || variants.includes(prev) ? trencin : prev));
-  }, [locale]);
+  const trencinLabel = TRENCIN_OPTION.nameI18n?.[locale] ?? 'Trenčín';
+  const isTrencin = (r: ComboRoute | null) => !!r && r.nameKey === TRENCIN_OPTION.nameKey;
 
+  // Default "from" to Trenčín (most trips depart from Trenčín), localized.
+  useEffect(() => {
+    const variants = Object.values(TRENCIN_OPTION.nameI18n ?? {});
+    setPickup((prev) => (!prev || variants.includes(prev) ? trencinLabel : prev));
+    setPickupRoute((prev) => (prev && !isTrencin(prev) ? prev : TRENCIN_OPTION));
+  }, [locale]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Bidirectional: one end is always Trenčín. Picking a destination on one side
+  // flips the other side to Trenčín automatically.
+  function handlePickupChange(label: string, route: ComboRoute | null) {
+    setPickup(label);
+    setPickupRoute(route);
+    if (route && !isTrencin(route)) {
+      setDropoff(trencinLabel);
+      setDropoffRoute(TRENCIN_OPTION);
+    }
+  }
   function handleDropoffChange(label: string, route: ComboRoute | null) {
     setDropoff(label);
     setDropoffRoute(route);
+    if (route && !isTrencin(route)) {
+      setPickup(trencinLabel);
+      setPickupRoute(TRENCIN_OPTION);
+    }
   }
+
+  // Price = the non-Trenčín endpoint's route price (same both directions).
+  const pairRoute = isTrencin(pickupRoute) ? dropoffRoute : (isTrencin(dropoffRoute) ? pickupRoute : null);
+  const pairPrice = pairRoute && !isTrencin(pairRoute) ? pairRoute.price : null;
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -98,7 +120,7 @@ export default function TransferQuoteSection({
         body: JSON.stringify({
           pickup: pickupVal, dropoff: fullDropoff, date, time,
           passengers, luggage, flightNumber, name, phone, note: noteVal,
-          routeKey: dropoffRoute?.nameKey ?? '',
+          routeKey: pairRoute?.nameKey ?? '',
         }),
       });
 
@@ -113,7 +135,7 @@ export default function TransferQuoteSection({
         `━━━━━━━━━━━━━━━━━━`,
         `👤 ${name}  📞 ${phone}`,
         `📍 ${t('waFrom')}: ${pickupVal}`,
-        `🏁 ${t('waTo')}: ${fullDropoff}${dropoffRoute ? ` · ${dropoffRoute.price} €` : ''}`,
+        `🏁 ${t('waTo')}: ${fullDropoff}${pairPrice != null ? ` · ${pairPrice} €` : ''}`,
         `📆 ${date}  🕐 ${time}`,
         `👥 ${passengers}  🧳 ${luggage}`,
         flightNumber ? `✈️ ${t('waFlight')}: ${flightNumber}` : '',
@@ -160,9 +182,9 @@ export default function TransferQuoteSection({
               <div>
                 <label className="booking__label" htmlFor="q-pickup">{t('fieldPickup')}</label>
                 <RouteCombobox
-                  routes={[TRENCIN_OPTION]}
+                  routes={[TRENCIN_OPTION, ...routes]}
                   value={pickup}
-                  onChange={(label) => setPickup(label)}
+                  onChange={handlePickupChange}
                   id="q-pickup"
                   name="pickup"
                   required
@@ -173,16 +195,21 @@ export default function TransferQuoteSection({
               <div>
                 <label className="booking__label" htmlFor="q-dropoff">{t('fieldDropoff')}</label>
                 <RouteCombobox
-                  routes={routes}
+                  routes={[TRENCIN_OPTION, ...routes]}
                   value={dropoff}
                   onChange={handleDropoffChange}
                   id="q-dropoff"
                   name="dropoff"
                   required
+                  showPrice={false}
                   placeholder="Bratislava Zentrum"
                 />
               </div>
             </div>
+
+            {pairPrice != null && (
+              <p className="booking__price-hint">{t('priceHint', { price: pairPrice })}</p>
+            )}
 
             {/* Row 2: Datum | Uhrzeit */}
             <div className="booking__form-row">
