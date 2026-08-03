@@ -90,6 +90,7 @@ export default async function HomePage({
         city={presence.city}
         googleRating={presence.googleRating}
         openingHours={presence.openingHours}
+        alwaysOpen={presence.alwaysOpen}
         whatsappBookingLink={whatsappLinks.booking}
         instagram={presence.instagram}
         minRoutePrice={minRoutePrice}

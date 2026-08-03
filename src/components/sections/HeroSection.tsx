@@ -20,6 +20,7 @@ interface HeroSectionProps {
   city?: string;
   googleRating?: number;
   openingHours?: WorkingHours;
+  alwaysOpen?: boolean;
   whatsappBookingLink?: string;
   instagram?: string;
   minRoutePrice?: number | null;
@@ -31,6 +32,7 @@ export default async function HeroSection({
   city,
   googleRating,
   openingHours,
+  alwaysOpen,
   whatsappBookingLink,
   instagram,
   minRoutePrice,
@@ -46,7 +48,7 @@ export default async function HeroSection({
   const title    = pick(config?.titleI18n,    config?.title,    'defaultTitle');
   const subtitle = pick(config?.subtitleI18n, config?.subtitle, 'defaultSubtitle');
   const ctaText  = pick(config?.ctaTextI18n,  config?.ctaText,  'defaultCta');
-  const hoursText   = formatHoursDisplay(openingHours);
+  const hoursText   = alwaysOpen ? '24/7' : formatHoursDisplay(openingHours);
   const ratingLabel = googleRating ? `⭐ Google ${googleRating}` : null;
 
   return (
