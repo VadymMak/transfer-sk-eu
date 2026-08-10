@@ -32,5 +32,7 @@ time, passengers and luggage. Every booking confirmed via WhatsApp.
 ## Contact
 - WhatsApp/Phone: +421 951 287 892
 - Website: https://www.transfersk.eu
+- Facebook: https://www.facebook.com/perevozki.sk
+- Wikidata: https://www.wikidata.org/wiki/Q140973912
 - Languages: Slovak, English, German, Russian, Ukrainian
 - Service area: Trenčín region; airports in Slovakia, Austria, Hungary, Czechia; tours across Europe.
