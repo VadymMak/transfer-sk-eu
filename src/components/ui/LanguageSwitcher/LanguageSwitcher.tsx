@@ -32,13 +32,17 @@ export default function LanguageSwitcher({ variant = 'dropdown', locales }: Lang
   const activeLocales = locales ?? routing.locales;
 
   useEffect(() => {
-    const onClickOutside = (e: MouseEvent) => {
+    const onClickOutside = (e: MouseEvent | TouchEvent) => {
       if (ref.current && !ref.current.contains(e.target as Node)) {
         setOpen(false);
       }
     };
     document.addEventListener('mousedown', onClickOutside);
-    return () => document.removeEventListener('mousedown', onClickOutside);
+    document.addEventListener('touchstart', onClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', onClickOutside);
+      document.removeEventListener('touchstart', onClickOutside);
+    };
   }, []);
 
   const switchLocale = (next: string) => {

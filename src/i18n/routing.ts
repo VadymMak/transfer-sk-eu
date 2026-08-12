@@ -1,8 +1,8 @@
 import { defineRouting } from 'next-intl/routing';
 
 /**
- * EU-only routing for Transfer GmbH.
- * Only de/sk/cs/en are served — requests for other locales are redirected to /de by middleware.
+ * Routing for Transfer SK-EU.
+ * Serves de, sk, cs, en, ru, uk — defaultLocale: sk.
  */
 export const routing = defineRouting({
   locales: ['de', 'sk', 'cs', 'en', 'ru', 'uk'],
