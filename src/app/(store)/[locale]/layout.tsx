@@ -37,19 +37,21 @@ export async function generateMetadata({
 
   const brandName = config.name || 'Transfer SK-EU';
   const titles: Record<string, string> = {
-    de: `Flughafentransfer & Reisen ab Trenčín | ${brandName}`,
-    sk: `Letiskové transfery a cesty z Trenčína | ${brandName}`,
-    cs: `Letiskové transfery a cesty z Trenčína | ${brandName}`,
-    en: `Airport Transfers & Trips from Trenčín | ${brandName}`,
-    ru: `Трансферы и поездки из Тренчина | ${brandName}`,
-    uk: `Трансфери та поїздки з Тренчина | ${brandName}`,
-    pl: `Airport Transfers & Trips from Trenčín | ${brandName}`,
+    de: `Flughafentransfers Trenčín – Wien, Bratislava | ${brandName}`,
+    sk: `Letiskové transfery Trenčín – Viedeň, Bratislava | ${brandName}`,
+    cs: `Letištní transfery Trenčín – Vídeň, Bratislava | ${brandName}`,
+    en: `Airport Transfers Trenčín – Vienna, Bratislava | ${brandName}`,
+    ru: `Трансфер в аэропорт Тренчин – Вена, Братислава | ${brandName}`,
+    uk: `Трансфер в аеропорт Тренчин – Відень, Братислава | ${brandName}`,
+    pl: `Airport Transfers Trenčín – Vienna, Bratislava | ${brandName}`,
   };
   const descriptions: Record<string, string> = {
     de: 'Professionelle Flughafentransfers Wien (VIE) ⇄ Bratislava (BTS). Festpreise, lizenziert, 24/7. Einfach online anfragen.',
     sk: 'Profesionálne letiskové transfery Viedeň (VIE) ⇄ Bratislava (BTS). Pevné ceny, licencovaní, 24/7. Objednajte online.',
     cs: 'Profesionální letištní transfery Vídeň (VIE) ⇄ Bratislava (BTS). Pevné ceny, licencováni, 24/7. Objednejte online.',
     en: 'Professional airport transfers Vienna (VIE) ⇄ Bratislava (BTS). Fixed prices, licensed, 24/7. Book online.',
+    ru: 'Профессиональные трансферы в аэропорт Вена (VIE) ⇄ Братислава (BTS). Фиксированные цены, лицензия, 24/7. Заказать онлайн.',
+    uk: 'Професійні трансфери в аеропорт Відень (VIE) ⇄ Братислава (BTS). Фіксовані ціни, ліцензія, 24/7. Замовити онлайн.',
   };
 
   const title = titles[locale] ?? titles.de;

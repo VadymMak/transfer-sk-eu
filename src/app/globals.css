@@ -1122,7 +1122,13 @@ body::after {
 .admin-page .booking__field textarea {
   background: var(--admin-bg-card);
   border: 1px solid var(--admin-border);
-  color: var(--admin-text);
+  color: #f1f5f9;
+  -webkit-text-fill-color: #f1f5f9;
+}
+.admin-page .booking__field input:-webkit-autofill,
+.admin-page .booking__field textarea:-webkit-autofill {
+  -webkit-text-fill-color: #f1f5f9;
+  -webkit-box-shadow: 0 0 0 1000px var(--admin-bg-card) inset;
 }
 .admin-page .booking__field input:focus,
 .admin-page .booking__field textarea:focus {
