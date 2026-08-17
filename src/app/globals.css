@@ -1140,6 +1140,33 @@ body::after {
   color: var(--admin-text-faint);
 }
 
+/* ── Admin btn-primary contrast fix ──────────────────────────────────────────
+   --color-primary-dark is NOT defined in :root; it is only injected as a body
+   inline-style by themeToCssVars() on store pages. In the admin (separate
+   <body>, no inline styles), background: var(--color-primary-dark) resolves to
+   transparent and color: var(--color-bg) = #060E18 renders as invisible dark
+   text on a dark panel. Override all states explicitly under .admin-page so
+   the public site is completely untouched.
+──────────────────────────────────────────────────────────────────────────── */
+.admin-page .btn-primary,
+.admin-page a.btn-primary {
+  background: var(--admin-primary);   /* #C9A347 gold */
+  color: #0A1828;                     /* dark navy — 6.5:1 contrast on gold */
+  border-color: transparent;
+}
+.admin-page .btn-primary:hover:not(:disabled),
+.admin-page a.btn-primary:hover {
+  background: #b8903e;                /* darkened gold */
+  color: #0A1828;
+}
+.admin-page .btn-primary:disabled,
+.admin-page .btn-primary[disabled] {
+  background: rgba(201, 163, 71, 0.2);  /* muted gold tint — visually off */
+  color: var(--admin-text-muted);       /* #94a3b8 slate-400 — legible, not black */
+  opacity: 1;                           /* cancel browser default 0.5 */
+  cursor: not-allowed;
+}
+
 .booking__label {
   display: block;
   font-size: 0.75rem;
