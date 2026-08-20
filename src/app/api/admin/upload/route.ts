@@ -7,6 +7,7 @@ import {
   validateImageFile,
   GALLERY_VARIANTS,
   PRODUCT_VARIANTS,
+  TRIP_VARIANTS,
   type ImageVariant,
 } from '@/lib/image-utils';
 
@@ -15,6 +16,7 @@ const STORE_SLUG = process.env.STORE_SLUG ?? '';
 const PURPOSE_VARIANTS: Record<string, ImageVariant[]> = {
   gallery: GALLERY_VARIANTS,
   product: PRODUCT_VARIANTS,
+  trips:   TRIP_VARIANTS,
 };
 
 async function saveToBlob(

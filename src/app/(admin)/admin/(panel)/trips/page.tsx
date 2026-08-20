@@ -15,6 +15,13 @@ interface TripTranslation {
   itinerary: string | null;
 }
 
+interface TripGalleryImage {
+  id: string;
+  url: string;
+  alt: string | null;
+  sortOrder: number;
+}
+
 interface Trip {
   id: string;
   slug: string;
@@ -28,6 +35,7 @@ interface Trip {
   active: boolean;
   sortOrder: number;
   translations: TripTranslation[];
+  galleryImages: TripGalleryImage[];
 }
 
 type TranslationDraft = Record<TripLocale, { name: string; description: string; itinerary: string }>;
@@ -57,9 +65,14 @@ export default function AdminTripsPage() {
   const [editId, setEditId] = useState<string | null>(null);
   const [showAdd, setShowAdd] = useState(false);
   const [saving, setSaving] = useState(false);
-  const [uploading, setUploading] = useState(false);
+  const [uploadingCover, setUploadingCover] = useState(false);
+  const [uploadingGallery, setUploadingGallery] = useState(false);
   const [activeLocaleTab, setActiveLocaleTab] = useState<TripLocale>('sk');
-  const fileRef = useRef<HTMLInputElement>(null);
+  const coverFileRef = useRef<HTMLInputElement>(null);
+  const galleryFileRef = useRef<HTMLInputElement>(null);
+
+  // Current gallery images while editing (reflects server state + pending removals)
+  const [editGallery, setEditGallery] = useState<TripGalleryImage[]>([]);
 
   const [form, setForm] = useState({
     dateStart: '',
@@ -86,7 +99,9 @@ export default function AdminTripsPage() {
     setForm({ dateStart: '', dateEnd: '', price: 0, maxSeats: '', coverImage: '', active: true });
     setTranslations(emptyTranslations());
     setActiveLocaleTab('sk');
-    if (fileRef.current) fileRef.current.value = '';
+    setEditGallery([]);
+    if (coverFileRef.current) coverFileRef.current.value = '';
+    if (galleryFileRef.current) galleryFileRef.current.value = '';
   }
 
   function startAdd() {
@@ -115,6 +130,7 @@ export default function AdminTripsPage() {
       active: trip.active,
     });
     setTranslations(draft);
+    setEditGallery(trip.galleryImages ?? []);
     setActiveLocaleTab('sk');
     setEditId(trip.id);
     setShowAdd(false);
@@ -126,20 +142,68 @@ export default function AdminTripsPage() {
     resetForm();
   }
 
-  async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
+  // Upload cover via purpose=trips → Vercel Blob → store -cover variant URL
+  async function handleCoverUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
-    setUploading(true);
+    setUploadingCover(true);
     const fd = new FormData();
     fd.append('file', file);
     fd.append('purpose', 'trips');
     const res = await fetch('/api/admin/upload', { method: 'POST', body: fd });
-    setUploading(false);
+    setUploadingCover(false);
     if (res.ok) {
       const { url } = await res.json() as { url: string };
       setForm((p) => ({ ...p, coverImage: url }));
     } else {
       alert(t.trips.imageUploadError);
+    }
+  }
+
+  // Upload gallery images via purpose=gallery → Vercel Blob → PATCH galleryAdd
+  async function handleGalleryUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    if (!editId) return;
+    const files = Array.from(e.target.files ?? []);
+    if (!files.length) return;
+    setUploadingGallery(true);
+    const added: Array<{ url: string }> = [];
+    for (const file of files) {
+      const fd = new FormData();
+      fd.append('file', file);
+      fd.append('purpose', 'gallery');
+      const res = await fetch('/api/admin/upload', { method: 'POST', body: fd });
+      if (res.ok) {
+        const { url } = await res.json() as { url: string };
+        added.push({ url });
+      } else {
+        alert(t.trips.imageUploadError);
+      }
+    }
+    if (added.length) {
+      const res = await fetch(`/api/admin/trips/${editId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ galleryAdd: added }),
+      });
+      if (res.ok) {
+        const updated = await res.json() as Trip;
+        setEditGallery(updated.galleryImages ?? []);
+      }
+    }
+    setUploadingGallery(false);
+    if (galleryFileRef.current) galleryFileRef.current.value = '';
+  }
+
+  async function removeGalleryImage(imageId: string) {
+    if (!editId) return;
+    const res = await fetch(`/api/admin/trips/${editId}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ galleryRemove: [imageId] }),
+    });
+    if (res.ok) {
+      const updated = await res.json() as Trip;
+      setEditGallery(updated.galleryImages ?? []);
     }
   }
 
@@ -150,7 +214,7 @@ export default function AdminTripsPage() {
     setSaving(true);
 
     const payload = {
-      coverImage: form.coverImage || undefined,
+      coverImage: form.coverImage || null,
       dateStart: form.dateStart,
       dateEnd: form.dateEnd || undefined,
       price: Number(form.price),
@@ -217,8 +281,8 @@ export default function AdminTripsPage() {
             {editId ? t.trips.editTrip : t.trips.addTrip}
           </h2>
 
-          {/* Locale tabs */}
-          <div style={{ display: 'flex', gap: '0.25rem', marginBottom: '1rem', borderBottom: '1px solid var(--color-border)', paddingBottom: '0.5rem' }}>
+          {/* ── Locale tabs ── */}
+          <div style={{ display: 'flex', gap: '0.25rem', marginBottom: '1rem', borderBottom: '1px solid var(--color-border)', paddingBottom: '0.5rem', flexWrap: 'wrap' }}>
             <span style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-muted)', marginRight: '0.5rem', alignSelf: 'center' }}>
               {t.trips.localeTabsLabel}:
             </span>
@@ -246,13 +310,16 @@ export default function AdminTripsPage() {
             ))}
           </div>
 
-          {/* Translation fields for active locale */}
+          {/* ── Translation fields ── */}
           <div className="admin-services__form-grid">
             <div className="booking__field" style={{ gridColumn: '1 / -1' }}>
               <label>{t.trips.nameLabel} ({activeLocaleTab.toUpperCase()}) *</label>
               <input
                 value={translations[activeLocaleTab].name}
-                onChange={(e) => setTranslations((p) => ({ ...p, [activeLocaleTab]: { ...p[activeLocaleTab], name: e.target.value } }))}
+                onChange={(e) => setTranslations((p) => ({
+                  ...p,
+                  [activeLocaleTab]: { ...p[activeLocaleTab], name: e.target.value },
+                }))}
                 placeholder={t.trips.nameLabel}
               />
             </div>
@@ -261,7 +328,10 @@ export default function AdminTripsPage() {
               <textarea
                 rows={3}
                 value={translations[activeLocaleTab].description}
-                onChange={(e) => setTranslations((p) => ({ ...p, [activeLocaleTab]: { ...p[activeLocaleTab], description: e.target.value } }))}
+                onChange={(e) => setTranslations((p) => ({
+                  ...p,
+                  [activeLocaleTab]: { ...p[activeLocaleTab], description: e.target.value },
+                }))}
                 style={{ width: '100%', resize: 'vertical' }}
               />
             </div>
@@ -270,13 +340,16 @@ export default function AdminTripsPage() {
               <textarea
                 rows={4}
                 value={translations[activeLocaleTab].itinerary}
-                onChange={(e) => setTranslations((p) => ({ ...p, [activeLocaleTab]: { ...p[activeLocaleTab], itinerary: e.target.value } }))}
+                onChange={(e) => setTranslations((p) => ({
+                  ...p,
+                  [activeLocaleTab]: { ...p[activeLocaleTab], itinerary: e.target.value },
+                }))}
                 style={{ width: '100%', resize: 'vertical' }}
               />
             </div>
           </div>
 
-          {/* Scalar fields */}
+          {/* ── Scalar fields ── */}
           <div className="admin-services__form-grid" style={{ marginTop: '1rem' }}>
             <div className="booking__field">
               <label>{t.trips.dateStartLabel} *</label>
@@ -315,25 +388,48 @@ export default function AdminTripsPage() {
                 onChange={(e) => setForm((p) => ({ ...p, maxSeats: e.target.value }))}
               />
             </div>
+
+            {/* ── Cover image — uploads via purpose=trips → Vercel Blob ── */}
             <div className="booking__field" style={{ gridColumn: '1 / -1' }}>
               <label>{t.trips.imageLabel}</label>
               <input
                 type="file"
                 accept="image/*"
-                ref={fileRef}
-                onChange={handleImageUpload}
+                ref={coverFileRef}
+                onChange={handleCoverUpload}
                 style={{ display: 'none' }}
-                id="trip-image-upload"
+                id="trip-cover-upload"
               />
               <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
-                <label htmlFor="trip-image-upload" className="btn-outline btn-sm" style={{ cursor: 'pointer' }}>
-                  {uploading ? t.common.uploading : t.common.upload}
+                <label htmlFor="trip-cover-upload" className="btn-outline btn-sm" style={{ cursor: 'pointer' }}>
+                  {uploadingCover ? t.common.uploading : t.common.upload}
                 </label>
                 {form.coverImage && (
-                  <img src={form.coverImage} alt="" style={{ height: 48, width: 80, objectFit: 'cover', borderRadius: 4, border: '1px solid var(--color-border)' }} />
+                  <>
+                    <img
+                      src={form.coverImage}
+                      alt=""
+                      style={{ height: 56, width: 100, objectFit: 'cover', borderRadius: 4, border: '1px solid var(--color-border)' }}
+                    />
+                    <button
+                      type="button"
+                      className="btn-outline btn-sm"
+                      onClick={() => {
+                        setForm((p) => ({ ...p, coverImage: '' }));
+                        if (coverFileRef.current) coverFileRef.current.value = '';
+                      }}
+                      style={{ color: 'var(--color-error, #e53)' }}
+                    >
+                      ✕
+                    </button>
+                  </>
                 )}
               </div>
+              <p style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', marginTop: '0.25rem' }}>
+                Stored via Vercel Blob · purpose=trips · 1600×900 webp
+              </p>
             </div>
+
             <div className="booking__field">
               <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
                 <input
@@ -346,8 +442,62 @@ export default function AdminTripsPage() {
             </div>
           </div>
 
+          {/* ── Gallery images — only shown when editing an existing trip ── */}
+          {editId && (
+            <div style={{ marginTop: '1.5rem' }}>
+              <label style={{ display: 'block', marginBottom: '0.75rem', color: 'var(--color-text-primary)', fontWeight: 500 }}>
+                {t.gallery.title}
+                <span style={{ marginLeft: '0.5rem', fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', fontWeight: 400 }}>
+                  purpose=gallery · Vercel Blob
+                </span>
+              </label>
+
+              {/* Existing gallery images */}
+              {editGallery.length > 0 && (
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.75rem' }}>
+                  {editGallery.map((img) => (
+                    <div key={img.id} style={{ position: 'relative', width: 80, height: 60 }}>
+                      <img
+                        src={img.url}
+                        alt={img.alt ?? ''}
+                        style={{ width: 80, height: 60, objectFit: 'cover', borderRadius: 4, border: '1px solid var(--color-border)', display: 'block' }}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => removeGalleryImage(img.id)}
+                        title={t.gallery.deletePhoto}
+                        style={{
+                          position: 'absolute', top: 2, right: 2,
+                          background: 'rgba(0,0,0,0.6)', border: 'none',
+                          color: '#fff', borderRadius: 2, cursor: 'pointer',
+                          fontSize: 10, lineHeight: 1, padding: '2px 4px',
+                        }}
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Upload new gallery images */}
+              <input
+                type="file"
+                accept="image/*"
+                multiple
+                ref={galleryFileRef}
+                onChange={handleGalleryUpload}
+                style={{ display: 'none' }}
+                id="trip-gallery-upload"
+              />
+              <label htmlFor="trip-gallery-upload" className="btn-outline btn-sm" style={{ cursor: 'pointer' }}>
+                {uploadingGallery ? t.common.uploading : `+ ${t.gallery.addPhoto}`}
+              </label>
+            </div>
+          )}
+
           <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1.5rem' }}>
-            <button type="submit" className="btn-primary btn-sm" disabled={saving || uploading}>
+            <button type="submit" className="btn-primary btn-sm" disabled={saving || uploadingCover || uploadingGallery}>
               {saving ? t.common.saving : t.trips.saveBtn}
             </button>
             <button type="button" className="btn-outline btn-sm" onClick={cancelForm}>
@@ -369,7 +519,7 @@ export default function AdminTripsPage() {
               <img
                 src={trip.coverImage}
                 alt={getTripName(trip)}
-                style={{ width: 64, height: 48, objectFit: 'cover', borderRadius: 4, flexShrink: 0, border: '1px solid var(--color-border)' }}
+                style={{ width: 72, height: 50, objectFit: 'cover', borderRadius: 4, flexShrink: 0, border: '1px solid var(--color-border)' }}
               />
             )}
             <div className="admin-services__item-info" style={{ flex: 1 }}>
@@ -379,7 +529,8 @@ export default function AdminTripsPage() {
                 {trip.dateEnd && ` – ${new Date(trip.dateEnd).toLocaleDateString('sk-SK')}`}
                 {' · '}
                 {trip.price} {trip.currency}
-                {trip.maxSeats != null && ` · ${trip.bookedSeats}/${trip.maxSeats} miest`}
+                {trip.maxSeats != null && ` · ${trip.bookedSeats}/${trip.maxSeats}`}
+                {trip.galleryImages.length > 0 && ` · ${trip.galleryImages.length} foto`}
               </span>
             </div>
             <div className="admin-services__item-actions">

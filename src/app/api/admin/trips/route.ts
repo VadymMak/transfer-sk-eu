@@ -37,7 +37,10 @@ export async function GET() {
   const trips = await db.trip.findMany({
     where: { storeId: store.id },
     orderBy: [{ sortOrder: 'asc' }, { dateStart: 'asc' }],
-    include: { translations: true },
+    include: {
+      translations: true,
+      galleryImages: { orderBy: { sortOrder: 'asc' } },
+    },
   });
 
   return NextResponse.json(trips);
@@ -95,7 +98,10 @@ export async function POST(req: NextRequest) {
         })),
       },
     },
-    include: { translations: true },
+    include: {
+      translations: true,
+      galleryImages: { orderBy: { sortOrder: 'asc' } },
+    },
   });
 
   revalidatePath('/', 'layout');

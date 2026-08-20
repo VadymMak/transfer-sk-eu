@@ -25,6 +25,11 @@ export const PRODUCT_VARIANTS: ImageVariant[] = [
   { suffix: '-thumb', maxWidth: 300, maxHeight: 200, quality: 75, fit: 'cover' },
 ];
 
+export const TRIP_VARIANTS: ImageVariant[] = [
+  { suffix: '-cover', maxWidth: 1600, maxHeight: 900, quality: 83, fit: 'cover' },
+  { suffix: '-thumb', maxWidth: 480,  maxHeight: 270, quality: 75, fit: 'cover' },
+];
+
 export async function processImage(
   inputBuffer: Buffer,
   variant: ImageVariant,
