@@ -17,6 +17,7 @@ export interface AdminTranslations {
     tables: string;
     deliveryZones: string;
     courses: string;
+    trips: string;
     history: string;
     theme: string;
     ai: string;
@@ -195,6 +196,27 @@ export interface AdminTranslations {
     namePlaceholder: string;
     descPlaceholder: string;
     contentPlaceholder: string;
+  };
+  trips: {
+    title: string;
+    addTrip: string;
+    editTrip: string;
+    noTrips: string;
+    confirmDelete: string;
+    nameLabel: string;
+    descriptionLabel: string;
+    itineraryLabel: string;
+    dateStartLabel: string;
+    dateEndLabel: string;
+    priceLabel: string;
+    maxSeatsLabel: string;
+    imageLabel: string;
+    imageUploadError: string;
+    slugLabel: string;
+    activeLabel: string;
+    saveBtn: string;
+    cancelBtn: string;
+    localeTabsLabel: string;
   };
   ai: {
     title: string;
@@ -521,6 +543,7 @@ const SK: AdminTranslations = {
     tables:       'Stoly',
     deliveryZones:'Doručovacie zóny',
     courses:      'Kurzy',
+    trips:        'Výlety',
     history:      'História',
     theme:        'Téma',
     ai:           'AI správa',
@@ -733,6 +756,27 @@ const SK: AdminTranslations = {
     namePlaceholder:    'Kurz klasického strihu',
     descPlaceholder:    'Krátky popis kurzu...',
     contentPlaceholder: 'Obsah lekcie — text, poznámky, linky na materiály...',
+  },
+  trips: {
+    title:            'Výlety',
+    addTrip:          '+ Pridať výlet',
+    editTrip:         'Upraviť výlet',
+    noTrips:          'Žiadne výlety. Pridajte prvý.',
+    confirmDelete:    'Vymazať tento výlet?',
+    nameLabel:        'Názov výletu',
+    descriptionLabel: 'Popis',
+    itineraryLabel:   'Program / Itinerár',
+    dateStartLabel:   'Dátum začiatku',
+    dateEndLabel:     'Dátum konca',
+    priceLabel:       'Cena (€)',
+    maxSeatsLabel:    'Max. počet miest',
+    imageLabel:       'Titulný obrázok',
+    imageUploadError: 'Chyba pri nahrávaní obrázka',
+    slugLabel:        'Slug (URL)',
+    activeLabel:      'Aktívny',
+    saveBtn:          'Uložiť',
+    cancelBtn:        'Zrušiť',
+    localeTabsLabel:  'Jazykové mutácie',
   },
   ai: {
     title:           'AI správa',
@@ -1059,6 +1103,7 @@ const EN: AdminTranslations = {
     tables:       'Tables',
     deliveryZones:'Delivery Zones',
     courses:      'Courses',
+    trips:        'Trips',
     history:      'History',
     theme:        'Theme',
     ai:           'AI Manager',
@@ -1271,6 +1316,27 @@ const EN: AdminTranslations = {
     namePlaceholder:    'Classic haircut course',
     descPlaceholder:    'Short course description...',
     contentPlaceholder: 'Lesson content — text, notes, links to materials...',
+  },
+  trips: {
+    title:            'Trips',
+    addTrip:          '+ Add Trip',
+    editTrip:         'Edit Trip',
+    noTrips:          'No trips yet. Add the first one.',
+    confirmDelete:    'Delete this trip?',
+    nameLabel:        'Trip name',
+    descriptionLabel: 'Description',
+    itineraryLabel:   'Itinerary',
+    dateStartLabel:   'Start date',
+    dateEndLabel:     'End date',
+    priceLabel:       'Price (€)',
+    maxSeatsLabel:    'Max seats',
+    imageLabel:       'Cover image',
+    imageUploadError: 'Image upload failed',
+    slugLabel:        'Slug (URL)',
+    activeLabel:      'Active',
+    saveBtn:          'Save',
+    cancelBtn:        'Cancel',
+    localeTabsLabel:  'Translations',
   },
   ai: {
     title:           'AI Assistant',
@@ -1597,6 +1663,7 @@ const CS: AdminTranslations = {
     tables:       'Stoly',
     deliveryZones:'Doručovací zóny',
     courses:      'Kurzy',
+    trips:        'Výlety',
     history:      'Historie',
     theme:        'Téma',
     ai:           'AI správa',
@@ -1809,6 +1876,27 @@ const CS: AdminTranslations = {
     namePlaceholder:    'Kurz klasického střihu',
     descPlaceholder:    'Krátký popis kurzu...',
     contentPlaceholder: 'Obsah lekce — text, poznámky, odkazy na materiály...',
+  },
+  trips: {
+    title:            'Výlety',
+    addTrip:          '+ Přidat výlet',
+    editTrip:         'Upravit výlet',
+    noTrips:          'Žádné výlety. Přidejte první.',
+    confirmDelete:    'Smazat tento výlet?',
+    nameLabel:        'Název výletu',
+    descriptionLabel: 'Popis',
+    itineraryLabel:   'Program / Itinerář',
+    dateStartLabel:   'Datum začátku',
+    dateEndLabel:     'Datum konce',
+    priceLabel:       'Cena (€)',
+    maxSeatsLabel:    'Max. počet míst',
+    imageLabel:       'Titulní obrázek',
+    imageUploadError: 'Chyba při nahrávání obrázku',
+    slugLabel:        'Slug (URL)',
+    activeLabel:      'Aktivní',
+    saveBtn:          'Uložit',
+    cancelBtn:        'Zrušit',
+    localeTabsLabel:  'Jazykové verze',
   },
   ai: {
     title:           'AI asistent',
@@ -2135,6 +2223,7 @@ const DE: AdminTranslations = {
     tables:       'Tische',
     deliveryZones:'Lieferzonen',
     courses:      'Kurse',
+    trips:        'Ausflüge',
     history:      'Verlauf',
     theme:        'Design',
     ai:           'KI-Verwaltung',
@@ -2347,6 +2436,27 @@ const DE: AdminTranslations = {
     namePlaceholder:    'Kurs klassischer Haarschnitt',
     descPlaceholder:    'Kurze Kursbeschreibung...',
     contentPlaceholder: 'Kursinhalt — Text, Notizen, Links zu Materialien...',
+  },
+  trips: {
+    title:            'Ausflüge',
+    addTrip:          '+ Ausflug hinzufügen',
+    editTrip:         'Ausflug bearbeiten',
+    noTrips:          'Noch keine Ausflüge. Ersten hinzufügen.',
+    confirmDelete:    'Diesen Ausflug löschen?',
+    nameLabel:        'Ausflugname',
+    descriptionLabel: 'Beschreibung',
+    itineraryLabel:   'Reiseprogramm',
+    dateStartLabel:   'Startdatum',
+    dateEndLabel:     'Enddatum',
+    priceLabel:       'Preis (€)',
+    maxSeatsLabel:    'Max. Plätze',
+    imageLabel:       'Titelbild',
+    imageUploadError: 'Fehler beim Hochladen des Bildes',
+    slugLabel:        'Slug (URL)',
+    activeLabel:      'Aktiv',
+    saveBtn:          'Speichern',
+    cancelBtn:        'Abbrechen',
+    localeTabsLabel:  'Sprachversionen',
   },
   ai: {
     title:           'KI-Verwaltung',
@@ -2673,6 +2783,7 @@ const UK: AdminTranslations = {
     tables:       'Столики',
     deliveryZones:'Зони доставки',
     courses:      'Курси',
+    trips:        'Екскурсії',
     history:      'Історія',
     theme:        'Тема',
     ai:           'AI-менеджер',
@@ -2885,6 +2996,27 @@ const UK: AdminTranslations = {
     namePlaceholder:    'Курс класичної стрижки',
     descPlaceholder:    'Короткий опис курсу...',
     contentPlaceholder: 'Зміст уроку — текст, нотатки, посилання на матеріали...',
+  },
+  trips: {
+    title:            'Екскурсії',
+    addTrip:          '+ Додати екскурсію',
+    editTrip:         'Редагувати екскурсію',
+    noTrips:          'Немає екскурсій. Додайте першу.',
+    confirmDelete:    'Видалити цю екскурсію?',
+    nameLabel:        'Назва екскурсії',
+    descriptionLabel: 'Опис',
+    itineraryLabel:   'Програма / Маршрут',
+    dateStartLabel:   'Дата початку',
+    dateEndLabel:     'Дата завершення',
+    priceLabel:       'Ціна (€)',
+    maxSeatsLabel:    'Макс. місць',
+    imageLabel:       'Обкладинка',
+    imageUploadError: 'Помилка завантаження зображення',
+    slugLabel:        'Slug (URL)',
+    activeLabel:      'Активно',
+    saveBtn:          'Зберегти',
+    cancelBtn:        'Скасувати',
+    localeTabsLabel:  'Мовні версії',
   },
   ai: {
     title:           'AI-менеджер',
@@ -3211,6 +3343,7 @@ const RU: AdminTranslations = {
     tables:       'Столики',
     deliveryZones:'Зоны доставки',
     courses:      'Курсы',
+    trips:        'Поездки',
     history:      'История',
     theme:        'Тема',
     ai:           'AI-менеджер',
@@ -3423,6 +3556,27 @@ const RU: AdminTranslations = {
     namePlaceholder:    'Курс классической стрижки',
     descPlaceholder:    'Краткое описание курса...',
     contentPlaceholder: 'Содержание урока — текст, заметки, ссылки на материалы...',
+  },
+  trips: {
+    title:            'Поездки',
+    addTrip:          '+ Добавить поездку',
+    editTrip:         'Редактировать поездку',
+    noTrips:          'Нет поездок. Добавьте первую.',
+    confirmDelete:    'Удалить эту поездку?',
+    nameLabel:        'Название поездки',
+    descriptionLabel: 'Описание',
+    itineraryLabel:   'Программа / Маршрут',
+    dateStartLabel:   'Дата начала',
+    dateEndLabel:     'Дата окончания',
+    priceLabel:       'Цена (€)',
+    maxSeatsLabel:    'Макс. мест',
+    imageLabel:       'Обложка',
+    imageUploadError: 'Ошибка загрузки изображения',
+    slugLabel:        'Slug (URL)',
+    activeLabel:      'Активно',
+    saveBtn:          'Сохранить',
+    cancelBtn:        'Отмена',
+    localeTabsLabel:  'Языковые версии',
   },
   ai: {
     title:           'AI-менеджер',
@@ -3749,6 +3903,7 @@ const PL: AdminTranslations = {
     tables:       'Stoliki',
     deliveryZones:'Strefy dostawy',
     courses:      'Kursy',
+    trips:        'Wycieczki',
     history:      'Historia',
     theme:        'Motyw',
     ai:           'Menedżer AI',
@@ -3961,6 +4116,27 @@ const PL: AdminTranslations = {
     namePlaceholder:    'Kurs klasycznego strzyżenia',
     descPlaceholder:    'Krótki opis kursu...',
     contentPlaceholder: 'Treść lekcji — tekst, notatki, linki do materiałów...',
+  },
+  trips: {
+    title:            'Wycieczki',
+    addTrip:          '+ Dodaj wycieczkę',
+    editTrip:         'Edytuj wycieczkę',
+    noTrips:          'Brak wycieczek. Dodaj pierwszą.',
+    confirmDelete:    'Usunąć tę wycieczkę?',
+    nameLabel:        'Nazwa wycieczki',
+    descriptionLabel: 'Opis',
+    itineraryLabel:   'Program / Trasa',
+    dateStartLabel:   'Data rozpoczęcia',
+    dateEndLabel:     'Data zakończenia',
+    priceLabel:       'Cena (€)',
+    maxSeatsLabel:    'Maks. miejsc',
+    imageLabel:       'Zdjęcie główne',
+    imageUploadError: 'Błąd przesyłania zdjęcia',
+    slugLabel:        'Slug (URL)',
+    activeLabel:      'Aktywny',
+    saveBtn:          'Zapisz',
+    cancelBtn:        'Anuluj',
+    localeTabsLabel:  'Wersje językowe',
   },
   ai: {
     title:           'Menedżer AI',

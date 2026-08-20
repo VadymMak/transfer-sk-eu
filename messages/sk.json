@@ -796,5 +796,17 @@
     "whatsapp": "Pokračovať na WhatsApp",
     "send": "Odoslať",
     "error": "Prepáčte, skúste znova alebo napíšte na WhatsApp."
+  },
+  "trips": {
+    "pageTitle": "Výlety a zájazdy",
+    "pageDescription": "Objavte naše skupinové výlety s pohodlnou dopravou zo Slovenska.",
+    "sectionTitle": "Nadchádzajúce výlety",
+    "sectionSubtitle": "Cestujte s nami komfortne a bezpečne",
+    "noTrips": "Aktuálne nie sú naplánované žiadne výlety.",
+    "fromPrice": "od {price} {currency}",
+    "seatsLeft": "Zostáva {n} miest",
+    "allTripsBtn": "Všetky výlety",
+    "backToList": "Späť na výlety",
+    "itineraryHeading": "Program výletu"
   }
 }

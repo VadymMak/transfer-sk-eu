@@ -792,5 +792,17 @@
     "whatsapp": "Continue on WhatsApp",
     "send": "Send",
     "error": "Sorry, please try again or message us on WhatsApp."
+  },
+  "trips": {
+    "pageTitle": "Trips & Excursions",
+    "pageDescription": "Discover our group trips with comfortable transfers from Slovakia.",
+    "sectionTitle": "Upcoming Trips",
+    "sectionSubtitle": "Travel comfortably and safely with us",
+    "noTrips": "No trips are currently planned.",
+    "fromPrice": "from {price} {currency}",
+    "seatsLeft": "{n} seats left",
+    "allTripsBtn": "All Trips",
+    "backToList": "Back to trips",
+    "itineraryHeading": "Trip Itinerary"
   }
 }

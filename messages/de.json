@@ -792,5 +792,17 @@
     "whatsapp": "Auf WhatsApp fortfahren",
     "send": "Senden",
     "error": "Entschuldigung, bitte erneut versuchen oder WhatsApp."
+  },
+  "trips": {
+    "pageTitle": "Ausflüge & Reisen",
+    "pageDescription": "Entdecken Sie unsere Gruppenausflüge mit komfortablem Transfer aus der Slowakei.",
+    "sectionTitle": "Bevorstehende Ausflüge",
+    "sectionSubtitle": "Reisen Sie komfortabel und sicher mit uns",
+    "noTrips": "Aktuell sind keine Ausflüge geplant.",
+    "fromPrice": "ab {price} {currency}",
+    "seatsLeft": "{n} Plätze übrig",
+    "allTripsBtn": "Alle Ausflüge",
+    "backToList": "Zurück zu Ausflügen",
+    "itineraryHeading": "Reiseprogramm"
   }
 }

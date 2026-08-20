@@ -10,4 +10,5 @@ export const FLAGS = {
   courses:         process.env.NEXT_PUBLIC_ENABLE_COURSES === 'true',
   payment:         process.env.NEXT_PUBLIC_ENABLE_PAYMENT === 'true',
   fleet:           process.env.NEXT_PUBLIC_ENABLE_FLEET === 'true',
+  trips:           process.env.NEXT_PUBLIC_ENABLE_TRIPS === 'true',
 } as const;

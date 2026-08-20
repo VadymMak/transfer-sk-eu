@@ -15,6 +15,7 @@ import GallerySection from '@/components/sections/GallerySection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import FaqSection from '@/components/sections/FaqSection';
 import ContactSection from '@/components/sections/ContactSection';
+import UpcomingTripsSection from '@/components/sections/UpcomingTripsSection';
 
 export const revalidate = 60;
 
@@ -37,7 +38,7 @@ export default async function HomePage({
   const config = await getStoreConfig();
   const { presence, whatsappLinks } = config;
 
-  const [heroConfig, galleryImages, dbTestimonials, dbServices, dbFleet] = await Promise.all([
+  const [heroConfig, galleryImages, dbTestimonials, dbServices, dbFleet, upcomingTrips] = await Promise.all([
     db.heroConfig.findUnique({ where: { storeId: config.id } }),
     db.galleryImage.findMany({
       where: { storeId: config.id, active: true },
@@ -61,6 +62,13 @@ export default async function HomePage({
       where: { storeId: config.id, active: true, category: 'fleet' },
       orderBy: { sortOrder: 'asc' },
       select: { id: true, nameKey: true, description: true, image: true, metadata: true },
+    }),
+    // Upcoming trips
+    db.trip.findMany({
+      where: { storeId: config.id, active: true, dateStart: { gte: new Date() } },
+      include: { translations: { where: { locale: { in: [locale, 'sk'] } } } },
+      orderBy: { dateStart: 'asc' },
+      take: 3,
     }),
   ]);
 
@@ -116,6 +124,7 @@ export default async function HomePage({
       />
       <DecorativeDivider />
       <RoutesSection routes={mappedRoutes} />
+      <UpcomingTripsSection trips={upcomingTrips} locale={locale} />
       <FleetSection fleet={dbFleet} />
       <ServicesSection />
       <WhyUsSection city={presence.city} googleRating={presence.googleRating} address={presence.address} />
