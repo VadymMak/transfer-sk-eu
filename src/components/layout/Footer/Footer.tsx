@@ -162,6 +162,15 @@ export default async function Footer({ config, locale }: FooterProps) {
 
       </div>
 
+      {/* Legal identity — § 3a Obchodného zákonníka / Zoznam.sk */}
+      <div className="footer__legal">
+        <strong>Vitalii Khilko</strong>
+        {' · '}K. Šmidkeho 2938/8, 911 08 Trenčín
+        {' · '}IČO: 57093865
+        {' · '}DIČ: 3120653360
+        {' · '}Neplatca DPH
+      </div>
+
       {/* Bottom bar */}
       <div className="footer__bottom">
         <p>{tFooter('allRightsReserved', { year: currentYear, name })}</p>
