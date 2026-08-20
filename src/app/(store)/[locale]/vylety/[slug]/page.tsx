@@ -92,7 +92,7 @@ export default async function TripDetailPage({
   };
 
   return (
-    <main className="trip-detail">
+    <main className={`trip-detail${trip.coverImage ? ' trip-detail--has-hero' : ''}`}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
