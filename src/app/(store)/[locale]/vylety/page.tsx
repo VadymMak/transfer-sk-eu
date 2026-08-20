@@ -29,7 +29,10 @@ export default async function VyletyPage({ params }: { params: Promise<{ locale:
   const trips = store
     ? await db.trip.findMany({
         where: { storeId: store.id, active: true, dateStart: { gte: now } },
-        include: { translations: { where: { locale: { in: [locale, 'sk'] } } } },
+        include: {
+          translations: { where: { locale: { in: [locale, 'sk'] } } },
+          galleryImages: { orderBy: { sortOrder: 'asc' }, take: 1 },
+        },
         orderBy: { dateStart: 'asc' },
       })
     : [];
@@ -50,15 +53,16 @@ export default async function VyletyPage({ params }: { params: Promise<{ locale:
           <div className="trips-page__grid">
             {trips.map((trip) => {
               const tr = getTranslation(trip.translations);
+              const cardImage = trip.coverImage ?? trip.galleryImages[0]?.url ?? null;
               const dateLabel = new Date(trip.dateStart).toLocaleDateString(locale === 'sk' ? 'sk-SK' : locale, {
                 day: 'numeric', month: 'long', year: 'numeric',
               });
               return (
                 <Link key={trip.id} href={`/${locale}/vylety/${trip.slug}`} className="trip-card">
-                  {trip.coverImage ? (
+                  {cardImage ? (
                     <div className="trip-card__image">
                       <Image
-                        src={trip.coverImage}
+                        src={cardImage}
                         alt={tr?.name ?? ''}
                         fill
                         sizes="(max-width: 768px) 100vw, 360px"

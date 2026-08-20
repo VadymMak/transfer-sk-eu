@@ -431,13 +431,17 @@ export default function AdminTripsPage() {
             </div>
 
             <div className="booking__field">
-              <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
+              <label className="admin-toggle">
                 <input
                   type="checkbox"
+                  className="admin-toggle__input"
                   checked={form.active}
                   onChange={(e) => setForm((p) => ({ ...p, active: e.target.checked }))}
                 />
-                {t.trips.activeLabel}
+                <span className="admin-toggle__track">
+                  <span className="admin-toggle__knob" />
+                </span>
+                <span className="admin-toggle__label">{t.trips.activeLabel}</span>
               </label>
             </div>
           </div>

@@ -66,7 +66,10 @@ export default async function HomePage({
     // Upcoming trips
     db.trip.findMany({
       where: { storeId: config.id, active: true, dateStart: { gte: new Date() } },
-      include: { translations: { where: { locale: { in: [locale, 'sk'] } } } },
+      include: {
+        translations: { where: { locale: { in: [locale, 'sk'] } } },
+        galleryImages: { orderBy: { sortOrder: 'asc' }, take: 1 },
+      },
       orderBy: { dateStart: 'asc' },
       take: 3,
     }),

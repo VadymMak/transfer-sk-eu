@@ -8,6 +8,10 @@ interface TripTranslation {
   description: string | null;
 }
 
+interface TripGalleryImage {
+  url: string;
+}
+
 interface Trip {
   id: string;
   slug: string;
@@ -19,6 +23,7 @@ interface Trip {
   maxSeats: number | null;
   bookedSeats: number;
   translations: TripTranslation[];
+  galleryImages: TripGalleryImage[];
 }
 
 interface Props {
@@ -53,16 +58,17 @@ export default function UpcomingTripsSection({ trips, locale }: Props) {
               locale === 'sk' ? 'sk-SK' : locale,
               { day: 'numeric', month: 'long', year: 'numeric' },
             );
+            const cardImage = trip.coverImage ?? trip.galleryImages[0]?.url ?? null;
             return (
               <Link
                 key={trip.id}
                 href={`/${locale}/vylety/${trip.slug}`}
                 className="trip-card"
               >
-                {trip.coverImage ? (
+                {cardImage ? (
                   <div className="trip-card__image">
                     <Image
-                      src={trip.coverImage}
+                      src={cardImage}
                       alt={tr?.name ?? ''}
                       fill
                       sizes="(max-width: 768px) 100vw, 360px"
