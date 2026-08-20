@@ -55,15 +55,23 @@ export default async function VyletyPage({ params }: { params: Promise<{ locale:
               });
               return (
                 <Link key={trip.id} href={`/${locale}/vylety/${trip.slug}`} className="trip-card">
-                  {trip.coverImage && (
+                  {trip.coverImage ? (
                     <div className="trip-card__image">
                       <Image
                         src={trip.coverImage}
                         alt={tr?.name ?? ''}
                         fill
-                        sizes="(max-width: 768px) 100vw, 400px"
+                        sizes="(max-width: 768px) 100vw, 360px"
                         style={{ objectFit: 'cover' }}
                       />
+                    </div>
+                  ) : (
+                    <div className="trip-card__placeholder">
+                      <svg className="trip-card__placeholder-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+                        <circle cx="12" cy="9" r="2.5" />
+                      </svg>
+                      {tr?.name && <span className="trip-card__placeholder-name">{tr.name}</span>}
                     </div>
                   )}
                   <div className="trip-card__body">
