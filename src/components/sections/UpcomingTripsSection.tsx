@@ -1,6 +1,7 @@
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
+import GoldDivider from '@/components/ui/GoldDivider';
 
 interface TripTranslation {
   locale: string;
@@ -46,10 +47,13 @@ export default function UpcomingTripsSection({ trips, locale }: Props) {
   return (
     <section className="upcoming-trips" aria-labelledby="upcoming-trips-heading">
       <div className="upcoming-trips__inner">
-        <h2 id="upcoming-trips-heading" className="upcoming-trips__title">
-          {t('sectionTitle')}
-        </h2>
-        <p className="upcoming-trips__subtitle">{t('sectionSubtitle')}</p>
+        <div className="section-header">
+          <h2 id="upcoming-trips-heading" className="section-title">
+            {t('sectionTitle')}
+          </h2>
+          <GoldDivider />
+          <p className="section-subtitle">{t('sectionSubtitle')}</p>
+        </div>
 
         <div className="upcoming-trips__grid">
           {trips.map((trip) => {

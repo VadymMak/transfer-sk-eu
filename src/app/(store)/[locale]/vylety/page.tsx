@@ -3,6 +3,7 @@ import { db } from '@/lib/db';
 import { getBaseUrl } from '@/lib/url';
 import Image from 'next/image';
 import Link from 'next/link';
+import GoldDivider from '@/components/ui/GoldDivider';
 
 const STORE_SLUG = process.env.STORE_SLUG ?? '';
 
@@ -44,8 +45,11 @@ export default async function VyletyPage({ params }: { params: Promise<{ locale:
   return (
     <main className="trips-page">
       <div className="trips-page__inner">
-        <h1 className="trips-page__title">{t('pageTitle')}</h1>
-        <p className="trips-page__subtitle">{t('pageDescription')}</p>
+        <div className="section-header">
+          <h1 className="section-title">{t('pageTitle')}</h1>
+          <GoldDivider />
+          <p className="section-subtitle">{t('pageDescription')}</p>
+        </div>
 
         {trips.length === 0 ? (
           <p className="trips-page__empty">{t('noTrips')}</p>
