@@ -645,7 +645,11 @@ body::after {
 }
 
 /* ===== BREADCRUMBS ===== */
-.breadcrumbs { margin-bottom: 1.5rem; }
+.breadcrumbs {
+  padding-top: clamp(1rem, 4vw, 2rem);
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+}
 .breadcrumbs__list {
   list-style: none;
   margin: 0;
@@ -653,18 +657,20 @@ body::after {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.25rem;
-  font-size: 0.85rem;
 }
-.breadcrumbs__item { display: flex; align-items: center; gap: 0.25rem; }
-.breadcrumbs__sep { color: var(--color-text-muted); user-select: none; }
-.breadcrumbs__link {
+.breadcrumbs__item { display: flex; align-items: center; }
+.breadcrumbs__sep {
   color: var(--color-text-muted);
-  text-decoration: none;
-  transition: color 0.15s ease;
+  user-select: none;
+  margin: 0 0.4rem;
 }
-.breadcrumbs__link:hover { color: var(--color-primary); }
-.breadcrumbs__current { color: var(--color-text); font-weight: 500; }
+.breadcrumbs__link {
+  color: var(--color-primary, #1E88E5);
+  text-decoration: none;
+  cursor: pointer;
+}
+.breadcrumbs__link:hover { text-decoration: underline; }
+.breadcrumbs__current { color: var(--color-text-muted, #5B6B76); }
 
 /* ===== HERO TRIP CARDS ===== */
 .hero-trips {
