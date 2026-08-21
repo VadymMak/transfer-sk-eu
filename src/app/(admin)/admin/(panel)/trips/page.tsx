@@ -126,6 +126,7 @@ export default function AdminTripsPage() {
   const [editVideos, setEditVideos] = useState<TripVideo[]>([]);
 
   const [form, setForm] = useState({
+    slug: '',
     dateStart: '',
     dateEnd: '',
     price: 0,
@@ -152,7 +153,7 @@ export default function AdminTripsPage() {
   useEffect(() => { void load(); }, [load]);
 
   function resetForm() {
-    setForm({ dateStart: '', dateEnd: '', price: 0, priceChild: '', maxSeats: '', coverImage: '', active: true, prepayment: '', bookingPhone: '', seatsTotal: '', readMinutes: '' });
+    setForm({ slug: '', dateStart: '', dateEnd: '', price: 0, priceChild: '', maxSeats: '', coverImage: '', active: true, prepayment: '', bookingPhone: '', seatsTotal: '', readMinutes: '' });
     setTranslations(emptyTranslations());
     setActiveLocaleTab('sk');
     setEditGallery([]);
@@ -187,6 +188,7 @@ export default function AdminTripsPage() {
       }
     }
     setForm({
+      slug: trip.slug,
       dateStart: toDateInput(trip.dateStart),
       dateEnd: trip.dateEnd ? toDateInput(trip.dateEnd) : '',
       price: trip.price,
@@ -331,6 +333,7 @@ export default function AdminTripsPage() {
     setSaving(true);
 
     const payload = {
+      ...(form.slug.trim() && { slug: form.slug.trim() }),
       coverImage: form.coverImage || null,
       dateStart: form.dateStart,
       dateEnd: form.dateEnd || undefined,
@@ -586,6 +589,15 @@ export default function AdminTripsPage() {
             </p>
           </div>
           <div className="admin-services__form-grid">
+            <div className="booking__field" style={fieldStyle}>
+              <label>Slug (URL)</label>
+              <input
+                type="text"
+                value={form.slug}
+                onChange={(e) => setForm((p) => ({ ...p, slug: e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/--+/g, '-') }))}
+                placeholder="saske-svajciarsko"
+              />
+            </div>
             <div className="booking__field" style={halfStyle}>
               <label>{t.trips.dateStartLabel} *</label>
               <input

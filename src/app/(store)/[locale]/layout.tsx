@@ -147,7 +147,7 @@ export default async function LocaleLayout({
   const ogImage = config.ogImageUrl ?? `${baseUrl}/og-image.jpg`;
   const jsonLdRaw: Record<string, unknown> = {
     '@context': 'https://schema.org',
-    '@type': config.vertical.schemaType,
+    '@type': ['LocalBusiness', 'TravelAgency'],
     '@id': `${baseUrl}/#business`,
     name: config.name,
     legalName: 'Vitalii Khilko',

@@ -40,6 +40,7 @@ export async function PATCH(
   const { id } = await params;
 
   const body = await req.json() as {
+    slug?: string;
     coverImage?: string | null;
     dateStart?: string;
     dateEnd?: string | null;
@@ -68,6 +69,7 @@ export async function PATCH(
   await db.trip.update({
     where: { id },
     data: {
+      ...(scalarFields.slug?.trim() && { slug: scalarFields.slug.trim() }),
       ...(scalarFields.coverImage !== undefined && { coverImage: scalarFields.coverImage }),
       ...(scalarFields.dateStart !== undefined && { dateStart: new Date(scalarFields.dateStart) }),
       ...(scalarFields.dateEnd !== undefined && {

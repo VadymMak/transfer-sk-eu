@@ -13,18 +13,23 @@ async function checkAdmin(): Promise<boolean> {
   return verifyAdminToken(token, getAdminSecret());
 }
 
-function makeSlug(name: string): string {
-  return (
-    'trip-' +
-    name
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[̀-ͯ]/g, '')
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-+|-+$/g, '') +
-    '-' +
-    Date.now()
-  );
+function makeSlugBase(name: string): string {
+  return name
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+async function makeUniqueSlug(base: string, storeId: string): Promise<string> {
+  let candidate = base;
+  let n = 2;
+  while (true) {
+    const existing = await db.trip.findUnique({ where: { storeId_slug: { storeId, slug: candidate } } });
+    if (!existing) return candidate;
+    candidate = `${base}-${n++}`;
+  }
 }
 
 export async function GET() {
@@ -89,10 +94,13 @@ export async function POST(req: NextRequest) {
     select: { sortOrder: true },
   });
 
+  const slugBase = makeSlugBase(skName);
+  const resolvedSlug = body.slug?.trim() || await makeUniqueSlug(slugBase, store.id);
+
   const trip = await db.trip.create({
     data: {
       storeId: store.id,
-      slug: body.slug?.trim() || makeSlug(skName),
+      slug: resolvedSlug,
       coverImage: body.coverImage?.trim() || null,
       dateStart: new Date(body.dateStart),
       dateEnd: body.dateEnd ? new Date(body.dateEnd) : null,

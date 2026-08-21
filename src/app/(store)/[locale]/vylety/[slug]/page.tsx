@@ -207,9 +207,15 @@ export default async function TripDetailPage({
           {' · '}{tp('oneDay')}
         </p>
 
-        {/* ── H1 ── */}
-        <h1 className="trip-detail__title">{tr?.name}</h1>
-        {tr?.headline && <p className="trip-detail__headline">{tr.headline}</p>}
+        {/* ── Eyebrow + H1 ── */}
+        {tr?.headline ? (
+          <>
+            <p className="trip-detail__eyebrow">{tr.name}</p>
+            <h1 className="trip-detail__title">{tr.headline}</h1>
+          </>
+        ) : (
+          <h1 className="trip-detail__title">{tr?.name}</h1>
+        )}
 
         {/* ── Tags ── */}
         {tagList.length > 0 && (
@@ -250,6 +256,11 @@ export default async function TripDetailPage({
         {/* ── Booking strip ── */}
         {trip.bookingPhone && (
           <div className="trip-booking">
+            <p className="trip-booking__phone">
+              <a href={`tel:${trip.bookingPhone}`} className="trip-booking__phone-link">
+                {trip.bookingPhone}
+              </a>
+            </p>
             <div className="trip-booking__cta">
               {waPhone && (
                 <a href={`https://wa.me/${waPhone}`} target="_blank" rel="noopener noreferrer" className="trip-booking__btn trip-booking__btn--wa">
