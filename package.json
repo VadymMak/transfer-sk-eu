@@ -14,7 +14,8 @@
     "seed": "npx tsx prisma/seed.ts",
     "seed:adriano": "npx tsx prisma/seed-adriano.ts",
     "seed:food-market": "npx tsx prisma/seed-food-market.ts",
-    "seed:stepstyle": "npx tsx prisma/seed-stepstyle.ts"
+    "seed:stepstyle": "npx tsx prisma/seed-stepstyle.ts",
+    "import:trips": "npx tsx scripts/import-trips.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",

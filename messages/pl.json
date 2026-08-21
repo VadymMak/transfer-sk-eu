@@ -393,7 +393,10 @@
     "chip1Tip": "Bratislava, Vienna, Budapest, Prague — fixed prices",
     "chip2Tip": "Croatia, Italy, Slovenia — with a guide",
     "chip3Tip": "Furniture, belongings, moving help",
-    "chip4Tip": "Minivan (5) or bus (8 seats)"
+    "chip4Tip": "Minivan (5) or bus (8 seats)",
+    "closestTripsTitle": "Najbliższe wycieczki",
+    "more": "Szczegóły",
+    "fromPrice": "od {price} €"
   },
   "menuCategories": {
     "tagline": "— NASZE MENU —",
@@ -780,5 +783,45 @@
     "whatsapp": "Continue on WhatsApp",
     "send": "Send",
     "error": "Sorry, please try again or message us on WhatsApp."
+  },
+  "breadcrumbs": {
+    "home": "Strona główna"
+  },
+  "trips": {
+    "pageTitle": "Wycieczki autokarowe",
+    "pageDescription": "Odkryj nasze wycieczki grupowe z wygodnym transferem ze Słowacji.",
+    "sectionTitle": "Nadchodzące wycieczki",
+    "sectionSubtitle": "Podróżuj z nami wygodnie i bezpiecznie",
+    "noTrips": "Aktualnie nie ma zaplanowanych wycieczek autokarowych.",
+    "fromPrice": "od {price} {currency}",
+    "seatsLeft": "Pozostało {n} miejsc",
+    "allTripsBtn": "Wszystkie wycieczki",
+    "backToList": "Powrót do wycieczek",
+    "backToHome": "Powrót na stronę główną",
+    "itineraryHeading": "Program wycieczki"
+  },
+  "tripPage": {
+    "audienceTitle": "Dla kogo jest ta wycieczka?",
+    "programmeTitle": "Jak wygląda dzień, godzina po godzinie?",
+    "videosTitle": "Jak to wygląda na żywo?",
+    "galleryTitle": "Galeria",
+    "priceTitle": "Ile kosztuje i co jest dodatkowo płatne?",
+    "faqTitle": "Pytania i odpowiedzi",
+    "bookTitle": "Zarezerwuj miejsce",
+    "nextDeparture": "Najbliższy odjazd",
+    "minRead": "min czytania",
+    "included": "W cenie",
+    "extra": "Dopłata",
+    "updated": "Zaktualizowano",
+    "oneDay": "Jednodniowa wycieczka",
+    "prepaymentNote": "zaliczka na rezerwację",
+    "factsDate": "Data wyjazdu",
+    "factsDuration": "Czas trwania",
+    "factsPrice": "Cena od",
+    "factsFrom": "Z",
+    "bookNow": "Zarezerwuj",
+    "whatsapp": "WhatsApp",
+    "bookingWhatsAppText": "Dzień dobry! Chcę zarezerwować wycieczkę: ",
+    "seatsLeft": "Pozostało {n} miejsc"
   }
 }

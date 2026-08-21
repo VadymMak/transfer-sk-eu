@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 import { formatHoursDisplay } from '@/lib/formatHours';
 import type { WorkingHours } from '@/lib/store-config';
@@ -14,6 +15,14 @@ interface HeroConfig {
   imageUrl?: string | null;
 }
 
+export interface HeroTripCard {
+  slug: string;
+  name: string;
+  dateStart: Date;
+  price: number;
+  image: string | null;
+}
+
 interface HeroSectionProps {
   config?: HeroConfig | null;
   locale?: string;
@@ -24,6 +33,14 @@ interface HeroSectionProps {
   whatsappBookingLink?: string;
   instagram?: string;
   minRoutePrice?: number | null;
+  heroTrips?: HeroTripCard[];
+}
+
+function formatTripDate(date: Date, locale: string): string {
+  return new Intl.DateTimeFormat(locale === 'sk' ? 'sk-SK' : locale, {
+    day: 'numeric',
+    month: 'short',
+  }).format(new Date(date));
 }
 
 export default async function HeroSection({
@@ -36,6 +53,7 @@ export default async function HeroSection({
   whatsappBookingLink,
   instagram,
   minRoutePrice,
+  heroTrips = [],
 }: HeroSectionProps) {
   const tHero = await getTranslations('hero');
 
@@ -112,6 +130,35 @@ export default async function HeroSection({
             )}
           </p>
         </div>
+
+        {heroTrips.length > 0 && (
+          <div className="hero-trips">
+            <p className="hero-trips__head">{tHero('closestTripsTitle')}</p>
+            {heroTrips.map((t) => (
+              <Link
+                key={t.slug}
+                href={`/${locale}/vylety/${t.slug}`}
+                className="hero-trip-card"
+                aria-label={`${t.name} — ${tHero('closestTripsTitle')}`}
+              >
+                <span
+                  className="hero-trip-card__img"
+                  style={t.image ? { backgroundImage: `url(${t.image})` } : undefined}
+                >
+                  {!t.image && <span className="hero-trip-card__ph">🚌</span>}
+                </span>
+                <span className="hero-trip-card__body">
+                  <span className="hero-trip-card__date">{formatTripDate(t.dateStart, locale)}</span>
+                  <span className="hero-trip-card__name">{t.name}</span>
+                  <span className="hero-trip-card__row">
+                    <span className="hero-trip-card__price">{tHero('fromPrice', { price: t.price })}</span>
+                    <span className="hero-trip-card__go">{tHero('more')} →</span>
+                  </span>
+                </span>
+              </Link>
+            ))}
+          </div>
+        )}
 
         <div className="hero__image-wrap">
           {config?.imageUrl ? (

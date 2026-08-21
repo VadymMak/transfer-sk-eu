@@ -392,7 +392,10 @@
     "chip1Tip": "Bratislava, Wien, Budapest, Prag — Festpreise",
     "chip2Tip": "Kroatien, Italien, Slowenien — mit Begleitung",
     "chip3Tip": "Möbel, Gegenstände, Umzugshilfe",
-    "chip4Tip": "Minivan (5) oder Bus (8 Plätze)"
+    "chip4Tip": "Minivan (5) oder Bus (8 Plätze)",
+    "closestTripsTitle": "Nächste Reisen",
+    "more": "Mehr",
+    "fromPrice": "ab {price} €"
   },
   "menuCategories": {
     "tagline": "— UNSERE SPEISEKARTE —",
@@ -792,5 +795,45 @@
     "whatsapp": "Auf WhatsApp fortfahren",
     "send": "Senden",
     "error": "Entschuldigung, bitte erneut versuchen oder WhatsApp."
+  },
+  "breadcrumbs": {
+    "home": "Startseite"
+  },
+  "trips": {
+    "pageTitle": "Busreisen",
+    "pageDescription": "Entdecken Sie unsere Gruppenreisen mit komfortablem Transfer aus der Slowakei.",
+    "sectionTitle": "Nächste Busreisen",
+    "sectionSubtitle": "Reisen Sie komfortabel und sicher mit uns",
+    "noTrips": "Aktuell sind keine Busreisen geplant.",
+    "fromPrice": "ab {price} {currency}",
+    "seatsLeft": "{n} Plätze übrig",
+    "allTripsBtn": "Alle Busreisen",
+    "backToList": "Zurück zu Busreisen",
+    "backToHome": "Zurück zur Startseite",
+    "itineraryHeading": "Reiseprogramm"
+  },
+  "tripPage": {
+    "audienceTitle": "Für wen ist diese Reise?",
+    "programmeTitle": "Wie läuft der Tag ab, Stunde für Stunde?",
+    "videosTitle": "Wie sieht es live aus?",
+    "galleryTitle": "Galerie",
+    "priceTitle": "Was kostet es und was ist extra?",
+    "faqTitle": "Fragen & Antworten",
+    "bookTitle": "Platz reservieren",
+    "nextDeparture": "Nächste Abfahrt",
+    "minRead": "Min. Lesezeit",
+    "included": "Inklusive",
+    "extra": "Extras",
+    "updated": "Aktualisiert",
+    "oneDay": "Tagesreise",
+    "prepaymentNote": "Anzahlung zur Reservierung",
+    "factsDate": "Abfahrtsdatum",
+    "factsDuration": "Dauer",
+    "factsPrice": "Preis ab",
+    "factsFrom": "Ab",
+    "bookNow": "Jetzt buchen",
+    "whatsapp": "WhatsApp",
+    "bookingWhatsAppText": "Hallo! Ich möchte die Tour buchen: ",
+    "seatsLeft": "Noch {n} Plätze"
   }
 }

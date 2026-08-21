@@ -392,7 +392,10 @@
     "chip1Tip": "Bratislava, Viedeň, Budapešť, Praha — pevné ceny",
     "chip2Tip": "Chorvátsko, Taliansko, Slovinsko — so sprievodom",
     "chip3Tip": "Nábytok, veci, pomoc so sťahovaním",
-    "chip4Tip": "Minivan (5) alebo bus (8 miest)"
+    "chip4Tip": "Minivan (5) alebo bus (8 miest)",
+    "closestTripsTitle": "Nejbližší zájezdy",
+    "more": "Detail",
+    "fromPrice": "od {price} €"
   },
   "menuCategories": {
     "tagline": "— NAŠE MENU —",
@@ -796,5 +799,45 @@
     "whatsapp": "Pokračovať na WhatsApp",
     "send": "Odoslať",
     "error": "Prepáčte, skúste znova alebo napíšte na WhatsApp."
+  },
+  "breadcrumbs": {
+    "home": "Domů"
+  },
+  "trips": {
+    "pageTitle": "Autobusové zájezdy",
+    "pageDescription": "Objevte naše autobusové zájezdy s pohodlnou dopravou ze Slovenska.",
+    "sectionTitle": "Nadcházející zájezdy",
+    "sectionSubtitle": "Cestujte s námi pohodlně a bezpečně",
+    "noTrips": "Momentálně nejsou naplánovány žádné zájezdy.",
+    "fromPrice": "od {price} {currency}",
+    "seatsLeft": "Zbývá {n} míst",
+    "allTripsBtn": "Všechny zájezdy",
+    "backToList": "Zpět na zájezdy",
+    "backToHome": "Zpět na hlavní",
+    "itineraryHeading": "Program zájezdu"
+  },
+  "tripPage": {
+    "audienceTitle": "Pro koho je tento zájezd?",
+    "programmeTitle": "Jak probíhá den, hodinu po hodině?",
+    "videosTitle": "Jak to vypadá naživo?",
+    "galleryTitle": "Galerie",
+    "priceTitle": "Kolik to stojí a co je navíc?",
+    "faqTitle": "Otázky a odpovědi",
+    "bookTitle": "Rezervujte si místo",
+    "nextDeparture": "Nejbližší odjezd",
+    "minRead": "min čtení",
+    "included": "V ceně",
+    "extra": "Příplatek",
+    "updated": "Aktualizováno",
+    "oneDay": "Jednodenní zájezd",
+    "prepaymentNote": "záloha na rezervaci",
+    "factsDate": "Datum odjezdu",
+    "factsDuration": "Délka",
+    "factsPrice": "Cena od",
+    "factsFrom": "Z",
+    "bookNow": "Rezervovat",
+    "whatsapp": "WhatsApp",
+    "bookingWhatsAppText": "Dobrý den! Chci si zarezervovat zájezd: ",
+    "seatsLeft": "Zbývá {n} míst"
   }
 }

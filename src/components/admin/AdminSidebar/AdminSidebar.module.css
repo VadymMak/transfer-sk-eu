@@ -3,12 +3,24 @@
   flex-shrink: 0;
   background: #0A0A0A;
   color: #b0a898;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  position: sticky;
+  position: fixed;
   top: 0;
-  align-self: flex-start;
+  left: 0;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+@media (max-width: 720px) {
+  .sidebar {
+    position: relative;
+    height: auto;
+    width: 100%;
+    overflow-y: visible;
+    z-index: auto;
+  }
 }
 
 /* ── Logo ─────────────────────────────────────────── */

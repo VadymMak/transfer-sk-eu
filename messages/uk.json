@@ -397,7 +397,10 @@
     "chip3Tip": "Меблі, речі, допомога з переїздом",
     "chip4Tip": "Мінівен (5) або бус (8 місць)",
     "priceAnchor": "від {price} € за трансфер",
-    "trustLine": "ліцензія · фіксована ціна · 24/7"
+    "trustLine": "ліцензія · фіксована ціна · 24/7",
+    "closestTripsTitle": "Найближчі тури",
+    "more": "Детальніше",
+    "fromPrice": "від {price} €"
   },
   "menuCategories": {
     "tagline": "— НАШЕ МЕНЮ —",
@@ -802,5 +805,45 @@
     "whatsapp": "Продовжити у WhatsApp",
     "send": "Надіслати",
     "error": "Вибачте, спробуйте ще раз або напишіть у WhatsApp."
+  },
+  "breadcrumbs": {
+    "home": "Головна"
+  },
+  "trips": {
+    "pageTitle": "Автобусні тури",
+    "pageDescription": "Відкрийте для себе наші автобусні тури з комфортним трансфером зі Словаччини.",
+    "sectionTitle": "Найближчі тури",
+    "sectionSubtitle": "Подорожуйте з нами комфортно та безпечно",
+    "noTrips": "Наразі автобусних турів не заплановано.",
+    "fromPrice": "від {price} {currency}",
+    "seatsLeft": "Залишилось {n} місць",
+    "allTripsBtn": "Всі тури",
+    "backToList": "Назад до турів",
+    "backToHome": "На головну",
+    "itineraryHeading": "Програма туру"
+  },
+  "tripPage": {
+    "audienceTitle": "Для кого цей тур?",
+    "programmeTitle": "Як проходить день, година за годиною?",
+    "videosTitle": "Як це виглядає наживо?",
+    "galleryTitle": "Галерея",
+    "priceTitle": "Скільки коштує і що платно?",
+    "faqTitle": "Запитання та відповіді",
+    "bookTitle": "Забронювати місце",
+    "nextDeparture": "Найближчий виїзд",
+    "minRead": "хв. читання",
+    "included": "У вартість включено",
+    "extra": "Доплата",
+    "updated": "Оновлено",
+    "oneDay": "Одноденний тур",
+    "prepaymentNote": "передоплата для бронювання",
+    "factsDate": "Дата виїзду",
+    "factsDuration": "Тривалість",
+    "factsPrice": "Ціна від",
+    "factsFrom": "З",
+    "bookNow": "Забронювати",
+    "whatsapp": "WhatsApp",
+    "bookingWhatsAppText": "Доброго дня! Хочу забронювати тур: ",
+    "seatsLeft": "Залишилось {n} місць"
   }
 }

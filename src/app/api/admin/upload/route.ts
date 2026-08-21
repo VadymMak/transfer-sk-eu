@@ -7,6 +7,7 @@ import {
   validateImageFile,
   GALLERY_VARIANTS,
   PRODUCT_VARIANTS,
+  TRIP_VARIANTS,
   type ImageVariant,
 } from '@/lib/image-utils';
 
@@ -15,7 +16,12 @@ const STORE_SLUG = process.env.STORE_SLUG ?? '';
 const PURPOSE_VARIANTS: Record<string, ImageVariant[]> = {
   gallery: GALLERY_VARIANTS,
   product: PRODUCT_VARIANTS,
+  trips:   TRIP_VARIANTS,
 };
+
+const VIDEO_PURPOSES = new Set(['trip-video']);
+const VIDEO_MAX_BYTES = 25 * 1024 * 1024; // 25 MB
+const VIDEO_MIME_ALLOW = new Set(['video/mp4', 'video/webm', 'video/quicktime']);
 
 async function saveToBlob(
   processed: Array<{ suffix: string; processed: { buffer: Buffer; contentType: string } }>,
@@ -49,6 +55,30 @@ export async function POST(request: Request) {
 
   if (!file) {
     return NextResponse.json({ error: 'No file provided' }, { status: 400 });
+  }
+
+  // ── Video upload (trip-video): skip image pipeline ──
+  if (VIDEO_PURPOSES.has(purpose)) {
+    if (!VIDEO_MIME_ALLOW.has(file.type)) {
+      return NextResponse.json({ error: 'Unsupported video type. Use mp4, webm, or mov.' }, { status: 400 });
+    }
+    if (file.size > VIDEO_MAX_BYTES) {
+      return NextResponse.json({ error: 'Video exceeds 25 MB limit.' }, { status: 400 });
+    }
+    try {
+      const ext = file.name.split('.').at(-1) ?? 'mp4';
+      const baseName = file.name.replace(/\.[^.]+$/, '').replace(/[^a-zA-Z0-9_-]/g, '_');
+      const blobPath = `${purpose}/${STORE_SLUG}/${Date.now()}-${baseName}.${ext}`;
+      const blob = await put(blobPath, file.stream(), {
+        access: 'public',
+        contentType: file.type,
+        token: process.env.BLOB_READ_WRITE_TOKEN,
+      });
+      return NextResponse.json({ url: blob.url, storage: 'blob' });
+    } catch (error) {
+      console.error('[admin upload video]', error);
+      return NextResponse.json({ error: 'Video upload failed' }, { status: 500 });
+    }
   }
 
   const validationError = validateImageFile(file);

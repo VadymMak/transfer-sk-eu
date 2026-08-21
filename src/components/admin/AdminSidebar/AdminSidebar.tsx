@@ -260,6 +260,17 @@ const NAV_SERVICES_ALL: (NavItem & { show: boolean })[] = [
     ),
   },
   {
+    href: '/admin/trips',
+    labelKey: 'trips',
+    show: FLAGS.trips,
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" {...ico}>
+        <circle cx="12" cy="10" r="3" />
+        <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8Z" />
+      </svg>
+    ),
+  },
+  {
     href: '/admin/history',
     labelKey: 'history',
     show: true,

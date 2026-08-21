@@ -1,0 +1,583 @@
+{
+  "_note": "Импорт туров для transfersk.eu. Скрипт делает UPSERT по slug (create-or-update), НЕ deleteMany. Массивы audience/itinerary/included/extrasNote скрипт склеивает через \\n. faq = массив {q,a}. Картинки (cover/gallery) НЕ здесь — грузятся через админку. Языки: sk/de/en/ru/uk (cs/pl добавим позже).",
+  "tours": [
+    {
+      "slug": "benatky",
+      "departureDate": "2026-09-19",
+      "priceAdult": 150,
+      "priceChild": null,
+      "prepayment": null,
+      "bookingPhone": "+421 951 287 892",
+      "seatsTotal": null,
+      "translations": {
+        "sk": {
+          "name": "Benátky",
+          "headline": "Benátky za jeden deň: ako prebieha zájazd zo Slovenska?",
+          "description": "Jednodňový výlet do jedného z najromantickejších miest sveta. Sprievod s miestnym gidom, voľný čas na kanáloch a uličkách, a večer späť domov.",
+          "audience": [
+            "Chcete vidieť Benátky bez viacdňového zájazdu",
+            "Máte radi kanály, mosty a atmosféru starých palácov",
+            "Chcete sprievod aj voľný čas na fotenie a prechádzky"
+          ],
+          "itinerary": [
+            "03:00 — Odchod z Trenčína. Nástup: Dubnica nad Váhom, Nové Mesto nad Váhom, Myjava, Trnava, Bratislava",
+            "~12:00 — Príchod do Benátok",
+            "Prehliadka — s profesionálnym miestnym sprievodcom (3,5 hodiny)",
+            "Voľný čas — 2 hodiny na prechádzky, fotenie, nákupy či obed",
+            "Po programe — z Námestia sv. Marka loďou k autobusu v prístave (loď ~12,50 – 15 € na osobu, platí sa zvlášť)",
+            "17:00 – 17:30 — Odchod späť na Slovensko"
+          ],
+          "included": [
+            "Doprava tam aj späť pohodlným autobusom",
+            "Sprievod skupiny",
+            "Prehliadka s miestnym sprievodcom (3,5 h)"
+          ],
+          "extrasNote": [
+            "Loď z Námestia sv. Marka k autobusu (~12,50 – 15 €)",
+            "Obed a osobné výdavky",
+            "Cestovné poistenie"
+          ],
+          "bookingNote": "Rezervácie a informácie: +421 951 287 892, Vitalij.",
+          "tags": "Benátky, jednodňový zájazd, Taliansko, zo Slovenska",
+          "faq": [
+            { "q": "O koľkej je odchod?", "a": "Odchod z Trenčína o 03:00, s nástupmi po ceste; príchod do Benátok okolo 12:00." },
+            { "q": "Čo je v cene a čo sa pripláca?", "a": "V cene je doprava a prehliadka s miestnym sprievodcom. Zvlášť sa platí loď v prístave (~12,50 – 15 €), obed a poistenie." },
+            { "q": "Ako si rezervovať miesto?", "a": "Telefonicky na +421 951 287 892 (Vitalij)." }
+          ]
+        },
+        "de": {
+          "name": "Venedig",
+          "headline": "Venedig an einem Tag: Wie läuft der Ausflug ab der Slowakei?",
+          "description": "Ein Tagesausflug in eine der romantischsten Städte der Welt. Führung mit einem lokalen Guide, Freizeit an den Kanälen und Gassen, am Abend zurück nach Hause.",
+          "audience": [
+            "Sie möchten Venedig ohne Mehrtagesreise erleben",
+            "Sie lieben Kanäle, Brücken und die Atmosphäre alter Paläste",
+            "Sie wollen eine Führung und Freizeit zum Fotografieren und Bummeln"
+          ],
+          "itinerary": [
+            "03:00 — Abfahrt ab Trenčín. Zustieg: Dubnica nad Váhom, Nové Mesto nad Váhom, Myjava, Trnava, Bratislava",
+            "~12:00 — Ankunft in Venedig",
+            "Führung — mit einem professionellen lokalen Guide (3,5 Stunden)",
+            "Freizeit — 2 Stunden zum Bummeln, Fotografieren, Einkaufen oder Mittagessen",
+            "Nach dem Programm — vom Markusplatz mit dem Boot zum Bus im Hafen (Boot ~12,50 – 15 € p. P., separat zu zahlen)",
+            "17:00 – 17:30 — Rückfahrt in die Slowakei"
+          ],
+          "included": [
+            "Hin- und Rückfahrt im komfortablen Reisebus",
+            "Gruppenbegleitung",
+            "Führung mit lokalem Guide (3,5 Std.)"
+          ],
+          "extrasNote": [
+            "Boot vom Markusplatz zum Bus (~12,50 – 15 €)",
+            "Mittagessen und persönliche Ausgaben",
+            "Reiseversicherung"
+          ],
+          "bookingNote": "Buchung und Infos: +421 951 287 892, Vitalij.",
+          "tags": "Venedig, Tagesausflug, Italien, ab der Slowakei",
+          "faq": [
+            { "q": "Wann ist die Abfahrt?", "a": "Abfahrt ab Trenčín um 03:00 mit Zustiegen unterwegs; Ankunft in Venedig gegen 12:00." },
+            { "q": "Was ist inklusive und was kommt hinzu?", "a": "Inklusive sind Fahrt und Führung mit lokalem Guide. Separat: Boot im Hafen (~12,50 – 15 €), Mittagessen und Versicherung." },
+            { "q": "Wie reserviere ich einen Platz?", "a": "Telefonisch unter +421 951 287 892 (Vitalij)." }
+          ]
+        },
+        "en": {
+          "name": "Venice",
+          "headline": "Venice in a day: how does the trip from Slovakia work?",
+          "description": "A one-day trip to one of the world's most romantic cities. A guided tour with a local guide, free time along the canals and lanes, and back home in the evening.",
+          "audience": [
+            "You want to see Venice without a multi-day tour",
+            "You love canals, bridges and the atmosphere of old palaces",
+            "You want a guided tour plus free time for photos and strolling"
+          ],
+          "itinerary": [
+            "03:00 — Departure from Trenčín. Pickups: Dubnica nad Váhom, Nové Mesto nad Váhom, Myjava, Trnava, Bratislava",
+            "~12:00 — Arrival in Venice",
+            "Guided tour — with a professional local guide (3.5 hours)",
+            "Free time — 2 hours for strolling, photos, shopping or lunch",
+            "After the programme — from St Mark's Square by boat to the coach at the port (boat ~€12.50–15 per person, paid separately)",
+            "17:00–17:30 — Departure back to Slovakia"
+          ],
+          "included": [
+            "Return trip on a comfortable coach",
+            "Group escort",
+            "Guided tour with a local guide (3.5 h)"
+          ],
+          "extrasNote": [
+            "Boat from St Mark's Square to the coach (~€12.50–15)",
+            "Lunch and personal expenses",
+            "Travel insurance"
+          ],
+          "bookingNote": "Bookings and info: +421 951 287 892, Vitaliy.",
+          "tags": "Venice, one-day trip, Italy, from Slovakia",
+          "faq": [
+            { "q": "What time is departure?", "a": "Departure from Trenčín at 03:00 with pickups en route; arrival in Venice around 12:00." },
+            { "q": "What's included and what costs extra?", "a": "The price covers the trip and the guided tour. You pay separately for the boat at the port (~€12.50–15), lunch and insurance." },
+            { "q": "How do I book a seat?", "a": "By phone at +421 951 287 892 (Vitaliy)." }
+          ]
+        },
+        "ru": {
+          "name": "Венеция",
+          "headline": "Венеция за один день: как проходит поездка из Словакии?",
+          "description": "Однодневная поездка в один из самых романтичных городов мира. Экскурсия с местным гидом, свободное время у каналов и переулков — и вечером домой.",
+          "audience": [
+            "Хотите увидеть Венецию без многодневного тура",
+            "Любите каналы, мосты и атмосферу старинных дворцов",
+            "Хотите и экскурсию, и свободное время для фото и прогулок"
+          ],
+          "itinerary": [
+            "03:00 — Выезд из Тренчина. Посадки: Дубница-над-Вагом, Нове-Место-над-Вагом, Мьява, Трнава, Братислава",
+            "~12:00 — Прибытие в Венецию",
+            "Экскурсия — с профессиональным местным гидом (3,5 часа)",
+            "Свободное время — 2 часа на прогулки, фото, шопинг или обед",
+            "После программы — от площади Святого Марка катером к автобусу в порту (катер ~12,50–15 € с человека, оплата отдельно)",
+            "17:00–17:30 — Отправление обратно в Словакию"
+          ],
+          "included": [
+            "Проезд туда и обратно на комфортном автобусе",
+            "Сопровождение группы",
+            "Экскурсия с местным гидом (3,5 ч)"
+          ],
+          "extrasNote": [
+            "Катер от площади Святого Марка к автобусу (~12,50–15 €)",
+            "Обед и личные расходы",
+            "Туристическая страховка"
+          ],
+          "bookingNote": "Бронирование и информация: +421 951 287 892, Виталий.",
+          "tags": "Венеция, однодневная поездка, Италия, из Словакии",
+          "faq": [
+            { "q": "Во сколько выезд?", "a": "Выезд из Тренчина в 03:00 с посадками по пути; прибытие в Венецию около 12:00." },
+            { "q": "Что входит в стоимость, а что оплачивается отдельно?", "a": "В стоимость входит проезд и экскурсия с местным гидом. Отдельно — катер в порту (~12,50–15 €), обед и страховка." },
+            { "q": "Как забронировать место?", "a": "По телефону +421 951 287 892 (Виталий)." }
+          ]
+        },
+        "uk": {
+          "name": "Венеція",
+          "headline": "Венеція за один день: як проходить подорож зі Словаччини?",
+          "description": "Одноденна подорож до одного з найромантичніших міст світу. Екскурсія з місцевим гідом, вільний час серед каналів і вуличок — і ввечері додому.",
+          "audience": [
+            "Хочете побачити Венецію без багатоденного туру",
+            "Любите канали, мости й атмосферу старовинних палаців",
+            "Хочете і екскурсію, і вільний час для фото та прогулянок"
+          ],
+          "itinerary": [
+            "03:00 — Виїзд із Тренчина. Посадки: Дубниця-над-Вагом, Нове Место-над-Вагом, Мʼява, Трнава, Братислава",
+            "~12:00 — Прибуття до Венеції",
+            "Екскурсія — з професійним місцевим гідом (3,5 години)",
+            "Вільний час — 2 години на прогулянки, фото, шопінг або обід",
+            "Після програми — від площі Святого Марка катером до автобуса в порту (катер ~12,50–15 € з особи, оплата окремо)",
+            "17:00–17:30 — Відправлення назад до Словаччини"
+          ],
+          "included": [
+            "Проїзд туди й назад комфортним автобусом",
+            "Супровід групи",
+            "Екскурсія з місцевим гідом (3,5 год)"
+          ],
+          "extrasNote": [
+            "Катер від площі Святого Марка до автобуса (~12,50–15 €)",
+            "Обід та особисті витрати",
+            "Туристичне страхування"
+          ],
+          "bookingNote": "Бронювання та інформація: +421 951 287 892, Віталій.",
+          "tags": "Венеція, одноденна подорож, Італія, зі Словаччини",
+          "faq": [
+            { "q": "О котрій виїзд?", "a": "Виїзд із Тренчина о 03:00 з посадками по дорозі; прибуття до Венеції близько 12:00." },
+            { "q": "Що входить у вартість, а що оплачується окремо?", "a": "У вартість входить проїзд і екскурсія з місцевим гідом. Окремо — катер у порту (~12,50–15 €), обід і страхування." },
+            { "q": "Як забронювати місце?", "a": "За телефоном +421 951 287 892 (Віталій)." }
+          ]
+        }
+      }
+    },
+    {
+      "slug": "saske-svajciarsko",
+      "departureDate": "2026-10-03",
+      "priceAdult": 150,
+      "priceChild": 140,
+      "prepayment": 50,
+      "bookingPhone": "+421 915 448 386",
+      "seatsTotal": null,
+      "translations": {
+        "sk": {
+          "name": "Saské Švajčiarsko",
+          "headline": "Saské Švajčiarsko autobusom: čo zahŕňa jednodňový zájazd z Trenčína?",
+          "description": "Saské Švajčiarsko je pocit Álp bez náročných výstupov — krátke vzdialenosti, značené chodníky a mierne prevýšenia. Za jeden deň uvidíte most Bastei, zrúcaninu Neurathen a prejdete sa popri Labe.",
+          "audience": [
+            "Chcete uniknúť mestskému zhonu a hluku",
+            "Túžite po kráse prírody, ale bez náročných výstupov",
+            "Hľadáte atmosféru Álp, no dostupnejšiu: krátke trasy, ľahké chodníky, mierne prevýšenia",
+            "Chcete si užiť dobrú spoločnosť a jesenné scenérie pestrofarebných lesov"
+          ],
+          "itinerary": [
+            "03:30 — Odchod z Trenčína. Nástup v Dubnici nad Váhom, Novom Meste nad Váhom a Trnave",
+            "05:00 — Odchod z Bratislavy",
+            "~5,5 h — Cesta so zelenými zastávkami",
+            "11:30 — Príchod do dediny pri Drážďanoch, prechádzka lesom a mierny výstup k mostu Bastei",
+            "Deň — Prehliadka zrúcaniny Neurathen a výhľady z vyhliadky",
+            "Obed — Tradičné nemecké jedlá regiónu (na vlastné náklady)",
+            "Popoludnie — Prechádzka popri rieke Labe",
+            "16:30 — Návrat na Slovensko",
+            "22:00 — Príchod do Bratislavy",
+            "23:30 — Príchod do Trenčína"
+          ],
+          "included": [
+            "Doprava tam aj späť pohodlným autobusom",
+            "Sprievod skupiny",
+            "Zastávky počas trasy"
+          ],
+          "extrasNote": [
+            "Vstupné do národného parku (približne 5 – 8 €)",
+            "Obed a osobné výdavky",
+            "Cestovné poistenie"
+          ],
+          "bookingNote": "Miesto rezervuje záloha 50 € a predbežné prihlásenie. Rezervácie: +421 915 448 386, Tetiana.",
+          "tags": "autobusový zájazd, Saské Švajčiarsko, Bastei, jednodňový výlet, z Trenčína",
+          "faq": [
+            { "q": "O koľkej je odchod a návrat?", "a": "Odchod z Trenčína o 03:30, z Bratislavy o 05:00. Návrat do Bratislavy okolo 22:00, do Trenčína okolo 23:30." },
+            { "q": "Aké náročné sú chodníky?", "a": "Chodníky sú ľahké a značené, prevýšenia mierne — zvládne ich väčšina bez prípravy." },
+            { "q": "Ako si rezervovať miesto?", "a": "Zálohou 50 € a prihlásením na tel. +421 915 448 386 (Tetiana)." }
+          ]
+        },
+        "de": {
+          "name": "Sächsische Schweiz",
+          "headline": "Sächsische Schweiz mit dem Bus: Was bietet der Tagesausflug ab Trenčín?",
+          "description": "Die Sächsische Schweiz fühlt sich an wie die Alpen – ohne anstrengende Aufstiege: kurze Wege, markierte Pfade, moderate Höhen. An einem Tag sehen Sie die Basteibrücke, die Ruine Neurathen und spazieren an der Elbe.",
+          "audience": [
+            "Sie möchten dem Lärm und der Hektik der Stadt entfliehen",
+            "Sie wollen die Natur genießen, ohne anstrengende Aufstiege",
+            "Sie suchen Alpen-Feeling, aber zugänglicher: kurze Strecken, leichte Wege, moderate Höhen",
+            "Sie freuen sich auf gute Gesellschaft und herbstliche Landschaften bunter Wälder"
+          ],
+          "itinerary": [
+            "03:30 — Abfahrt ab Trenčín. Zustieg in Dubnica nad Váhom, Nové Mesto nad Váhom und Trnava",
+            "05:00 — Abfahrt ab Bratislava",
+            "~5,5 Std. — Fahrt mit kurzen Pausen",
+            "11:30 — Ankunft in einem Dorf bei Dresden, Waldspaziergang und moderater Aufstieg zur Basteibrücke",
+            "Tag — Besichtigung der Ruine Neurathen und Ausblicke von der Aussichtsplattform",
+            "Mittag — Traditionelle deutsche Gerichte der Region (auf eigene Kosten)",
+            "Nachmittag — Spaziergang entlang der Elbe",
+            "16:30 — Rückreise in die Slowakei",
+            "22:00 — Ankunft in Bratislava",
+            "23:30 — Ankunft in Trenčín"
+          ],
+          "included": [
+            "Hin- und Rückfahrt im komfortablen Reisebus",
+            "Gruppenbegleitung",
+            "Zwischenstopps entlang der Route"
+          ],
+          "extrasNote": [
+            "Eintritt in den Nationalpark (ca. 5 – 8 €)",
+            "Mittagessen und persönliche Ausgaben",
+            "Reiseversicherung"
+          ],
+          "bookingNote": "Eine Anzahlung von 50 € und eine Voranmeldung sichern Ihren Platz. Buchung: +421 915 448 386, Tetiana.",
+          "tags": "Busreise, Sächsische Schweiz, Bastei, Tagesausflug, ab Trenčín",
+          "faq": [
+            { "q": "Wann sind Abfahrt und Rückkehr?", "a": "Abfahrt ab Trenčín um 03:30, ab Bratislava um 05:00. Rückkehr nach Bratislava gegen 22:00, nach Trenčín gegen 23:30." },
+            { "q": "Wie anspruchsvoll sind die Wege?", "a": "Die Wege sind leicht und markiert, die Höhenunterschiede moderat – für die meisten ohne Vorbereitung machbar." },
+            { "q": "Wie reserviere ich einen Platz?", "a": "Mit 50 € Anzahlung und Voranmeldung unter +421 915 448 386 (Tetiana)." }
+          ]
+        },
+        "en": {
+          "name": "Saxon Switzerland",
+          "headline": "Saxon Switzerland by bus: what's included in the one-day tour from Trenčín?",
+          "description": "Saxon Switzerland feels like the Alps — without the hard climbs: short distances, marked trails and gentle elevation. In a single day you'll see the Bastei bridge, the Neurathen ruins and stroll along the Elbe.",
+          "audience": [
+            "You want to escape the noise and rush of the city",
+            "You want nature's beauty without demanding climbs",
+            "You're after an Alpine feel, but more accessible: short distances, easy trails, gentle elevation",
+            "You're looking forward to good company and autumn scenery of colourful forests"
+          ],
+          "itinerary": [
+            "03:30 — Departure from Trenčín. Pickups in Dubnica nad Váhom, Nové Mesto nad Váhom and Trnava",
+            "05:00 — Departure from Bratislava",
+            "~5.5 h — On the road with short breaks",
+            "11:30 — Arrival at a village near Dresden, a forest walk and gentle climb to the Bastei bridge",
+            "Day — Visit to the Neurathen ruins and views from the lookout",
+            "Lunch — Traditional German dishes of the region (at your own cost)",
+            "Afternoon — A walk along the Elbe",
+            "16:30 — Heading back to Slovakia",
+            "22:00 — Arrival in Bratislava",
+            "23:30 — Arrival in Trenčín"
+          ],
+          "included": [
+            "Return trip on a comfortable coach",
+            "Group escort",
+            "Stops along the route"
+          ],
+          "extrasNote": [
+            "National park entry (about €5–8)",
+            "Lunch and personal expenses",
+            "Travel insurance"
+          ],
+          "bookingNote": "A €50 deposit and advance registration secure your seat. Bookings: +421 915 448 386, Tetiana.",
+          "tags": "bus tour, Saxon Switzerland, Bastei, one-day trip, from Trenčín",
+          "faq": [
+            { "q": "What time is departure and return?", "a": "Departure from Trenčín at 03:30, from Bratislava at 05:00. Return to Bratislava around 22:00, to Trenčín around 23:30." },
+            { "q": "How hard are the trails?", "a": "The trails are easy and marked, with gentle elevation — manageable for most without special preparation." },
+            { "q": "How do I book a seat?", "a": "With a €50 deposit and advance registration at +421 915 448 386 (Tetiana)." }
+          ]
+        },
+        "ru": {
+          "name": "Саксонская Швейцария",
+          "headline": "Саксонская Швейцария на автобусе: что входит в однодневный тур из Тренчина?",
+          "description": "Саксонская Швейцария — ощущение Альп без изнурительных подъёмов: короткие расстояния, размеченные тропы, умеренные перепады. За день вы увидите мост Бастай, руины Нойратен и прогуляетесь вдоль Эльбы.",
+          "audience": [
+            "Хотите сбежать от городской суеты и шума",
+            "Хотите красоту природы, но без сложных подъёмов",
+            "Ищете атмосферу Альп, но доступнее: короткие расстояния, лёгкие тропы, умеренные перепады",
+            "Хотите приятную компанию и осенние пейзажи разноцветных лесов"
+          ],
+          "itinerary": [
+            "03:30 — Выезд из Тренчина. Забираем из Дубницы-над-Вагом, Нове-Место-над-Вагом и Трнавы",
+            "05:00 — Выезд из Братиславы",
+            "~5,5 ч — Дорога с «зелёными» остановками",
+            "11:30 — Приезд в село под Дрезденом, прогулка лесом и умеренный подъём к мосту Бастай",
+            "День — Осмотр руин Нойратен и виды со смотровой площадки",
+            "Обед — Традиционные немецкие блюда региона (за свой счёт)",
+            "После обеда — Прогулка вдоль Эльбы",
+            "16:30 — Выезжаем обратно в Словакию",
+            "22:00 — Приезд в Братиславу",
+            "23:30 — Приезд в Тренчин"
+          ],
+          "included": [
+            "Проезд туда и обратно на комфортном автобусе",
+            "Сопровождение группы",
+            "Остановки по маршруту"
+          ],
+          "extrasNote": [
+            "Входной билет в национальный парк (примерно 5–8 €)",
+            "Обед и личные расходы",
+            "Туристическая страховка"
+          ],
+          "bookingNote": "Место закрепляет предоплата 50 € и предварительная запись. Бронирование: +421 915 448 386, Татьяна.",
+          "tags": "автобусный тур, Саксонская Швейцария, Бастай, однодневный тур, из Тренчина",
+          "faq": [
+            { "q": "Во сколько выезд и возвращение?", "a": "Выезд из Тренчина в 03:30, из Братиславы в 05:00. Возвращение в Братиславу около 22:00, в Тренчин около 23:30." },
+            { "q": "Насколько сложные тропы?", "a": "Тропы лёгкие и размеченные, перепады умеренные — по силам большинству без подготовки." },
+            { "q": "Как забронировать место?", "a": "Предоплатой 50 € и записью по тел. +421 915 448 386 (Татьяна)." }
+          ]
+        },
+        "uk": {
+          "name": "Саксонська Швейцарія",
+          "headline": "Саксонська Швейцарія автобусом: що входить в одноденний тур із Тренчина?",
+          "description": "Саксонська Швейцарія — це відчуття Альп без виснажливих підйомів: короткі відстані, марковані стежки, помірні перепади. За день ви побачите міст Бастай, руїни Нойратен і прогуляєтеся вздовж Ельби.",
+          "audience": [
+            "Хочете втекти від міської метушні та шуму",
+            "Прагнете краси природи, але без складних підйомів",
+            "Шукаєте атмосферу Альп, але доступнішу: короткі відстані, легкі стежки, помірні перепади",
+            "Бажаєте приємну компанію та осінні краєвиди різнобарвних лісів"
+          ],
+          "itinerary": [
+            "03:30 — Виїзд із Тренчина. Забираємо з Дубниці над Вагом, Нового Места над Вагом і Трнави",
+            "05:00 — Виїзд із Братислави",
+            "~5,5 год — Дорога із зеленими зупинками",
+            "11:30 — Приїзд до села поблизу Дрездена, прогулянка лісом і помірний підйом до мосту Бастай",
+            "День — Огляд руїн Нойратен і краєвиди з оглядового майданчика",
+            "Обід — Традиційні німецькі страви регіону (за власний кошт)",
+            "Пообіддя — Прогулянка вздовж Ельби",
+            "16:30 — Вирушаємо назад до Словаччини",
+            "22:00 — Приїзд до Братислави",
+            "23:30 — Приїзд до Тренчина"
+          ],
+          "included": [
+            "Проїзд туди й назад комфортним автобусом",
+            "Супровід групи",
+            "Зупинки за маршрутом"
+          ],
+          "extrasNote": [
+            "Вхідний квиток до національного парку (орієнтовно 5–8 €)",
+            "Обід та особисті витрати",
+            "Туристичне страхування"
+          ],
+          "bookingNote": "Місце закріплює передоплата 50 € та попередній запис. Бронювання: +421 915 448 386, Тетяна.",
+          "tags": "автобусний тур, Саксонська Швейцарія, Бастай, одноденний тур, із Тренчина",
+          "faq": [
+            { "q": "О котрій виїзд і повернення?", "a": "Виїзд із Тренчина о 03:30, із Братислави о 05:00. Повернення до Братислави близько 22:00, до Тренчина близько 23:30." },
+            { "q": "Наскільки складні стежки?", "a": "Стежки легкі й марковані, перепади помірні — під силу більшості без підготовки." },
+            { "q": "Як забронювати місце?", "a": "Передоплатою 50 € та записом за тел. +421 915 448 386 (Тетяна)." }
+          ]
+        }
+      }
+    },
+    {
+      "slug": "festival-tekvic-retz",
+      "departureDate": "2026-10-24",
+      "priceAdult": 82,
+      "priceChild": 77,
+      "prepayment": null,
+      "bookingPhone": "+421 915 448 386",
+      "seatsTotal": null,
+      "translations": {
+        "sk": {
+          "name": "Festival tekvíc v Retze",
+          "headline": "Festival tekvíc v rakúskom Retze: ako prebieha jednodňový zájazd?",
+          "description": "Jednodňový výlet na každoročný festival tekvíc do rakúskeho mestečka Retz, cez najstarší drevený veterný mlyn v Rakúsku a vinice.",
+          "audience": [
+            "Máte radi jesenné festivaly a atmosféru trhov",
+            "Chcete ochutnať a nakúpiť tekvicové produkty priamo od výrobcov",
+            "Hľadáte pohodový jednodňový výlet s peknými fotomiestami"
+          ],
+          "itinerary": [
+            "06:00 — Odchod z Trenčína. Nástup: Dubnica nad Váhom, Nové Mesto nad Váhom, Trnava",
+            "07:30 — Odchod z Bratislavy",
+            "~09:30 — Príchod k najstaršiemu drevenému mlynu v Rakúsku. Fotenie vo viniciach a pri mlyne",
+            "Presun — do mestečka Retz na festival",
+            "Festival — tekvice a produkty z tekvice (olej, semienka, nápoje), hudba, ochutnávky a nákupy"
+          ],
+          "included": [
+            "Doprava tam aj späť pohodlným autobusom",
+            "Sprievod skupiny",
+            "Zastávka pri mlyne a viniciach"
+          ],
+          "extrasNote": [
+            "Vstup na festival (približne 8 – 10 € dospelý, deti do 10 rokov zdarma)",
+            "Osobné výdavky a nákupy",
+            "Cestovné poistenie"
+          ],
+          "bookingNote": "Záloha a predbežné prihlásenie na tel. +421 915 448 386, Tetiana.",
+          "tags": "festival tekvíc, Retz, Rakúsko, jednodňový zájazd, jeseň",
+          "faq": [
+            { "q": "O koľkej je odchod?", "a": "Odchod z Trenčína o 06:00, z Bratislavy o 07:30; príchod k mlynu okolo 09:30." },
+            { "q": "Koľko stojí vstup na festival?", "a": "Vstup sa platí zvlášť, približne 8 – 10 € dospelý; deti do 10 rokov zdarma." },
+            { "q": "Ako si rezervovať miesto?", "a": "Zálohou a prihlásením na tel. +421 915 448 386 (Tetiana)." }
+          ]
+        },
+        "de": {
+          "name": "Kürbisfest in Retz",
+          "headline": "Kürbisfest im österreichischen Retz: Wie läuft der Tagesausflug ab?",
+          "description": "Ein Tagesausflug zum jährlichen Kürbisfest ins österreichische Städtchen Retz – vorbei an der ältesten hölzernen Windmühle Österreichs und den Weingärten.",
+          "audience": [
+            "Sie mögen Herbstfeste und Marktatmosphäre",
+            "Sie möchten Kürbisprodukte direkt vom Erzeuger probieren und kaufen",
+            "Sie suchen einen entspannten Tagesausflug mit schönen Fotostopps"
+          ],
+          "itinerary": [
+            "06:00 — Abfahrt ab Trenčín. Zustieg: Dubnica nad Váhom, Nové Mesto nad Váhom, Trnava",
+            "07:30 — Abfahrt ab Bratislava",
+            "~09:30 — Ankunft an der ältesten hölzernen Windmühle Österreichs. Fotos in den Weingärten und an der Mühle",
+            "Weiterfahrt — ins Städtchen Retz zum Fest",
+            "Fest — Kürbisse und Kürbisprodukte (Öl, Kerne, Getränke), Musik, Verkostungen und Einkäufe"
+          ],
+          "included": [
+            "Hin- und Rückfahrt im komfortablen Reisebus",
+            "Gruppenbegleitung",
+            "Stopp an der Mühle und den Weingärten"
+          ],
+          "extrasNote": [
+            "Eintritt zum Fest (ca. 8 – 10 € Erwachsene, Kinder bis 10 Jahre frei)",
+            "Persönliche Ausgaben und Einkäufe",
+            "Reiseversicherung"
+          ],
+          "bookingNote": "Anzahlung und Voranmeldung unter +421 915 448 386, Tetiana.",
+          "tags": "Kürbisfest, Retz, Österreich, Tagesausflug, Herbst",
+          "faq": [
+            { "q": "Wann ist die Abfahrt?", "a": "Abfahrt ab Trenčín um 06:00, ab Bratislava um 07:30; Ankunft an der Mühle gegen 09:30." },
+            { "q": "Was kostet der Eintritt zum Fest?", "a": "Der Eintritt wird separat gezahlt, ca. 8 – 10 € für Erwachsene; Kinder bis 10 Jahre frei." },
+            { "q": "Wie reserviere ich einen Platz?", "a": "Mit Anzahlung und Voranmeldung unter +421 915 448 386 (Tetiana)." }
+          ]
+        },
+        "en": {
+          "name": "Pumpkin Festival in Retz",
+          "headline": "Pumpkin Festival in Retz, Austria: how does the one-day trip work?",
+          "description": "A one-day trip to the annual pumpkin festival in the Austrian town of Retz — via the oldest wooden windmill in Austria and the vineyards.",
+          "audience": [
+            "You love autumn festivals and market atmosphere",
+            "You want to taste and buy pumpkin products straight from the makers",
+            "You're after an easy one-day trip with pretty photo stops"
+          ],
+          "itinerary": [
+            "06:00 — Departure from Trenčín. Pickups: Dubnica nad Váhom, Nové Mesto nad Váhom, Trnava",
+            "07:30 — Departure from Bratislava",
+            "~09:30 — Arrival at the oldest wooden windmill in Austria. Photos in the vineyards and by the mill",
+            "Transfer — to the town of Retz for the festival",
+            "Festival — pumpkins and pumpkin products (oil, seeds, drinks), music, tastings and shopping"
+          ],
+          "included": [
+            "Return trip on a comfortable coach",
+            "Group escort",
+            "Stop at the mill and the vineyards"
+          ],
+          "extrasNote": [
+            "Festival entry (about €8–10 adults, children under 10 free)",
+            "Personal expenses and shopping",
+            "Travel insurance"
+          ],
+          "bookingNote": "Deposit and advance registration at +421 915 448 386, Tetiana.",
+          "tags": "pumpkin festival, Retz, Austria, one-day trip, autumn",
+          "faq": [
+            { "q": "What time is departure?", "a": "Departure from Trenčín at 06:00, from Bratislava at 07:30; arrival at the mill around 09:30." },
+            { "q": "How much is festival entry?", "a": "Entry is paid separately, about €8–10 for adults; children under 10 are free." },
+            { "q": "How do I book a seat?", "a": "With a deposit and advance registration at +421 915 448 386 (Tetiana)." }
+          ]
+        },
+        "ru": {
+          "name": "Фестиваль тыквы в Реце",
+          "headline": "Фестиваль тыквы в австрийском Реце: как проходит однодневный тур?",
+          "description": "Однодневная поездка на ежегодный фестиваль тыквы в австрийский городок Рец — через старейшую деревянную мельницу Австрии и виноградники.",
+          "audience": [
+            "Любите осенние фестивали и атмосферу ярмарок",
+            "Хотите попробовать и купить тыквенные продукты прямо у производителей",
+            "Ищете лёгкую однодневную поездку с красивыми местами для фото"
+          ],
+          "itinerary": [
+            "06:00 — Выезд из Тренчина. Посадки: Дубница-над-Вагом, Нове-Место-над-Вагом, Трнава",
+            "07:30 — Выезд из Братиславы",
+            "~09:30 — Приезд к старейшей деревянной мельнице Австрии. Фото в виноградниках и у мельницы",
+            "Переезд — в городок Рец на фестиваль",
+            "Фестиваль — тыквы и продукты из тыквы (масло, семечки, напитки), музыка, дегустации и покупки"
+          ],
+          "included": [
+            "Проезд туда и обратно на комфортном автобусе",
+            "Сопровождение группы",
+            "Остановка у мельницы и виноградников"
+          ],
+          "extrasNote": [
+            "Вход на фестиваль (примерно 8–10 € взрослый, дети до 10 лет бесплатно)",
+            "Личные расходы и покупки",
+            "Туристическая страховка"
+          ],
+          "bookingNote": "Предоплата и предварительная запись по тел. +421 915 448 386, Татьяна.",
+          "tags": "фестиваль тыквы, Рец, Австрия, однодневный тур, осень",
+          "faq": [
+            { "q": "Во сколько выезд?", "a": "Выезд из Тренчина в 06:00, из Братиславы в 07:30; приезд к мельнице около 09:30." },
+            { "q": "Сколько стоит вход на фестиваль?", "a": "Вход оплачивается отдельно, примерно 8–10 € взрослый; дети до 10 лет бесплатно." },
+            { "q": "Как забронировать место?", "a": "Предоплатой и записью по тел. +421 915 448 386 (Татьяна)." }
+          ]
+        },
+        "uk": {
+          "name": "Фестиваль гарбузів у Реці",
+          "headline": "Фестиваль гарбузів в австрійському Реці: як проходить одноденний тур?",
+          "description": "Одноденна подорож на щорічний фестиваль гарбузів до австрійського містечка Рец — через найстаріший дерев'яний млин Австрії та виноградники.",
+          "audience": [
+            "Любите осінні фестивалі та атмосферу ярмарків",
+            "Хочете скуштувати й купити гарбузові продукти прямо у виробників",
+            "Шукаєте легку одноденну подорож із гарними місцями для фото"
+          ],
+          "itinerary": [
+            "06:00 — Виїзд із Тренчина. Посадки: Дубниця-над-Вагом, Нове Место-над-Вагом, Трнава",
+            "07:30 — Виїзд із Братислави",
+            "~09:30 — Приїзд до найстарішого дерев'яного млина Австрії. Фото у виноградниках і біля млина",
+            "Переїзд — до містечка Рец на фестиваль",
+            "Фестиваль — гарбузи та продукти з гарбуза (олія, насіння, напої), музика, дегустації та покупки"
+          ],
+          "included": [
+            "Проїзд туди й назад комфортним автобусом",
+            "Супровід групи",
+            "Зупинка біля млина та виноградників"
+          ],
+          "extrasNote": [
+            "Вхід на фестиваль (орієнтовно 8–10 € дорослий, діти до 10 років безкоштовно)",
+            "Особисті витрати та покупки",
+            "Туристичне страхування"
+          ],
+          "bookingNote": "Передоплата та попередній запис за тел. +421 915 448 386, Тетяна.",
+          "tags": "фестиваль гарбузів, Рец, Австрія, одноденний тур, осінь",
+          "faq": [
+            { "q": "О котрій виїзд?", "a": "Виїзд із Тренчина о 06:00, із Братислави о 07:30; приїзд до млина близько 09:30." },
+            { "q": "Скільки коштує вхід на фестиваль?", "a": "Вхід оплачується окремо, орієнтовно 8–10 € дорослий; діти до 10 років безкоштовно." },
+            { "q": "Як забронювати місце?", "a": "Передоплатою та записом за тел. +421 915 448 386 (Тетяна)." }
+          ]
+        }
+      }
+    }
+  ]
+}

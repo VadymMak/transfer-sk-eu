@@ -60,6 +60,7 @@ model Store {
   digitalProducts  DigitalProduct[]
   heroConfig       HeroConfig?
   legalConfig      LegalConfig?
+  trips            Trip[]
 }
 
 enum Vertical {
@@ -613,6 +614,82 @@ model AdminUser {
   storeId      String
 
   createdAt DateTime @default(now())
+}
+
+// ============ TRIP ============
+
+model Trip {
+  id           String    @id @default(cuid())
+  storeId      String
+  store        Store     @relation(fields: [storeId], references: [id])
+  slug         String
+  coverImage   String?
+  dateStart    DateTime
+  dateEnd      DateTime?
+  price        Float
+  priceChild   Float?
+  currency     String    @default("EUR")
+  maxSeats     Int?
+  bookedSeats  Int       @default(0)
+  active       Boolean   @default(true)
+  sortOrder    Int       @default(0)
+  prepayment   Int?
+  bookingPhone String?
+  seatsTotal   Int?
+  readMinutes  Int?
+
+  translations  TripTranslation[]
+  galleryImages TripGalleryImage[]
+  videos        TripVideo[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([storeId, slug])
+  @@index([storeId, active])
+  @@index([storeId, dateStart])
+}
+
+model TripTranslation {
+  id          String  @id @default(cuid())
+  tripId      String
+  trip        Trip    @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  locale      String
+  name        String
+  description String?
+  itinerary   String?
+  headline    String?
+  audience    String?
+  included    String?
+  extrasNote  String?
+  bookingNote String?
+  tags        String?
+  faq         Json?
+
+  @@unique([tripId, locale])
+}
+
+model TripGalleryImage {
+  id        String @id @default(cuid())
+  tripId    String
+  trip      Trip   @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  url       String
+  alt       String?
+  sortOrder Int    @default(0)
+
+  @@index([tripId])
+}
+
+model TripVideo {
+  id        String  @id @default(cuid())
+  tripId    String
+  trip      Trip    @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  url       String
+  poster    String?
+  caption   String?
+  sortOrder Int     @default(0)
+
+  @@index([tripId])
 }
 
 // ============ RAG KNOWLEDGE BASE ============

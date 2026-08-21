@@ -392,7 +392,10 @@
     "chip1Tip": "Bratislava, Vienna, Budapest, Prague — fixed prices",
     "chip2Tip": "Croatia, Italy, Slovenia — with a guide",
     "chip3Tip": "Furniture, belongings, moving help",
-    "chip4Tip": "Minivan (5) or bus (8 seats)"
+    "chip4Tip": "Minivan (5) or bus (8 seats)",
+    "closestTripsTitle": "Upcoming tours",
+    "more": "Details",
+    "fromPrice": "from {price} €"
   },
   "menuCategories": {
     "tagline": "— OUR MENU —",
@@ -792,5 +795,45 @@
     "whatsapp": "Continue on WhatsApp",
     "send": "Send",
     "error": "Sorry, please try again or message us on WhatsApp."
+  },
+  "breadcrumbs": {
+    "home": "Home"
+  },
+  "trips": {
+    "pageTitle": "Bus Tours",
+    "pageDescription": "Discover our group bus tours with comfortable transfers from Slovakia.",
+    "sectionTitle": "Upcoming Bus Tours",
+    "sectionSubtitle": "Travel comfortably and safely with us",
+    "noTrips": "No bus tours are currently planned.",
+    "fromPrice": "from {price} {currency}",
+    "seatsLeft": "{n} seats left",
+    "allTripsBtn": "All Bus Tours",
+    "backToList": "Back to Bus Tours",
+    "backToHome": "Back to home",
+    "itineraryHeading": "Tour Itinerary"
+  },
+  "tripPage": {
+    "audienceTitle": "Who is this tour for?",
+    "programmeTitle": "How does the day unfold, hour by hour?",
+    "videosTitle": "What does it look like live?",
+    "galleryTitle": "Gallery",
+    "priceTitle": "How much and what costs extra?",
+    "faqTitle": "Questions & Answers",
+    "bookTitle": "Reserve your seat",
+    "nextDeparture": "Next departure",
+    "minRead": "min read",
+    "included": "Included",
+    "extra": "Extras",
+    "updated": "Updated",
+    "oneDay": "One-day tour",
+    "prepaymentNote": "deposit to reserve a seat",
+    "factsDate": "Departure date",
+    "factsDuration": "Duration",
+    "factsPrice": "Price from",
+    "factsFrom": "From",
+    "bookNow": "Book now",
+    "whatsapp": "WhatsApp",
+    "bookingWhatsAppText": "Hello! I'd like to book the tour: ",
+    "seatsLeft": "{n} seats left"
   }
 }

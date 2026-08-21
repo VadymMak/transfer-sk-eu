@@ -392,7 +392,10 @@
     "chip1Tip": "Bratislava, Viedeň, Budapešť, Praha — pevné ceny",
     "chip2Tip": "Chorvátsko, Taliansko, Slovinsko — so sprievodom",
     "chip3Tip": "Nábytok, veci, pomoc so sťahovaním",
-    "chip4Tip": "Minivan (5) alebo bus (8 miest)"
+    "chip4Tip": "Minivan (5) alebo bus (8 miest)",
+    "closestTripsTitle": "Najbližšie zájazdy",
+    "more": "Detail",
+    "fromPrice": "od {price} €"
   },
   "menuCategories": {
     "tagline": "— NAŠE MENU —",
@@ -796,5 +799,45 @@
     "whatsapp": "Pokračovať na WhatsApp",
     "send": "Odoslať",
     "error": "Prepáčte, skúste znova alebo napíšte na WhatsApp."
+  },
+  "breadcrumbs": {
+    "home": "Domov"
+  },
+  "trips": {
+    "pageTitle": "Autobusové zájazdy",
+    "pageDescription": "Objavte naše autobusové zájazdy s pohodlnou dopravou zo Slovenska.",
+    "sectionTitle": "Nadchádzajúce zájazdy",
+    "sectionSubtitle": "Cestujte s nami komfortne a bezpečne",
+    "noTrips": "Aktuálne nie sú naplánované žiadne zájazdy.",
+    "fromPrice": "od {price} {currency}",
+    "seatsLeft": "Zostáva {n} miest",
+    "allTripsBtn": "Všetky zájazdy",
+    "backToList": "Späť na zájazdy",
+    "backToHome": "Späť na hlavnú",
+    "itineraryHeading": "Program zájazdu"
+  },
+  "tripPage": {
+    "audienceTitle": "Pre koho je tento zájazd?",
+    "programmeTitle": "Ako prebieha deň, hodina po hodine?",
+    "videosTitle": "Ako to vyzerá naživo?",
+    "galleryTitle": "Galéria",
+    "priceTitle": "Koľko stojí a čo je navyše?",
+    "faqTitle": "Otázky a odpovede",
+    "bookTitle": "Rezervujte si miesto",
+    "nextDeparture": "Najbližší odjazd",
+    "minRead": "min čítania",
+    "included": "V cene",
+    "extra": "Príplatok",
+    "updated": "Aktualizované",
+    "oneDay": "Jednodňový zájazd",
+    "prepaymentNote": "záloha na rezerváciu",
+    "factsDate": "Dátum odjazdu",
+    "factsDuration": "Trvanie",
+    "factsPrice": "Cena od",
+    "factsFrom": "Z",
+    "bookNow": "Rezervovať",
+    "whatsapp": "WhatsApp",
+    "bookingWhatsAppText": "Dobrý deň! Chcem si rezervovať zájazd: ",
+    "seatsLeft": "Zostáva {n} miest"
   }
 }

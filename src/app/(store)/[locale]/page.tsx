@@ -1,7 +1,7 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { db } from '@/lib/db';
 import { getStoreConfig } from '@/lib/store-config';
-import HeroSection from '@/components/sections/HeroSection';
+import HeroSection, { type HeroTripCard } from '@/components/sections/HeroSection';
 import RoutesTicker from '@/components/sections/RoutesTicker';
 import DecorativeDivider from '@/components/ui/DecorativeDivider';
 import StatsBar from '@/components/sections/StatsBar';
@@ -15,6 +15,7 @@ import GallerySection from '@/components/sections/GallerySection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import FaqSection from '@/components/sections/FaqSection';
 import ContactSection from '@/components/sections/ContactSection';
+import UpcomingTripsSection from '@/components/sections/UpcomingTripsSection';
 
 export const revalidate = 60;
 
@@ -37,7 +38,7 @@ export default async function HomePage({
   const config = await getStoreConfig();
   const { presence, whatsappLinks } = config;
 
-  const [heroConfig, galleryImages, dbTestimonials, dbServices, dbFleet] = await Promise.all([
+  const [heroConfig, galleryImages, dbTestimonials, dbServices, dbFleet, upcomingTrips] = await Promise.all([
     db.heroConfig.findUnique({ where: { storeId: config.id } }),
     db.galleryImage.findMany({
       where: { storeId: config.id, active: true },
@@ -62,6 +63,16 @@ export default async function HomePage({
       orderBy: { sortOrder: 'asc' },
       select: { id: true, nameKey: true, description: true, image: true, metadata: true },
     }),
+    // Upcoming trips
+    db.trip.findMany({
+      where: { storeId: config.id, active: true, dateStart: { gte: new Date() } },
+      include: {
+        translations: { where: { locale: { in: [locale, 'sk'] } } },
+        galleryImages: { orderBy: { sortOrder: 'asc' }, take: 1 },
+      },
+      orderBy: { dateStart: 'asc' },
+      take: 3,
+    }),
   ]);
 
   // Resolve locale-aware names once — used by both RoutesTicker and RoutesSection
@@ -83,6 +94,17 @@ export default async function HomePage({
     ? Math.min(...mappedRoutes.map((r) => r.price))
     : null;
 
+  const heroTrips: HeroTripCard[] = upcomingTrips.slice(0, 2).map((trip) => {
+    const tr = trip.translations.find((t) => t.locale === locale) ?? trip.translations[0];
+    return {
+      slug: trip.slug,
+      name: tr?.name ?? trip.slug,
+      dateStart: trip.dateStart,
+      price: trip.price,
+      image: trip.coverImage ?? trip.galleryImages[0]?.url ?? null,
+    };
+  });
+
   return (
     <>
       <HeroSection
@@ -95,6 +117,7 @@ export default async function HomePage({
         whatsappBookingLink={whatsappLinks.booking}
         instagram={presence.instagram}
         minRoutePrice={minRoutePrice}
+        heroTrips={heroTrips}
       />
       <RoutesTicker
         routes={mappedRoutes}
@@ -116,6 +139,7 @@ export default async function HomePage({
       />
       <DecorativeDivider />
       <RoutesSection routes={mappedRoutes} />
+      <UpcomingTripsSection trips={upcomingTrips} locale={locale} />
       <FleetSection fleet={dbFleet} />
       <ServicesSection />
       <WhyUsSection city={presence.city} googleRating={presence.googleRating} address={presence.address} />

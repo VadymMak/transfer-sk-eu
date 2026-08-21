@@ -397,7 +397,10 @@
     "chip3Tip": "Мебель, вещи, помощь с переездом",
     "chip4Tip": "Минивэн (5) или бус (8 мест)",
     "priceAnchor": "от {price} € за трансфер",
-    "trustLine": "лицензия · фиксированная цена · 24/7"
+    "trustLine": "лицензия · фиксированная цена · 24/7",
+    "closestTripsTitle": "Ближайшие туры",
+    "more": "Подробнее",
+    "fromPrice": "от {price} €"
   },
   "menuCategories": {
     "tagline": "— НАШЕ МЕНЮ —",
@@ -802,5 +805,45 @@
     "whatsapp": "Продолжить в WhatsApp",
     "send": "Отправить",
     "error": "Извините, попробуйте снова или напишите в WhatsApp."
+  },
+  "breadcrumbs": {
+    "home": "Главная"
+  },
+  "trips": {
+    "pageTitle": "Автобусные туры",
+    "pageDescription": "Откройте для себя наши автобусные туры с комфортным трансфером из Словакии.",
+    "sectionTitle": "Ближайшие туры",
+    "sectionSubtitle": "Путешествуйте с нами комфортно и безопасно",
+    "noTrips": "На данный момент автобусных туров не запланировано.",
+    "fromPrice": "от {price} {currency}",
+    "seatsLeft": "Осталось {n} мест",
+    "allTripsBtn": "Все туры",
+    "backToList": "Назад к турам",
+    "backToHome": "На главную",
+    "itineraryHeading": "Программа тура"
+  },
+  "tripPage": {
+    "audienceTitle": "Для кого этот тур?",
+    "programmeTitle": "Как проходит день, час за часом?",
+    "videosTitle": "Как это выглядит вживую?",
+    "galleryTitle": "Галерея",
+    "priceTitle": "Сколько стоит и что дополнительно?",
+    "faqTitle": "Вопросы и ответы",
+    "bookTitle": "Забронировать место",
+    "nextDeparture": "Ближайший отъезд",
+    "minRead": "мин. чтения",
+    "included": "В стоимость включено",
+    "extra": "Доплата",
+    "updated": "Обновлено",
+    "oneDay": "Однодневный тур",
+    "prepaymentNote": "предоплата для бронирования",
+    "factsDate": "Дата отъезда",
+    "factsDuration": "Длительность",
+    "factsPrice": "Цена от",
+    "factsFrom": "Из",
+    "bookNow": "Забронировать",
+    "whatsapp": "WhatsApp",
+    "bookingWhatsAppText": "Здравствуйте! Хочу забронировать тур: ",
+    "seatsLeft": "Осталось {n} мест"
   }
 }
