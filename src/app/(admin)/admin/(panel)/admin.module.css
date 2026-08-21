@@ -8,10 +8,14 @@
   flex: 1;
   min-width: 0;
   background: #111111;
+  margin-left: 240px;
 }
 
 @media (max-width: 720px) {
   .shell {
     flex-direction: column;
+  }
+  .content {
+    margin-left: 0;
   }
 }
