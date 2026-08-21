@@ -392,7 +392,10 @@
     "chip1Tip": "Bratislava, Viedeň, Budapešť, Praha — pevné ceny",
     "chip2Tip": "Chorvátsko, Taliansko, Slovinsko — so sprievodom",
     "chip3Tip": "Nábytok, veci, pomoc so sťahovaním",
-    "chip4Tip": "Minivan (5) alebo bus (8 miest)"
+    "chip4Tip": "Minivan (5) alebo bus (8 miest)",
+    "closestTripsTitle": "Najbližšie zájazdy",
+    "more": "Detail",
+    "fromPrice": "od {price} €"
   },
   "menuCategories": {
     "tagline": "— NAŠE MENU —",
@@ -798,15 +801,15 @@
     "error": "Prepáčte, skúste znova alebo napíšte na WhatsApp."
   },
   "trips": {
-    "pageTitle": "Výlety a zájazdy",
-    "pageDescription": "Objavte naše skupinové výlety s pohodlnou dopravou zo Slovenska.",
-    "sectionTitle": "Nadchádzajúce výlety",
+    "pageTitle": "Autobusové zájazdy",
+    "pageDescription": "Objavte naše autobusové zájazdy s pohodlnou dopravou zo Slovenska.",
+    "sectionTitle": "Nadchádzajúce zájazdy",
     "sectionSubtitle": "Cestujte s nami komfortne a bezpečne",
-    "noTrips": "Aktuálne nie sú naplánované žiadne výlety.",
+    "noTrips": "Aktuálne nie sú naplánované žiadne zájazdy.",
     "fromPrice": "od {price} {currency}",
     "seatsLeft": "Zostáva {n} miest",
-    "allTripsBtn": "Všetky výlety",
-    "backToList": "Späť na výlety",
-    "itineraryHeading": "Program výletu"
+    "allTripsBtn": "Všetky zájazdy",
+    "backToList": "Späť na zájazdy",
+    "itineraryHeading": "Program zájazdu"
   }
 }

@@ -644,6 +644,115 @@ body::after {
   }
 }
 
+/* ===== HERO TRIP CARDS ===== */
+.hero-trips {
+  position: absolute;
+  right: clamp(12px, 3vw, 32px);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: min(300px, 34vw);
+  z-index: 3;
+}
+
+.hero-trips__head {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0 0 2px;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+.hero-trip-card {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+  background: var(--color-bg-card, #fff);
+  color: var(--color-text, #0D1A24);
+  border-radius: var(--radius-md, 10px);
+  padding: 9px;
+  box-shadow: 0 6px 20px rgba(13, 26, 36, 0.22);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.hero-trip-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(13, 26, 36, 0.30);
+}
+
+.hero-trip-card__img {
+  width: 72px;
+  height: 58px;
+  flex: 0 0 auto;
+  border-radius: 8px;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--color-primary, #1565C0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.hero-trip-card__body {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-trip-card__date {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-primary, #1565C0);
+}
+
+.hero-trip-card__name {
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 1px 0 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hero-trip-card__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.hero-trip-card__price {
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.hero-trip-card__go {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-gold-dark, #A9861B);
+}
+
+@media (max-width: 768px) {
+  .hero-trips {
+    position: static;
+    transform: none;
+    width: 100%;
+    margin-top: 18px;
+  }
+  .hero-trips__head {
+    color: var(--color-text, #0D1A24);
+    text-shadow: none;
+  }
+}
+
 /* ===== DECORATIVE DIVIDER ===== */
 .decorative-divider {
   display: flex;

@@ -392,7 +392,10 @@
     "chip1Tip": "Bratislava, Vienna, Budapest, Prague — fixed prices",
     "chip2Tip": "Croatia, Italy, Slovenia — with a guide",
     "chip3Tip": "Furniture, belongings, moving help",
-    "chip4Tip": "Minivan (5) or bus (8 seats)"
+    "chip4Tip": "Minivan (5) or bus (8 seats)",
+    "closestTripsTitle": "Upcoming tours",
+    "more": "Details",
+    "fromPrice": "from {price} €"
   },
   "menuCategories": {
     "tagline": "— OUR MENU —",
@@ -794,15 +797,15 @@
     "error": "Sorry, please try again or message us on WhatsApp."
   },
   "trips": {
-    "pageTitle": "Trips & Excursions",
-    "pageDescription": "Discover our group trips with comfortable transfers from Slovakia.",
-    "sectionTitle": "Upcoming Trips",
+    "pageTitle": "Bus Tours",
+    "pageDescription": "Discover our group bus tours with comfortable transfers from Slovakia.",
+    "sectionTitle": "Upcoming Bus Tours",
     "sectionSubtitle": "Travel comfortably and safely with us",
-    "noTrips": "No trips are currently planned.",
+    "noTrips": "No bus tours are currently planned.",
     "fromPrice": "from {price} {currency}",
     "seatsLeft": "{n} seats left",
-    "allTripsBtn": "All Trips",
-    "backToList": "Back to trips",
-    "itineraryHeading": "Trip Itinerary"
+    "allTripsBtn": "All Bus Tours",
+    "backToList": "Back to Bus Tours",
+    "itineraryHeading": "Tour Itinerary"
   }
 }

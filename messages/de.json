@@ -392,7 +392,10 @@
     "chip1Tip": "Bratislava, Wien, Budapest, Prag — Festpreise",
     "chip2Tip": "Kroatien, Italien, Slowenien — mit Begleitung",
     "chip3Tip": "Möbel, Gegenstände, Umzugshilfe",
-    "chip4Tip": "Minivan (5) oder Bus (8 Plätze)"
+    "chip4Tip": "Minivan (5) oder Bus (8 Plätze)",
+    "closestTripsTitle": "Nächste Reisen",
+    "more": "Mehr",
+    "fromPrice": "ab {price} €"
   },
   "menuCategories": {
     "tagline": "— UNSERE SPEISEKARTE —",
@@ -794,15 +797,15 @@
     "error": "Entschuldigung, bitte erneut versuchen oder WhatsApp."
   },
   "trips": {
-    "pageTitle": "Ausflüge & Reisen",
-    "pageDescription": "Entdecken Sie unsere Gruppenausflüge mit komfortablem Transfer aus der Slowakei.",
-    "sectionTitle": "Bevorstehende Ausflüge",
+    "pageTitle": "Busreisen",
+    "pageDescription": "Entdecken Sie unsere Gruppenreisen mit komfortablem Transfer aus der Slowakei.",
+    "sectionTitle": "Nächste Busreisen",
     "sectionSubtitle": "Reisen Sie komfortabel und sicher mit uns",
-    "noTrips": "Aktuell sind keine Ausflüge geplant.",
+    "noTrips": "Aktuell sind keine Busreisen geplant.",
     "fromPrice": "ab {price} {currency}",
     "seatsLeft": "{n} Plätze übrig",
-    "allTripsBtn": "Alle Ausflüge",
-    "backToList": "Zurück zu Ausflügen",
+    "allTripsBtn": "Alle Busreisen",
+    "backToList": "Zurück zu Busreisen",
     "itineraryHeading": "Reiseprogramm"
   }
 }

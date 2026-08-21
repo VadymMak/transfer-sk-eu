@@ -1,7 +1,7 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { db } from '@/lib/db';
 import { getStoreConfig } from '@/lib/store-config';
-import HeroSection from '@/components/sections/HeroSection';
+import HeroSection, { type HeroTripCard } from '@/components/sections/HeroSection';
 import RoutesTicker from '@/components/sections/RoutesTicker';
 import DecorativeDivider from '@/components/ui/DecorativeDivider';
 import StatsBar from '@/components/sections/StatsBar';
@@ -94,6 +94,17 @@ export default async function HomePage({
     ? Math.min(...mappedRoutes.map((r) => r.price))
     : null;
 
+  const heroTrips: HeroTripCard[] = upcomingTrips.slice(0, 2).map((trip) => {
+    const tr = trip.translations.find((t) => t.locale === locale) ?? trip.translations[0];
+    return {
+      slug: trip.slug,
+      name: tr?.name ?? trip.slug,
+      dateStart: trip.dateStart,
+      price: trip.price,
+      image: trip.coverImage ?? trip.galleryImages[0]?.url ?? null,
+    };
+  });
+
   return (
     <>
       <HeroSection
@@ -106,6 +117,7 @@ export default async function HomePage({
         whatsappBookingLink={whatsappLinks.booking}
         instagram={presence.instagram}
         minRoutePrice={minRoutePrice}
+        heroTrips={heroTrips}
       />
       <RoutesTicker
         routes={mappedRoutes}

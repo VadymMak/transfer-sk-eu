@@ -393,7 +393,10 @@
     "chip1Tip": "Bratislava, Vienna, Budapest, Prague — fixed prices",
     "chip2Tip": "Croatia, Italy, Slovenia — with a guide",
     "chip3Tip": "Furniture, belongings, moving help",
-    "chip4Tip": "Minivan (5) or bus (8 seats)"
+    "chip4Tip": "Minivan (5) or bus (8 seats)",
+    "closestTripsTitle": "Najbliższe wycieczki",
+    "more": "Szczegóły",
+    "fromPrice": "od {price} €"
   },
   "menuCategories": {
     "tagline": "— NASZE MENU —",
@@ -780,5 +783,17 @@
     "whatsapp": "Continue on WhatsApp",
     "send": "Send",
     "error": "Sorry, please try again or message us on WhatsApp."
+  },
+  "trips": {
+    "pageTitle": "Wycieczki autokarowe",
+    "pageDescription": "Odkryj nasze wycieczki grupowe z wygodnym transferem ze Słowacji.",
+    "sectionTitle": "Nadchodzące wycieczki",
+    "sectionSubtitle": "Podróżuj z nami wygodnie i bezpiecznie",
+    "noTrips": "Aktualnie nie ma zaplanowanych wycieczek autokarowych.",
+    "fromPrice": "od {price} {currency}",
+    "seatsLeft": "Pozostało {n} miejsc",
+    "allTripsBtn": "Wszystkie wycieczki",
+    "backToList": "Powrót do wycieczek",
+    "itineraryHeading": "Program wycieczki"
   }
 }
