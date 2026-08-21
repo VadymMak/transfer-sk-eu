@@ -800,6 +800,9 @@
     "send": "Odoslať",
     "error": "Prepáčte, skúste znova alebo napíšte na WhatsApp."
   },
+  "breadcrumbs": {
+    "home": "Domů"
+  },
   "trips": {
     "pageTitle": "Autobusové zájezdy",
     "pageDescription": "Objevte naše autobusové zájezdy s pohodlnou dopravou ze Slovenska.",

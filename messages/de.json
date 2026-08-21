@@ -796,6 +796,9 @@
     "send": "Senden",
     "error": "Entschuldigung, bitte erneut versuchen oder WhatsApp."
   },
+  "breadcrumbs": {
+    "home": "Startseite"
+  },
   "trips": {
     "pageTitle": "Busreisen",
     "pageDescription": "Entdecken Sie unsere Gruppenreisen mit komfortablem Transfer aus der Slowakei.",

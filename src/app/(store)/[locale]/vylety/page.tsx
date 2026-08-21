@@ -4,6 +4,7 @@ import { getBaseUrl } from '@/lib/url';
 import Image from 'next/image';
 import Link from 'next/link';
 import GoldDivider from '@/components/ui/GoldDivider';
+import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 
 const STORE_SLUG = process.env.STORE_SLUG ?? '';
 
@@ -24,6 +25,17 @@ export default async function VyletyPage({ params }: { params: Promise<{ locale:
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'trips' });
+  const tBc = await getTranslations({ locale, namespace: 'breadcrumbs' });
+  const baseUrl = getBaseUrl();
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: tBc('home'), item: `${baseUrl}/${locale}` },
+      { '@type': 'ListItem', position: 2, name: t('pageTitle'), item: `${baseUrl}/${locale}/vylety` },
+    ],
+  };
 
   const store = await db.store.findUnique({ where: { slug: STORE_SLUG }, select: { id: true } });
   const now = new Date();
@@ -44,7 +56,15 @@ export default async function VyletyPage({ params }: { params: Promise<{ locale:
 
   return (
     <main className="trips-page">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <div className="trips-page__inner">
+        <Breadcrumbs items={[
+          { label: tBc('home'), href: `/${locale}` },
+          { label: t('pageTitle') },
+        ]} />
         <div className="section-header">
           <h1 className="section-title">{t('pageTitle')}</h1>
           <GoldDivider />

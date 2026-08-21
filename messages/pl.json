@@ -784,6 +784,9 @@
     "send": "Send",
     "error": "Sorry, please try again or message us on WhatsApp."
   },
+  "breadcrumbs": {
+    "home": "Strona główna"
+  },
   "trips": {
     "pageTitle": "Wycieczki autokarowe",
     "pageDescription": "Odkryj nasze wycieczki grupowe z wygodnym transferem ze Słowacji.",

@@ -796,6 +796,9 @@
     "send": "Send",
     "error": "Sorry, please try again or message us on WhatsApp."
   },
+  "breadcrumbs": {
+    "home": "Home"
+  },
   "trips": {
     "pageTitle": "Bus Tours",
     "pageDescription": "Discover our group bus tours with comfortable transfers from Slovakia.",

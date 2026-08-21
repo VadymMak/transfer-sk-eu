@@ -4,6 +4,7 @@ import { db } from '@/lib/db';
 import { getBaseUrl } from '@/lib/url';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 
 const STORE_SLUG = process.env.STORE_SLUG ?? '';
 
@@ -42,6 +43,7 @@ export default async function TripDetailPage({
   const { locale, slug } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'trips' });
+  const tBc = await getTranslations({ locale, namespace: 'breadcrumbs' });
 
   const store = await db.store.findUnique({ where: { slug: STORE_SLUG }, select: { id: true } });
   if (!store) notFound();
@@ -65,6 +67,16 @@ export default async function TripDetailPage({
         day: 'numeric', month: 'long', year: 'numeric',
       })
     : null;
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: tBc('home'), item: `${baseUrl}/${locale}` },
+      { '@type': 'ListItem', position: 2, name: t('pageTitle'), item: `${baseUrl}/${locale}/vylety` },
+      { '@type': 'ListItem', position: 3, name: tr?.name, item: `${baseUrl}/${locale}/vylety/${slug}` },
+    ],
+  };
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -95,6 +107,10 @@ export default async function TripDetailPage({
     <main className={`trip-detail${trip.coverImage ? ' trip-detail--has-hero' : ''}`}>
       <script
         type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
@@ -113,6 +129,12 @@ export default async function TripDetailPage({
       )}
 
       <div className="trip-detail__inner">
+        <Breadcrumbs items={[
+          { label: tBc('home'), href: `/${locale}` },
+          { label: t('pageTitle'), href: `/${locale}/vylety` },
+          { label: tr?.name ?? slug },
+        ]} />
+
         <Link href={`/${locale}/vylety`} className="trip-detail__back">
           ← {t('backToList')}
         </Link>
