@@ -131,6 +131,35 @@ export default async function HeroSection({
           </p>
         </div>
 
+        {heroTrips.length > 0 && (
+          <div className="hero-trips">
+            <p className="hero-trips__head">{tHero('closestTripsTitle')}</p>
+            {heroTrips.map((t) => (
+              <Link
+                key={t.slug}
+                href={`/${locale}/vylety/${t.slug}`}
+                className="hero-trip-card"
+                aria-label={`${t.name} — ${tHero('closestTripsTitle')}`}
+              >
+                <span
+                  className="hero-trip-card__img"
+                  style={t.image ? { backgroundImage: `url(${t.image})` } : undefined}
+                >
+                  {!t.image && <span className="hero-trip-card__ph">🚌</span>}
+                </span>
+                <span className="hero-trip-card__body">
+                  <span className="hero-trip-card__date">{formatTripDate(t.dateStart, locale)}</span>
+                  <span className="hero-trip-card__name">{t.name}</span>
+                  <span className="hero-trip-card__row">
+                    <span className="hero-trip-card__price">{tHero('fromPrice', { price: t.price })}</span>
+                    <span className="hero-trip-card__go">{tHero('more')} →</span>
+                  </span>
+                </span>
+              </Link>
+            ))}
+          </div>
+        )}
+
         <div className="hero__image-wrap">
           {config?.imageUrl ? (
             <Image
@@ -152,35 +181,6 @@ export default async function HeroSection({
             </video>
           )}
           <div className="hero__overlay" />
-
-          {heroTrips.length > 0 && (
-            <div className="hero-trips">
-              <p className="hero-trips__head">{tHero('closestTripsTitle')}</p>
-              {heroTrips.map((t) => (
-                <Link
-                  key={t.slug}
-                  href={`/${locale}/vylety/${t.slug}`}
-                  className="hero-trip-card"
-                  aria-label={`${t.name} — ${tHero('closestTripsTitle')}`}
-                >
-                  <span
-                    className="hero-trip-card__img"
-                    style={t.image ? { backgroundImage: `url(${t.image})` } : undefined}
-                  >
-                    {!t.image && <span className="hero-trip-card__ph">🚌</span>}
-                  </span>
-                  <span className="hero-trip-card__body">
-                    <span className="hero-trip-card__date">{formatTripDate(t.dateStart, locale)}</span>
-                    <span className="hero-trip-card__name">{t.name}</span>
-                    <span className="hero-trip-card__row">
-                      <span className="hero-trip-card__price">{tHero('fromPrice', { price: t.price })}</span>
-                      <span className="hero-trip-card__go">{tHero('more')} →</span>
-                    </span>
-                  </span>
-                </Link>
-              ))}
-            </div>
-          )}
         </div>
       </div>
     </section>

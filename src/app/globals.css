@@ -647,14 +647,15 @@ body::after {
 /* ===== HERO TRIP CARDS ===== */
 .hero-trips {
   position: absolute;
-  right: clamp(12px, 3vw, 32px);
+  right: clamp(16px, 3vw, 40px);
   top: 50%;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  width: min(300px, 34vw);
-  z-index: 3;
+  gap: 12px;
+  width: clamp(300px, 26vw, 360px);
+  z-index: 4;
+  box-sizing: border-box;
 }
 
 .hero-trips__head {
@@ -673,12 +674,14 @@ body::after {
   align-items: center;
   text-decoration: none;
   cursor: pointer;
+  max-width: 100%;
   background: var(--color-bg-card, #fff);
   color: var(--color-text, #0D1A24);
   border-radius: var(--radius-md, 10px);
   padding: 9px;
   box-shadow: 0 6px 20px rgba(13, 26, 36, 0.22);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-sizing: border-box;
 }
 
 .hero-trip-card:hover {
@@ -687,8 +690,8 @@ body::after {
 }
 
 .hero-trip-card__img {
-  width: 72px;
-  height: 58px;
+  width: 84px;
+  height: 66px;
   flex: 0 0 auto;
   border-radius: 8px;
   background-size: cover;
@@ -713,13 +716,14 @@ body::after {
 }
 
 .hero-trip-card__name {
-  font-size: 0.92rem;
+  font-size: 0.98rem;
   font-weight: 700;
   line-height: 1.2;
   margin: 1px 0 3px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  min-width: 0;
 }
 
 .hero-trip-card__row {
@@ -730,7 +734,7 @@ body::after {
 }
 
 .hero-trip-card__price {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 800;
 }
 
@@ -745,11 +749,16 @@ body::after {
     position: static;
     transform: none;
     width: 100%;
+    max-width: 100%;
     margin-top: 18px;
   }
   .hero-trips__head {
     color: var(--color-text, #0D1A24);
     text-shadow: none;
+  }
+  .hero-trip-card {
+    width: 100%;
+    box-sizing: border-box;
   }
 }
 
