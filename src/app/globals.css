@@ -2620,6 +2620,7 @@ body::after {
 .trip-timeline__item { counter-increment: timeline-step; padding: 0.85rem 1rem 0.85rem 3.5rem; position: relative; border-left: 2px solid var(--color-border); margin-left: 1rem; color: var(--color-text-secondary); line-height: 1.6; }
 .trip-timeline__item:last-child { border-color: transparent; }
 .trip-timeline__item::before { content: counter(timeline-step); position: absolute; left: -1.1rem; top: 0.75rem; width: 2rem; height: 2rem; border-radius: 50%; background: var(--color-primary); color: #fff; font-weight: 700; font-size: 0.78rem; display: flex; align-items: center; justify-content: center; }
+.trip-timeline__time { font-weight: 700; color: var(--color-primary); margin-right: 0.5rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .trip-reels { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 0.5rem; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
 .trip-reel { flex-shrink: 0; width: 200px; scroll-snap-align: start; }
 .trip-reel video { width: 100%; border-radius: var(--radius-md, 8px); aspect-ratio: 9/16; object-fit: cover; background: #000; }

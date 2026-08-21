@@ -22,9 +22,25 @@ function parseFaq(raw: unknown): FaqItem[] {
   );
 }
 
+type ItineraryItem = { time: string; text: string };
+
 function splitLines(text: string | null | undefined): string[] {
   if (!text) return [];
-  return text.split('\n').map((s) => s.replace(/^[-•*\d.]+\s*/, '').trim()).filter(Boolean);
+  return text.split(/\r?\n/).map((s) => s.trim()).filter(Boolean);
+}
+
+function parseItinerary(text: string | null | undefined): ItineraryItem[] {
+  if (!text) return [];
+  return text.split(/\r?\n/)
+    .map((l) => l.trim())
+    .filter((l) => l.length > 0)
+    .map((line) => {
+      const em = line.indexOf('—');
+      if (em !== -1) return { time: line.slice(0, em).trim(), text: line.slice(em + 1).trim() };
+      const hy = line.indexOf(' - ');
+      if (hy !== -1) return { time: line.slice(0, hy).trim(), text: line.slice(hy + 3).trim() };
+      return { time: '', text: line };
+    });
 }
 
 export async function generateMetadata({
@@ -96,7 +112,7 @@ export default async function TripDetailPage({
   const tagList = tr?.tags ? tr.tags.split(',').map((s) => s.trim()).filter(Boolean) : [];
   const audienceLines = splitLines(tr?.audience);
   const includedLines = splitLines(tr?.included);
-  const itineraryLines = splitLines(tr?.itinerary);
+  const itineraryItems = parseItinerary(tr?.itinerary);
 
   const waPhone = trip.bookingPhone?.replace(/\D/g, '') ?? null;
 
@@ -262,12 +278,15 @@ export default async function TripDetailPage({
         )}
 
         {/* ── Programme / Timeline ── */}
-        {itineraryLines.length > 0 && (
+        {itineraryItems.length > 0 && (
           <section className="trip-section">
             <h2 className="trip-section__title">{tp('programmeTitle')}</h2>
             <ol className="trip-timeline">
-              {itineraryLines.map((step, i) => (
-                <li key={i} className="trip-timeline__item">{step}</li>
+              {itineraryItems.map((item, i) => (
+                <li key={i} className="trip-timeline__item">
+                  {item.time && <span className="trip-timeline__time">{item.time}</span>}
+                  {item.text}
+                </li>
               ))}
             </ol>
           </section>
