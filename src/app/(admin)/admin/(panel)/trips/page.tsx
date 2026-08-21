@@ -454,11 +454,11 @@ export default function AdminTripsPage() {
               />
             </div>
             <div className="booking__field" style={fieldStyle}>
-              <label>Headline / tagline ({activeLocaleTab.toUpperCase()})</label>
+              <label>{t.trips.headlineLabel} ({activeLocaleTab.toUpperCase()})</label>
               <input
                 value={trDraft.headline}
                 onChange={(e) => setTr('headline', e.target.value)}
-                placeholder="Krátky slogan pod nadpisom"
+                placeholder={t.trips.headlinePlaceholder}
               />
             </div>
             <div className="booking__field" style={fieldStyle}>
@@ -471,12 +471,12 @@ export default function AdminTripsPage() {
               />
             </div>
             <div className="booking__field" style={fieldStyle}>
-              <label>Pre koho je zájazd — Audience ({activeLocaleTab.toUpperCase()})</label>
+              <label>{t.trips.audienceLabel} ({activeLocaleTab.toUpperCase()})</label>
               <textarea
                 rows={3}
                 value={trDraft.audience}
                 onChange={(e) => setTr('audience', e.target.value)}
-                placeholder="Každý riadok = 1 bod"
+                placeholder={t.trips.audiencePlaceholder}
                 style={{ width: '100%', resize: 'vertical' }}
               />
             </div>
@@ -486,57 +486,59 @@ export default function AdminTripsPage() {
                 rows={5}
                 value={trDraft.itinerary}
                 onChange={(e) => setTr('itinerary', e.target.value)}
-                placeholder="Každý riadok = 1 krok programu"
+                placeholder={t.trips.itineraryPlaceholder}
                 style={{ width: '100%', resize: 'vertical' }}
               />
             </div>
             <div className="booking__field" style={fieldStyle}>
-              <label>V cene — Included ({activeLocaleTab.toUpperCase()})</label>
+              <label>{t.trips.includedLabel} ({activeLocaleTab.toUpperCase()})</label>
               <textarea
                 rows={3}
                 value={trDraft.included}
                 onChange={(e) => setTr('included', e.target.value)}
-                placeholder="Každý riadok = 1 položka"
+                placeholder={t.trips.includedPlaceholder}
                 style={{ width: '100%', resize: 'vertical' }}
               />
             </div>
             <div className="booking__field" style={fieldStyle}>
-              <label>Príplatky — Extras note ({activeLocaleTab.toUpperCase()})</label>
+              <label>{t.trips.extrasLabel} ({activeLocaleTab.toUpperCase()})</label>
               <textarea
                 rows={2}
                 value={trDraft.extrasNote}
                 onChange={(e) => setTr('extrasNote', e.target.value)}
+                placeholder={t.trips.extrasPlaceholder}
                 style={{ width: '100%', resize: 'vertical' }}
               />
             </div>
             <div className="booking__field" style={fieldStyle}>
-              <label>Poznámka k rezervácii — Booking note ({activeLocaleTab.toUpperCase()})</label>
+              <label>{t.trips.bookingNoteLabel} ({activeLocaleTab.toUpperCase()})</label>
               <textarea
                 rows={2}
                 value={trDraft.bookingNote}
                 onChange={(e) => setTr('bookingNote', e.target.value)}
+                placeholder={t.trips.bookingNotePlaceholder}
                 style={{ width: '100%', resize: 'vertical' }}
               />
             </div>
             <div className="booking__field" style={fieldStyle}>
-              <label>Tags ({activeLocaleTab.toUpperCase()}) — čiarkou oddelené</label>
+              <label>{t.trips.tagsLabel} ({activeLocaleTab.toUpperCase()})</label>
               <input
                 value={trDraft.tags}
                 onChange={(e) => setTr('tags', e.target.value)}
-                placeholder="Viedeň, 1 deň, rodiny"
+                placeholder={t.trips.tagsPlaceholder}
               />
             </div>
 
             {/* ── FAQ editor ── */}
             <div className="booking__field" style={fieldStyle}>
               <label style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span>FAQ ({activeLocaleTab.toUpperCase()})</span>
+                <span>{t.trips.faqLabel} ({activeLocaleTab.toUpperCase()})</span>
                 <button
                   type="button"
                   className="btn-outline btn-sm"
                   onClick={() => setTr('faq', [...trDraft.faq, { q: '', a: '' }])}
                 >
-                  + Pridať otázku
+                  {t.trips.addFaqBtn}
                 </button>
               </label>
               {trDraft.faq.map((item, idx) => (
@@ -559,7 +561,7 @@ export default function AdminTripsPage() {
                       updated[idx] = { ...updated[idx], q: e.target.value };
                       setTr('faq', updated);
                     }}
-                    placeholder="Otázka"
+                    placeholder={t.trips.faqQuestionPlaceholder}
                   />
                   <textarea
                     rows={2}
@@ -569,7 +571,7 @@ export default function AdminTripsPage() {
                       updated[idx] = { ...updated[idx], a: e.target.value };
                       setTr('faq', updated);
                     }}
-                    placeholder="Odpoveď"
+                    placeholder={t.trips.faqAnswerPlaceholder}
                     style={{ width: '100%', resize: 'vertical' }}
                   />
                 </div>
@@ -580,7 +582,7 @@ export default function AdminTripsPage() {
           {/* ── Global scalar fields ── */}
           <div style={{ marginTop: '1.5rem', borderTop: '1px solid var(--color-border)', paddingTop: '1.25rem' }}>
             <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-muted)', marginBottom: '1rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-              Globálne nastavenia
+              {t.trips.globalSettingsLabel}
             </p>
           </div>
           <div className="admin-services__form-grid">
@@ -602,7 +604,7 @@ export default function AdminTripsPage() {
               />
             </div>
             <div className="booking__field" style={halfStyle}>
-              <label>Cena dospelý (EUR) *</label>
+              <label>{t.trips.priceAdultLabel}</label>
               <input
                 type="number"
                 min="0"
@@ -613,18 +615,18 @@ export default function AdminTripsPage() {
               />
             </div>
             <div className="booking__field" style={halfStyle}>
-              <label>Cena dieťa (EUR)</label>
+              <label>{t.trips.priceChildLabel}</label>
               <input
                 type="number"
                 min="0"
                 step="0.01"
                 value={form.priceChild}
                 onChange={(e) => setForm((p) => ({ ...p, priceChild: e.target.value }))}
-                placeholder="voliteľné"
+                placeholder={t.trips.optional}
               />
             </div>
             <div className="booking__field" style={halfStyle}>
-              <label>Záloha / Prepayment (EUR)</label>
+              <label>{t.trips.prepaymentLabel}</label>
               <input
                 type="number"
                 min="0"
@@ -633,7 +635,7 @@ export default function AdminTripsPage() {
               />
             </div>
             <div className="booking__field" style={halfStyle}>
-              <label>Max miest (kapacita)</label>
+              <label>{t.trips.totalSeatsLabel}</label>
               <input
                 type="number"
                 min="1"
@@ -642,7 +644,7 @@ export default function AdminTripsPage() {
               />
             </div>
             <div className="booking__field" style={halfStyle}>
-              <label>Telefón / WhatsApp pre rezerváciu</label>
+              <label>{t.trips.bookingPhoneLabel}</label>
               <input
                 type="text"
                 value={form.bookingPhone}
@@ -651,7 +653,7 @@ export default function AdminTripsPage() {
               />
             </div>
             <div className="booking__field" style={halfStyle}>
-              <label>Čas čítania (minúty, voliteľné)</label>
+              <label>{t.trips.readMinutesLabel}</label>
               <input
                 type="number"
                 min="1"
@@ -750,7 +752,7 @@ export default function AdminTripsPage() {
           {editId && (
             <div style={{ marginTop: '1.5rem' }}>
               <label style={{ display: 'block', marginBottom: '0.75rem', color: 'var(--color-text-primary)', fontWeight: 500 }}>
-                Videá (reels) — max 25 MB · mp4 / webm
+                {t.trips.videosLabel}
               </label>
               {editVideos.length > 0 && (
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '0.75rem' }}>
@@ -775,7 +777,7 @@ export default function AdminTripsPage() {
               )}
               <input type="file" accept="video/mp4,video/webm,video/quicktime" ref={videoFileRef} onChange={handleVideoUpload} style={{ display: 'none' }} id="trip-video-upload" />
               <label htmlFor="trip-video-upload" className="btn-outline btn-sm" style={{ cursor: 'pointer' }}>
-                {uploadingVideo ? t.common.uploading : '+ Pridať video'}
+                {uploadingVideo ? t.common.uploading : t.trips.addVideoBtn}
               </label>
             </div>
           )}
