@@ -143,6 +143,7 @@ export default async function LocaleLayout({
     config.presence.instagram,
     config.presence.facebook,
     'https://www.wikidata.org/wiki/Q140973912',
+    'https://www.finstat.sk/57093865',
   ].filter(Boolean) as string[];
   const ogImage = config.ogImageUrl ?? `${baseUrl}/og-image.jpg`;
   const jsonLdRaw: Record<string, unknown> = {
@@ -158,7 +159,10 @@ export default async function LocaleLayout({
     priceRange: '€€',
     currenciesAccepted: 'EUR',
     paymentAccepted: 'Cash, Credit Card',
-    identifier: { '@type': 'PropertyValue', propertyID: 'IČO', value: '57093865' },
+    identifier: [
+      { '@type': 'PropertyValue', propertyID: 'ICO', value: '57093865' },
+      { '@type': 'PropertyValue', propertyID: 'koncesia', value: 'OU-TN-OCDPK-2025/035019' },
+    ],
     taxID: '3120653360',
     areaServed: [
       { '@type': 'City', name: 'Trenčín' },
