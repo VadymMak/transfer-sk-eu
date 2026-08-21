@@ -169,6 +169,8 @@ export default async function Footer({ config, locale }: FooterProps) {
         {' · '}IČO: 57093865
         {' · '}DIČ: 3120653360
         {' · '}Neplatca DPH
+        <br />
+        {tFooter('footerLicenseCredential')}
       </div>
 
       {/* Bottom bar */}
