@@ -246,6 +246,7 @@ body::after {
   transition: color 0.3s ease;
 }
 .header__nav-link:hover { color: var(--color-primary); }
+.header__nav-link--active { color: var(--color-primary); }
 
 .header__btn-reserve {
   display: inline-flex;
@@ -316,6 +317,7 @@ body::after {
   letter-spacing: 1.5px;
   text-transform: uppercase;
 }
+.header__mobile-link--active { color: var(--color-primary); }
 
 .header__mobile-btn-reserve {
   display: flex;
