@@ -799,5 +799,28 @@
     "backToList": "Powrót do wycieczek",
     "backToHome": "Powrót na stronę główną",
     "itineraryHeading": "Program wycieczki"
+  },
+  "tripPage": {
+    "audienceTitle": "Dla kogo jest ta wycieczka?",
+    "programmeTitle": "Jak wygląda dzień, godzina po godzinie?",
+    "videosTitle": "Jak to wygląda na żywo?",
+    "galleryTitle": "Galeria",
+    "priceTitle": "Ile kosztuje i co jest dodatkowo płatne?",
+    "faqTitle": "Pytania i odpowiedzi",
+    "bookTitle": "Zarezerwuj miejsce",
+    "nextDeparture": "Najbliższy odjazd",
+    "minRead": "min czytania",
+    "included": "W cenie",
+    "extra": "Dopłata",
+    "updated": "Zaktualizowano",
+    "oneDay": "Jednodniowa wycieczka",
+    "prepaymentNote": "zaliczka na rezerwację",
+    "factsDate": "Data wyjazdu",
+    "factsDuration": "Czas trwania",
+    "factsPrice": "Cena od",
+    "factsFrom": "Z",
+    "bookNow": "Zarezerwuj",
+    "whatsapp": "WhatsApp",
+    "seatsLeft": "Pozostało {n} miejsc"
   }
 }

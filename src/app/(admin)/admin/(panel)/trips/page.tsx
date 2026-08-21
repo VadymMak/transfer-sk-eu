@@ -5,20 +5,37 @@ import { useAdminLocale } from '@/hooks/useAdminLocale';
 import { getAdminT } from '@/lib/admin-i18n';
 import AdminLoading from '@/components/admin/AdminLoading/AdminLoading';
 
-const TRIP_LOCALES = ['sk', 'cs', 'de', 'en', 'ru', 'uk'] as const;
+const TRIP_LOCALES = ['sk', 'cs', 'de', 'en', 'ru', 'uk', 'pl'] as const;
 type TripLocale = (typeof TRIP_LOCALES)[number];
+
+type FaqItem = { q: string; a: string };
 
 interface TripTranslation {
   locale: string;
   name: string;
   description: string | null;
   itinerary: string | null;
+  headline: string | null;
+  audience: string | null;
+  included: string | null;
+  extrasNote: string | null;
+  bookingNote: string | null;
+  tags: string | null;
+  faq: FaqItem[] | null;
 }
 
 interface TripGalleryImage {
   id: string;
   url: string;
   alt: string | null;
+  sortOrder: number;
+}
+
+interface TripVideo {
+  id: string;
+  url: string;
+  poster: string | null;
+  caption: string | null;
   sortOrder: number;
 }
 
@@ -34,16 +51,47 @@ interface Trip {
   bookedSeats: number;
   active: boolean;
   sortOrder: number;
+  prepayment: number | null;
+  bookingPhone: string | null;
+  seatsTotal: number | null;
+  readMinutes: number | null;
   translations: TripTranslation[];
   galleryImages: TripGalleryImage[];
+  videos: TripVideo[];
 }
 
-type TranslationDraft = Record<TripLocale, { name: string; description: string; itinerary: string }>;
+type TranslationDraft = Record<TripLocale, {
+  name: string;
+  description: string;
+  itinerary: string;
+  headline: string;
+  audience: string;
+  included: string;
+  extrasNote: string;
+  bookingNote: string;
+  tags: string;
+  faq: FaqItem[];
+}>;
 
 function emptyTranslations(): TranslationDraft {
   return Object.fromEntries(
-    TRIP_LOCALES.map((l) => [l, { name: '', description: '', itinerary: '' }]),
+    TRIP_LOCALES.map((l) => [l, {
+      name: '', description: '', itinerary: '',
+      headline: '', audience: '', included: '',
+      extrasNote: '', bookingNote: '', tags: '',
+      faq: [] as FaqItem[],
+    }]),
   ) as TranslationDraft;
+}
+
+function parseFaq(raw: unknown): FaqItem[] {
+  if (!Array.isArray(raw)) return [];
+  return (raw as unknown[]).filter(
+    (item): item is FaqItem =>
+      typeof item === 'object' && item !== null &&
+      'q' in item && typeof (item as FaqItem).q === 'string' &&
+      'a' in item && typeof (item as FaqItem).a === 'string',
+  );
 }
 
 function getTripName(trip: Trip): string {
@@ -67,12 +115,14 @@ export default function AdminTripsPage() {
   const [saving, setSaving] = useState(false);
   const [uploadingCover, setUploadingCover] = useState(false);
   const [uploadingGallery, setUploadingGallery] = useState(false);
+  const [uploadingVideo, setUploadingVideo] = useState(false);
   const [activeLocaleTab, setActiveLocaleTab] = useState<TripLocale>('sk');
   const coverFileRef = useRef<HTMLInputElement>(null);
   const galleryFileRef = useRef<HTMLInputElement>(null);
+  const videoFileRef = useRef<HTMLInputElement>(null);
 
-  // Current gallery images while editing (reflects server state + pending removals)
   const [editGallery, setEditGallery] = useState<TripGalleryImage[]>([]);
+  const [editVideos, setEditVideos] = useState<TripVideo[]>([]);
 
   const [form, setForm] = useState({
     dateStart: '',
@@ -81,6 +131,10 @@ export default function AdminTripsPage() {
     maxSeats: '',
     coverImage: '',
     active: true,
+    prepayment: '',
+    bookingPhone: '',
+    seatsTotal: '',
+    readMinutes: '',
   });
   const [translations, setTranslations] = useState<TranslationDraft>(emptyTranslations());
 
@@ -96,12 +150,14 @@ export default function AdminTripsPage() {
   useEffect(() => { void load(); }, [load]);
 
   function resetForm() {
-    setForm({ dateStart: '', dateEnd: '', price: 0, maxSeats: '', coverImage: '', active: true });
+    setForm({ dateStart: '', dateEnd: '', price: 0, maxSeats: '', coverImage: '', active: true, prepayment: '', bookingPhone: '', seatsTotal: '', readMinutes: '' });
     setTranslations(emptyTranslations());
     setActiveLocaleTab('sk');
     setEditGallery([]);
+    setEditVideos([]);
     if (coverFileRef.current) coverFileRef.current.value = '';
     if (galleryFileRef.current) galleryFileRef.current.value = '';
+    if (videoFileRef.current) videoFileRef.current.value = '';
   }
 
   function startAdd() {
@@ -118,6 +174,13 @@ export default function AdminTripsPage() {
           name: tr.name,
           description: tr.description ?? '',
           itinerary: tr.itinerary ?? '',
+          headline: tr.headline ?? '',
+          audience: tr.audience ?? '',
+          included: tr.included ?? '',
+          extrasNote: tr.extrasNote ?? '',
+          bookingNote: tr.bookingNote ?? '',
+          tags: tr.tags ?? '',
+          faq: parseFaq(tr.faq),
         };
       }
     }
@@ -128,9 +191,14 @@ export default function AdminTripsPage() {
       maxSeats: trip.maxSeats != null ? String(trip.maxSeats) : '',
       coverImage: trip.coverImage ?? '',
       active: trip.active,
+      prepayment: trip.prepayment != null ? String(trip.prepayment) : '',
+      bookingPhone: trip.bookingPhone ?? '',
+      seatsTotal: trip.seatsTotal != null ? String(trip.seatsTotal) : '',
+      readMinutes: trip.readMinutes != null ? String(trip.readMinutes) : '',
     });
     setTranslations(draft);
     setEditGallery(trip.galleryImages ?? []);
+    setEditVideos(trip.videos ?? []);
     setActiveLocaleTab('sk');
     setEditId(trip.id);
     setShowAdd(false);
@@ -142,7 +210,11 @@ export default function AdminTripsPage() {
     resetForm();
   }
 
-  // Upload cover via purpose=trips → Vercel Blob → store -cover variant URL
+  function setTr<K extends keyof TranslationDraft[TripLocale]>(key: K, value: TranslationDraft[TripLocale][K]) {
+    setTranslations((p) => ({ ...p, [activeLocaleTab]: { ...p[activeLocaleTab], [key]: value } }));
+  }
+
+  // ── Cover upload ──
   async function handleCoverUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -160,7 +232,7 @@ export default function AdminTripsPage() {
     }
   }
 
-  // Upload gallery images via purpose=gallery → Vercel Blob → PATCH galleryAdd
+  // ── Gallery upload ──
   async function handleGalleryUpload(e: React.ChangeEvent<HTMLInputElement>) {
     if (!editId) return;
     const files = Array.from(e.target.files ?? []);
@@ -207,6 +279,48 @@ export default function AdminTripsPage() {
     }
   }
 
+  // ── Video upload ──
+  async function handleVideoUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    if (!editId) return;
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploadingVideo(true);
+    const fd = new FormData();
+    fd.append('file', file);
+    fd.append('purpose', 'trip-video');
+    const res = await fetch('/api/admin/upload', { method: 'POST', body: fd });
+    if (res.ok) {
+      const { url } = await res.json() as { url: string };
+      const patchRes = await fetch(`/api/admin/trips/${editId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ videoAdd: [{ url }] }),
+      });
+      if (patchRes.ok) {
+        const updated = await patchRes.json() as Trip;
+        setEditVideos(updated.videos ?? []);
+      }
+    } else {
+      const err = await res.json() as { error?: string };
+      alert(err.error ?? 'Video upload failed');
+    }
+    setUploadingVideo(false);
+    if (videoFileRef.current) videoFileRef.current.value = '';
+  }
+
+  async function removeVideo(videoId: string) {
+    if (!editId) return;
+    const res = await fetch(`/api/admin/trips/${editId}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ videoRemove: [videoId] }),
+    });
+    if (res.ok) {
+      const updated = await res.json() as Trip;
+      setEditVideos(updated.videos ?? []);
+    }
+  }
+
   async function save(e: React.FormEvent) {
     e.preventDefault();
     const hasName = TRIP_LOCALES.some((l) => translations[l].name.trim());
@@ -220,6 +334,10 @@ export default function AdminTripsPage() {
       price: Number(form.price),
       maxSeats: form.maxSeats ? Number(form.maxSeats) : undefined,
       active: form.active,
+      prepayment: form.prepayment ? Number(form.prepayment) : undefined,
+      bookingPhone: form.bookingPhone.trim() || undefined,
+      seatsTotal: form.seatsTotal ? Number(form.seatsTotal) : undefined,
+      readMinutes: form.readMinutes ? Number(form.readMinutes) : undefined,
       translations: TRIP_LOCALES
         .filter((l) => translations[l].name.trim())
         .map((l) => ({
@@ -227,6 +345,13 @@ export default function AdminTripsPage() {
           name: translations[l].name,
           description: translations[l].description || undefined,
           itinerary: translations[l].itinerary || undefined,
+          headline: translations[l].headline || undefined,
+          audience: translations[l].audience || undefined,
+          included: translations[l].included || undefined,
+          extrasNote: translations[l].extrasNote || undefined,
+          bookingNote: translations[l].bookingNote || undefined,
+          tags: translations[l].tags || undefined,
+          faq: translations[l].faq.length ? translations[l].faq : undefined,
         })),
     };
 
@@ -263,6 +388,10 @@ export default function AdminTripsPage() {
   if (loading) return <AdminLoading rows={4} />;
 
   const showForm = showAdd || editId !== null;
+  const trDraft = translations[activeLocaleTab];
+
+  const fieldStyle = { gridColumn: '1 / -1' } as const;
+  const halfStyle = {} as const;
 
   return (
     <div className="admin-page">
@@ -310,48 +439,143 @@ export default function AdminTripsPage() {
             ))}
           </div>
 
-          {/* ── Translation fields ── */}
+          {/* ── Per-locale translation fields ── */}
           <div className="admin-services__form-grid">
-            <div className="booking__field" style={{ gridColumn: '1 / -1' }}>
+            <div className="booking__field" style={fieldStyle}>
               <label>{t.trips.nameLabel} ({activeLocaleTab.toUpperCase()}) *</label>
               <input
-                value={translations[activeLocaleTab].name}
-                onChange={(e) => setTranslations((p) => ({
-                  ...p,
-                  [activeLocaleTab]: { ...p[activeLocaleTab], name: e.target.value },
-                }))}
+                value={trDraft.name}
+                onChange={(e) => setTr('name', e.target.value)}
                 placeholder={t.trips.nameLabel}
               />
             </div>
-            <div className="booking__field" style={{ gridColumn: '1 / -1' }}>
+            <div className="booking__field" style={fieldStyle}>
+              <label>Headline / tagline ({activeLocaleTab.toUpperCase()})</label>
+              <input
+                value={trDraft.headline}
+                onChange={(e) => setTr('headline', e.target.value)}
+                placeholder="Krátky slogan pod nadpisom"
+              />
+            </div>
+            <div className="booking__field" style={fieldStyle}>
               <label>{t.trips.descriptionLabel} ({activeLocaleTab.toUpperCase()})</label>
               <textarea
                 rows={3}
-                value={translations[activeLocaleTab].description}
-                onChange={(e) => setTranslations((p) => ({
-                  ...p,
-                  [activeLocaleTab]: { ...p[activeLocaleTab], description: e.target.value },
-                }))}
+                value={trDraft.description}
+                onChange={(e) => setTr('description', e.target.value)}
                 style={{ width: '100%', resize: 'vertical' }}
               />
             </div>
-            <div className="booking__field" style={{ gridColumn: '1 / -1' }}>
-              <label>{t.trips.itineraryLabel} ({activeLocaleTab.toUpperCase()})</label>
+            <div className="booking__field" style={fieldStyle}>
+              <label>Pre koho je zájazd — Audience ({activeLocaleTab.toUpperCase()})</label>
               <textarea
-                rows={4}
-                value={translations[activeLocaleTab].itinerary}
-                onChange={(e) => setTranslations((p) => ({
-                  ...p,
-                  [activeLocaleTab]: { ...p[activeLocaleTab], itinerary: e.target.value },
-                }))}
+                rows={3}
+                value={trDraft.audience}
+                onChange={(e) => setTr('audience', e.target.value)}
+                placeholder="Každý riadok = 1 bod"
                 style={{ width: '100%', resize: 'vertical' }}
               />
+            </div>
+            <div className="booking__field" style={fieldStyle}>
+              <label>{t.trips.itineraryLabel} ({activeLocaleTab.toUpperCase()})</label>
+              <textarea
+                rows={5}
+                value={trDraft.itinerary}
+                onChange={(e) => setTr('itinerary', e.target.value)}
+                placeholder="Každý riadok = 1 krok programu"
+                style={{ width: '100%', resize: 'vertical' }}
+              />
+            </div>
+            <div className="booking__field" style={fieldStyle}>
+              <label>V cene — Included ({activeLocaleTab.toUpperCase()})</label>
+              <textarea
+                rows={3}
+                value={trDraft.included}
+                onChange={(e) => setTr('included', e.target.value)}
+                placeholder="Každý riadok = 1 položka"
+                style={{ width: '100%', resize: 'vertical' }}
+              />
+            </div>
+            <div className="booking__field" style={fieldStyle}>
+              <label>Príplatky — Extras note ({activeLocaleTab.toUpperCase()})</label>
+              <textarea
+                rows={2}
+                value={trDraft.extrasNote}
+                onChange={(e) => setTr('extrasNote', e.target.value)}
+                style={{ width: '100%', resize: 'vertical' }}
+              />
+            </div>
+            <div className="booking__field" style={fieldStyle}>
+              <label>Poznámka k rezervácii — Booking note ({activeLocaleTab.toUpperCase()})</label>
+              <textarea
+                rows={2}
+                value={trDraft.bookingNote}
+                onChange={(e) => setTr('bookingNote', e.target.value)}
+                style={{ width: '100%', resize: 'vertical' }}
+              />
+            </div>
+            <div className="booking__field" style={fieldStyle}>
+              <label>Tags ({activeLocaleTab.toUpperCase()}) — čiarkou oddelené</label>
+              <input
+                value={trDraft.tags}
+                onChange={(e) => setTr('tags', e.target.value)}
+                placeholder="Viedeň, 1 deň, rodiny"
+              />
+            </div>
+
+            {/* ── FAQ editor ── */}
+            <div className="booking__field" style={fieldStyle}>
+              <label style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span>FAQ ({activeLocaleTab.toUpperCase()})</span>
+                <button
+                  type="button"
+                  className="btn-outline btn-sm"
+                  onClick={() => setTr('faq', [...trDraft.faq, { q: '', a: '' }])}
+                >
+                  + Pridať otázku
+                </button>
+              </label>
+              {trDraft.faq.map((item, idx) => (
+                <div key={idx} style={{ border: '1px solid var(--color-border)', borderRadius: 'var(--border-radius-md)', padding: '0.75rem', marginTop: '0.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)' }}>#{idx + 1}</span>
+                    <button
+                      type="button"
+                      className="btn-outline btn-sm"
+                      style={{ color: 'var(--color-error, #e53)', padding: '0.1rem 0.5rem' }}
+                      onClick={() => setTr('faq', trDraft.faq.filter((_, i) => i !== idx))}
+                    >
+                      ✕
+                    </button>
+                  </div>
+                  <input
+                    value={item.q}
+                    onChange={(e) => {
+                      const updated = [...trDraft.faq];
+                      updated[idx] = { ...updated[idx], q: e.target.value };
+                      setTr('faq', updated);
+                    }}
+                    placeholder="Otázka"
+                  />
+                  <textarea
+                    rows={2}
+                    value={item.a}
+                    onChange={(e) => {
+                      const updated = [...trDraft.faq];
+                      updated[idx] = { ...updated[idx], a: e.target.value };
+                      setTr('faq', updated);
+                    }}
+                    placeholder="Odpoveď"
+                    style={{ width: '100%', resize: 'vertical' }}
+                  />
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* ── Scalar fields ── */}
-          <div className="admin-services__form-grid" style={{ marginTop: '1rem' }}>
-            <div className="booking__field">
+          {/* ── Global scalar fields ── */}
+          <div className="admin-services__form-grid" style={{ marginTop: '1.5rem' }}>
+            <div className="booking__field" style={halfStyle}>
               <label>{t.trips.dateStartLabel} *</label>
               <input
                 type="date"
@@ -360,7 +584,7 @@ export default function AdminTripsPage() {
                 required
               />
             </div>
-            <div className="booking__field">
+            <div className="booking__field" style={halfStyle}>
               <label>{t.trips.dateEndLabel}</label>
               <input
                 type="date"
@@ -368,7 +592,7 @@ export default function AdminTripsPage() {
                 onChange={(e) => setForm((p) => ({ ...p, dateEnd: e.target.value }))}
               />
             </div>
-            <div className="booking__field">
+            <div className="booking__field" style={halfStyle}>
               <label>{t.trips.priceLabel} *</label>
               <input
                 type="number"
@@ -379,7 +603,16 @@ export default function AdminTripsPage() {
                 required
               />
             </div>
-            <div className="booking__field">
+            <div className="booking__field" style={halfStyle}>
+              <label>Záloha / Prepayment (EUR)</label>
+              <input
+                type="number"
+                min="0"
+                value={form.prepayment}
+                onChange={(e) => setForm((p) => ({ ...p, prepayment: e.target.value }))}
+              />
+            </div>
+            <div className="booking__field" style={halfStyle}>
               <label>{t.trips.maxSeatsLabel}</label>
               <input
                 type="number"
@@ -388,9 +621,36 @@ export default function AdminTripsPage() {
                 onChange={(e) => setForm((p) => ({ ...p, maxSeats: e.target.value }))}
               />
             </div>
+            <div className="booking__field" style={halfStyle}>
+              <label>Celkový počet miest (seatsTotal)</label>
+              <input
+                type="number"
+                min="1"
+                value={form.seatsTotal}
+                onChange={(e) => setForm((p) => ({ ...p, seatsTotal: e.target.value }))}
+              />
+            </div>
+            <div className="booking__field" style={halfStyle}>
+              <label>Telefón / WhatsApp pre rezerváciu</label>
+              <input
+                type="text"
+                value={form.bookingPhone}
+                onChange={(e) => setForm((p) => ({ ...p, bookingPhone: e.target.value }))}
+                placeholder="+421 900 000 000"
+              />
+            </div>
+            <div className="booking__field" style={halfStyle}>
+              <label>Čas čítania (minúty)</label>
+              <input
+                type="number"
+                min="1"
+                value={form.readMinutes}
+                onChange={(e) => setForm((p) => ({ ...p, readMinutes: e.target.value }))}
+              />
+            </div>
 
-            {/* ── Cover image — uploads via purpose=trips → Vercel Blob ── */}
-            <div className="booking__field" style={{ gridColumn: '1 / -1' }}>
+            {/* ── Cover image ── */}
+            <div className="booking__field" style={fieldStyle}>
               <label>{t.trips.imageLabel}</label>
               <input
                 type="file"
@@ -414,10 +674,7 @@ export default function AdminTripsPage() {
                     <button
                       type="button"
                       className="btn-outline btn-sm"
-                      onClick={() => {
-                        setForm((p) => ({ ...p, coverImage: '' }));
-                        if (coverFileRef.current) coverFileRef.current.value = '';
-                      }}
+                      onClick={() => { setForm((p) => ({ ...p, coverImage: '' })); if (coverFileRef.current) coverFileRef.current.value = ''; }}
                       style={{ color: 'var(--color-error, #e53)' }}
                     >
                       ✕
@@ -425,12 +682,9 @@ export default function AdminTripsPage() {
                   </>
                 )}
               </div>
-              <p style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', marginTop: '0.25rem' }}>
-                Stored via Vercel Blob · purpose=trips · 1600×900 webp
-              </p>
             </div>
 
-            <div className="booking__field">
+            <div className="booking__field" style={fieldStyle}>
               <label className="admin-toggle">
                 <input
                   type="checkbox"
@@ -446,17 +700,12 @@ export default function AdminTripsPage() {
             </div>
           </div>
 
-          {/* ── Gallery images — only shown when editing an existing trip ── */}
+          {/* ── Gallery (edit only) ── */}
           {editId && (
             <div style={{ marginTop: '1.5rem' }}>
               <label style={{ display: 'block', marginBottom: '0.75rem', color: 'var(--color-text-primary)', fontWeight: 500 }}>
                 {t.gallery.title}
-                <span style={{ marginLeft: '0.5rem', fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', fontWeight: 400 }}>
-                  purpose=gallery · Vercel Blob
-                </span>
               </label>
-
-              {/* Existing gallery images */}
               {editGallery.length > 0 && (
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.75rem' }}>
                   {editGallery.map((img) => (
@@ -470,12 +719,7 @@ export default function AdminTripsPage() {
                         type="button"
                         onClick={() => removeGalleryImage(img.id)}
                         title={t.gallery.deletePhoto}
-                        style={{
-                          position: 'absolute', top: 2, right: 2,
-                          background: 'rgba(0,0,0,0.6)', border: 'none',
-                          color: '#fff', borderRadius: 2, cursor: 'pointer',
-                          fontSize: 10, lineHeight: 1, padding: '2px 4px',
-                        }}
+                        style={{ position: 'absolute', top: 2, right: 2, background: 'rgba(0,0,0,0.6)', border: 'none', color: '#fff', borderRadius: 2, cursor: 'pointer', fontSize: 10, lineHeight: 1, padding: '2px 4px' }}
                       >
                         ✕
                       </button>
@@ -483,25 +727,49 @@ export default function AdminTripsPage() {
                   ))}
                 </div>
               )}
-
-              {/* Upload new gallery images */}
-              <input
-                type="file"
-                accept="image/*"
-                multiple
-                ref={galleryFileRef}
-                onChange={handleGalleryUpload}
-                style={{ display: 'none' }}
-                id="trip-gallery-upload"
-              />
+              <input type="file" accept="image/*" multiple ref={galleryFileRef} onChange={handleGalleryUpload} style={{ display: 'none' }} id="trip-gallery-upload" />
               <label htmlFor="trip-gallery-upload" className="btn-outline btn-sm" style={{ cursor: 'pointer' }}>
                 {uploadingGallery ? t.common.uploading : `+ ${t.gallery.addPhoto}`}
               </label>
             </div>
           )}
 
+          {/* ── Videos (edit only) ── */}
+          {editId && (
+            <div style={{ marginTop: '1.5rem' }}>
+              <label style={{ display: 'block', marginBottom: '0.75rem', color: 'var(--color-text-primary)', fontWeight: 500 }}>
+                Videá (reels) — max 25 MB · mp4 / webm
+              </label>
+              {editVideos.length > 0 && (
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '0.75rem' }}>
+                  {editVideos.map((vid) => (
+                    <div key={vid.id} style={{ position: 'relative', width: 80 }}>
+                      <video
+                        src={vid.url}
+                        style={{ width: 80, height: 60, objectFit: 'cover', borderRadius: 4, border: '1px solid var(--color-border)', display: 'block', background: '#000' }}
+                        muted
+                        playsInline
+                      />
+                      <button
+                        type="button"
+                        onClick={() => removeVideo(vid.id)}
+                        style={{ position: 'absolute', top: 2, right: 2, background: 'rgba(0,0,0,0.6)', border: 'none', color: '#fff', borderRadius: 2, cursor: 'pointer', fontSize: 10, lineHeight: 1, padding: '2px 4px' }}
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+              <input type="file" accept="video/mp4,video/webm,video/quicktime" ref={videoFileRef} onChange={handleVideoUpload} style={{ display: 'none' }} id="trip-video-upload" />
+              <label htmlFor="trip-video-upload" className="btn-outline btn-sm" style={{ cursor: 'pointer' }}>
+                {uploadingVideo ? t.common.uploading : '+ Pridať video'}
+              </label>
+            </div>
+          )}
+
           <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1.5rem' }}>
-            <button type="submit" className="btn-primary btn-sm" disabled={saving || uploadingCover || uploadingGallery}>
+            <button type="submit" className="btn-primary btn-sm" disabled={saving || uploadingCover || uploadingGallery || uploadingVideo}>
               {saving ? t.common.saving : t.trips.saveBtn}
             </button>
             <button type="button" className="btn-outline btn-sm" onClick={cancelForm}>
@@ -533,32 +801,20 @@ export default function AdminTripsPage() {
                 {trip.dateEnd && ` – ${new Date(trip.dateEnd).toLocaleDateString('sk-SK')}`}
                 {' · '}
                 {trip.price} {trip.currency}
+                {trip.prepayment != null && ` · záloha ${trip.prepayment} €`}
                 {trip.maxSeats != null && ` · ${trip.bookedSeats}/${trip.maxSeats}`}
                 {trip.galleryImages.length > 0 && ` · ${trip.galleryImages.length} foto`}
+                {trip.videos.length > 0 && ` · ${trip.videos.length} video`}
               </span>
             </div>
             <div className="admin-services__item-actions">
-              <button
-                type="button"
-                className="btn-outline btn-sm"
-                onClick={() => startEdit(trip)}
-                disabled={editId === trip.id}
-              >
+              <button type="button" className="btn-outline btn-sm" onClick={() => startEdit(trip)} disabled={editId === trip.id}>
                 {t.common.edit}
               </button>
-              <button
-                type="button"
-                className="btn-outline btn-sm"
-                onClick={() => toggleActive(trip)}
-              >
+              <button type="button" className="btn-outline btn-sm" onClick={() => toggleActive(trip)}>
                 {trip.active ? t.common.hide : t.common.show}
               </button>
-              <button
-                type="button"
-                className="btn-outline btn-sm"
-                style={{ color: 'var(--color-error, #e53)' }}
-                onClick={() => remove(trip)}
-              >
+              <button type="button" className="btn-outline btn-sm" style={{ color: 'var(--color-error, #e53)' }} onClick={() => remove(trip)}>
                 {t.common.delete}
               </button>
             </div>

@@ -811,5 +811,28 @@
     "backToList": "Zurück zu Busreisen",
     "backToHome": "Zurück zur Startseite",
     "itineraryHeading": "Reiseprogramm"
+  },
+  "tripPage": {
+    "audienceTitle": "Für wen ist diese Reise?",
+    "programmeTitle": "Wie läuft der Tag ab, Stunde für Stunde?",
+    "videosTitle": "Wie sieht es live aus?",
+    "galleryTitle": "Galerie",
+    "priceTitle": "Was kostet es und was ist extra?",
+    "faqTitle": "Fragen & Antworten",
+    "bookTitle": "Platz reservieren",
+    "nextDeparture": "Nächste Abfahrt",
+    "minRead": "Min. Lesezeit",
+    "included": "Inklusive",
+    "extra": "Extras",
+    "updated": "Aktualisiert",
+    "oneDay": "Tagesreise",
+    "prepaymentNote": "Anzahlung zur Reservierung",
+    "factsDate": "Abfahrtsdatum",
+    "factsDuration": "Dauer",
+    "factsPrice": "Preis ab",
+    "factsFrom": "Ab",
+    "bookNow": "Jetzt buchen",
+    "whatsapp": "WhatsApp",
+    "seatsLeft": "Noch {n} Plätze"
   }
 }

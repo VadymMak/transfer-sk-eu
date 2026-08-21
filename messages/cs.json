@@ -815,5 +815,28 @@
     "backToList": "Zpět na zájezdy",
     "backToHome": "Zpět na hlavní",
     "itineraryHeading": "Program zájezdu"
+  },
+  "tripPage": {
+    "audienceTitle": "Pro koho je tento zájezd?",
+    "programmeTitle": "Jak probíhá den, hodinu po hodině?",
+    "videosTitle": "Jak to vypadá naživo?",
+    "galleryTitle": "Galerie",
+    "priceTitle": "Kolik to stojí a co je navíc?",
+    "faqTitle": "Otázky a odpovědi",
+    "bookTitle": "Rezervujte si místo",
+    "nextDeparture": "Nejbližší odjezd",
+    "minRead": "min čtení",
+    "included": "V ceně",
+    "extra": "Příplatek",
+    "updated": "Aktualizováno",
+    "oneDay": "Jednodenní zájezd",
+    "prepaymentNote": "záloha na rezervaci",
+    "factsDate": "Datum odjezdu",
+    "factsDuration": "Délka",
+    "factsPrice": "Cena od",
+    "factsFrom": "Z",
+    "bookNow": "Rezervovat",
+    "whatsapp": "WhatsApp",
+    "seatsLeft": "Zbývá {n} míst"
   }
 }

@@ -821,5 +821,28 @@
     "backToList": "Назад к турам",
     "backToHome": "На главную",
     "itineraryHeading": "Программа тура"
+  },
+  "tripPage": {
+    "audienceTitle": "Для кого этот тур?",
+    "programmeTitle": "Как проходит день, час за часом?",
+    "videosTitle": "Как это выглядит вживую?",
+    "galleryTitle": "Галерея",
+    "priceTitle": "Сколько стоит и что дополнительно?",
+    "faqTitle": "Вопросы и ответы",
+    "bookTitle": "Забронировать место",
+    "nextDeparture": "Ближайший отъезд",
+    "minRead": "мин. чтения",
+    "included": "В стоимость включено",
+    "extra": "Доплата",
+    "updated": "Обновлено",
+    "oneDay": "Однодневный тур",
+    "prepaymentNote": "предоплата для бронирования",
+    "factsDate": "Дата отъезда",
+    "factsDuration": "Длительность",
+    "factsPrice": "Цена от",
+    "factsFrom": "Из",
+    "bookNow": "Забронировать",
+    "whatsapp": "WhatsApp",
+    "seatsLeft": "Осталось {n} мест"
   }
 }

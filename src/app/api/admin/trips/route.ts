@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
+import { Prisma } from '@prisma/client';
 import { db } from '@/lib/db';
 import { verifyAdminToken, getAdminSecret, ADMIN_COOKIE } from '@/lib/adminAuth';
 import { revalidatePath } from 'next/cache';
@@ -40,6 +41,7 @@ export async function GET() {
     include: {
       translations: true,
       galleryImages: { orderBy: { sortOrder: 'asc' } },
+      videos: { orderBy: { sortOrder: 'asc' } },
     },
   });
 
@@ -62,7 +64,15 @@ export async function POST(req: NextRequest) {
     price: number;
     maxSeats?: number;
     active?: boolean;
-    translations: Array<{ locale: string; name: string; description?: string; itinerary?: string }>;
+    prepayment?: number;
+    bookingPhone?: string;
+    seatsTotal?: number;
+    readMinutes?: number;
+    translations: Array<{
+      locale: string; name: string; description?: string; itinerary?: string;
+      headline?: string; audience?: string; included?: string;
+      extrasNote?: string; bookingNote?: string; tags?: string; faq?: unknown;
+    }>;
   };
 
   if (!body.dateStart || !body.price || !body.translations?.length) {
@@ -89,18 +99,30 @@ export async function POST(req: NextRequest) {
       maxSeats: body.maxSeats ?? null,
       active: body.active ?? true,
       sortOrder: (maxSort?.sortOrder ?? -1) + 1,
+      prepayment: body.prepayment ?? null,
+      bookingPhone: body.bookingPhone?.trim() || null,
+      seatsTotal: body.seatsTotal ?? null,
+      readMinutes: body.readMinutes ?? null,
       translations: {
         create: body.translations.map((t) => ({
           locale: t.locale,
           name: t.name.trim(),
           description: t.description?.trim() || null,
           itinerary: t.itinerary?.trim() || null,
+          headline: t.headline?.trim() || null,
+          audience: t.audience?.trim() || null,
+          included: t.included?.trim() || null,
+          extrasNote: t.extrasNote?.trim() || null,
+          bookingNote: t.bookingNote?.trim() || null,
+          tags: t.tags?.trim() || null,
+          faq: t.faq != null ? (t.faq as Prisma.InputJsonValue) : Prisma.DbNull,
         })),
       },
     },
     include: {
       translations: true,
       galleryImages: { orderBy: { sortOrder: 'asc' } },
+      videos: { orderBy: { sortOrder: 'asc' } },
     },
   });
 

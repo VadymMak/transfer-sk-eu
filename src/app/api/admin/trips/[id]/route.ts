@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
+import { Prisma } from '@prisma/client';
 import { db } from '@/lib/db';
 import { verifyAdminToken, getAdminSecret, ADMIN_COOKIE } from '@/lib/adminAuth';
 import { revalidatePath } from 'next/cache';
@@ -13,6 +14,7 @@ async function checkAdmin(): Promise<boolean> {
 const INCLUDE = {
   translations: true,
   galleryImages: { orderBy: { sortOrder: 'asc' as const } },
+  videos: { orderBy: { sortOrder: 'asc' as const } },
 } as const;
 
 export async function GET(
@@ -45,13 +47,22 @@ export async function PATCH(
     maxSeats?: number | null;
     active?: boolean;
     sortOrder?: number;
-    translations?: Array<{ locale: string; name: string; description?: string; itinerary?: string }>;
-    // Gallery image ops — each URL is the Blob URL returned by /api/admin/upload (purpose=gallery)
+    prepayment?: number | null;
+    bookingPhone?: string | null;
+    seatsTotal?: number | null;
+    readMinutes?: number | null;
+    translations?: Array<{
+      locale: string; name: string; description?: string; itinerary?: string;
+      headline?: string; audience?: string; included?: string;
+      extrasNote?: string; bookingNote?: string; tags?: string; faq?: unknown;
+    }>;
     galleryAdd?: Array<{ url: string; alt?: string }>;
-    galleryRemove?: string[];  // array of TripGalleryImage IDs to delete
+    galleryRemove?: string[];
+    videoAdd?: Array<{ url: string; poster?: string; caption?: string }>;
+    videoRemove?: string[];
   };
 
-  const { translations, galleryAdd, galleryRemove, ...scalarFields } = body;
+  const { translations, galleryAdd, galleryRemove, videoAdd, videoRemove, ...scalarFields } = body;
 
   await db.trip.update({
     where: { id },
@@ -65,6 +76,10 @@ export async function PATCH(
       ...(scalarFields.maxSeats !== undefined && { maxSeats: scalarFields.maxSeats }),
       ...(scalarFields.active !== undefined && { active: scalarFields.active }),
       ...(scalarFields.sortOrder !== undefined && { sortOrder: scalarFields.sortOrder }),
+      ...(scalarFields.prepayment !== undefined && { prepayment: scalarFields.prepayment }),
+      ...(scalarFields.bookingPhone !== undefined && { bookingPhone: scalarFields.bookingPhone }),
+      ...(scalarFields.seatsTotal !== undefined && { seatsTotal: scalarFields.seatsTotal }),
+      ...(scalarFields.readMinutes !== undefined && { readMinutes: scalarFields.readMinutes }),
     },
   });
 
@@ -79,11 +94,25 @@ export async function PATCH(
           name: t.name.trim(),
           description: t.description?.trim() || null,
           itinerary: t.itinerary?.trim() || null,
+          headline: t.headline?.trim() || null,
+          audience: t.audience?.trim() || null,
+          included: t.included?.trim() || null,
+          extrasNote: t.extrasNote?.trim() || null,
+          bookingNote: t.bookingNote?.trim() || null,
+          tags: t.tags?.trim() || null,
+          faq: t.faq != null ? (t.faq as Prisma.InputJsonValue) : Prisma.DbNull,
         },
         update: {
           name: t.name.trim(),
           description: t.description?.trim() || null,
           itinerary: t.itinerary?.trim() || null,
+          headline: t.headline?.trim() || null,
+          audience: t.audience?.trim() || null,
+          included: t.included?.trim() || null,
+          extrasNote: t.extrasNote?.trim() || null,
+          bookingNote: t.bookingNote?.trim() || null,
+          tags: t.tags?.trim() || null,
+          faq: t.faq != null ? (t.faq as Prisma.InputJsonValue) : Prisma.DbNull,
         },
       });
     }
@@ -107,6 +136,26 @@ export async function PATCH(
   // Remove gallery images
   if (galleryRemove?.length) {
     await db.tripGalleryImage.deleteMany({ where: { id: { in: galleryRemove }, tripId: id } });
+  }
+
+  // Add videos
+  if (videoAdd?.length) {
+    const maxSort = await db.tripVideo.findFirst({
+      where: { tripId: id },
+      orderBy: { sortOrder: 'desc' },
+      select: { sortOrder: true },
+    });
+    let nextSort = (maxSort?.sortOrder ?? -1) + 1;
+    for (const vid of videoAdd) {
+      await db.tripVideo.create({
+        data: { tripId: id, url: vid.url, poster: vid.poster ?? null, caption: vid.caption?.trim() || null, sortOrder: nextSort++ },
+      });
+    }
+  }
+
+  // Remove videos
+  if (videoRemove?.length) {
+    await db.tripVideo.deleteMany({ where: { id: { in: videoRemove }, tripId: id } });
   }
 
   const trip = await db.trip.findUnique({ where: { id }, include: INCLUDE });

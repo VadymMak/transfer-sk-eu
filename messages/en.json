@@ -811,5 +811,28 @@
     "backToList": "Back to Bus Tours",
     "backToHome": "Back to home",
     "itineraryHeading": "Tour Itinerary"
+  },
+  "tripPage": {
+    "audienceTitle": "Who is this tour for?",
+    "programmeTitle": "How does the day unfold, hour by hour?",
+    "videosTitle": "What does it look like live?",
+    "galleryTitle": "Gallery",
+    "priceTitle": "How much and what costs extra?",
+    "faqTitle": "Questions & Answers",
+    "bookTitle": "Reserve your seat",
+    "nextDeparture": "Next departure",
+    "minRead": "min read",
+    "included": "Included",
+    "extra": "Extras",
+    "updated": "Updated",
+    "oneDay": "One-day tour",
+    "prepaymentNote": "deposit to reserve a seat",
+    "factsDate": "Departure date",
+    "factsDuration": "Duration",
+    "factsPrice": "Price from",
+    "factsFrom": "From",
+    "bookNow": "Book now",
+    "whatsapp": "WhatsApp",
+    "seatsLeft": "{n} seats left"
   }
 }

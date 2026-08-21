@@ -821,5 +821,28 @@
     "backToList": "Назад до турів",
     "backToHome": "На головну",
     "itineraryHeading": "Програма туру"
+  },
+  "tripPage": {
+    "audienceTitle": "Для кого цей тур?",
+    "programmeTitle": "Як проходить день, година за годиною?",
+    "videosTitle": "Як це виглядає наживо?",
+    "galleryTitle": "Галерея",
+    "priceTitle": "Скільки коштує і що платно?",
+    "faqTitle": "Запитання та відповіді",
+    "bookTitle": "Забронювати місце",
+    "nextDeparture": "Найближчий виїзд",
+    "minRead": "хв. читання",
+    "included": "У вартість включено",
+    "extra": "Доплата",
+    "updated": "Оновлено",
+    "oneDay": "Одноденний тур",
+    "prepaymentNote": "передоплата для бронювання",
+    "factsDate": "Дата виїзду",
+    "factsDuration": "Тривалість",
+    "factsPrice": "Ціна від",
+    "factsFrom": "З",
+    "bookNow": "Забронювати",
+    "whatsapp": "WhatsApp",
+    "seatsLeft": "Залишилось {n} місць"
   }
 }
