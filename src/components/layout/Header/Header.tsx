@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
+import { usePathname } from 'next/navigation';
 import WhatsAppIcon from '@/components/ui/WhatsAppIcon';
 import LanguageSwitcher from '@/components/ui/LanguageSwitcher/LanguageSwitcher';
 
@@ -19,10 +20,15 @@ export default function Header({
 }) {
   const locale = useLocale();
   const tHeader = useTranslations('Header');
+  const pathname = usePathname();
+
+  const vyletHref = `/${locale}/vylety`;
+  const isOnVylety = pathname === vyletHref || pathname.startsWith(`${vyletHref}/`);
+
   const navLinks = [
     { href: `/${locale}/#strecken`,   label: tHeader('transferStrecken') },
-    { href: `/${locale}/#fuhrpark`,   label: tHeader('transferFuhrpark') },
     { href: `/${locale}/#leistungen`, label: tHeader('transferLeistungen') },
+    { href: vyletHref,                label: tHeader('transferVylety'), isPage: true },
     { href: `/${locale}/#galerie`,    label: tHeader('transferGalerie') },
     { href: `/${locale}/#kontakt`,    label: tHeader('transferKontakt') },
   ];
@@ -76,11 +82,21 @@ export default function Header({
         </Link>
 
         <nav className="header__nav">
-          {navLinks.map((link) => (
-            <a key={link.href} href={link.href} className="header__nav-link">
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.isPage ? (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`header__nav-link${isOnVylety ? ' header__nav-link--active' : ''}`}
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a key={link.href} href={link.href} className="header__nav-link">
+                {link.label}
+              </a>
+            )
+          )}
           <LanguageSwitcher variant="dropdown" locales={activeLocales} />
           <a href={`/${locale}/#angebot`} className="header__btn-reserve">
             {tHeader('transferBuchen')}
@@ -106,16 +122,27 @@ export default function Header({
 
         {menuOpen && (
           <nav className="header__mobile-nav">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="header__mobile-link"
-                onClick={() => setMenuOpen(false)}
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) =>
+              link.isPage ? (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`header__mobile-link${isOnVylety ? ' header__mobile-link--active' : ''}`}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="header__mobile-link"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {link.label}
+                </a>
+              )
+            )}
             <a
               href={`/${locale}/#angebot`}
               className="header__mobile-btn-reserve"
