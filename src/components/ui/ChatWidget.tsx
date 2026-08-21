@@ -22,7 +22,7 @@ export default function ChatWidget() {
     setMsgs((m) => [...m, { role: 'user', content: text }]); setInput(''); setLoading(true);
     try {
       const r = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text, history: msgs.slice(-6), locale }) });
+        body: JSON.stringify({ message: text, history: msgs.slice(-6), locale, hp: '' }) });
       const j = await r.json();
       setMsgs((m) => [...m, { role: 'assistant', content: j.reply || t('error') }]);
       if (j.wa) setWa(j.wa);

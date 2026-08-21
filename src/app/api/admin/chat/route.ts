@@ -191,6 +191,18 @@ function buildTools(ctx: StoreContext) {
       },
     },
     {
+      name: 'get_trips',
+      description: 'Get bus tours with name, date, price, seats and booking phone',
+      input_schema: {
+        type: 'object' as const,
+        properties: {
+          upcomingOnly: { type: 'boolean', description: 'Only upcoming trips (dateStart >= today). Default: false (all)' },
+          locale:       { type: 'string',  description: 'Translation locale for names (default: sk)' },
+          limit:        { type: 'number',  description: 'Max results (default: 20)' },
+        },
+      },
+    },
+    {
       name: 'get_theme',
       description: 'Get current store theme (colors and layout)',
       input_schema: { type: 'object' as const, properties: {} },
@@ -264,6 +276,7 @@ interface GetAnalyticsParams    { period?: string }
 interface CreatePromoParams     { type: string; title: string; description?: string; discountPercent?: number; productIds?: string[]; endsAt?: string }
 interface SearchKnowledgeParams  { query: string }
 interface BulkUpdatePricesParams { brand?: string; category?: string; percent: number }
+interface GetTripsParams         { upcomingOnly?: boolean; locale?: string; limit?: number }
 
 type ToolParams =
   | { name: 'get_products';         input: GetProductsParams }
@@ -276,6 +289,7 @@ type ToolParams =
   | { name: 'search_knowledge';     input: SearchKnowledgeParams }
   | { name: 'bulk_update_prices';   input: BulkUpdatePricesParams }
   | { name: 'apply_template';       input: { templateId: string } }
+  | { name: 'get_trips';            input: GetTripsParams }
   | { name: string;                 input: Record<string, unknown> };
 
 function buildDateFilter(period?: string): { createdAt?: { gte: Date } } {
@@ -539,6 +553,40 @@ async function executeTool(tool: ToolParams): Promise<string> {
 
       revalidateCatalog();
       return `Template "${preset.name}" applied successfully. Colors: primary=${preset.theme.colors.primary}, layout: ${preset.theme.layout.cardStyle} cards, ${preset.theme.layout.borderRadius} radius.`;
+    }
+
+    case 'get_trips': {
+      const p = tool.input as GetTripsParams;
+      const locale = p.locale ?? 'sk';
+      const upcomingOnly = p.upcomingOnly ?? false;
+      const trips = await db.trip.findMany({
+        where: {
+          storeId: store.id,
+          ...(upcomingOnly ? { dateStart: { gte: new Date() } } : {}),
+        },
+        orderBy: { dateStart: 'asc' },
+        include: {
+          translations: { where: { OR: [{ locale }, { locale: 'sk' }] } },
+        },
+        take: p.limit ?? 20,
+      });
+      return JSON.stringify(trips.map((trip) => {
+        const tr = trip.translations.find((t) => t.locale === locale)
+          ?? trip.translations.find((t) => t.locale === 'sk');
+        return {
+          slug: trip.slug,
+          name: tr?.name ?? trip.slug,
+          dateStart: trip.dateStart.toISOString().slice(0, 10),
+          price: trip.price,
+          priceChild: trip.priceChild ?? null,
+          prepayment: trip.prepayment ?? null,
+          currency: trip.currency,
+          seatsTotal: trip.seatsTotal ?? trip.maxSeats ?? null,
+          bookedSeats: trip.bookedSeats,
+          bookingPhone: trip.bookingPhone ?? null,
+          active: trip.active,
+        };
+      }));
     }
 
     default:
