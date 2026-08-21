@@ -46,6 +46,7 @@ interface Trip {
   dateStart: string;
   dateEnd: string | null;
   price: number;
+  priceChild: number | null;
   currency: string;
   maxSeats: number | null;
   bookedSeats: number;
@@ -128,6 +129,7 @@ export default function AdminTripsPage() {
     dateStart: '',
     dateEnd: '',
     price: 0,
+    priceChild: '',
     maxSeats: '',
     coverImage: '',
     active: true,
@@ -150,7 +152,7 @@ export default function AdminTripsPage() {
   useEffect(() => { void load(); }, [load]);
 
   function resetForm() {
-    setForm({ dateStart: '', dateEnd: '', price: 0, maxSeats: '', coverImage: '', active: true, prepayment: '', bookingPhone: '', seatsTotal: '', readMinutes: '' });
+    setForm({ dateStart: '', dateEnd: '', price: 0, priceChild: '', maxSeats: '', coverImage: '', active: true, prepayment: '', bookingPhone: '', seatsTotal: '', readMinutes: '' });
     setTranslations(emptyTranslations());
     setActiveLocaleTab('sk');
     setEditGallery([]);
@@ -188,6 +190,7 @@ export default function AdminTripsPage() {
       dateStart: toDateInput(trip.dateStart),
       dateEnd: trip.dateEnd ? toDateInput(trip.dateEnd) : '',
       price: trip.price,
+      priceChild: trip.priceChild != null ? String(trip.priceChild) : '',
       maxSeats: trip.maxSeats != null ? String(trip.maxSeats) : '',
       coverImage: trip.coverImage ?? '',
       active: trip.active,
@@ -332,7 +335,8 @@ export default function AdminTripsPage() {
       dateStart: form.dateStart,
       dateEnd: form.dateEnd || undefined,
       price: Number(form.price),
-      maxSeats: form.maxSeats ? Number(form.maxSeats) : undefined,
+      priceChild: form.priceChild ? Number(form.priceChild) : undefined,
+      maxSeats: form.seatsTotal ? Number(form.seatsTotal) : (form.maxSeats ? Number(form.maxSeats) : undefined),
       active: form.active,
       prepayment: form.prepayment ? Number(form.prepayment) : undefined,
       bookingPhone: form.bookingPhone.trim() || undefined,
@@ -574,7 +578,12 @@ export default function AdminTripsPage() {
           </div>
 
           {/* ── Global scalar fields ── */}
-          <div className="admin-services__form-grid" style={{ marginTop: '1.5rem' }}>
+          <div style={{ marginTop: '1.5rem', borderTop: '1px solid var(--color-border)', paddingTop: '1.25rem' }}>
+            <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-muted)', marginBottom: '1rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              Globálne nastavenia
+            </p>
+          </div>
+          <div className="admin-services__form-grid">
             <div className="booking__field" style={halfStyle}>
               <label>{t.trips.dateStartLabel} *</label>
               <input
@@ -593,7 +602,7 @@ export default function AdminTripsPage() {
               />
             </div>
             <div className="booking__field" style={halfStyle}>
-              <label>{t.trips.priceLabel} *</label>
+              <label>Cena dospelý (EUR) *</label>
               <input
                 type="number"
                 min="0"
@@ -601,6 +610,17 @@ export default function AdminTripsPage() {
                 value={form.price}
                 onChange={(e) => setForm((p) => ({ ...p, price: Number(e.target.value) }))}
                 required
+              />
+            </div>
+            <div className="booking__field" style={halfStyle}>
+              <label>Cena dieťa (EUR)</label>
+              <input
+                type="number"
+                min="0"
+                step="0.01"
+                value={form.priceChild}
+                onChange={(e) => setForm((p) => ({ ...p, priceChild: e.target.value }))}
+                placeholder="voliteľné"
               />
             </div>
             <div className="booking__field" style={halfStyle}>
@@ -613,16 +633,7 @@ export default function AdminTripsPage() {
               />
             </div>
             <div className="booking__field" style={halfStyle}>
-              <label>{t.trips.maxSeatsLabel}</label>
-              <input
-                type="number"
-                min="1"
-                value={form.maxSeats}
-                onChange={(e) => setForm((p) => ({ ...p, maxSeats: e.target.value }))}
-              />
-            </div>
-            <div className="booking__field" style={halfStyle}>
-              <label>Celkový počet miest (seatsTotal)</label>
+              <label>Max miest (kapacita)</label>
               <input
                 type="number"
                 min="1"
@@ -640,12 +651,13 @@ export default function AdminTripsPage() {
               />
             </div>
             <div className="booking__field" style={halfStyle}>
-              <label>Čas čítania (minúty)</label>
+              <label>Čas čítania (minúty, voliteľné)</label>
               <input
                 type="number"
                 min="1"
                 value={form.readMinutes}
                 onChange={(e) => setForm((p) => ({ ...p, readMinutes: e.target.value }))}
+                placeholder="auto"
               />
             </div>
 

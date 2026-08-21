@@ -627,6 +627,7 @@ model Trip {
   dateStart    DateTime
   dateEnd      DateTime?
   price        Float
+  priceChild   Float?
   currency     String    @default("EUR")
   maxSeats     Int?
   bookedSeats  Int       @default(0)

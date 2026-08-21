@@ -44,6 +44,7 @@ export async function PATCH(
     dateStart?: string;
     dateEnd?: string | null;
     price?: number;
+    priceChild?: number | null;
     maxSeats?: number | null;
     active?: boolean;
     sortOrder?: number;
@@ -73,6 +74,7 @@ export async function PATCH(
         dateEnd: scalarFields.dateEnd ? new Date(scalarFields.dateEnd) : null,
       }),
       ...(scalarFields.price !== undefined && { price: scalarFields.price }),
+      ...(scalarFields.priceChild !== undefined && { priceChild: scalarFields.priceChild }),
       ...(scalarFields.maxSeats !== undefined && { maxSeats: scalarFields.maxSeats }),
       ...(scalarFields.active !== undefined && { active: scalarFields.active }),
       ...(scalarFields.sortOrder !== undefined && { sortOrder: scalarFields.sortOrder }),

@@ -62,6 +62,7 @@ export async function POST(req: NextRequest) {
     dateStart: string;
     dateEnd?: string;
     price: number;
+    priceChild?: number;
     maxSeats?: number;
     active?: boolean;
     prepayment?: number;
@@ -96,6 +97,7 @@ export async function POST(req: NextRequest) {
       dateStart: new Date(body.dateStart),
       dateEnd: body.dateEnd ? new Date(body.dateEnd) : null,
       price: body.price,
+      priceChild: body.priceChild ?? null,
       maxSeats: body.maxSeats ?? null,
       active: body.active ?? true,
       sortOrder: (maxSort?.sortOrder ?? -1) + 1,

@@ -218,6 +218,11 @@ export default async function TripDetailPage({
           <div className="trip-facts__item">
             <span className="trip-facts__label">{tp('factsPrice')}</span>
             <span className="trip-facts__value trip-facts__value--primary">{trip.price} {trip.currency}</span>
+            {trip.priceChild != null && (
+              <span style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-muted)', marginTop: '0.1rem' }}>
+                {trip.priceChild} {trip.currency} (deti)
+              </span>
+            )}
           </div>
           {(trip.seatsTotal ?? trip.maxSeats) != null && (
             <div className="trip-facts__item">
