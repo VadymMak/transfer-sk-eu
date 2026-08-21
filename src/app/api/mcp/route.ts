@@ -527,6 +527,56 @@ async function createServer() {
     },
   );
 
+  // ── TRIPS ─────────────────────────────────────────────────────────────────
+
+  server.registerTool(
+    'get_trips',
+    {
+      description: 'Get bus tours (upcoming or all). Returns slug, name (sk), date, price, seats, booking phone.',
+      inputSchema: {
+        upcomingOnly: z.boolean().optional().describe('Only show trips with dateStart >= today (default: true)'),
+        locale: z.string().optional().describe('Translation locale for trip names (default: sk)'),
+        limit: z.number().optional().describe('Max results (default: 20)'),
+      },
+    },
+    async (params) => {
+      const locale = params.locale ?? 'sk';
+      const upcomingOnly = params.upcomingOnly !== false;
+      const trips = await db.trip.findMany({
+        where: {
+          storeId: store.id,
+          active: true,
+          ...(upcomingOnly ? { dateStart: { gte: new Date() } } : {}),
+        },
+        orderBy: { dateStart: 'asc' },
+        include: {
+          translations: { where: { OR: [{ locale }, { locale: 'sk' }] } },
+        },
+        take: params.limit ?? 20,
+      });
+
+      const result = trips.map((trip) => {
+        const tr = trip.translations.find((t) => t.locale === locale)
+          ?? trip.translations.find((t) => t.locale === 'sk');
+        return {
+          slug: trip.slug,
+          name: tr?.name ?? trip.slug,
+          dateStart: trip.dateStart.toISOString().slice(0, 10),
+          price: trip.price,
+          priceChild: trip.priceChild ?? null,
+          prepayment: trip.prepayment ?? null,
+          currency: trip.currency,
+          seatsTotal: trip.seatsTotal ?? trip.maxSeats ?? null,
+          bookedSeats: trip.bookedSeats,
+          bookingPhone: trip.bookingPhone ?? null,
+          active: trip.active,
+        };
+      });
+
+      return text(result);
+    },
+  );
+
   // ── STORE CONFIG ──────────────────────────────────────────────────────────
 
   server.registerTool(
@@ -639,7 +689,7 @@ export async function GET(req: Request) {
         'get_customers', 'get_analytics',
         'create_promotion', 'bulk_update_prices',
         'get_theme', 'update_theme', 'apply_template',
-        'search_knowledge', 'get_store_config',
+        'search_knowledge', 'get_store_config', 'get_trips',
         ...(storeInfo?.vertical === 'RESTAURANT' ? ['get_reservations', 'get_tables'] : []),
       ],
       claudeDesktopConfig: {
