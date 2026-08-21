@@ -65,6 +65,9 @@ export default async function VyletyPage({ params }: { params: Promise<{ locale:
           { label: tBc('home'), href: `/${locale}` },
           { label: t('pageTitle') },
         ]} />
+        <Link href={`/${locale}`} className="trip-detail__back">
+          ← {t('backToHome')}
+        </Link>
         <div className="section-header">
           <h1 className="section-title">{t('pageTitle')}</h1>
           <GoldDivider />

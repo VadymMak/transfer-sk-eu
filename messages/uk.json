@@ -819,6 +819,7 @@
     "seatsLeft": "Залишилось {n} місць",
     "allTripsBtn": "Всі тури",
     "backToList": "Назад до турів",
+    "backToHome": "На головну",
     "itineraryHeading": "Програма туру"
   }
 }

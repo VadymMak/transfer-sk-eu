@@ -813,6 +813,7 @@
     "seatsLeft": "Zbývá {n} míst",
     "allTripsBtn": "Všechny zájezdy",
     "backToList": "Zpět na zájezdy",
+    "backToHome": "Zpět na hlavní",
     "itineraryHeading": "Program zájezdu"
   }
 }

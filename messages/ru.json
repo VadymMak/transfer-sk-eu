@@ -819,6 +819,7 @@
     "seatsLeft": "Осталось {n} мест",
     "allTripsBtn": "Все туры",
     "backToList": "Назад к турам",
+    "backToHome": "На главную",
     "itineraryHeading": "Программа тура"
   }
 }

@@ -809,6 +809,7 @@
     "seatsLeft": "{n} seats left",
     "allTripsBtn": "All Bus Tours",
     "backToList": "Back to Bus Tours",
+    "backToHome": "Back to home",
     "itineraryHeading": "Tour Itinerary"
   }
 }
