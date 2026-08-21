@@ -244,6 +244,8 @@ export interface AdminTranslations {
     readMinutesLabel: string;
     videosLabel: string;
     addVideoBtn: string;
+    galleryLabel: string;
+    saveFirstMedia: string;
   };
   ai: {
     title: string;
@@ -831,6 +833,8 @@ const SK: AdminTranslations = {
     readMinutesLabel:      'Read time (min)',
     videosLabel:           'Videos (reels) — max 25 MB · mp4 / webm',
     addVideoBtn:           '+ Add video',
+    galleryLabel:          'Gallery',
+    saveFirstMedia:        'Save the trip first to upload photos and videos.',
   },
   ai: {
     title:           'AI správa',
@@ -1418,6 +1422,8 @@ const EN: AdminTranslations = {
     readMinutesLabel:      'Read time (min)',
     videosLabel:           'Videos (reels) — max 25 MB · mp4 / webm',
     addVideoBtn:           '+ Add video',
+    galleryLabel:          'Gallery',
+    saveFirstMedia:        'Save the trip first to upload photos and videos.',
   },
   ai: {
     title:           'AI Assistant',
@@ -2005,6 +2011,8 @@ const CS: AdminTranslations = {
     readMinutesLabel:      'Read time (min)',
     videosLabel:           'Videos (reels) — max 25 MB · mp4 / webm',
     addVideoBtn:           '+ Add video',
+    galleryLabel:          'Gallery',
+    saveFirstMedia:        'Save the trip first to upload photos and videos.',
   },
   ai: {
     title:           'AI asistent',
@@ -2592,6 +2600,8 @@ const DE: AdminTranslations = {
     readMinutesLabel:      'Read time (min)',
     videosLabel:           'Videos (reels) — max 25 MB · mp4 / webm',
     addVideoBtn:           '+ Add video',
+    galleryLabel:          'Gallery',
+    saveFirstMedia:        'Save the trip first to upload photos and videos.',
   },
   ai: {
     title:           'KI-Verwaltung',
@@ -3179,6 +3189,8 @@ const UK: AdminTranslations = {
     readMinutesLabel:      'Read time (min)',
     videosLabel:           'Videos (reels) — max 25 MB · mp4 / webm',
     addVideoBtn:           '+ Add video',
+    galleryLabel:          'Gallery',
+    saveFirstMedia:        'Save the trip first to upload photos and videos.',
   },
   ai: {
     title:           'AI-менеджер',
@@ -3766,6 +3778,8 @@ const RU: AdminTranslations = {
     readMinutesLabel:      'Время чтения (мин)',
     videosLabel:           'Видео (reels) — макс. 25 МБ · mp4 / webm',
     addVideoBtn:           '+ Добавить видео',
+    galleryLabel:          'Галерея',
+    saveFirstMedia:        'Сначала сохраните поездку, чтобы загрузить фото и видео.',
   },
   ai: {
     title:           'AI-менеджер',
@@ -4353,6 +4367,8 @@ const PL: AdminTranslations = {
     readMinutesLabel:      'Read time (min)',
     videosLabel:           'Videos (reels) — max 25 MB · mp4 / webm',
     addVideoBtn:           '+ Add video',
+    galleryLabel:          'Gallery',
+    saveFirstMedia:        'Save the trip first to upload photos and videos.',
   },
   ai: {
     title:           'Menedżer AI',

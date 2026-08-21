@@ -698,7 +698,7 @@ export default function AdminTripsPage() {
               </div>
             </div>
 
-            <div className="booking__field" style={fieldStyle}>
+            <div style={fieldStyle}>
               <label className="admin-toggle">
                 <input
                   type="checkbox"
@@ -714,73 +714,85 @@ export default function AdminTripsPage() {
             </div>
           </div>
 
-          {/* ── Gallery (edit only) ── */}
-          {editId && (
-            <div style={{ marginTop: '1.5rem' }}>
-              <label style={{ display: 'block', marginBottom: '0.75rem', color: 'var(--color-text-primary)', fontWeight: 500 }}>
-                {t.gallery.title}
-              </label>
-              {editGallery.length > 0 && (
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.75rem' }}>
-                  {editGallery.map((img) => (
-                    <div key={img.id} style={{ position: 'relative', width: 80, height: 60 }}>
-                      <img
-                        src={img.url}
-                        alt={img.alt ?? ''}
-                        style={{ width: 80, height: 60, objectFit: 'cover', borderRadius: 4, border: '1px solid var(--color-border)', display: 'block' }}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => removeGalleryImage(img.id)}
-                        title={t.gallery.deletePhoto}
-                        style={{ position: 'absolute', top: 2, right: 2, background: 'rgba(0,0,0,0.6)', border: 'none', color: '#fff', borderRadius: 2, cursor: 'pointer', fontSize: 10, lineHeight: 1, padding: '2px 4px' }}
-                      >
-                        ✕
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              )}
-              <input type="file" accept="image/*" multiple ref={galleryFileRef} onChange={handleGalleryUpload} style={{ display: 'none' }} id="trip-gallery-upload" />
-              <label htmlFor="trip-gallery-upload" className="btn-outline btn-sm" style={{ cursor: 'pointer' }}>
-                {uploadingGallery ? t.common.uploading : `+ ${t.gallery.addPhoto}`}
-              </label>
-            </div>
-          )}
+          {/* ── Gallery ── */}
+          <div style={{ marginTop: '1.5rem', borderTop: '1px solid var(--color-border)', paddingTop: '1.25rem' }}>
+            <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-muted)', marginBottom: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              {t.trips.galleryLabel}
+            </p>
+            {editId ? (
+              <>
+                {editGallery.length > 0 && (
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.75rem' }}>
+                    {editGallery.map((img) => (
+                      <div key={img.id} style={{ position: 'relative', width: 80, height: 60 }}>
+                        <img
+                          src={img.url}
+                          alt={img.alt ?? ''}
+                          style={{ width: 80, height: 60, objectFit: 'cover', borderRadius: 4, border: '1px solid var(--color-border)', display: 'block' }}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => removeGalleryImage(img.id)}
+                          title={t.gallery.deletePhoto}
+                          style={{ position: 'absolute', top: 2, right: 2, background: 'rgba(0,0,0,0.6)', border: 'none', color: '#fff', borderRadius: 2, cursor: 'pointer', fontSize: 10, lineHeight: 1, padding: '2px 4px' }}
+                        >
+                          ✕
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                <input type="file" accept="image/*" multiple ref={galleryFileRef} onChange={handleGalleryUpload} style={{ display: 'none' }} id="trip-gallery-upload" />
+                <label htmlFor="trip-gallery-upload" className="btn-outline btn-sm" style={{ cursor: 'pointer' }}>
+                  {uploadingGallery ? t.common.uploading : `+ ${t.gallery.addPhoto}`}
+                </label>
+              </>
+            ) : (
+              <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-muted)', fontStyle: 'italic' }}>
+                {t.trips.saveFirstMedia}
+              </p>
+            )}
+          </div>
 
-          {/* ── Videos (edit only) ── */}
-          {editId && (
-            <div style={{ marginTop: '1.5rem' }}>
-              <label style={{ display: 'block', marginBottom: '0.75rem', color: 'var(--color-text-primary)', fontWeight: 500 }}>
-                {t.trips.videosLabel}
-              </label>
-              {editVideos.length > 0 && (
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '0.75rem' }}>
-                  {editVideos.map((vid) => (
-                    <div key={vid.id} style={{ position: 'relative', width: 80 }}>
-                      <video
-                        src={vid.url}
-                        style={{ width: 80, height: 60, objectFit: 'cover', borderRadius: 4, border: '1px solid var(--color-border)', display: 'block', background: '#000' }}
-                        muted
-                        playsInline
-                      />
-                      <button
-                        type="button"
-                        onClick={() => removeVideo(vid.id)}
-                        style={{ position: 'absolute', top: 2, right: 2, background: 'rgba(0,0,0,0.6)', border: 'none', color: '#fff', borderRadius: 2, cursor: 'pointer', fontSize: 10, lineHeight: 1, padding: '2px 4px' }}
-                      >
-                        ✕
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              )}
-              <input type="file" accept="video/mp4,video/webm,video/quicktime" ref={videoFileRef} onChange={handleVideoUpload} style={{ display: 'none' }} id="trip-video-upload" />
-              <label htmlFor="trip-video-upload" className="btn-outline btn-sm" style={{ cursor: 'pointer' }}>
-                {uploadingVideo ? t.common.uploading : t.trips.addVideoBtn}
-              </label>
-            </div>
-          )}
+          {/* ── Videos ── */}
+          <div style={{ marginTop: '1.5rem', borderTop: '1px solid var(--color-border)', paddingTop: '1.25rem' }}>
+            <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-muted)', marginBottom: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              {t.trips.videosLabel}
+            </p>
+            {editId ? (
+              <>
+                {editVideos.length > 0 && (
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '0.75rem' }}>
+                    {editVideos.map((vid) => (
+                      <div key={vid.id} style={{ position: 'relative', width: 80 }}>
+                        <video
+                          src={vid.url}
+                          style={{ width: 80, height: 60, objectFit: 'cover', borderRadius: 4, border: '1px solid var(--color-border)', display: 'block', background: '#000' }}
+                          muted
+                          playsInline
+                        />
+                        <button
+                          type="button"
+                          onClick={() => removeVideo(vid.id)}
+                          style={{ position: 'absolute', top: 2, right: 2, background: 'rgba(0,0,0,0.6)', border: 'none', color: '#fff', borderRadius: 2, cursor: 'pointer', fontSize: 10, lineHeight: 1, padding: '2px 4px' }}
+                        >
+                          ✕
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                <input type="file" accept="video/mp4,video/webm,video/quicktime" ref={videoFileRef} onChange={handleVideoUpload} style={{ display: 'none' }} id="trip-video-upload" />
+                <label htmlFor="trip-video-upload" className="btn-outline btn-sm" style={{ cursor: 'pointer' }}>
+                  {uploadingVideo ? t.common.uploading : t.trips.addVideoBtn}
+                </label>
+              </>
+            ) : (
+              <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-muted)', fontStyle: 'italic' }}>
+                {t.trips.saveFirstMedia}
+              </p>
+            )}
+          </div>
 
           <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1.5rem' }}>
             <button type="submit" className="btn-primary btn-sm" disabled={saving || uploadingCover || uploadingGallery || uploadingVideo}>
