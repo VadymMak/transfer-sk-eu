@@ -1296,6 +1296,18 @@ body::after {
 .admin-page .booking__field textarea::placeholder {
   color: var(--admin-text-faint);
 }
+.admin-page input[type="date"],
+.admin-page input[type="datetime-local"],
+.admin-page input[type="time"] {
+  color-scheme: dark;
+}
+.admin-page input[type="date"]::-webkit-calendar-picker-indicator,
+.admin-page input[type="datetime-local"]::-webkit-calendar-picker-indicator,
+.admin-page input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) brightness(1.6);
+  opacity: 1;
+  cursor: pointer;
+}
 
 /* ── Admin btn-primary contrast fix ──────────────────────────────────────────
    --color-primary-dark is NOT defined in :root; it is only injected as a body
