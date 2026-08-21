@@ -821,6 +821,7 @@
     "factsFrom": "Z",
     "bookNow": "Zarezerwuj",
     "whatsapp": "WhatsApp",
+    "bookingWhatsAppText": "Dzień dobry! Chcę zarezerwować wycieczkę: ",
     "seatsLeft": "Pozostało {n} miejsc"
   }
 }

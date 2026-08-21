@@ -837,6 +837,7 @@
     "factsFrom": "Z",
     "bookNow": "Rezervovat",
     "whatsapp": "WhatsApp",
+    "bookingWhatsAppText": "Dobrý den! Chci si zarezervovat zájezd: ",
     "seatsLeft": "Zbývá {n} míst"
   }
 }

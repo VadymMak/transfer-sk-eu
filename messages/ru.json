@@ -843,6 +843,7 @@
     "factsFrom": "Из",
     "bookNow": "Забронировать",
     "whatsapp": "WhatsApp",
+    "bookingWhatsAppText": "Здравствуйте! Хочу забронировать тур: ",
     "seatsLeft": "Осталось {n} мест"
   }
 }

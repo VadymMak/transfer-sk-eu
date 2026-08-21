@@ -5,6 +5,7 @@ import { getBaseUrl } from '@/lib/url';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
+import WhatsAppIcon from '@/components/ui/WhatsAppIcon';
 
 const STORE_SLUG = process.env.STORE_SLUG ?? '';
 
@@ -115,6 +116,11 @@ export default async function TripDetailPage({
   const itineraryItems = parseItinerary(tr?.itinerary);
 
   const waPhone = trip.bookingPhone?.replace(/\D/g, '') ?? null;
+  const telHref = trip.bookingPhone ? `tel:+${trip.bookingPhone.replace(/\D/g, '')}` : null;
+  const waMessage = waPhone && tr?.name
+    ? encodeURIComponent(`${tp('bookingWhatsAppText')}${tr.name} (${dateLabel})`)
+    : '';
+  const waHref = waPhone ? `https://wa.me/${waPhone}${waMessage ? `?text=${waMessage}` : ''}` : null;
 
   // ── JSON-LD ──
   const breadcrumbJsonLd = {
@@ -257,19 +263,24 @@ export default async function TripDetailPage({
         {trip.bookingPhone && (
           <div className="trip-booking">
             <p className="trip-booking__phone">
-              <a href={`tel:${trip.bookingPhone}`} className="trip-booking__phone-link">
-                {trip.bookingPhone}
-              </a>
+              {telHref ? (
+                <a href={telHref} className="trip-booking__phone-link">
+                  {trip.bookingPhone}
+                </a>
+              ) : trip.bookingPhone}
             </p>
             <div className="trip-booking__cta">
-              {waPhone && (
-                <a href={`https://wa.me/${waPhone}`} target="_blank" rel="noopener noreferrer" className="trip-booking__btn trip-booking__btn--wa">
-                  {tp('whatsapp')}
+              {waHref && (
+                <a href={waHref} target="_blank" rel="noopener noreferrer" className="trip-booking__btn trip-booking__btn--wa">
+                  <WhatsAppIcon size={18} />
+                  <span style={{ marginLeft: '0.4rem' }}>{tp('whatsapp')}</span>
                 </a>
               )}
-              <a href={`tel:${trip.bookingPhone}`} className="trip-booking__btn trip-booking__btn--call">
-                {tp('bookNow')}
-              </a>
+              {telHref && (
+                <a href={telHref} className="trip-booking__btn trip-booking__btn--call">
+                  {tp('bookNow')}
+                </a>
+              )}
             </div>
             {trip.prepayment != null && (
               <p className="trip-booking__note">{trip.prepayment} {trip.currency} {tp('prepaymentNote')}</p>
@@ -382,14 +393,17 @@ export default async function TripDetailPage({
           <div className="trip-cta">
             <p className="trip-cta__text">{tp('bookTitle')}</p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-              {waPhone && (
-                <a href={`https://wa.me/${waPhone}`} target="_blank" rel="noopener noreferrer" className="trip-booking__btn trip-booking__btn--wa">
-                  {tp('whatsapp')}
+              {waHref && (
+                <a href={waHref} target="_blank" rel="noopener noreferrer" className="trip-booking__btn trip-booking__btn--wa">
+                  <WhatsAppIcon size={18} />
+                  <span style={{ marginLeft: '0.4rem' }}>{tp('whatsapp')}</span>
                 </a>
               )}
-              <a href={`tel:${trip.bookingPhone}`} className="trip-booking__btn trip-booking__btn--call">
-                {tp('bookNow')}
-              </a>
+              {telHref && (
+                <a href={telHref} className="trip-booking__btn trip-booking__btn--call">
+                  {tp('bookNow')}
+                </a>
+              )}
             </div>
           </div>
         )}

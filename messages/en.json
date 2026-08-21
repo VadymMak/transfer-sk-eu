@@ -833,6 +833,7 @@
     "factsFrom": "From",
     "bookNow": "Book now",
     "whatsapp": "WhatsApp",
+    "bookingWhatsAppText": "Hello! I'd like to book the tour: ",
     "seatsLeft": "{n} seats left"
   }
 }
