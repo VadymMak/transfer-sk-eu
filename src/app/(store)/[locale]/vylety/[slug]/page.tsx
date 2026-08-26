@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { db } from '@/lib/db';
 import { getBaseUrl } from '@/lib/url';
+import { isTripPast } from '@/lib/trip-utils';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
@@ -10,7 +11,7 @@ import { TripGallery } from '@/components/trips/TripGallery';
 
 const STORE_SLUG = process.env.STORE_SLUG ?? '';
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 type FaqItem = { q: string; a: string };
 
@@ -92,7 +93,9 @@ export default async function TripDetailPage({
       videos: { orderBy: { sortOrder: 'asc' } },
     },
   });
-  if (!trip || !trip.active) notFound();
+  if (!trip?.active) notFound();
+
+  const isPast = isTripPast(trip.dateStart);
 
   const tr = trip.translations.find((tx) => tx.locale === locale) ?? trip.translations[0];
   const baseUrl = getBaseUrl();
@@ -118,9 +121,12 @@ export default async function TripDetailPage({
 
   const waPhone = trip.bookingPhone?.replace(/\D/g, '') ?? null;
   const telHref = trip.bookingPhone ? `tel:+${trip.bookingPhone.replace(/\D/g, '')}` : null;
-  const waMessage = waPhone && tr?.name
-    ? encodeURIComponent(`${tp('bookingWhatsAppText')}${tr.name} (${dateLabel})`)
-    : '';
+
+  // Past tours use a different WA prefill ("interested in a similar trip")
+  const waMessageText = isPast
+    ? `${tp('pastWhatsAppText')}${tr?.name ?? ''}`
+    : `${tp('bookingWhatsAppText')}${tr?.name ?? ''} (${dateLabel})`;
+  const waMessage = waPhone && tr?.name ? encodeURIComponent(waMessageText) : '';
   const waHref = waPhone ? `https://wa.me/${waPhone}${waMessage ? `?text=${waMessage}` : ''}` : null;
 
   // ── JSON-LD ──
@@ -145,13 +151,16 @@ export default async function TripDetailPage({
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     url: `${baseUrl}/${locale}/vylety/${slug}`,
     image: trip.coverImage ?? undefined,
-    offers: {
-      '@type': 'Offer',
-      price: trip.price,
-      priceCurrency: trip.currency,
-      availability: 'https://schema.org/InStock',
-      url: `${baseUrl}/${locale}/vylety/${slug}`,
-    },
+    // Past events: omit InStock offer so search engines don't advertise a bookable past date
+    ...(isPast ? {} : {
+      offers: {
+        '@type': 'Offer',
+        price: trip.price,
+        priceCurrency: trip.currency,
+        availability: 'https://schema.org/InStock',
+        url: `${baseUrl}/${locale}/vylety/${slug}`,
+      },
+    }),
     organizer: {
       '@type': 'Organization',
       name: 'Transfer SK EU',
@@ -214,6 +223,11 @@ export default async function TripDetailPage({
           {' · '}{tp('oneDay')}
         </p>
 
+        {/* ── Past badge ── */}
+        {isPast && (
+          <span className="trip-past-badge">{tp('pastBadge')}</span>
+        )}
+
         {/* ── Eyebrow + H1 ── */}
         {tr?.headline ? (
           <>
@@ -263,6 +277,9 @@ export default async function TripDetailPage({
         {/* ── Booking strip ── */}
         {trip.bookingPhone && (
           <div className="trip-booking">
+            {isPast && (
+              <p className="trip-booking__past-cta">{tp('pastCtaTitle')}</p>
+            )}
             <p className="trip-booking__phone">
               {telHref ? (
                 <a href={telHref} className="trip-booking__phone-link">
@@ -277,13 +294,13 @@ export default async function TripDetailPage({
                   <span style={{ marginLeft: '0.4rem' }}>{tp('whatsapp')}</span>
                 </a>
               )}
-              {telHref && (
+              {!isPast && telHref && (
                 <a href={telHref} className="trip-booking__btn trip-booking__btn--call">
                   {tp('bookNow')}
                 </a>
               )}
             </div>
-            {trip.prepayment != null && (
+            {!isPast && trip.prepayment != null && (
               <p className="trip-booking__note">{trip.prepayment} {trip.currency} {tp('prepaymentNote')}</p>
             )}
             {tr?.bookingNote && <p className="trip-booking__note">{tr.bookingNote}</p>}
@@ -383,7 +400,9 @@ export default async function TripDetailPage({
         {/* ── Bottom CTA ── */}
         {trip.bookingPhone && (
           <div className="trip-cta">
-            <p className="trip-cta__text">{tp('bookTitle')}</p>
+            <p className="trip-cta__text">
+              {isPast ? tp('pastCtaTitle') : tp('bookTitle')}
+            </p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               {waHref && (
                 <a href={waHref} target="_blank" rel="noopener noreferrer" className="trip-booking__btn trip-booking__btn--wa">
@@ -391,7 +410,7 @@ export default async function TripDetailPage({
                   <span style={{ marginLeft: '0.4rem' }}>{tp('whatsapp')}</span>
                 </a>
               )}
-              {telHref && (
+              {!isPast && telHref && (
                 <a href={telHref} className="trip-booking__btn trip-booking__btn--call">
                   {tp('bookNow')}
                 </a>

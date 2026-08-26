@@ -812,7 +812,8 @@
     "allTripsBtn": "Alle Busreisen",
     "backToList": "Zurück zu Busreisen",
     "backToHome": "Zurück zur Startseite",
-    "itineraryHeading": "Reiseprogramm"
+    "itineraryHeading": "Reiseprogramm",
+    "pastTitle": "Vergangene Reisen"
   },
   "tripPage": {
     "audienceTitle": "Für wen ist diese Reise?",
@@ -836,6 +837,9 @@
     "bookNow": "Jetzt buchen",
     "whatsapp": "WhatsApp",
     "bookingWhatsAppText": "Hallo! Ich möchte die Tour buchen: ",
-    "seatsLeft": "Noch {n} Plätze"
+    "seatsLeft": "Noch {n} Plätze",
+    "pastBadge": "Abgeschlossen",
+    "pastCtaTitle": "Interesse an derselben Reise? Schreiben Sie uns wegen des nächsten Termins.",
+    "pastWhatsAppText": "Guten Tag! Ich interessiere mich für eine Reise wie "
   }
 }

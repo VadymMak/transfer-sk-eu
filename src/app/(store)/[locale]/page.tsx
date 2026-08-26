@@ -16,8 +16,9 @@ import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import FaqSection from '@/components/sections/FaqSection';
 import ContactSection from '@/components/sections/ContactSection';
 import UpcomingTripsSection from '@/components/sections/UpcomingTripsSection';
+import { todayCutoff } from '@/lib/trip-utils';
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 const TICKER_ARIA_LABEL: Record<string, string> = {
   de: 'Strecken und Festpreise',
@@ -65,7 +66,7 @@ export default async function HomePage({
     }),
     // Upcoming trips
     db.trip.findMany({
-      where: { storeId: config.id, active: true, dateStart: { gte: new Date() } },
+      where: { storeId: config.id, active: true, dateStart: { gte: todayCutoff() } },
       include: {
         translations: { where: { locale: { in: [locale, 'sk'] } } },
         galleryImages: { orderBy: { sortOrder: 'asc' }, take: 1 },

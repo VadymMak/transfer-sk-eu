@@ -812,7 +812,8 @@
     "allTripsBtn": "All Bus Tours",
     "backToList": "Back to Bus Tours",
     "backToHome": "Back to home",
-    "itineraryHeading": "Tour Itinerary"
+    "itineraryHeading": "Tour Itinerary",
+    "pastTitle": "Past tours"
   },
   "tripPage": {
     "audienceTitle": "Who is this tour for?",
@@ -836,6 +837,9 @@
     "bookNow": "Book now",
     "whatsapp": "WhatsApp",
     "bookingWhatsAppText": "Hello! I'd like to book the tour: ",
-    "seatsLeft": "{n} seats left"
+    "seatsLeft": "{n} seats left",
+    "pastBadge": "Past",
+    "pastCtaTitle": "Want the same? Write us about the next date.",
+    "pastWhatsAppText": "Hello! I am interested in a trip like "
   }
 }
