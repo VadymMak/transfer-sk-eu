@@ -579,5 +579,208 @@
         }
       }
     }
+    ,
+    {
+      "slug": "hallstatt",
+      "departureDate": "2026-09-12",
+      "priceAdult": 80,
+      "priceChild": null,
+      "prepayment": null,
+      "bookingPhone": "+421 951 287 892",
+      "seatsTotal": null,
+      "active": true,
+      "translations": {
+        "sk": {
+          "name": "Hallstatt",
+          "headline": "Kam vyraziť na jeseň z Trenčína na jeden deň?",
+          "description": "Jednodňový výlet do Hallstattu — najkrajšej alpskej dedinky pri jazere. Zlatá jeseň, zrkadlové jazero, úzke uličky a hory. Odvezieme vás tam aj späť, vy si len užívate.",
+          "audience": [
+            "Pre rodiny, páry, fotografov a každého, kto chce vidieť Alpy za jeden deň bez šoférovania."
+          ],
+          "itinerary": [
+            "05:30 — Odchod z Trenčína",
+            "06:00 — Dubnica nad Váhom",
+            "06:20 — Nové Mesto nad Váhom",
+            "07:10 — Bratislava",
+            "~11:00 — Príchod do Hallstattu, voľný program (jazero, staré mesto, vyhliadka Skywalk, obed)",
+            "16:30 — Odchod späť domov",
+            "~22:00 — Návrat domov"
+          ],
+          "included": [
+            "Komfortná doprava tam aj späť",
+            "Káva, čaj, voda a drobné občerstvenie cestou",
+            "Voľný čas na prehliadku a fotenie",
+            "Nezabudnuteľné zážitky a množstvo fotiek"
+          ],
+          "extrasNote": [
+            "Vezmite si občiansky preukaz alebo pas",
+            "Pohodlnú obuv a teplejšiu bundu (jeseň v horách)",
+            "Nabitý telefón/fotoaparát",
+            "Trochu hotovosti (€) na obed a prípadné vstupy"
+          ],
+          "bookingNote": "Rezervácie a informácie: +421 951 287 892, Vitalij.",
+          "tags": "Hallstatt, jednodňový výlet, Rakúsko, zo Slovenska, jeseň",
+          "faq": [
+            { "q": "Čo je zahrnuté v cene 80 €?", "a": "Doprava tam aj späť a občerstvenie cestou (káva, čaj, voda, drobné pohostenie)." },
+            { "q": "Je v cene obed?", "a": "Nie, obed a vstupy sú individuálne. V Hallstatte je dosť kaviarní a reštaurácií." },
+            { "q": "Ako dlho trvá cesta?", "a": "Približne 4 – 4,5 hodiny jedným smerom, s krátkymi zastávkami." },
+            { "q": "Koľko je voľného času na mieste?", "a": "Približne 5 hodín na prehliadku, jazero a obed." },
+            { "q": "Ako si rezervovať miesto?", "a": "Zavolajte alebo napíšte na WhatsApp +421 951 287 892. Počet miest je obmedzený." }
+          ]
+        },
+        "en": {
+          "name": "Hallstatt",
+          "headline": "Where can you go for one autumn day from Trenčín?",
+          "description": "A one-day trip to Hallstatt — the most beautiful lakeside village in the Austrian Alps. Golden autumn, a mirror lake, narrow streets and mountains. We drive you there and back; you just enjoy it.",
+          "audience": [
+            "For families, couples, photographers and anyone who wants to see the Alps in a single day without driving."
+          ],
+          "itinerary": [
+            "05:30 — Departure from Trenčín",
+            "06:00 — Dubnica nad Váhom",
+            "06:20 — Nové Mesto nad Váhom",
+            "07:10 — Bratislava",
+            "~11:00 — Arrival in Hallstatt, free programme (lake, old town, Skywalk viewpoint, lunch)",
+            "16:30 — Departure back home",
+            "~22:00 — Arrival home"
+          ],
+          "included": [
+            "Comfortable transfer there and back",
+            "Coffee, tea, water and light snacks on the way",
+            "Free time to explore and take photos",
+            "A day full of views and pictures"
+          ],
+          "extrasNote": [
+            "Bring your ID card or passport",
+            "Comfortable shoes and a warmer jacket (autumn in the mountains)",
+            "A charged phone/camera",
+            "Some cash (€) for lunch and optional entries"
+          ],
+          "bookingNote": "Bookings and info: +421 951 287 892, Vitaliy.",
+          "tags": "Hallstatt, one-day trip, Austria, from Slovakia, autumn",
+          "faq": [
+            { "q": "What is included in the 80 € price?", "a": "Round-trip transfer and refreshments on the way (coffee, tea, water, light snacks)." },
+            { "q": "Is lunch included?", "a": "No, lunch and entries are on your own. Hallstatt has plenty of cafés and restaurants." },
+            { "q": "How long is the drive?", "a": "About 4–4.5 hours each way, with short stops." },
+            { "q": "How much free time on site?", "a": "Around 5 hours for the village, the lake and lunch." },
+            { "q": "How do I book a seat?", "a": "Call or message WhatsApp +421 951 287 892. Seats are limited." }
+          ]
+        },
+        "de": {
+          "name": "Hallstatt",
+          "headline": "Wohin an einem Herbsttag ab Trenčín?",
+          "description": "Ein Tagesausflug nach Hallstatt — dem schönsten Dorf am See in den österreichischen Alpen. Goldener Herbst, ein spiegelglatter See, enge Gassen und Berge. Wir fahren Sie hin und zurück, Sie genießen einfach.",
+          "audience": [
+            "Für Familien, Paare, Fotografen und alle, die die Alpen an einem Tag ohne Selbstfahren sehen möchten."
+          ],
+          "itinerary": [
+            "05:30 — Abfahrt Trenčín",
+            "06:00 — Dubnica nad Váhom",
+            "06:20 — Nové Mesto nad Váhom",
+            "07:10 — Bratislava",
+            "~11:00 — Ankunft in Hallstatt, freies Programm (See, Altstadt, Skywalk-Aussichtspunkt, Mittagessen)",
+            "16:30 — Rückfahrt nach Hause",
+            "~22:00 — Ankunft zu Hause"
+          ],
+          "included": [
+            "Komfortabler Transfer hin und zurück",
+            "Kaffee, Tee, Wasser und kleine Snacks unterwegs",
+            "Freie Zeit zum Erkunden und Fotografieren",
+            "Ein Tag voller Ausblicke und Fotos"
+          ],
+          "extrasNote": [
+            "Personalausweis oder Reisepass mitnehmen",
+            "Bequeme Schuhe und eine wärmere Jacke (Herbst in den Bergen)",
+            "Geladenes Handy/Kamera",
+            "Etwas Bargeld (€) für Mittagessen und optionale Eintritte"
+          ],
+          "bookingNote": "Buchung und Infos: +421 951 287 892, Vitalij.",
+          "tags": "Hallstatt, Tagesausflug, Österreich, ab der Slowakei, Herbst",
+          "faq": [
+            { "q": "Was ist im Preis von 80 € enthalten?", "a": "Hin- und Rücktransfer sowie Erfrischungen unterwegs (Kaffee, Tee, Wasser, kleine Snacks)." },
+            { "q": "Ist das Mittagessen inbegriffen?", "a": "Nein, Mittagessen und Eintritte sind individuell. In Hallstatt gibt es viele Cafés und Restaurants." },
+            { "q": "Wie lange dauert die Fahrt?", "a": "Etwa 4–4,5 Stunden pro Richtung, mit kurzen Pausen." },
+            { "q": "Wie viel Freizeit vor Ort?", "a": "Rund 5 Stunden für den Ort, den See und das Mittagessen." },
+            { "q": "Wie buche ich einen Platz?", "a": "Rufen Sie an oder schreiben Sie per WhatsApp +421 951 287 892. Die Plätze sind begrenzt." }
+          ]
+        },
+        "ru": {
+          "name": "Гальштат",
+          "headline": "Куда съездить осенью из Тренчина на один день?",
+          "description": "Однодневная поездка в Гальштат — самую красивую деревню у озера в австрийских Альпах. Золотая осень, зеркальное озеро, узкие улочки и горы. Отвезём туда и обратно — вам остаётся только наслаждаться.",
+          "audience": [
+            "Для семей, пар, любителей фото и всех, кто хочет увидеть Альпы за один день без руля."
+          ],
+          "itinerary": [
+            "05:30 — Выезд из Тренчина",
+            "06:00 — Дубница-над-Вагом",
+            "06:20 — Нове-Место-над-Вагом",
+            "07:10 — Братислава",
+            "~11:00 — Прибытие в Гальштат, свободное время (озеро, старый город, смотровая Скайвок, обед)",
+            "16:30 — Отправление домой",
+            "~22:00 — Возвращение домой"
+          ],
+          "included": [
+            "Комфортный трансфер туда и обратно",
+            "Кофе, чай, вода и лёгкие закуски в дороге",
+            "Свободное время на прогулку и фото",
+            "Море впечатлений и красивых фотографий"
+          ],
+          "extrasNote": [
+            "Возьмите паспорт или ID",
+            "Удобную обувь и тёплую куртку (осень в горах)",
+            "Заряженный телефон/фотоаппарат",
+            "Немного наличных (€) на обед и возможные входные билеты"
+          ],
+          "bookingNote": "Бронирование и информация: +421 951 287 892, Виталий.",
+          "tags": "Гальштат, однодневная поездка, Австрия, из Словакии, осень",
+          "faq": [
+            { "q": "Что входит в цену 80 €?", "a": "Трансфер туда-обратно и угощение в дороге (кофе, чай, вода, лёгкие закуски)." },
+            { "q": "Входит ли обед?", "a": "Нет, обед и входные билеты — самостоятельно. В Гальштате много кафе и ресторанов." },
+            { "q": "Сколько ехать?", "a": "Примерно 4–4,5 часа в одну сторону, с короткими остановками." },
+            { "q": "Сколько свободного времени на месте?", "a": "Около 5 часов на деревню, озеро и обед." },
+            { "q": "Как забронировать место?", "a": "Позвоните или напишите в WhatsApp +421 951 287 892. Количество мест ограничено." }
+          ]
+        },
+        "uk": {
+          "name": "Гальштат",
+          "headline": "Куди поїхати восени з Тренчина на один день?",
+          "description": "Осінь у Гальштаті — це справжня казка наживо. Незабутня подорож до наймальовничішого куточка австрійських Альп: золоті барви осені, дзеркальне озеро, затишні вулички та величні гори. Ми відвеземо вас туди й назад — вам лишається лише насолоджуватися.",
+          "audience": [
+            "Для сімей, пар, любителів фото та всіх, хто хоче побачити Альпи за один день без керма."
+          ],
+          "itinerary": [
+            "05:30 — Виїзд із Тренчина",
+            "06:00 — Дубниця-над-Вагом",
+            "06:20 — Нове Мєсто-над-Вагом",
+            "07:10 — Братислава",
+            "~11:00 — Прибуття в Гальштат, вільний час (озеро, старе місто, оглядовий майданчик Скайвок, обід)",
+            "16:30 — Відправлення додому",
+            "~22:00 — Повернення додому"
+          ],
+          "included": [
+            "Комфортабельний трансфер туди й назад",
+            "Кава, чай, водичка та смаколики в дорозі",
+            "Вільний час на прогулянку та фото",
+            "Незабутні враження та море красивих фото"
+          ],
+          "extrasNote": [
+            "Візьміть паспорт або ID",
+            "Зручне взуття та теплішу куртку (осінь у горах)",
+            "Заряджений телефон/фотоапарат",
+            "Трохи готівки (€) на обід і можливі вхідні квитки"
+          ],
+          "bookingNote": "Бронювання та інформація: +421 951 287 892, Віталій.",
+          "tags": "Гальштат, одноденна подорож, Австрія, зі Словаччини, осінь",
+          "faq": [
+            { "q": "Що входить у ціну 80 €?", "a": "Трансфер туди й назад та частування в дорозі (кава, чай, вода, смаколики)." },
+            { "q": "Чи входить обід?", "a": "Ні, обід і вхідні квитки — самостійно. У Гальштаті багато кафе та ресторанів." },
+            { "q": "Скільки їхати?", "a": "Приблизно 4–4,5 години в один бік, з короткими зупинками." },
+            { "q": "Скільки вільного часу на місці?", "a": "Близько 5 годин на село, озеро та обід." },
+            { "q": "Як забронювати місце?", "a": "Зателефонуйте або напишіть у WhatsApp +421 951 287 892. Кількість місць обмежена." }
+          ]
+        }
+      }
+    }
   ]
 }
