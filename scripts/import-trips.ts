@@ -39,6 +39,7 @@ interface TourEntry {
   prepayment?: number | null;
   bookingPhone?: string | null;
   seatsTotal?: number | null;
+  active?: boolean;
   translations: Record<string, LocaleData>;
 }
 
@@ -89,7 +90,7 @@ async function main() {
         prepayment:  tour.prepayment ?? null,
         bookingPhone: tour.bookingPhone ?? null,
         seatsTotal:  tour.seatsTotal ?? null,
-        active:      false,
+        active:      tour.active ?? false,
         sortOrder:   i,
         // coverImage intentionally omitted → null
       },
