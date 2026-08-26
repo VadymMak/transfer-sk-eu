@@ -34,12 +34,16 @@ interface LocaleData {
 interface TourEntry {
   slug: string;
   departureDate: string;
+  dateEnd?: string | null;
   priceAdult: number;
   priceChild?: number | null;
   prepayment?: number | null;
   bookingPhone?: string | null;
   seatsTotal?: number | null;
   active?: boolean;
+  locationName?: string | null;
+  locationLocality?: string | null;
+  locationCountry?: string | null;
   translations: Record<string, LocaleData>;
 }
 
@@ -81,26 +85,33 @@ async function main() {
     const trip = await db.trip.upsert({
       where: { storeId_slug: { storeId: store.id, slug: tour.slug } },
       create: {
-        storeId:     store.id,
-        slug:        tour.slug,
+        storeId:          store.id,
+        slug:             tour.slug,
         dateStart,
-        dateEnd:     null,
-        price:       tour.priceAdult,
-        priceChild:  tour.priceChild ?? null,
-        prepayment:  tour.prepayment ?? null,
-        bookingPhone: tour.bookingPhone ?? null,
-        seatsTotal:  tour.seatsTotal ?? null,
-        active:      tour.active ?? false,
-        sortOrder:   i,
+        dateEnd:          tour.dateEnd ? new Date(tour.dateEnd) : null,
+        price:            tour.priceAdult,
+        priceChild:       tour.priceChild ?? null,
+        prepayment:       tour.prepayment ?? null,
+        bookingPhone:     tour.bookingPhone ?? null,
+        seatsTotal:       tour.seatsTotal ?? null,
+        active:           tour.active ?? false,
+        sortOrder:        i,
+        locationName:     tour.locationName ?? null,
+        locationLocality: tour.locationLocality ?? null,
+        locationCountry:  tour.locationCountry ?? null,
         // coverImage intentionally omitted → null
       },
       update: {
         dateStart,
-        price:       tour.priceAdult,
-        priceChild:  tour.priceChild ?? null,
-        prepayment:  tour.prepayment ?? null,
-        bookingPhone: tour.bookingPhone ?? null,
-        seatsTotal:  tour.seatsTotal ?? null,
+        dateEnd:          tour.dateEnd ? new Date(tour.dateEnd) : null,
+        price:            tour.priceAdult,
+        priceChild:       tour.priceChild ?? null,
+        prepayment:       tour.prepayment ?? null,
+        bookingPhone:     tour.bookingPhone ?? null,
+        seatsTotal:       tour.seatsTotal ?? null,
+        locationName:     tour.locationName ?? null,
+        locationLocality: tour.locationLocality ?? null,
+        locationCountry:  tour.locationCountry ?? null,
         // active/coverImage/gallery/videos: NOT touched on update
       },
     });

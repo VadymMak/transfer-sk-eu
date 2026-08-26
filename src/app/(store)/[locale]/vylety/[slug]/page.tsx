@@ -140,17 +140,34 @@ export default async function TripDetailPage({
     ],
   };
 
+  const toSchemaDate = (d: Date) =>
+    new Intl.DateTimeFormat('sv', { timeZone: 'Europe/Bratislava' }).format(d);
+
   const eventJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Event',
     name: tr?.name,
     description: tr?.description ?? undefined,
-    startDate: trip.dateStart,
-    endDate: trip.dateEnd ?? undefined,
+    startDate: toSchemaDate(trip.dateStart),
+    endDate: toSchemaDate(trip.dateEnd ?? trip.dateStart),
     eventStatus: 'https://schema.org/EventScheduled',
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     url: `${baseUrl}/${locale}/vylety/${slug}`,
     image: trip.coverImage ?? undefined,
+    location: trip.locationName ? {
+      '@type': 'Place',
+      name: trip.locationName,
+      address: {
+        '@type': 'PostalAddress',
+        ...(trip.locationLocality ? { addressLocality: trip.locationLocality } : {}),
+        ...(trip.locationCountry ? { addressCountry: trip.locationCountry } : {}),
+      },
+    } : undefined,
+    performer: {
+      '@type': 'Organization',
+      name: 'Transfer SK-EU',
+      url: baseUrl,
+    },
     // Past events: omit InStock offer so search engines don't advertise a bookable past date
     ...(isPast ? {} : {
       offers: {
@@ -159,6 +176,7 @@ export default async function TripDetailPage({
         priceCurrency: trip.currency,
         availability: 'https://schema.org/InStock',
         url: `${baseUrl}/${locale}/vylety/${slug}`,
+        validFrom: trip.createdAt.toISOString(),
       },
     }),
     organizer: {

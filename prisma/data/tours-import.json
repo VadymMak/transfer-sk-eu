@@ -4,12 +4,16 @@
     {
       "slug": "benatky",
       "departureDate": "2026-09-19",
+      "dateEnd": "2026-09-19T23:59:00+02:00",
       "priceAdult": 150,
       "priceChild": null,
       "prepayment": null,
       "bookingPhone": "+421 951 287 892",
       "seatsTotal": null,
       "active": true,
+      "locationName": "Venezia",
+      "locationLocality": "Venezia",
+      "locationCountry": "IT",
       "translations": {
         "sk": {
           "name": "Benátky",
@@ -191,12 +195,16 @@
     {
       "slug": "saske-svajciarsko",
       "departureDate": "2026-10-03",
+      "dateEnd": "2026-10-03T23:30:00+02:00",
       "priceAdult": 150,
       "priceChild": 140,
       "prepayment": 50,
       "bookingPhone": "+421 915 448 386",
       "seatsTotal": null,
       "active": true,
+      "locationName": "Sächsische Schweiz",
+      "locationLocality": "Bad Schandau",
+      "locationCountry": "DE",
       "translations": {
         "sk": {
           "name": "Saské Švajčiarsko",
@@ -403,12 +411,16 @@
     {
       "slug": "festival-tekvic-retz",
       "departureDate": "2026-10-24",
+      "dateEnd": "2026-10-24T20:00:00+02:00",
       "priceAdult": 82,
       "priceChild": 77,
       "prepayment": null,
       "bookingPhone": "+421 915 448 386",
       "seatsTotal": null,
       "active": true,
+      "locationName": "Retz",
+      "locationLocality": "Retz",
+      "locationCountry": "AT",
       "translations": {
         "sk": {
           "name": "Festival tekvíc v Retze",
@@ -586,12 +598,16 @@
     {
       "slug": "hallstatt",
       "departureDate": "2026-09-12",
+      "dateEnd": "2026-09-12T22:00:00+02:00",
       "priceAdult": 80,
       "priceChild": null,
       "prepayment": null,
       "bookingPhone": "+421 951 287 892",
       "seatsTotal": null,
       "active": true,
+      "locationName": "Hallstatt",
+      "locationLocality": "Hallstatt",
+      "locationCountry": "AT",
       "translations": {
         "sk": {
           "name": "Hallstatt",
