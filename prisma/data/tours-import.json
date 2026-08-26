@@ -9,6 +9,7 @@
       "prepayment": null,
       "bookingPhone": "+421 951 287 892",
       "seatsTotal": null,
+      "active": true,
       "translations": {
         "sk": {
           "name": "Benátky",
@@ -195,6 +196,7 @@
       "prepayment": 50,
       "bookingPhone": "+421 915 448 386",
       "seatsTotal": null,
+      "active": true,
       "translations": {
         "sk": {
           "name": "Saské Švajčiarsko",
@@ -406,6 +408,7 @@
       "prepayment": null,
       "bookingPhone": "+421 915 448 386",
       "seatsTotal": null,
+      "active": true,
       "translations": {
         "sk": {
           "name": "Festival tekvíc v Retze",
