@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import WhatsAppIcon from '@/components/ui/WhatsAppIcon';
+import { TripGallery } from '@/components/trips/TripGallery';
 
 const STORE_SLUG = process.env.STORE_SLUG ?? '';
 
@@ -334,19 +335,10 @@ export default async function TripDetailPage({
         {trip.galleryImages.length > 0 && (
           <section className="trip-section">
             <h2 className="trip-section__title">{tp('galleryTitle')}</h2>
-            <div className="trip-detail__gallery">
-              {trip.galleryImages.map((img) => (
-                <div key={img.id} className="trip-detail__gallery-item">
-                  <Image
-                    src={img.url}
-                    alt={img.alt ?? tr?.name ?? ''}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    style={{ objectFit: 'cover' }}
-                  />
-                </div>
-              ))}
-            </div>
+            <TripGallery
+              images={trip.galleryImages.map(img => ({ id: img.id, url: img.url, alt: img.alt }))}
+              tourName={tr?.name ?? ''}
+            />
           </section>
         )}
 
