@@ -2,6 +2,7 @@ import { getTranslations, getLocale } from 'next-intl/server';
 import GoldDivider from '@/components/ui/GoldDivider';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import RouteCard from './RouteCard';
+import { ROUTE_PAGES } from '@/lib/route-pages';
 
 interface Route {
   id: string;
@@ -17,12 +18,14 @@ interface RoutesSectionProps {
   routes: Route[];
 }
 
+const slugByKey = new Map(ROUTE_PAGES.map(r => [r.nameKey, r.slug]));
+
 export default async function RoutesSection({ routes }: RoutesSectionProps) {
   const [t, locale] = await Promise.all([getTranslations('routes'), getLocale()]);
 
   const localizedRoutes = routes.map(route => {
     const meta = route.metadata as { nameI18n?: Record<string, string> } | null;
-    return { ...route, name: meta?.nameI18n?.[locale] ?? route.displayName };
+    return { ...route, name: meta?.nameI18n?.[locale] ?? route.displayName, slug: slugByKey.get(route.nameKey) };
   });
 
   return (
@@ -48,6 +51,8 @@ export default async function RoutesSection({ routes }: RoutesSectionProps) {
               featuredLabel={t('featuredLabel')}
               ctaHint={t('ctaHint')}
               routeLabel={t('routeLabel')}
+              slug={route.slug}
+              locale={locale}
             />
           </ScrollReveal>
         ))}
