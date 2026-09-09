@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { routing, type Locale } from '@/i18n/routing';
 import { db } from '@/lib/db';
 import { getBaseUrl } from '@/lib/url';
 import { isTripPast } from '@/lib/trip-utils';
@@ -77,6 +78,7 @@ export default async function TripDetailPage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
+  if (!routing.locales.includes(locale as Locale)) notFound();
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'trips' });
   const tp = await getTranslations({ locale, namespace: 'tripPage' });

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { setRequestLocale } from 'next-intl/server';
-import { routing } from '@/i18n/routing';
+import { routing, type Locale } from '@/i18n/routing';
 import { getActiveLocales, getDefaultLocale } from '@/config';
 import { db } from '@/lib/db';
 import { getStoreConfig } from '@/lib/store-config';
@@ -93,6 +93,7 @@ export default async function RoutePage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
+  if (!routing.locales.includes(locale as Locale)) notFound();
   const def = getRoutePage(slug);
   if (!def) notFound();
 

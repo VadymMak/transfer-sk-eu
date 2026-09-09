@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
+import { routing, type Locale } from '@/i18n/routing';
 import { formatHoursDisplay } from '@/lib/formatHours';
 import type { WorkingHours } from '@/lib/store-config';
 import WhatsAppIcon from '@/components/ui/WhatsAppIcon';
@@ -37,10 +38,17 @@ interface HeroSectionProps {
 }
 
 function formatTripDate(date: Date, locale: string): string {
-  return new Intl.DateTimeFormat(locale === 'sk' ? 'sk-SK' : locale, {
-    day: 'numeric',
-    month: 'short',
-  }).format(new Date(date));
+  const safeLocale = routing.locales.includes(locale as Locale)
+    ? (locale === 'sk' ? 'sk-SK' : locale)
+    : 'de';
+  try {
+    return new Intl.DateTimeFormat(safeLocale, {
+      day: 'numeric',
+      month: 'short',
+    }).format(new Date(date));
+  } catch {
+    return new Date(date).toISOString().slice(0, 10);
+  }
 }
 
 export default async function HeroSection({

@@ -1,4 +1,6 @@
+import { notFound } from 'next/navigation';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
+import { routing, type Locale } from '@/i18n/routing';
 import { db } from '@/lib/db';
 import { getStoreConfig } from '@/lib/store-config';
 import HeroSection, { type HeroTripCard } from '@/components/sections/HeroSection';
@@ -33,6 +35,7 @@ export default async function HomePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  if (!routing.locales.includes(locale as Locale)) notFound();
   setRequestLocale(locale);
 
   const tRoutes = await getTranslations('routes');

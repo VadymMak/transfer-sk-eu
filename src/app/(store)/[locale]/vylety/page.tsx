@@ -1,4 +1,6 @@
+import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { routing, type Locale } from '@/i18n/routing';
 import { db } from '@/lib/db';
 import { getBaseUrl } from '@/lib/url';
 import { todayCutoff } from '@/lib/trip-utils';
@@ -24,6 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function VyletyPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  if (!routing.locales.includes(locale as Locale)) notFound();
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'trips' });
   const tBc = await getTranslations({ locale, namespace: 'breadcrumbs' });
