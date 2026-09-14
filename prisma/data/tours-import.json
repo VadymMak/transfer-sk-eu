@@ -4,16 +4,11 @@
     {
       "slug": "benatky",
       "departureDate": "2026-09-19",
-      "dateEnd": "2026-09-19T23:59:00+02:00",
       "priceAdult": 150,
       "priceChild": null,
       "prepayment": null,
       "bookingPhone": "+421 951 287 892",
       "seatsTotal": null,
-      "active": true,
-      "locationName": "Venezia",
-      "locationLocality": "Venezia",
-      "locationCountry": "IT",
       "translations": {
         "sk": {
           "name": "Benátky",
@@ -195,16 +190,11 @@
     {
       "slug": "saske-svajciarsko",
       "departureDate": "2026-10-03",
-      "dateEnd": "2026-10-03T23:30:00+02:00",
       "priceAdult": 150,
       "priceChild": 140,
       "prepayment": 50,
       "bookingPhone": "+421 915 448 386",
       "seatsTotal": null,
-      "active": true,
-      "locationName": "Sächsische Schweiz",
-      "locationLocality": "Bad Schandau",
-      "locationCountry": "DE",
       "translations": {
         "sk": {
           "name": "Saské Švajčiarsko",
@@ -411,16 +401,11 @@
     {
       "slug": "festival-tekvic-retz",
       "departureDate": "2026-10-24",
-      "dateEnd": "2026-10-24T20:00:00+02:00",
       "priceAdult": 82,
       "priceChild": 77,
       "prepayment": null,
       "bookingPhone": "+421 915 448 386",
       "seatsTotal": null,
-      "active": true,
-      "locationName": "Retz",
-      "locationLocality": "Retz",
-      "locationCountry": "AT",
       "translations": {
         "sk": {
           "name": "Festival tekvíc v Retze",
@@ -593,210 +578,189 @@
           ]
         }
       }
-    }
-    ,
+    },
     {
-      "slug": "hallstatt",
-      "departureDate": "2026-09-12",
-      "dateEnd": "2026-09-12T22:00:00+02:00",
-      "priceAdult": 80,
+      "slug": "flexum-mosonmagyarovar",
+      "departureDate": "2026-10-17",
+      "dateEnd": "2026-10-17T23:59:00+02:00",
+      "priceAdult": 45,
       "priceChild": null,
       "prepayment": null,
       "bookingPhone": "+421 951 287 892",
       "seatsTotal": null,
       "active": true,
-      "locationName": "Hallstatt",
-      "locationLocality": "Hallstatt",
-      "locationCountry": "AT",
+      "locationName": "Termál Flexum",
+      "locationLocality": "Mosonmagyaróvár",
+      "locationCountry": "HU",
       "translations": {
         "sk": {
-          "name": "Hallstatt",
-          "headline": "Kam vyraziť na jeseň z Trenčína na jeden deň?",
-          "description": "Jednodňový výlet do Hallstattu — najkrajšej alpskej dedinky pri jazere. Zlatá jeseň, zrkadlové jazero, úzke uličky a hory. Odvezieme vás tam aj späť, vy si len užívate.",
+          "name": "Termálne kúpele Flexum – Mosonmagyaróvár",
+          "headline": "Termálne kúpele Flexum v Maďarsku: jednodňový wellness výlet zo Slovenska",
+          "description": "Jednodňový výlet do termálneho komplexu Flexum v Mosonmagyarovári. Liečivá termálna voda, vonkajšie aj kryté bazény — ideálne na regeneráciu tela a uvoľnenie napätia. Odchod zo Slovenska poobede, návrat večer.",
           "audience": [
-            "Pre rodiny, páry, fotografov a každého, kto chce vidieť Alpy za jeden deň bez šoférovania."
+            "Veľa pracujete a chcete pomôcť telu zregenerovať sa",
+            "Unavené ruky, nohy a chrbát — nechajte teplú liečivú vodu uvoľniť napätie",
+            "Nemáte čas na pravidelné cvičenie či masáže — termálna voda je skvelá alternatíva"
           ],
           "itinerary": [
-            "05:30 — Odchod z Trenčína",
-            "06:00 — Dubnica nad Váhom",
-            "06:20 — Nové Mesto nad Váhom",
-            "07:10 — Bratislava",
-            "~11:00 — Príchod do Hallstattu, voľný program (jazero, staré mesto, vyhliadka Skywalk, obed)",
-            "16:30 — Odchod späť domov",
-            "~22:00 — Návrat domov"
+            "13:30 — Odchod z Trenčína",
+            "15:00 — Odchod z Bratislavy",
+            "Pobyt v termálnom komplexe Flexum až do zatvorenia",
+            "19:50 — Odchod z Maďarska",
+            "20:50 — Bratislava",
+            "22:20 — Trenčín"
           ],
           "included": [
-            "Komfortná doprava tam aj späť",
-            "Káva, čaj, voda a drobné občerstvenie cestou",
-            "Voľný čas na prehliadku a fotenie",
-            "Nezabudnuteľné zážitky a množstvo fotiek"
+            "Doprava tam aj späť pohodlným autobusom",
+            "Sprievod skupiny"
           ],
           "extrasNote": [
-            "Vezmite si občiansky preukaz alebo pas",
-            "Pohodlnú obuv a teplejšiu bundu (jeseň v horách)",
-            "Nabitý telefón/fotoaparát",
-            "Trochu hotovosti (€) na obed a prípadné vstupy"
+            "Vstupné do termálu (~13 € / osoba, platí sa zvlášť)",
+            "Strava a osobné výdavky",
+            "Cestovné poistenie"
           ],
           "bookingNote": "Rezervácie a informácie: +421 951 287 892, Vitalij.",
-          "tags": "Hallstatt, jednodňový výlet, Rakúsko, zo Slovenska, jeseň",
+          "tags": "termálne kúpele, Flexum, Mosonmagyaróvár, Maďarsko, jednodňový výlet, wellness, zo Slovenska",
           "faq": [
-            { "q": "Čo je zahrnuté v cene 80 €?", "a": "Doprava tam aj späť a občerstvenie cestou (káva, čaj, voda, drobné pohostenie)." },
-            { "q": "Je v cene obed?", "a": "Nie, obed a vstupy sú individuálne. V Hallstatte je dosť kaviarní a reštaurácií." },
-            { "q": "Ako dlho trvá cesta?", "a": "Približne 4 – 4,5 hodiny jedným smerom, s krátkymi zastávkami." },
-            { "q": "Koľko je voľného času na mieste?", "a": "Približne 5 hodín na prehliadku, jazero a obed." },
-            { "q": "Ako si rezervovať miesto?", "a": "Zavolajte alebo napíšte na WhatsApp +421 951 287 892. Počet miest je obmedzený." }
-          ]
-        },
-        "en": {
-          "name": "Hallstatt",
-          "headline": "Where can you go for one autumn day from Trenčín?",
-          "description": "A one-day trip to Hallstatt — the most beautiful lakeside village in the Austrian Alps. Golden autumn, a mirror lake, narrow streets and mountains. We drive you there and back; you just enjoy it.",
-          "audience": [
-            "For families, couples, photographers and anyone who wants to see the Alps in a single day without driving."
-          ],
-          "itinerary": [
-            "05:30 — Departure from Trenčín",
-            "06:00 — Dubnica nad Váhom",
-            "06:20 — Nové Mesto nad Váhom",
-            "07:10 — Bratislava",
-            "~11:00 — Arrival in Hallstatt, free programme (lake, old town, Skywalk viewpoint, lunch)",
-            "16:30 — Departure back home",
-            "~22:00 — Arrival home"
-          ],
-          "included": [
-            "Comfortable transfer there and back",
-            "Coffee, tea, water and light snacks on the way",
-            "Free time to explore and take photos",
-            "A day full of views and pictures"
-          ],
-          "extrasNote": [
-            "Bring your ID card or passport",
-            "Comfortable shoes and a warmer jacket (autumn in the mountains)",
-            "A charged phone/camera",
-            "Some cash (€) for lunch and optional entries"
-          ],
-          "bookingNote": "Bookings and info: +421 951 287 892, Vitaliy.",
-          "tags": "Hallstatt, one-day trip, Austria, from Slovakia, autumn",
-          "faq": [
-            { "q": "What is included in the 80 € price?", "a": "Round-trip transfer and refreshments on the way (coffee, tea, water, light snacks)." },
-            { "q": "Is lunch included?", "a": "No, lunch and entries are on your own. Hallstatt has plenty of cafés and restaurants." },
-            { "q": "How long is the drive?", "a": "About 4–4.5 hours each way, with short stops." },
-            { "q": "How much free time on site?", "a": "Around 5 hours for the village, the lake and lunch." },
-            { "q": "How do I book a seat?", "a": "Call or message WhatsApp +421 951 287 892. Seats are limited." }
+            { "q": "O koľkej je odchod a návrat?", "a": "Odchod z Trenčína o 13:30, z Bratislavy o 15:00. Z Maďarska sa vraciame o 19:50 — Bratislava ~20:50, Trenčín ~22:20." },
+            { "q": "Čo je v cene a čo sa pripláca?", "a": "V cene 45 € je doprava tam aj späť a sprievod skupiny. Vstupné do termálu (~13 €) sa platí zvlášť, rovnako strava a poistenie." },
+            { "q": "Ako si rezervovať miesto?", "a": "Telefonicky na +421 951 287 892 (Vitalij)." }
           ]
         },
         "de": {
-          "name": "Hallstatt",
-          "headline": "Wohin an einem Herbsttag ab Trenčín?",
-          "description": "Ein Tagesausflug nach Hallstatt — dem schönsten Dorf am See in den österreichischen Alpen. Goldener Herbst, ein spiegelglatter See, enge Gassen und Berge. Wir fahren Sie hin und zurück, Sie genießen einfach.",
+          "name": "Therme Flexum – Mosonmagyaróvár",
+          "headline": "Therme Flexum in Ungarn: Wellness-Tagesausflug ab der Slowakei",
+          "description": "Ein Tagesausflug in die Therme Flexum in Mosonmagyaróvár. Heilendes Thermalwasser, Außen- und Innenbecken — ideal zur Regeneration und um Verspannungen zu lösen. Abfahrt aus der Slowakei am Nachmittag, Rückkehr am Abend.",
           "audience": [
-            "Für Familien, Paare, Fotografen und alle, die die Alpen an einem Tag ohne Selbstfahren sehen möchten."
+            "Sie arbeiten viel und möchten Ihrem Körper bei der Regeneration helfen",
+            "Müde Arme, Beine und Rücken — lassen Sie das warme Heilwasser die Anspannung lösen",
+            "Keine Zeit für regelmäßigen Sport oder Massagen — Thermalwasser ist eine hervorragende Alternative"
           ],
           "itinerary": [
-            "05:30 — Abfahrt Trenčín",
-            "06:00 — Dubnica nad Váhom",
-            "06:20 — Nové Mesto nad Váhom",
-            "07:10 — Bratislava",
-            "~11:00 — Ankunft in Hallstatt, freies Programm (See, Altstadt, Skywalk-Aussichtspunkt, Mittagessen)",
-            "16:30 — Rückfahrt nach Hause",
-            "~22:00 — Ankunft zu Hause"
+            "13:30 — Abfahrt in Trenčín",
+            "15:00 — Abfahrt in Bratislava",
+            "Aufenthalt in der Therme Flexum bis zur Schließung",
+            "19:50 — Abfahrt aus Ungarn",
+            "20:50 — Bratislava",
+            "22:20 — Trenčín"
           ],
           "included": [
-            "Komfortabler Transfer hin und zurück",
-            "Kaffee, Tee, Wasser und kleine Snacks unterwegs",
-            "Freie Zeit zum Erkunden und Fotografieren",
-            "Ein Tag voller Ausblicke und Fotos"
+            "Hin- und Rückfahrt im komfortablen Reisebus",
+            "Gruppenbegleitung"
           ],
           "extrasNote": [
-            "Personalausweis oder Reisepass mitnehmen",
-            "Bequeme Schuhe und eine wärmere Jacke (Herbst in den Bergen)",
-            "Geladenes Handy/Kamera",
-            "Etwas Bargeld (€) für Mittagessen und optionale Eintritte"
+            "Eintritt in die Therme (~13 € / Person, separat zu zahlen)",
+            "Verpflegung und persönliche Ausgaben",
+            "Reiseversicherung"
           ],
-          "bookingNote": "Buchung und Infos: +421 951 287 892, Vitalij.",
-          "tags": "Hallstatt, Tagesausflug, Österreich, ab der Slowakei, Herbst",
+          "bookingNote": "Reservierungen und Infos: +421 951 287 892, Vitalij.",
+          "tags": "Therme, Flexum, Mosonmagyaróvár, Ungarn, Tagesausflug, Wellness, ab der Slowakei",
           "faq": [
-            { "q": "Was ist im Preis von 80 € enthalten?", "a": "Hin- und Rücktransfer sowie Erfrischungen unterwegs (Kaffee, Tee, Wasser, kleine Snacks)." },
-            { "q": "Ist das Mittagessen inbegriffen?", "a": "Nein, Mittagessen und Eintritte sind individuell. In Hallstatt gibt es viele Cafés und Restaurants." },
-            { "q": "Wie lange dauert die Fahrt?", "a": "Etwa 4–4,5 Stunden pro Richtung, mit kurzen Pausen." },
-            { "q": "Wie viel Freizeit vor Ort?", "a": "Rund 5 Stunden für den Ort, den See und das Mittagessen." },
-            { "q": "Wie buche ich einen Platz?", "a": "Rufen Sie an oder schreiben Sie per WhatsApp +421 951 287 892. Die Plätze sind begrenzt." }
+            { "q": "Wann ist Abfahrt und Rückkehr?", "a": "Abfahrt in Trenčín um 13:30, in Bratislava um 15:00. Rückfahrt aus Ungarn um 19:50 — Bratislava ~20:50, Trenčín ~22:20." },
+            { "q": "Was ist inklusive und was kostet extra?", "a": "Im Preis von 45 € sind Hin- und Rückfahrt sowie die Gruppenbegleitung enthalten. Der Thermeneintritt (~13 €) wird separat bezahlt, ebenso Verpflegung und Versicherung." },
+            { "q": "Wie reserviere ich einen Platz?", "a": "Telefonisch unter +421 951 287 892 (Vitalij)." }
+          ]
+        },
+        "en": {
+          "name": "Flexum Thermal Baths – Mosonmagyaróvár",
+          "headline": "Flexum Thermal Baths in Hungary: a one-day wellness trip from Slovakia",
+          "description": "A one-day trip to the Flexum thermal complex in Mosonmagyaróvár. Healing thermal water, outdoor and indoor pools — ideal to recover and release tension. Departure from Slovakia in the afternoon, return in the evening.",
+          "audience": [
+            "You work hard and want to help your body recover",
+            "Tired arms, legs and back — let the warm healing water release the tension",
+            "No time for regular exercise or massage — thermal water is a great alternative"
+          ],
+          "itinerary": [
+            "13:30 — Departure from Trenčín",
+            "15:00 — Departure from Bratislava",
+            "Time at the Flexum thermal complex until closing",
+            "19:50 — Departure from Hungary",
+            "20:50 — Bratislava",
+            "22:20 — Trenčín"
+          ],
+          "included": [
+            "Return transport by comfortable coach",
+            "Group escort"
+          ],
+          "extrasNote": [
+            "Thermal bath entry (~€13 / person, paid separately)",
+            "Meals and personal expenses",
+            "Travel insurance"
+          ],
+          "bookingNote": "Reservations and info: +421 951 287 892, Vitalij.",
+          "tags": "thermal baths, Flexum, Mosonmagyaróvár, Hungary, one-day trip, wellness, from Slovakia",
+          "faq": [
+            { "q": "What time is departure and return?", "a": "Departure from Trenčín at 13:30, from Bratislava at 15:00. We leave Hungary at 19:50 — Bratislava ~20:50, Trenčín ~22:20." },
+            { "q": "What's included and what costs extra?", "a": "The €45 price covers return transport and the group escort. Thermal bath entry (~€13) is paid separately, as are meals and insurance." },
+            { "q": "How do I book a seat?", "a": "By phone at +421 951 287 892 (Vitalij)." }
           ]
         },
         "ru": {
-          "name": "Гальштат",
-          "headline": "Куда съездить осенью из Тренчина на один день?",
-          "description": "Однодневная поездка в Гальштат — самую красивую деревню у озера в австрийских Альпах. Золотая осень, зеркальное озеро, узкие улочки и горы. Отвезём туда и обратно — вам остаётся только наслаждаться.",
+          "name": "Термальные купальни Flexum – Мошонмадьяровар",
+          "headline": "Термальные купальни Flexum в Венгрии: однодневная оздоровительная поездка из Словакии",
+          "description": "Однодневный выезд в термальный комплекс Flexum в Мошонмадьяроваре. Лечебная термальная вода, открытые и крытые бассейны — идеально для восстановления тела и снятия напряжения. Выезд из Словакии после обеда, возвращение вечером.",
           "audience": [
-            "Для семей, пар, любителей фото и всех, кто хочет увидеть Альпы за один день без руля."
+            "Вы много работаете и хотите помочь телу восстановиться",
+            "Устают руки, ноги и спина — дайте тёплой лечебной воде снять напряжение",
+            "Нет времени на регулярный спорт или массаж — термальная вода отличная альтернатива"
           ],
           "itinerary": [
-            "05:30 — Выезд из Тренчина",
-            "06:00 — Дубница-над-Вагом",
-            "06:20 — Нове-Место-над-Вагом",
-            "07:10 — Братислава",
-            "~11:00 — Прибытие в Гальштат, свободное время (озеро, старый город, смотровая Скайвок, обед)",
-            "16:30 — Отправление домой",
-            "~22:00 — Возвращение домой"
+            "13:30 — Выезд из Тренчина",
+            "15:00 — Выезд из Братиславы",
+            "Отдых в термальном комплексе Flexum до закрытия",
+            "19:50 — Выезд из Венгрии",
+            "20:50 — Братислава",
+            "22:20 — Тренчин"
           ],
           "included": [
-            "Комфортный трансфер туда и обратно",
-            "Кофе, чай, вода и лёгкие закуски в дороге",
-            "Свободное время на прогулку и фото",
-            "Море впечатлений и красивых фотографий"
+            "Проезд туда и обратно комфортным автобусом",
+            "Сопровождение группы"
           ],
           "extrasNote": [
-            "Возьмите паспорт или ID",
-            "Удобную обувь и тёплую куртку (осень в горах)",
-            "Заряженный телефон/фотоаппарат",
-            "Немного наличных (€) на обед и возможные входные билеты"
+            "Входной билет в термал (~13 € с человека, оплачивается отдельно)",
+            "Питание и личные расходы",
+            "Туристическая страховка"
           ],
           "bookingNote": "Бронирование и информация: +421 951 287 892, Виталий.",
-          "tags": "Гальштат, однодневная поездка, Австрия, из Словакии, осень",
+          "tags": "термальные купальни, Flexum, Мошонмадьяровар, Венгрия, однодневная поездка, оздоровление, из Словакии",
           "faq": [
-            { "q": "Что входит в цену 80 €?", "a": "Трансфер туда-обратно и угощение в дороге (кофе, чай, вода, лёгкие закуски)." },
-            { "q": "Входит ли обед?", "a": "Нет, обед и входные билеты — самостоятельно. В Гальштате много кафе и ресторанов." },
-            { "q": "Сколько ехать?", "a": "Примерно 4–4,5 часа в одну сторону, с короткими остановками." },
-            { "q": "Сколько свободного времени на месте?", "a": "Около 5 часов на деревню, озеро и обед." },
-            { "q": "Как забронировать место?", "a": "Позвоните или напишите в WhatsApp +421 951 287 892. Количество мест ограничено." }
+            { "q": "Во сколько выезд и возвращение?", "a": "Выезд из Тренчина в 13:30, из Братиславы в 15:00. Из Венгрии выезжаем в 19:50 — Братислава ~20:50, Тренчин ~22:20." },
+            { "q": "Что входит в цену и что оплачивается отдельно?", "a": "В цену 45 € входит проезд туда-обратно и сопровождение группы. Входной билет в термал (~13 €) оплачивается отдельно, как и питание и страховка." },
+            { "q": "Как забронировать место?", "a": "По телефону +421 951 287 892 (Виталий)." }
           ]
         },
         "uk": {
-          "name": "Гальштат",
-          "headline": "Куди поїхати восени з Тренчина на один день?",
-          "description": "Осінь у Гальштаті — це справжня казка наживо. Незабутня подорож до наймальовничішого куточка австрійських Альп: золоті барви осені, дзеркальне озеро, затишні вулички та величні гори. Ми відвеземо вас туди й назад — вам лишається лише насолоджуватися.",
+          "name": "Термальні купальні Flexum – Мошонмадьяровар",
+          "headline": "Термальні купальні Flexum в Угорщині: одноденна оздоровча поїздка зі Словаччини",
+          "description": "Одноденний виїзд до термального комплексу Flexum у Мошонмадьяроварі. Лікувальна термальна вода, відкриті та криті басейни — ідеально для відновлення тіла і зняття напруги. Виїзд зі Словаччини по обіді, повернення ввечері.",
           "audience": [
-            "Для сімей, пар, любителів фото та всіх, хто хоче побачити Альпи за один день без керма."
+            "Ви багато працюєте й хочете допомогти організму відновитися",
+            "Втомлені руки, ноги та спина — дозвольте теплій лікувальній воді зняти напругу",
+            "Немає часу на регулярні фізичні вправи чи масаж — термальна вода чудова альтернатива"
           ],
           "itinerary": [
-            "05:30 — Виїзд із Тренчина",
-            "06:00 — Дубниця-над-Вагом",
-            "06:20 — Нове Мєсто-над-Вагом",
-            "07:10 — Братислава",
-            "~11:00 — Прибуття в Гальштат, вільний час (озеро, старе місто, оглядовий майданчик Скайвок, обід)",
-            "16:30 — Відправлення додому",
-            "~22:00 — Повернення додому"
+            "13:30 — Виїзд із Тренчина",
+            "15:00 — Виїзд із Братислави",
+            "Відпочинок у термальному комплексі Flexum до закриття",
+            "19:50 — Виїзд з Угорщини",
+            "20:50 — Братислава",
+            "22:20 — Тренчин"
           ],
           "included": [
-            "Комфортабельний трансфер туди й назад",
-            "Кава, чай, водичка та смаколики в дорозі",
-            "Вільний час на прогулянку та фото",
-            "Незабутні враження та море красивих фото"
+            "Проїзд туди й назад комфортним автобусом",
+            "Супровід групи"
           ],
           "extrasNote": [
-            "Візьміть паспорт або ID",
-            "Зручне взуття та теплішу куртку (осінь у горах)",
-            "Заряджений телефон/фотоапарат",
-            "Трохи готівки (€) на обід і можливі вхідні квитки"
+            "Вхідний квиток до термалу (~13 € з особи, оплачується окремо)",
+            "Харчування та особисті витрати",
+            "Туристична страховка"
           ],
           "bookingNote": "Бронювання та інформація: +421 951 287 892, Віталій.",
-          "tags": "Гальштат, одноденна подорож, Австрія, зі Словаччини, осінь",
+          "tags": "термальні купальні, Flexum, Мошонмадьяровар, Угорщина, одноденна поїздка, оздоровлення, зі Словаччини",
           "faq": [
-            { "q": "Що входить у ціну 80 €?", "a": "Трансфер туди й назад та частування в дорозі (кава, чай, вода, смаколики)." },
-            { "q": "Чи входить обід?", "a": "Ні, обід і вхідні квитки — самостійно. У Гальштаті багато кафе та ресторанів." },
-            { "q": "Скільки їхати?", "a": "Приблизно 4–4,5 години в один бік, з короткими зупинками." },
-            { "q": "Скільки вільного часу на місці?", "a": "Близько 5 годин на село, озеро та обід." },
-            { "q": "Як забронювати місце?", "a": "Зателефонуйте або напишіть у WhatsApp +421 951 287 892. Кількість місць обмежена." }
+            { "q": "О котрій виїзд і повернення?", "a": "Виїзд із Тренчина о 13:30, із Братислави о 15:00. З Угорщини виїжджаємо о 19:50 — Братислава ~20:50, Тренчин ~22:20." },
+            { "q": "Що входить у ціну і що оплачується окремо?", "a": "У ціну 45 € входить проїзд туди-назад і супровід групи. Вхідний квиток до термалу (~13 €) оплачується окремо, як і харчування та страховка." },
+            { "q": "Як забронювати місце?", "a": "За телефоном +421 951 287 892 (Віталій)." }
           ]
         }
       }
