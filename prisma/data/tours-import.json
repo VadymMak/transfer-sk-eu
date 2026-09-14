@@ -578,6 +578,192 @@
           ]
         }
       }
+    },
+    {
+      "slug": "flexum-mosonmagyarovar",
+      "departureDate": "2026-10-17",
+      "dateEnd": "2026-10-17T23:59:00+02:00",
+      "priceAdult": 45,
+      "priceChild": null,
+      "prepayment": null,
+      "bookingPhone": "+421 951 287 892",
+      "seatsTotal": null,
+      "active": true,
+      "locationName": "Termál Flexum",
+      "locationLocality": "Mosonmagyaróvár",
+      "locationCountry": "HU",
+      "translations": {
+        "sk": {
+          "name": "Termálne kúpele Flexum – Mosonmagyaróvár",
+          "headline": "Termálne kúpele Flexum v Maďarsku: jednodňový wellness výlet zo Slovenska",
+          "description": "Jednodňový výlet do termálneho komplexu Flexum v Mosonmagyarovári. Liečivá termálna voda, vonkajšie aj kryté bazény — ideálne na regeneráciu tela a uvoľnenie napätia. Odchod zo Slovenska poobede, návrat večer.",
+          "audience": [
+            "Veľa pracujete a chcete pomôcť telu zregenerovať sa",
+            "Unavené ruky, nohy a chrbát — nechajte teplú liečivú vodu uvoľniť napätie",
+            "Nemáte čas na pravidelné cvičenie či masáže — termálna voda je skvelá alternatíva"
+          ],
+          "itinerary": [
+            "13:30 — Odchod z Trenčína",
+            "15:00 — Odchod z Bratislavy",
+            "Pobyt v termálnom komplexe Flexum až do zatvorenia",
+            "19:50 — Odchod z Maďarska",
+            "20:50 — Bratislava",
+            "22:20 — Trenčín"
+          ],
+          "included": [
+            "Doprava tam aj späť pohodlným autobusom",
+            "Sprievod skupiny"
+          ],
+          "extrasNote": [
+            "Vstupné do termálu (~13 € / osoba, platí sa zvlášť)",
+            "Strava a osobné výdavky",
+            "Cestovné poistenie"
+          ],
+          "bookingNote": "Rezervácie a informácie: +421 951 287 892, Vitalij.",
+          "tags": "termálne kúpele, Flexum, Mosonmagyaróvár, Maďarsko, jednodňový výlet, wellness, zo Slovenska",
+          "faq": [
+            { "q": "O koľkej je odchod a návrat?", "a": "Odchod z Trenčína o 13:30, z Bratislavy o 15:00. Z Maďarska sa vraciame o 19:50 — Bratislava ~20:50, Trenčín ~22:20." },
+            { "q": "Čo je v cene a čo sa pripláca?", "a": "V cene 45 € je doprava tam aj späť a sprievod skupiny. Vstupné do termálu (~13 €) sa platí zvlášť, rovnako strava a poistenie." },
+            { "q": "Ako si rezervovať miesto?", "a": "Telefonicky na +421 951 287 892 (Vitalij)." }
+          ]
+        },
+        "de": {
+          "name": "Therme Flexum – Mosonmagyaróvár",
+          "headline": "Therme Flexum in Ungarn: Wellness-Tagesausflug ab der Slowakei",
+          "description": "Ein Tagesausflug in die Therme Flexum in Mosonmagyaróvár. Heilendes Thermalwasser, Außen- und Innenbecken — ideal zur Regeneration und um Verspannungen zu lösen. Abfahrt aus der Slowakei am Nachmittag, Rückkehr am Abend.",
+          "audience": [
+            "Sie arbeiten viel und möchten Ihrem Körper bei der Regeneration helfen",
+            "Müde Arme, Beine und Rücken — lassen Sie das warme Heilwasser die Anspannung lösen",
+            "Keine Zeit für regelmäßigen Sport oder Massagen — Thermalwasser ist eine hervorragende Alternative"
+          ],
+          "itinerary": [
+            "13:30 — Abfahrt in Trenčín",
+            "15:00 — Abfahrt in Bratislava",
+            "Aufenthalt in der Therme Flexum bis zur Schließung",
+            "19:50 — Abfahrt aus Ungarn",
+            "20:50 — Bratislava",
+            "22:20 — Trenčín"
+          ],
+          "included": [
+            "Hin- und Rückfahrt im komfortablen Reisebus",
+            "Gruppenbegleitung"
+          ],
+          "extrasNote": [
+            "Eintritt in die Therme (~13 € / Person, separat zu zahlen)",
+            "Verpflegung und persönliche Ausgaben",
+            "Reiseversicherung"
+          ],
+          "bookingNote": "Reservierungen und Infos: +421 951 287 892, Vitalij.",
+          "tags": "Therme, Flexum, Mosonmagyaróvár, Ungarn, Tagesausflug, Wellness, ab der Slowakei",
+          "faq": [
+            { "q": "Wann ist Abfahrt und Rückkehr?", "a": "Abfahrt in Trenčín um 13:30, in Bratislava um 15:00. Rückfahrt aus Ungarn um 19:50 — Bratislava ~20:50, Trenčín ~22:20." },
+            { "q": "Was ist inklusive und was kostet extra?", "a": "Im Preis von 45 € sind Hin- und Rückfahrt sowie die Gruppenbegleitung enthalten. Der Thermeneintritt (~13 €) wird separat bezahlt, ebenso Verpflegung und Versicherung." },
+            { "q": "Wie reserviere ich einen Platz?", "a": "Telefonisch unter +421 951 287 892 (Vitalij)." }
+          ]
+        },
+        "en": {
+          "name": "Flexum Thermal Baths – Mosonmagyaróvár",
+          "headline": "Flexum Thermal Baths in Hungary: a one-day wellness trip from Slovakia",
+          "description": "A one-day trip to the Flexum thermal complex in Mosonmagyaróvár. Healing thermal water, outdoor and indoor pools — ideal to recover and release tension. Departure from Slovakia in the afternoon, return in the evening.",
+          "audience": [
+            "You work hard and want to help your body recover",
+            "Tired arms, legs and back — let the warm healing water release the tension",
+            "No time for regular exercise or massage — thermal water is a great alternative"
+          ],
+          "itinerary": [
+            "13:30 — Departure from Trenčín",
+            "15:00 — Departure from Bratislava",
+            "Time at the Flexum thermal complex until closing",
+            "19:50 — Departure from Hungary",
+            "20:50 — Bratislava",
+            "22:20 — Trenčín"
+          ],
+          "included": [
+            "Return transport by comfortable coach",
+            "Group escort"
+          ],
+          "extrasNote": [
+            "Thermal bath entry (~€13 / person, paid separately)",
+            "Meals and personal expenses",
+            "Travel insurance"
+          ],
+          "bookingNote": "Reservations and info: +421 951 287 892, Vitalij.",
+          "tags": "thermal baths, Flexum, Mosonmagyaróvár, Hungary, one-day trip, wellness, from Slovakia",
+          "faq": [
+            { "q": "What time is departure and return?", "a": "Departure from Trenčín at 13:30, from Bratislava at 15:00. We leave Hungary at 19:50 — Bratislava ~20:50, Trenčín ~22:20." },
+            { "q": "What's included and what costs extra?", "a": "The €45 price covers return transport and the group escort. Thermal bath entry (~€13) is paid separately, as are meals and insurance." },
+            { "q": "How do I book a seat?", "a": "By phone at +421 951 287 892 (Vitalij)." }
+          ]
+        },
+        "ru": {
+          "name": "Термальные купальни Flexum – Мошонмадьяровар",
+          "headline": "Термальные купальни Flexum в Венгрии: однодневный wellness-выезд из Словакии",
+          "description": "Однодневный выезд в термальный комплекс Flexum в Мошонмадьяроваре. Лечебная термальная вода, открытые и крытые бассейны — идеально для восстановления тела и снятия напряжения. Выезд из Словакии после обеда, возвращение вечером.",
+          "audience": [
+            "Вы много работаете и хотите помочь телу восстановиться",
+            "Устают руки, ноги и спина — дайте тёплой лечебной воде снять напряжение",
+            "Нет времени на регулярный спорт или массаж — термальная вода отличная альтернатива"
+          ],
+          "itinerary": [
+            "13:30 — Выезд из Тренчина",
+            "15:00 — Выезд из Братиславы",
+            "Отдых в термальном комплексе Flexum до закрытия",
+            "19:50 — Выезд из Венгрии",
+            "20:50 — Братислава",
+            "22:20 — Тренчин"
+          ],
+          "included": [
+            "Проезд туда и обратно комфортным автобусом",
+            "Сопровождение группы"
+          ],
+          "extrasNote": [
+            "Входной билет в термал (~13 € с человека, оплачивается отдельно)",
+            "Питание и личные расходы",
+            "Туристическая страховка"
+          ],
+          "bookingNote": "Бронирование и информация: +421 951 287 892, Виталий.",
+          "tags": "термальные купальни, Flexum, Мошонмадьяровар, Венгрия, однодневный выезд, wellness, из Словакии",
+          "faq": [
+            { "q": "Во сколько выезд и возвращение?", "a": "Выезд из Тренчина в 13:30, из Братиславы в 15:00. Из Венгрии выезжаем в 19:50 — Братислава ~20:50, Тренчин ~22:20." },
+            { "q": "Что входит в цену и что оплачивается отдельно?", "a": "В цену 45 € входит проезд туда-обратно и сопровождение группы. Входной билет в термал (~13 €) оплачивается отдельно, как и питание и страховка." },
+            { "q": "Как забронировать место?", "a": "По телефону +421 951 287 892 (Виталий)." }
+          ]
+        },
+        "uk": {
+          "name": "Термальні купальні Flexum – Мошонмадьяровар",
+          "headline": "Термальні купальні Flexum в Угорщині: одноденний wellness-виїзд зі Словаччини",
+          "description": "Одноденний виїзд до термального комплексу Flexum у Мошонмадьяроварі. Лікувальна термальна вода, відкриті та криті басейни — ідеально для відновлення тіла і зняття напруги. Виїзд зі Словаччини по обіді, повернення ввечері.",
+          "audience": [
+            "Ви багато працюєте й хочете допомогти організму відновитися",
+            "Втомлені руки, ноги та спина — дозвольте теплій лікувальній воді зняти напругу",
+            "Немає часу на регулярні фізичні вправи чи масаж — термальна вода чудова альтернатива"
+          ],
+          "itinerary": [
+            "13:30 — Виїзд із Тренчина",
+            "15:00 — Виїзд із Братислави",
+            "Відпочинок у термальному комплексі Flexum до закриття",
+            "19:50 — Виїзд з Угорщини",
+            "20:50 — Братислава",
+            "22:20 — Тренчин"
+          ],
+          "included": [
+            "Проїзд туди й назад комфортним автобусом",
+            "Супровід групи"
+          ],
+          "extrasNote": [
+            "Вхідний квиток до термалу (~13 € з особи, оплачується окремо)",
+            "Харчування та особисті витрати",
+            "Туристична страховка"
+          ],
+          "bookingNote": "Бронювання та інформація: +421 951 287 892, Віталій.",
+          "tags": "термальні купальні, Flexum, Мошонмадьяровар, Угорщина, одноденний виїзд, wellness, зі Словаччини",
+          "faq": [
+            { "q": "О котрій виїзд і повернення?", "a": "Виїзд із Тренчина о 13:30, із Братислави о 15:00. З Угорщини виїжджаємо о 19:50 — Братислава ~20:50, Тренчин ~22:20." },
+            { "q": "Що входить у ціну і що оплачується окремо?", "a": "У ціну 45 € входить проїзд туди-назад і супровід групи. Вхідний квиток до термалу (~13 €) оплачується окремо, як і харчування та страховка." },
+            { "q": "Як забронювати місце?", "a": "За телефоном +421 951 287 892 (Віталій)." }
+          ]
+        }
+      }
     }
   ]
 }
