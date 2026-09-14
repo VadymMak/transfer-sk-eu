@@ -822,7 +822,8 @@
     "allTripsBtn": "Все туры",
     "backToList": "Назад к турам",
     "backToHome": "На главную",
-    "itineraryHeading": "Программа тура"
+    "itineraryHeading": "Программа тура",
+    "pastTitle": "Прошедшие поездки"
   },
   "tripPage": {
     "audienceTitle": "Для кого этот тур?",
@@ -846,6 +847,9 @@
     "bookNow": "Забронировать",
     "whatsapp": "WhatsApp",
     "bookingWhatsAppText": "Здравствуйте! Хочу забронировать тур: ",
-    "seatsLeft": "Осталось {n} мест"
+    "seatsLeft": "Осталось {n} мест",
+    "pastBadge": "Прошедший",
+    "pastCtaTitle": "Хотите так же? Напишите нам о следующей дате.",
+    "pastWhatsAppText": "Добрый день! Меня интересует поездка, похожая на "
   }
 }

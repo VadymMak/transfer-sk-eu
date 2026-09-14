@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
+import { routing, type Locale } from '@/i18n/routing';
 import Link from 'next/link';
 import GoldDivider from '@/components/ui/GoldDivider';
 
@@ -58,8 +59,11 @@ export default function UpcomingTripsSection({ trips, locale }: Props) {
         <div className="upcoming-trips__grid">
           {trips.map((trip) => {
             const tr = getTranslation(trip.translations, locale);
+            const safeLocale = routing.locales.includes(locale as Locale)
+              ? (locale === 'sk' ? 'sk-SK' : locale)
+              : 'de';
             const dateLabel = new Date(trip.dateStart).toLocaleDateString(
-              locale === 'sk' ? 'sk-SK' : locale,
+              safeLocale,
               { day: 'numeric', month: 'long', year: 'numeric' },
             );
             const cardImage = trip.coverImage ?? trip.galleryImages[0]?.url ?? null;

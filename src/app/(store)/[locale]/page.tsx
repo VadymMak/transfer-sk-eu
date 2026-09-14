@@ -1,4 +1,6 @@
+import { notFound } from 'next/navigation';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
+import { routing, type Locale } from '@/i18n/routing';
 import { db } from '@/lib/db';
 import { getStoreConfig } from '@/lib/store-config';
 import HeroSection, { type HeroTripCard } from '@/components/sections/HeroSection';
@@ -16,8 +18,9 @@ import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import FaqSection from '@/components/sections/FaqSection';
 import ContactSection from '@/components/sections/ContactSection';
 import UpcomingTripsSection from '@/components/sections/UpcomingTripsSection';
+import { todayCutoff } from '@/lib/trip-utils';
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 const TICKER_ARIA_LABEL: Record<string, string> = {
   de: 'Strecken und Festpreise',
@@ -32,6 +35,7 @@ export default async function HomePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  if (!routing.locales.includes(locale as Locale)) notFound();
   setRequestLocale(locale);
 
   const tRoutes = await getTranslations('routes');
@@ -65,7 +69,7 @@ export default async function HomePage({
     }),
     // Upcoming trips
     db.trip.findMany({
-      where: { storeId: config.id, active: true, dateStart: { gte: new Date() } },
+      where: { storeId: config.id, active: true, dateStart: { gte: todayCutoff() } },
       include: {
         translations: { where: { locale: { in: [locale, 'sk'] } } },
         galleryImages: { orderBy: { sortOrder: 'asc' }, take: 1 },

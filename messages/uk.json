@@ -822,7 +822,8 @@
     "allTripsBtn": "Всі тури",
     "backToList": "Назад до турів",
     "backToHome": "На головну",
-    "itineraryHeading": "Програма туру"
+    "itineraryHeading": "Програма туру",
+    "pastTitle": "Минулі поїздки"
   },
   "tripPage": {
     "audienceTitle": "Для кого цей тур?",
@@ -846,6 +847,9 @@
     "bookNow": "Забронювати",
     "whatsapp": "WhatsApp",
     "bookingWhatsAppText": "Доброго дня! Хочу забронювати тур: ",
-    "seatsLeft": "Залишилось {n} місць"
+    "seatsLeft": "Залишилось {n} місць",
+    "pastBadge": "Завершений",
+    "pastCtaTitle": "Хочете так само? Напишіть нам про наступну дату.",
+    "pastWhatsAppText": "Доброго дня! Мене цікавить подорож, схожа на "
   }
 }

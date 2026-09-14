@@ -13,6 +13,11 @@ import { ROUTE_PAGES } from '@/lib/route-pages';
 import { getBaseUrl } from '@/lib/url';
 import { db } from '@/lib/db';
 
+// Pre-render at deploy time and revalidate every hour via ISR.
+// Without this, each Vercel edge region caches lazily on first request —
+// if Googlebot hits a cold region, it waits for a live DB call.
+export const revalidate = 3600;
+
 const LOCALES = getActiveLocales();
 const DEFAULT_LOCALE = getDefaultLocale();
 
@@ -99,7 +104,10 @@ ${entries.map((e) => urlBlocks(e, lastmod, baseUrl)).join('\n')}
   return new Response(body, {
     headers: {
       'Content-Type': 'application/xml; charset=utf-8',
-      'Cache-Control': 'public, max-age=0, s-maxage=3600',
+      // stale-while-revalidate: always serve the cached copy while
+      // the background ISR revalidation runs — Googlebot never waits
+      // for a cold function + cross-region DB round-trip.
+      'Cache-Control': 'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400',
     },
   });
 }

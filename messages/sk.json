@@ -816,7 +816,8 @@
     "allTripsBtn": "Všetky zájazdy",
     "backToList": "Späť na zájazdy",
     "backToHome": "Späť na hlavnú",
-    "itineraryHeading": "Program zájazdu"
+    "itineraryHeading": "Program zájazdu",
+    "pastTitle": "Uskutočnené zájazdy"
   },
   "tripPage": {
     "audienceTitle": "Pre koho je tento zájazd?",
@@ -840,6 +841,9 @@
     "bookNow": "Rezervovať",
     "whatsapp": "WhatsApp",
     "bookingWhatsAppText": "Dobrý deň! Chcem si rezervovať zájazd: ",
-    "seatsLeft": "Zostáva {n} miest"
+    "seatsLeft": "Zostáva {n} miest",
+    "pastBadge": "Uskutočnené",
+    "pastCtaTitle": "Chcete ísť tiež? Napíšte nám o nasledujúci termín.",
+    "pastWhatsAppText": "Dobrý deň! Zaujíma ma podobný zájazd ako "
   }
 }

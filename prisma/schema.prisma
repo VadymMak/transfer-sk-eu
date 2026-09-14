@@ -635,8 +635,11 @@ model Trip {
   sortOrder    Int       @default(0)
   prepayment   Int?
   bookingPhone String?
-  seatsTotal   Int?
-  readMinutes  Int?
+  seatsTotal       Int?
+  readMinutes      Int?
+  locationName     String?
+  locationLocality String?
+  locationCountry  String?
 
   translations  TripTranslation[]
   galleryImages TripGalleryImage[]

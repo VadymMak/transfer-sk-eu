@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useQuotePrefill } from '@/stores/useQuotePrefill';
 
 interface RouteCardProps {
@@ -13,6 +14,8 @@ interface RouteCardProps {
   featuredLabel: string;
   ctaHint: string;
   routeLabel: string;
+  slug?: string;
+  locale?: string;
 }
 
 export default function RouteCard({
@@ -25,6 +28,8 @@ export default function RouteCard({
   featuredLabel,
   ctaHint,
   routeLabel,
+  slug,
+  locale,
 }: RouteCardProps) {
   const setPrefill = useQuotePrefill((s) => s.setPrefill);
 
@@ -34,25 +39,14 @@ export default function RouteCard({
   const dest = displayName.split('→').pop()?.trim() ?? displayName;
   const ariaLabel = `${ctaHint}: ${displayName}, ${priceLabel} ${price} €`;
   const note = `${routeLabel}: ${displayName} — ${priceLabel} ${price} €`;
+  const className = `service-card service-card--clickable${featured ? ' service-card--featured' : ''}`;
 
   function handleClick() {
     setPrefill('Trenčín', dest, note);
   }
 
-  return (
-    <div
-      role="button"
-      tabIndex={0}
-      className={`service-card service-card--clickable${featured ? ' service-card--featured' : ''}`}
-      onClick={handleClick}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          handleClick();
-        }
-      }}
-      aria-label={ariaLabel}
-    >
+  const inner = (
+    <>
       <div>
         {featured && (
           <span className="service-card__badge">{featuredLabel}</span>
@@ -71,6 +65,37 @@ export default function RouteCard({
 
       <span className="service-card__arrow" aria-hidden="true">↗</span>
       <span className="service-card__cta" aria-hidden="true">{ctaHint} →</span>
+    </>
+  );
+
+  if (slug && locale) {
+    return (
+      <Link
+        href={`/${locale}/transfer/${slug}`}
+        className={className}
+        onClick={handleClick}
+        aria-label={ariaLabel}
+      >
+        {inner}
+      </Link>
+    );
+  }
+
+  return (
+    <div
+      role="button"
+      tabIndex={0}
+      className={className}
+      onClick={handleClick}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleClick();
+        }
+      }}
+      aria-label={ariaLabel}
+    >
+      {inner}
     </div>
   );
 }
