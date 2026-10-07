@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useAdminLocale } from '@/hooks/useAdminLocale';
 import { getAdminT } from '@/lib/admin-i18n';
 import AdminLoading from '@/components/admin/AdminLoading/AdminLoading';
@@ -27,6 +27,7 @@ export default function AdminServicesPage() {
   const [form, setForm] = useState(EMPTY);
   const [showAdd, setShowAdd] = useState(false);
   const [saving, setSaving] = useState(false);
+  const formRef = useRef<HTMLDivElement>(null);
 
   const load = useCallback(async () => {
     try {
@@ -49,6 +50,7 @@ export default function AdminServicesPage() {
       category: s.category ?? '',
     });
     setShowAdd(false);
+    setTimeout(() => formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
   }
 
   function cancelForm() {
@@ -124,7 +126,7 @@ export default function AdminServicesPage() {
 
       {/* Add / Edit form */}
       {isEditing && (
-        <div className="admin-services__form">
+        <div ref={formRef} className="admin-services__form">
           <h3>{editId ? t.services.editService : t.services.newService}</h3>
           <div className="admin-services__form-grid">
             <div className="booking__field">
