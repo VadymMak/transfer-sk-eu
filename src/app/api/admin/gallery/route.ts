@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
+import { revalidateTag } from 'next/cache';
 import { db } from '@/lib/db';
 import { verifyAdminToken, getAdminSecret, ADMIN_COOKIE } from '@/lib/adminAuth';
 
@@ -51,6 +52,7 @@ export async function POST(request: Request) {
     },
   });
 
+  revalidateTag('gallery');
   return NextResponse.json({ image }, { status: 201 });
 }
 
@@ -79,6 +81,7 @@ export async function PATCH(request: Request) {
   );
 
   const image = await db.galleryImage.update({ where: { id }, data });
+  revalidateTag('gallery');
   return NextResponse.json({ image });
 }
 
@@ -94,5 +97,6 @@ export async function DELETE(request: Request) {
   }
 
   await db.galleryImage.delete({ where: { id } });
+  revalidateTag('gallery');
   return NextResponse.json({ success: true });
 }

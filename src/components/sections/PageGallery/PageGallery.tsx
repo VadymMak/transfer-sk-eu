@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { unstable_cache } from 'next/cache';
 import { db } from '@/lib/db';
 import styles from './PageGallery.module.css';
 
@@ -17,15 +18,22 @@ interface Props {
   storeSlug: string;
 }
 
-export default async function PageGallery({ tag, locale, storeSlug }: Props) {
-  const store = await db.store.findUnique({ where: { slug: storeSlug }, select: { id: true } });
-  if (!store) return null;
+const getGalleryImages = unstable_cache(
+  async (storeSlug: string, tag: string) => {
+    const store = await db.store.findUnique({ where: { slug: storeSlug }, select: { id: true } });
+    if (!store) return [];
+    return db.galleryImage.findMany({
+      where: { storeId: store.id, tag, active: true },
+      orderBy: { sortOrder: 'asc' },
+      select: { id: true, url: true, alt: true },
+    });
+  },
+  ['page-gallery'],
+  { tags: ['gallery'], revalidate: 3600 },
+);
 
-  const images = await db.galleryImage.findMany({
-    where: { storeId: store.id, tag, active: true },
-    orderBy: { sortOrder: 'asc' },
-    select: { id: true, url: true, alt: true },
-  });
+export default async function PageGallery({ tag, locale, storeSlug }: Props) {
+  const images = await getGalleryImages(storeSlug, tag);
 
   if (images.length === 0) return null;
 
