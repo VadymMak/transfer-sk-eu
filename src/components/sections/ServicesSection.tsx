@@ -1,9 +1,17 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
 import GoldDivider from '@/components/ui/GoldDivider';
 import ScrollReveal from '@/components/ui/ScrollReveal';
+
+interface ServiceMeta {
+  nameI18n?: Record<string, string>;
+  descI18n?: Record<string, string>;
+  priceLabelI18n?: Record<string, string>;
+  pageSlug?: string;
+}
 
 interface Service {
   id: string;
@@ -12,8 +20,7 @@ interface Service {
   price: number;
   duration?: number | null;
   category?: string | null;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  metadata?: any | null;
+  metadata?: ServiceMeta | null;
 }
 
 export default function ServicesSection() {
@@ -50,9 +57,11 @@ export default function ServicesSection() {
           ? [0, 1, 2, 3, 4, 5].map((i) => (
               <div key={i} className="service-card service-card--skeleton" />
             ))
-          : services.map((s, i) => (
-              <ScrollReveal key={s.id} direction="scale" delay={i * 100}>
-                <div className="service-card">
+          : services.map((s, i) => {
+              const pageSlug = s.metadata?.pageSlug;
+              const cardContent = (
+                <div className={`service-card${pageSlug ? ' service-card--clickable' : ''}`}>
+                  {pageSlug && <span className="service-card__arrow">→</span>}
                   <div>
                     <h3 className="service-card__name">
                       {s.metadata?.nameI18n?.[locale] ?? s.nameKey}
@@ -69,9 +78,19 @@ export default function ServicesSection() {
                   <div className="service-card__price">
                     {s.metadata?.priceLabelI18n?.[locale] ?? `€${s.price}`}
                   </div>
+                  {pageSlug && <span className="service-card__cta">{t('viewMore')}</span>}
                 </div>
-              </ScrollReveal>
-            ))}
+              );
+              return (
+                <ScrollReveal key={s.id} direction="scale" delay={i * 100}>
+                  {pageSlug ? (
+                    <Link href={`/${locale}${pageSlug}`} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
+                      {cardContent}
+                    </Link>
+                  ) : cardContent}
+                </ScrollReveal>
+              );
+            })}
       </div>
     </section>
   );

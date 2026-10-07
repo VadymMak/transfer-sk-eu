@@ -14,8 +14,12 @@ import { getBaseUrl } from '@/lib/url';
 import { db } from '@/lib/db';
 
 // Pre-render at deploy time and revalidate every hour via ISR.
-// Without this, each Vercel edge region caches lazily on first request —
-// if Googlebot hits a cold region, it waits for a live DB call.
+// force-static: Next.js renders this route at build time (and on revalidate)
+// and Vercel serves the result as a static asset — no vary:rsc headers,
+// no live DB call when Googlebot fetches. Without this the App Router adds
+// vary:rsc,next-router-* headers, causing CDN misses for bot User-Agents
+// which triggers cold DB calls and occasional timeouts ("Couldn't fetch" in GSC).
+export const dynamic = 'force-static';
 export const revalidate = 3600;
 
 const LOCALES = getActiveLocales();
@@ -65,11 +69,11 @@ export async function GET(): Promise<Response> {
   const entries: Entry[] = [];
 
   // Static pages
-  for (const path of ['', '/testimonials', '/vylety']) {
+  for (const path of ['', '/testimonials', '/vylety', '/preprava-veci']) {
     entries.push({
       path,
       changefreq: path === '' ? 'weekly' : (path === '/vylety' ? 'weekly' : 'monthly'),
-      priority: path === '' ? 1.0 : (path === '/vylety' ? 0.8 : 0.6),
+      priority: path === '' ? 1.0 : path === '/vylety' ? 0.8 : path === '/preprava-veci' ? 0.8 : 0.6,
     });
   }
 
