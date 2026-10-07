@@ -84,7 +84,7 @@ export default function ServicesSection() {
               return (
                 <ScrollReveal key={s.id} direction="scale" delay={i * 100}>
                   {pageSlug ? (
-                    <Link href={`/${locale}${pageSlug}`} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
+                    <Link href={`/${locale}${pageSlug}`} style={{ textDecoration: 'none', color: 'inherit', display: 'block', height: '100%' }}>
                       {cardContent}
                     </Link>
                   ) : cardContent}
