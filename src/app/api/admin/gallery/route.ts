@@ -63,6 +63,7 @@ export async function PATCH(request: Request) {
     id: string;
     url?: string;
     alt?: string;
+    tag?: string | null;
     sortOrder?: number;
     active?: boolean;
   };
@@ -72,6 +73,7 @@ export async function PATCH(request: Request) {
   }
 
   const { id, ...updates } = body;
+  // Keep explicit null (tag: null) — it means "main gallery", must write NULL to DB
   const data = Object.fromEntries(
     Object.entries(updates).filter(([, v]) => v !== undefined),
   );

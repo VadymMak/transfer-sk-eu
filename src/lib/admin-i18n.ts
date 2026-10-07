@@ -354,6 +354,7 @@ export interface AdminTranslations {
     showPhoto: string;
     deletePhoto: string;
     hidden: string;
+    destinationLabel: string;
   };
   masters: {
     title: string;
@@ -943,6 +944,7 @@ const SK: AdminTranslations = {
     showPhoto:      'Zobraziť',
     deletePhoto:    'Zmazať',
     hidden:         'skryté',
+    destinationLabel: 'Kde zobraziť',
   },
   masters: {
     title:            'Majstri',
@@ -1532,6 +1534,7 @@ const EN: AdminTranslations = {
     showPhoto:      'Show',
     deletePhoto:    'Delete',
     hidden:         'hidden',
+    destinationLabel: 'Show on page',
   },
   masters: {
     title:            'Masters',
@@ -2121,6 +2124,7 @@ const CS: AdminTranslations = {
     showPhoto:      'Zobrazit',
     deletePhoto:    'Smazat',
     hidden:         'skryto',
+    destinationLabel: 'Kde zobrazit',
   },
   masters: {
     title:            'Mistři',
@@ -2710,6 +2714,7 @@ const DE: AdminTranslations = {
     showPhoto:      'Einblenden',
     deletePhoto:    'Löschen',
     hidden:         'verborgen',
+    destinationLabel: 'Wo anzeigen',
   },
   masters: {
     title:            'Mitarbeiter',
@@ -3299,6 +3304,7 @@ const UK: AdminTranslations = {
     showPhoto:      'Показати',
     deletePhoto:    'Видалити',
     hidden:         'приховано',
+    destinationLabel: 'Де показувати',
   },
   masters: {
     title:            'Майстри',
@@ -3888,6 +3894,7 @@ const RU: AdminTranslations = {
     showPhoto:      'Показать',
     deletePhoto:    'Удалить',
     hidden:         'скрыто',
+    destinationLabel: 'Где показывать',
   },
   masters: {
     title:            'Мастера',
@@ -4477,6 +4484,7 @@ const PL: AdminTranslations = {
     showPhoto:      'Pokaż',
     deletePhoto:    'Usuń',
     hidden:         'ukryte',
+    destinationLabel: 'Gdzie pokazywać',
   },
   masters: {
     title:            'Mistrzowie',

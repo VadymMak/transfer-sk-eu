@@ -4,11 +4,13 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import styles from './gallery.module.css';
 import { useAdminLocale } from '@/hooks/useAdminLocale';
 import { getAdminT } from '@/lib/admin-i18n';
+import { GALLERY_DESTINATIONS, type GalleryTag } from '@/lib/galleryDestinations';
 
 interface GalleryImage {
   id: string;
   url: string;
   alt: string;
+  tag: string | null;
   sortOrder: number;
   active: boolean;
   createdAt: string;
@@ -120,6 +122,26 @@ export default function GalleryPage() {
     });
   };
 
+  const updateTag = async (img: GalleryImage, tag: GalleryTag) => {
+    // Optimistic update
+    setImages(prev => prev.map(i => i.id === img.id ? { ...i, tag } : i));
+    await fetch('/api/admin/gallery', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: img.id, tag }),
+    });
+  };
+
+  // Group images by destination
+  const groups = GALLERY_DESTINATIONS.map(dest => ({
+    dest,
+    items: images.filter(img => img.tag === dest.value),
+  })).filter(g => g.items.length > 0);
+
+  // Images with unknown tags (not in destinations list) — show in separate group
+  const knownValues = GALLERY_DESTINATIONS.map(d => d.value);
+  const ungrouped = images.filter(img => !knownValues.includes(img.tag as GalleryTag));
+
   return (
     <div className={styles.page}>
       <div className={styles.topBar}>
@@ -147,59 +169,86 @@ export default function GalleryPage() {
       ) : images.length === 0 ? (
         <div className={styles.empty}>{tg.empty}</div>
       ) : (
-        <div className={styles.grid}>
-          {images.map((img) => (
-            <div key={img.id} className={`${styles.card} ${!img.active ? styles.cardInactive : ''}`}>
-              <div className={styles.imageWrap}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={img.url} alt={img.alt} className={styles.image} />
-                <div className={styles.overlay}>
-                  <input
-                    type="file"
-                    accept="image/jpeg,image/png,image/webp,image/gif,image/avif"
-                    className={styles.fileInput}
-                    id={`replace-${img.id}`}
-                    ref={(el) => {
-                      if (el) cardFileRefs.current.set(img.id, el);
-                      else cardFileRefs.current.delete(img.id);
-                    }}
-                    onChange={(e) => void handleCardReplace(e, img.id)}
-                  />
-                  <label
-                    htmlFor={`replace-${img.id}`}
-                    className={styles.overlayBtn}
-                    style={{ cursor: uploading ? 'not-allowed' : 'pointer' }}
-                    aria-disabled={!!uploading}
-                  >
-                    {uploading === img.id ? tg.uploading : tg.replace}
-                  </label>
-                  <button
-                    type="button"
-                    className={styles.overlayBtn}
-                    onClick={() => void toggleActive(img)}
-                  >
-                    {img.active ? tg.hidePhoto : tg.showPhoto}
-                  </button>
-                  <button
-                    type="button"
-                    className={`${styles.overlayBtn} ${styles.overlayDelete}`}
-                    onClick={() => void deleteImage(img)}
-                  >
-                    {tg.deletePhoto}
-                  </button>
-                </div>
+        <>
+          {[...groups, ...(ungrouped.length > 0 ? [{ dest: { value: '__unknown__' as GalleryTag, label: 'Без назначения' }, items: ungrouped }] : [])].map(({ dest, items }) => (
+            <div key={String(dest.value)} className={styles.group}>
+              <h2 className={styles.groupTitle}>{dest.label} <span className={styles.groupCount}>({items.length})</span></h2>
+              <div className={styles.grid}>
+                {items.map((img) => (
+                  <div key={img.id} className={`${styles.card} ${!img.active ? styles.cardInactive : ''}`}>
+                    <div className={styles.imageWrap}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={img.url} alt={img.alt} className={styles.image} />
+                      <div className={styles.badge}>
+                        {GALLERY_DESTINATIONS.find(d => d.value === img.tag)?.label ?? img.tag ?? '—'}
+                      </div>
+                      <div className={styles.overlay}>
+                        <input
+                          type="file"
+                          accept="image/jpeg,image/png,image/webp,image/gif,image/avif"
+                          className={styles.fileInput}
+                          id={`replace-${img.id}`}
+                          ref={(el) => {
+                            if (el) cardFileRefs.current.set(img.id, el);
+                            else cardFileRefs.current.delete(img.id);
+                          }}
+                          onChange={(e) => void handleCardReplace(e, img.id)}
+                        />
+                        <label
+                          htmlFor={`replace-${img.id}`}
+                          className={styles.overlayBtn}
+                          style={{ cursor: uploading ? 'not-allowed' : 'pointer' }}
+                          aria-disabled={!!uploading}
+                        >
+                          {uploading === img.id ? tg.uploading : tg.replace}
+                        </label>
+                        <button
+                          type="button"
+                          className={styles.overlayBtn}
+                          onClick={() => void toggleActive(img)}
+                        >
+                          {img.active ? tg.hidePhoto : tg.showPhoto}
+                        </button>
+                        <button
+                          type="button"
+                          className={`${styles.overlayBtn} ${styles.overlayDelete}`}
+                          onClick={() => void deleteImage(img)}
+                        >
+                          {tg.deletePhoto}
+                        </button>
+                      </div>
+                    </div>
+                    <input
+                      type="text"
+                      className={styles.altInput}
+                      defaultValue={img.alt}
+                      placeholder={tg.altPlaceholder}
+                      onBlur={(e) => void updateAlt(img, e.target.value)}
+                    />
+                    <div className={styles.destinationRow}>
+                      <label className={styles.destinationLabel}>{tg.destinationLabel}</label>
+                      <select
+                        className={styles.destinationSelect}
+                        value={img.tag ?? ''}
+                        onChange={(e) => {
+                          const val = e.target.value === '' ? null : e.target.value;
+                          void updateTag(img, val as GalleryTag);
+                        }}
+                      >
+                        {GALLERY_DESTINATIONS.map(d => (
+                          <option key={String(d.value)} value={d.value ?? ''}>
+                            {d.label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <span className={styles.order}>#{img.sortOrder + 1}</span>
+                  </div>
+                ))}
               </div>
-              <input
-                type="text"
-                className={styles.altInput}
-                defaultValue={img.alt}
-                placeholder={tg.altPlaceholder}
-                onBlur={(e) => void updateAlt(img, e.target.value)}
-              />
-              <span className={styles.order}>#{img.sortOrder + 1}</span>
             </div>
           ))}
-        </div>
+        </>
       )}
     </div>
   );
