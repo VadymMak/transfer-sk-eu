@@ -9,7 +9,7 @@ export async function GET() {
     if (!store) return NextResponse.json({ images: [] });
 
     const images = await db.galleryImage.findMany({
-      where: { storeId: store.id, active: true },
+      where: { storeId: store.id, active: true, tag: null },
       orderBy: { sortOrder: 'asc' },
       select: { id: true, url: true, alt: true },
     });

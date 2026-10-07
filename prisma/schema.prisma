@@ -395,12 +395,14 @@ model GalleryImage {
 
   url       String
   alt       String  @default("")
+  tag       String? // null = main gallery; 'preprava-veci' = delivery page gallery
   sortOrder Int     @default(0)
   active    Boolean @default(true)
 
   createdAt DateTime @default(now())
 
   @@index([storeId, sortOrder])
+  @@index([storeId, tag])
 }
 
 // ============ TESTIMONIALS ============

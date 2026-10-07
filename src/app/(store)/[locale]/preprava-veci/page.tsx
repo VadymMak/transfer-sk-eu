@@ -6,6 +6,7 @@ import { routing, type Locale } from '@/i18n/routing';
 import { getActiveLocales, getDefaultLocale } from '@/config';
 import { getBaseUrl } from '@/lib/url';
 import { db } from '@/lib/db';
+import PageGallery from '@/components/sections/PageGallery/PageGallery';
 import styles from './preprava-veci.module.css';
 
 const PHONE = '+421 951 287 892';
@@ -309,6 +310,8 @@ export default async function PrepravaVeciPage({
           WhatsApp / Viber / Telegram
         </a>
       </div>
+
+      <PageGallery tag="preprava-veci" locale={locale} storeSlug={storeSlug} />
 
       <section className={styles.faq}>
         {c.faq.map((item, i) => (
