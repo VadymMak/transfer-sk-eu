@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { unstable_cache } from 'next/cache';
 import { db } from '@/lib/db';
 import styles from './PageGallery.module.css';
 
@@ -18,26 +17,15 @@ interface Props {
   storeSlug: string;
 }
 
-// keyParts must include storeSlug + tag so each destination gets its own
-// cache entry. tags:['gallery'] stays shared so revalidateTag('gallery')
-// busts ALL gallery pages at once.
-const getGalleryImages = (storeSlug: string, tag: string) =>
-  unstable_cache(
-    async () => {
-      const store = await db.store.findUnique({ where: { slug: storeSlug }, select: { id: true } });
-      if (!store) return [];
-      return db.galleryImage.findMany({
-        where: { storeId: store.id, tag, active: true },
-        orderBy: { sortOrder: 'asc' },
-        select: { id: true, url: true, alt: true },
-      });
-    },
-    ['gallery', storeSlug, tag],
-    { tags: ['gallery'], revalidate: 3600 },
-  )();
-
 export default async function PageGallery({ tag, locale, storeSlug }: Props) {
-  const images = await getGalleryImages(storeSlug, tag);
+  const store = await db.store.findUnique({ where: { slug: storeSlug }, select: { id: true } });
+  if (!store) return null;
+
+  const images = await db.galleryImage.findMany({
+    where: { storeId: store.id, tag, active: true },
+    orderBy: { sortOrder: 'asc' },
+    select: { id: true, url: true, alt: true },
+  });
 
   if (images.length === 0) return null;
 

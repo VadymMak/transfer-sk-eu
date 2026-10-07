@@ -1,10 +1,18 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
-import { revalidateTag } from 'next/cache';
+import { revalidatePath } from 'next/cache';
 import { db } from '@/lib/db';
 import { verifyAdminToken, getAdminSecret, ADMIN_COOKIE } from '@/lib/adminAuth';
 
 const STORE_SLUG = process.env.STORE_SLUG ?? 'electromarket';
+const LOCALES = ['sk', 'de', 'cs', 'en', 'ru', 'uk'];
+
+function revalidateGalleryPages() {
+  for (const locale of LOCALES) {
+    revalidatePath(`/${locale}/preprava-veci`);
+    revalidatePath(`/${locale}`);
+  }
+}
 
 async function requireAdmin() {
   const cookieStore = await cookies();
@@ -52,7 +60,7 @@ export async function POST(request: Request) {
     },
   });
 
-  revalidateTag('gallery');
+  revalidateGalleryPages();
   return NextResponse.json({ image }, { status: 201 });
 }
 
@@ -81,7 +89,7 @@ export async function PATCH(request: Request) {
   );
 
   const image = await db.galleryImage.update({ where: { id }, data });
-  revalidateTag('gallery');
+  revalidateGalleryPages();
   return NextResponse.json({ image });
 }
 
@@ -97,6 +105,6 @@ export async function DELETE(request: Request) {
   }
 
   await db.galleryImage.delete({ where: { id } });
-  revalidateTag('gallery');
+  revalidateGalleryPages();
   return NextResponse.json({ success: true });
 }
