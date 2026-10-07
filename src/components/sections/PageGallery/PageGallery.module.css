@@ -17,28 +17,29 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-xs);
+  gap: 0.75rem;
 }
 
 @media (min-width: 768px) {
   .grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
   }
 }
 
 .item {
   position: relative;
-  aspect-ratio: 3 / 4;
-  border-radius: var(--border-radius-md);
+  aspect-ratio: 4 / 3;
+  border-radius: var(--border-radius-lg);
   overflow: hidden;
   background-color: var(--color-bg-tertiary);
 }
 
 .img {
   object-fit: cover;
-  transition: transform var(--transition);
+  transition: transform 0.3s ease;
 }
 
 .item:hover .img {
-  transform: scale(1.04);
+  transform: scale(1.03);
 }

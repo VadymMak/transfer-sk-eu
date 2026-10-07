@@ -50,7 +50,7 @@ export default async function PageGallery({ tag, locale, storeSlug }: Props) {
               src={img.url}
               alt={img.alt}
               fill
-              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+              sizes="(max-width: 640px) 50vw, 33vw"
               className={styles.img}
             />
           </div>
