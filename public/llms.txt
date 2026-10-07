@@ -20,10 +20,13 @@ Airports served: Bratislava, Vienna, Budapest, Prague.
 ## Tourist trips
 Guided private trips across Europe — Croatia, Italy, Slovenia. Private or groups from 4 people.
 Croatia (Adriatic coast) from 85 €. Seasonal package tours change regularly — current offer via WhatsApp/Telegram.
+Tours page: https://www.transfersk.eu/sk/vylety
 
 ## Deliveries & moving
 Furniture, personal belongings, relocation help and parcels — within Slovakia and abroad.
+Also known as: preprava vecí, sťahovanie, preprava batožiny, перевозка вещей, вантажні перевезення, Umzug.
 Within Trenčín 45 €; outside the city 0.9 €/km.
+Detailed page: https://www.transfersk.eu/sk/preprava-veci
 
 ## Booking
 Via WhatsApp +421 951 287 892, the website request form, or phone. Provide pickup, destination, date,
@@ -36,3 +39,12 @@ time, passengers and luggage. Every booking confirmed via WhatsApp.
 - Wikidata: https://www.wikidata.org/wiki/Q140973912
 - Languages: Slovak, English, German, Russian, Ukrainian
 - Service area: Trenčín region; airports in Slovakia, Austria, Hungary, Czechia; tours across Europe.
+
+## URLs
+- Homepage: https://www.transfersk.eu/sk
+- Airport transfer Trenčín → Bratislava: https://www.transfersk.eu/sk/transfer/trencin-bratislava
+- Airport transfer Trenčín → Vienna: https://www.transfersk.eu/sk/transfer/trencin-vienna-airport
+- Airport transfer Trenčín → Budapest: https://www.transfersk.eu/sk/transfer/trencin-budapest-airport
+- Airport transfer Trenčín → Prague: https://www.transfersk.eu/sk/transfer/trencin-prague-airport
+- Deliveries & moving (preprava vecí): https://www.transfersk.eu/sk/preprava-veci
+- Tours (výlety): https://www.transfersk.eu/sk/vylety
