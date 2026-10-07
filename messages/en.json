@@ -623,7 +623,8 @@
     "bookCta": "Book",
     "duration": "from {min} km",
     "minutes": "km",
-    "from": "from"
+    "from": "from",
+    "viewMore": "View details"
   },
   "booking": {
     "sectionLabel": "Booking",

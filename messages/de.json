@@ -623,7 +623,8 @@
     "bookCta": "Anfragen",
     "duration": "ab {min} km",
     "minutes": "km",
-    "from": "ab"
+    "from": "ab",
+    "viewMore": "Mehr erfahren"
   },
   "booking": {
     "sectionLabel": "Reservierung",

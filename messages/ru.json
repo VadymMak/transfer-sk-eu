@@ -628,7 +628,8 @@
     "transfer": "Трансфер в аэропорт",
     "business": "Бизнес-поездки",
     "events": "Мероприятия и поездки",
-    "longdistance": "Дальние поездки"
+    "longdistance": "Дальние поездки",
+    "viewMore": "Подробнее"
   },
   "booking": {
     "sectionLabel": "Запись",

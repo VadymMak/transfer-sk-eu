@@ -623,7 +623,8 @@
     "bookCta": "Objednať",
     "duration": "od {min} km",
     "minutes": "km",
-    "from": "od"
+    "from": "od",
+    "viewMore": "Zobraziť viac"
   },
   "booking": {
     "sectionLabel": "Rezervácia",

@@ -60,7 +60,8 @@ export default function ServicesSection() {
           : services.map((s, i) => {
               const pageSlug = s.metadata?.pageSlug;
               const cardContent = (
-                <div className={`service-card${pageSlug ? ' service-card--link' : ''}`}>
+                <div className={`service-card${pageSlug ? ' service-card--clickable' : ''}`}>
+                  {pageSlug && <span className="service-card__arrow">→</span>}
                   <div>
                     <h3 className="service-card__name">
                       {s.metadata?.nameI18n?.[locale] ?? s.nameKey}
@@ -77,6 +78,7 @@ export default function ServicesSection() {
                   <div className="service-card__price">
                     {s.metadata?.priceLabelI18n?.[locale] ?? `€${s.price}`}
                   </div>
+                  {pageSlug && <span className="service-card__cta">{t('viewMore')}</span>}
                 </div>
               );
               return (
