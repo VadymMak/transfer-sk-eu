@@ -45,7 +45,7 @@ export default async function HomePage({
   const [heroConfig, galleryImages, dbTestimonials, dbServices, dbFleet, upcomingTrips] = await Promise.all([
     db.heroConfig.findUnique({ where: { storeId: config.id } }),
     db.galleryImage.findMany({
-      where: { storeId: config.id, active: true },
+      where: { storeId: config.id, active: true, tag: null },
       orderBy: { sortOrder: 'asc' },
       select: { id: true, url: true, alt: true },
     }),
