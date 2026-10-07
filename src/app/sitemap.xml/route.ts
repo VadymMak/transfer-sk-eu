@@ -65,11 +65,11 @@ export async function GET(): Promise<Response> {
   const entries: Entry[] = [];
 
   // Static pages
-  for (const path of ['', '/testimonials', '/vylety']) {
+  for (const path of ['', '/testimonials', '/vylety', '/preprava-veci']) {
     entries.push({
       path,
       changefreq: path === '' ? 'weekly' : (path === '/vylety' ? 'weekly' : 'monthly'),
-      priority: path === '' ? 1.0 : (path === '/vylety' ? 0.8 : 0.6),
+      priority: path === '' ? 1.0 : path === '/vylety' ? 0.8 : path === '/preprava-veci' ? 0.8 : 0.6,
     });
   }
 
