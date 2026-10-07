@@ -18,19 +18,23 @@ interface Props {
   storeSlug: string;
 }
 
-const getGalleryImages = unstable_cache(
-  async (storeSlug: string, tag: string) => {
-    const store = await db.store.findUnique({ where: { slug: storeSlug }, select: { id: true } });
-    if (!store) return [];
-    return db.galleryImage.findMany({
-      where: { storeId: store.id, tag, active: true },
-      orderBy: { sortOrder: 'asc' },
-      select: { id: true, url: true, alt: true },
-    });
-  },
-  ['page-gallery'],
-  { tags: ['gallery'], revalidate: 3600 },
-);
+// keyParts must include storeSlug + tag so each destination gets its own
+// cache entry. tags:['gallery'] stays shared so revalidateTag('gallery')
+// busts ALL gallery pages at once.
+const getGalleryImages = (storeSlug: string, tag: string) =>
+  unstable_cache(
+    async () => {
+      const store = await db.store.findUnique({ where: { slug: storeSlug }, select: { id: true } });
+      if (!store) return [];
+      return db.galleryImage.findMany({
+        where: { storeId: store.id, tag, active: true },
+        orderBy: { sortOrder: 'asc' },
+        select: { id: true, url: true, alt: true },
+      });
+    },
+    ['gallery', storeSlug, tag],
+    { tags: ['gallery'], revalidate: 3600 },
+  )();
 
 export default async function PageGallery({ tag, locale, storeSlug }: Props) {
   const images = await getGalleryImages(storeSlug, tag);
