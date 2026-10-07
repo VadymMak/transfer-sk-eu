@@ -6,6 +6,7 @@ import { routing, type Locale } from '@/i18n/routing';
 import { getActiveLocales, getDefaultLocale } from '@/config';
 import { getBaseUrl } from '@/lib/url';
 import { db } from '@/lib/db';
+import { getStoreConfig } from '@/lib/store-config';
 import PageGallery from '@/components/sections/PageGallery/PageGallery';
 import styles from './preprava-veci.module.css';
 
@@ -176,6 +177,9 @@ export async function generateMetadata({
   const { locale } = await params;
   const c = CONTENT[locale as LocaleKey] ?? CONTENT.sk;
   const baseUrl = getBaseUrl();
+  const config = await getStoreConfig();
+  const ogImage = config.ogImageUrl ?? `${baseUrl}/og-image.jpg`;
+
   const languages = Object.fromEntries(
     getActiveLocales().map((l) => [l, `${baseUrl}/${l}${PAGE_SLUG}`]),
   );
@@ -193,6 +197,12 @@ export async function generateMetadata({
       description: c.metaDescription,
       type: 'website',
       url: `${baseUrl}/${locale}${PAGE_SLUG}`,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: c.metaTitle }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: c.metaTitle,
+      description: c.metaDescription,
     },
   };
 }
