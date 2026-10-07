@@ -516,6 +516,76 @@
   background: rgba(220, 38, 38, 0.25);
 }
 
+/* ── Gallery: groups, badge, destination ─────────── */
+.galleryGroup { margin-bottom: 28px; }
+
+.galleryGroupTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: #c8c0b0;
+  margin: 0 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.galleryGroupCount {
+  font-weight: 400;
+  color: #666;
+}
+
+.galleryImageWrap {
+  position: relative;
+}
+
+.galleryBadge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: rgba(0, 0, 0, 0.72);
+  color: #fff;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  max-width: 110px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.galleryDestRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.galleryDestLabel {
+  font-size: 10px;
+  color: #666;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.galleryDestSelect {
+  flex: 1;
+  padding: 3px 6px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 5px;
+  font-size: 11px;
+  font-family: inherit;
+  color: #c8c0b0;
+  background: #1a1a1a;
+  cursor: pointer;
+}
+
+.galleryDestSelect:focus {
+  outline: none;
+  border-color: var(--admin-kate-bronze, #C9A347);
+}
+
 /* ── Masters Tab ──────────────────────────────────── */
 .masterList {
   display: flex;
